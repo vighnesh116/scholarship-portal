@@ -1,0 +1,29 @@
+body{
+    margin :0;
+}
+header {
+    background-color :#212529;
+    color: white;
+    padding: 12px;
+    padding-top: 5%;
+    width:100%;
+    box-sizing: border-box;
+}
+header a{
+    background-color :#212529;
+    color: white;
+    padding: 12px;
+    width:100%;
+    box-sizing: border-box;
+}
+header a:hover{
+    text-decoration: underline;
+}
+footer{
+    background-color: #212529;    
+    color:white;
+    text-align: center;
+    padding: 15px;
+    padding-bottom: 5%;
+    margin-top: 30px;
+}
