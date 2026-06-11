@@ -17,11 +17,13 @@ function Home() {
       <div class="logo">
       </div>
       <nav>
-        <a href="#">Home</a>
-        <a href="#">Scholarships</a>
+        <a href="#">👤Profile</a>
+        {
+        /* <a href="#">Scholarships</a>
         <a href="#">About</a>
-        <a href="#">Contact</a>
-      </nav>
+        <a href="#">Contact</a>*/
+        }
+        </nav>
     </header>
       <h1>Scholarship Information Portal</h1>
       <StudentForm/>
@@ -32,7 +34,7 @@ function Home() {
         </div>
       ))}
       <footer>
-        <p> 2026 Scholarship Portal .All Rights Reserved.</p>
+        <p> 2026 Scholarship Portal .</p>
       </footer>
     </div>
   
