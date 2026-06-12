@@ -22,7 +22,7 @@ function StudentForm(){
             </select>
             <br/><br/>
             <select required>
-                <option value=" "disabled selected>Select Your Class</option>
+                <option disabled selected>Select Your Class</option>
                 <option value="11th">11th</option>
                 <option value="12th">12th</option>
             
@@ -31,7 +31,7 @@ function StudentForm(){
             <br/><br/>
 
             <select required>
-            <option value=" "disabled selected>Select Gender</option>
+            <option disabled selected>Select Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
             </select>

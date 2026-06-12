@@ -1,43 +1,81 @@
-import { useEffect, useState } from "react";
-import StudentForm from "../components/studentForm";
-function Home() {
-  const [scholarships, setScholarships] = useState([]);
+import { useState } from "react";
+import StudentForm from "../components/StudentForm";
 
-  useEffect(() => {
-    fetch("http://127.0.0.1:5000/scholarships")
-      .then((response) => response.json())
-      .then((data) => setScholarships(data))
-      .catch((error) => console.log(error));
-  }, []);
+function Home() {
+
+  const [eligibleScholarships, setEligibleScholarships] = useState([]);
 
   return (
-    
-    <div>
+    <div className="page-container">
+
       <header>
-      <div class="logo">
-      </div>
-      <nav>
-        <a href="#">👤Profile</a>
-        {
-        /* <a href="#">Scholarships</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>*/
-        }
+        <h2>Scholarship Information Portal</h2>
+
+        <nav>
+          <a href="signup">Profile</a>
+          
         </nav>
-    </header>
-      <h1>Scholarship Information Portal</h1>
-      <StudentForm/>
-      {scholarships.map((s) => (
-        <div key={s.id}>
-          <h3>{s.name}</h3>
-          <p>Amount: ₹{s.amount}</p>
-        </div>
-      ))}
+      </header>
+
+      <main>
+
+        <section className="hero">
+          <h1>Find Scholarships You Are Eligible For</h1>
+          <p>
+            Enter your academic and personal details to check
+            available scholarships.
+          </p>
+        </section>
+
+        {/* Student Form */}
+        <StudentForm setEligibleScholarships={setEligibleScholarships} />
+
+        {/* Scholarship Results */}
+        <section className="results">
+
+          <h2>Eligible Scholarships</h2>
+
+          {eligibleScholarships.length === 0 ? (
+            <p>No scholarships checked yet.</p>
+          ) : (
+            eligibleScholarships.map((s) => (
+              <div key={s.id} className="scholarship-card">
+
+                <h3>{s.scholarshipname}</h3>
+
+                <p>
+                  <strong>Amount:</strong> ₹{s.amount}
+                </p>
+
+                <p>
+                  <strong>Category:</strong> {s.category || "All"}
+                </p>
+
+                <p>
+                  <strong>Gender:</strong> {s.applicablefor || "All"}
+                </p>
+
+                <a
+                  href={s.applicationlink}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Apply Here
+                </a>
+
+              </div>
+            ))
+          )}
+
+        </section>
+
+      </main>
+
       <footer>
-        <p> 2026 Scholarship Portal .</p>
+        <p>© 2026 Scholarship Information Portal</p>
       </footer>
+
     </div>
-  
   );
 }
 
