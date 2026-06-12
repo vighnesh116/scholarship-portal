@@ -1,81 +1,86 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import {useState} from "react";
+import {Link,useNavigate} from "react-router-dom";
+import axios from "axios";
 
-function Login(){
+import "./Auth.css";
 
-  const navigate=useNavigate();
+function Login() {
 
-  const [email,setEmail]=useState("");
-  const [password,setPassword]=useState("");
+    const navigate = useNavigate();
 
-  const handleLogin=async(e)=>{
-    e.preventDefault();
+    const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
 
-    const res=await fetch("http://127.0.0.1:5000/login",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({
-        email,
-        password
-      })
-    });
+    const login=async(e)=>{
 
-    const data=await res.json();
+        e.preventDefault();
 
-    if(data.success){
+        try{
 
-      localStorage.setItem(
-        "user",
-        JSON.stringify(data.user)
-      );
+            const res = await axios.post(
+                "http://localhost:5000/login",
+                {
+                    email,
+                    password
+                }
+            );
 
-      navigate("/home");
+            localStorage.setItem(
+                "user",
+                res.data.name
+            );
 
-    }else{
+            navigate("/portal");
 
-      alert("Invalid Login");
-    }
-  };
+        }
+        catch{
 
-  return(
-    <div>
+            alert("Invalid Credentials");
 
-      <h2>Login</h2>
+        }
+    };
 
-      <form onSubmit={handleLogin}>
+    return(
 
-        <input
-          type="email"
-          placeholder="Email"
-          onChange={(e)=>setEmail(e.target.value)}
-        />
+        <div className="container">
 
-        <input
-          type="password"
-          placeholder="Password"
-          onChange={(e)=>setPassword(e.target.value)}
-        />
+            <div className="box">
 
-        <button type="submit">
-          Login
-        </button>
+                <h1>Login</h1>
 
-      </form>
+                <form onSubmit={login}>
 
-      <p>
+                    <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e)=>setEmail(e.target.value)}
+                    />
 
-        New User?
+                    <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e)=>setPassword(e.target.value)}
+                    />
 
-        <Link to="/signup">
-          Sign Up
-        </Link>
+                    <button>
+                        Login
+                    </button>
 
-      </p>
+                </form>
 
-    </div>
-  );
+                <p>
+                    New User?
+                    <Link to="/signup">
+                        Register Here
+                    </Link>
+                </p>
+
+            </div>
+
+        </div>
+    );
 }
 
 export default Login;

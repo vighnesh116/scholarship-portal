@@ -1,7 +1,7 @@
 function StudentForm(){
     return(
-        <div class="container">
-            <div class="form-box">
+        <div className="container">
+            <div className="form-box">
         <form>
             <input type="Text" placeholder="Enter YOur Nmae "/>
             <br/><br/>
