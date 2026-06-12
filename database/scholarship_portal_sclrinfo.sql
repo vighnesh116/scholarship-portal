@@ -41,7 +41,7 @@ CREATE TABLE `sclrinfo` (
 
 LOCK TABLES `sclrinfo` WRITE;
 /*!40000 ALTER TABLE `sclrinfo` DISABLE KEYS */;
-INSERT INTO `sclrinfo` VALUES (1,' Tata Capital Pankh Scholarship','11',60,NULL,2.5,'UP to 80000',NULL),(2,'HDFC Bank Parivartan\'s ECS',NULL,55,NULL,2.5,'Up to 75000',NULL),(3,'Reliance Foundation UG Scheme','12',60,NULL,15,'UP TO 2 Lakh',NULL),(4,'Santoor Scholarship (Wipro)','12',45,NULL,1,'24000','Girls'),(5,'LIC Golden Jubilee Scholarship','12',60,NULL,2.5,'20000',NULL),(6,'Post-Matric Minority Scheme',NULL,50,'Minority',2,'Tution Fees',NULL),(7,'Savitribai Phule Scholarship',NULL,45,'OBC',0,'1000/year','Girls'),(8,'Begum Hazrat Mahal National Scheme',NULL,50,'Minorities',2,'6000/year','Girls'),(9,'L\'Oréal India Young Women Scheme','12',85,NULL,6,'2.5 lakkh','Girls'),(10,'Kotak Kanya Scholarship','12',75,NULL,6,'1.5/year','Girls'),(11,'Post-Matric Scholarship for SC',NULL,45,'SC',2.5,'Full Fee',NULL),(12,'Post-Matric Scholarship for ST',NULL,45,'ST',2.5,'Full Fee',NULL),(13,'OBC Post-Matric State Scheme',NULL,45,'OBC',2.5,'Tution Fee',NULL),(14,'Merit-cum-Means Minority Scheme','12',50,'Minority',2.5,'20,000/year',NULL),(15,'National Fellowship for ST','12',45,'ST',6,'',NULL),(16,'Sitaram Jindal Scheme (Cat A/C)','',60,NULL,2.5,'Up To 3,200/mo',NULL);
+INSERT INTO `sclrinfo` VALUES (1,' Tata Capital Pankh Scholarship','11',60,NULL,250000,'UP to 80000',NULL),(2,'HDFC Bank Parivartan\'s ECS',NULL,55,NULL,250000,'Up to 75000',NULL),(3,'Reliance Foundation UG Scheme','12',60,NULL,150000,'UP TO 2 Lakh',NULL),(4,'Santoor Scholarship (Wipro)','12',45,NULL,100000,'24000','Girls'),(5,'LIC Golden Jubilee Scholarship','12',60,NULL,250000,'20000',NULL),(6,'Post-Matric Minority Scheme',NULL,50,'Minority',200000,'Tution Fees',NULL),(7,'Savitribai Phule Scholarship',NULL,45,'OBC',0,'1000/year','Girls'),(8,'Begum Hazrat Mahal National Scheme',NULL,50,'Minorities',200000,'6000/year','Girls'),(9,'L\'Oréal India Young Women Scheme','12',85,NULL,600000,'2.5 lakkh','Girls'),(10,'Kotak Kanya Scholarship','12',75,NULL,600000,'1.5/year','Girls'),(11,'Post-Matric Scholarship for SC',NULL,45,'SC',250000,'Full Fee',NULL),(12,'Post-Matric Scholarship for ST',NULL,45,'ST',250000,'Full Fee',NULL),(13,'OBC Post-Matric State Scheme',NULL,45,'OBC',250000,'Tution Fee',NULL),(14,'Merit-cum-Means Minority Scheme','12',50,'Minority',250000,'20,000/year',NULL),(15,'National Fellowship for ST','12',45,'ST',600000,'',NULL),(16,'Sitaram Jindal Scheme (Cat A/C)','',60,NULL,250000,'Up To 3,200/mo',NULL);
 /*!40000 ALTER TABLE `sclrinfo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-11 18:08:52
+-- Dump completed on 2026-06-12 14:54:06

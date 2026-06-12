@@ -3,23 +3,24 @@ function StudentForm(){
         <div className="container">
             <div className="form-box">
         <form>
-            <input type="Text" placeholder="Enter YOur Nmae "/>
+            <input required  type="Text" placeholder="Enter YOur Nmae "/>
             <br/><br/>
 
-            <input type="Number" placeholder="Enter Pertcentage"/>
+            <input required type="Number" placeholder="Enter Pertcentage"/>
             <br/><br/>
 
-            <input type="number" placeholder="Enter Your family Income"/>
+            <input required  type="number" placeholder="Enter Your family Income"/>
             <br/><br/>
-
+            
             <select required>
-                <option value=" "disabled selected>Category</option>
+               <option  value=" "disabled selected>Category</option>
                 <option value="general">General</option>
                 <option value="obc">OBC</option>
                 <option value="sc">SC</option>
                 <option value="st">ST</option>
                 <option value="minor">Minority</option>
             </select>
+
             <br/><br/>
             <select required>
                 <option disabled selected>Select Your Class</option>
