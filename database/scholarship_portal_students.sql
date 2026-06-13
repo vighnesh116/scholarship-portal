@@ -25,7 +25,6 @@ DROP TABLE IF EXISTS `students`;
 CREATE TABLE `students` (
   `stdid` int NOT NULL AUTO_INCREMENT,
   `stdname` varchar(45) NOT NULL,
-  `stdemail` varchar(45) NOT NULL,
   `stdpercent` int DEFAULT NULL,
   `stdincome` int DEFAULT NULL,
   `stdgender` varchar(45) NOT NULL,
@@ -53,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-13 13:59:25
+-- Dump completed on 2026-06-14  0:24:21

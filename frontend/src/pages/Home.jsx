@@ -1,7 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     user_id: 1,
@@ -13,7 +16,6 @@ function Home() {
     gender: ""
   });
 
-  // Handle Input Changes
   const handleChange = (e) => {
 
     setForm({
@@ -23,23 +25,40 @@ function Home() {
 
   };
 
-  // Submit Form
   const submit = async (e) => {
 
     e.preventDefault();
 
     try {
 
-      const response = await axios.post(
+      // Save student data
+
+      await axios.post(
         "http://localhost:5000/portal",
         form
       );
 
-      alert(response.data.message);
+      // Get eligible scholarships
 
-      console.log(form);
+      const response = await axios.post(
+        "http://localhost:5000/scholarships",
+        form
+      );
 
-    } catch (error) {
+      // Move to result page
+
+      navigate(
+        "/scholarships",
+        {
+          state: {
+            scholarships: response.data
+          }
+        }
+      );
+
+    }
+
+    catch (error) {
 
       console.log(error);
 
@@ -55,10 +74,14 @@ function Home() {
 
       <header>
 
-        <h2>Scholarship Information Portal</h2>
+        <h2>
+          Scholarship Information Portal
+        </h2>
 
         <nav>
-          <a href="signup">Profile</a>
+          <a href="signup">
+            Profile
+          </a>
         </nav>
 
       </header>
@@ -77,8 +100,6 @@ function Home() {
           </p>
 
         </section>
-
-        {/* FORM */}
 
         <div className="container">
 
@@ -116,8 +137,6 @@ function Home() {
 
               <br /><br />
 
-              {/* CASTE */}
-
               <select
                 required
                 name="caste"
@@ -129,31 +148,29 @@ function Home() {
                   Category
                 </option>
 
-                <option value="general">
+                <option value="General">
                   General
                 </option>
 
-                <option value="obc">
+                <option value="OBC">
                   OBC
                 </option>
 
-                <option value="sc">
+                <option value="SC">
                   SC
                 </option>
 
-                <option value="st">
+                <option value="ST">
                   ST
                 </option>
 
-                <option value="minority">
+                <option value="Minority">
                   Minority
                 </option>
 
               </select>
 
               <br /><br />
-
-              {/* EDUCATION */}
 
               <select
                 required
@@ -178,9 +195,9 @@ function Home() {
 
               <br /><br />
 
-              {/* GENDER */}
-
-              <select required name="gender"
+              <select
+                required
+                name="gender"
                 onChange={handleChange}
                 defaultValue=""
               >
@@ -189,11 +206,11 @@ function Home() {
                   Select Gender
                 </option>
 
-                <option value="male">
+                <option value="Male">
                   Male
                 </option>
 
-                <option value="female">
+                <option value="Female">
                   Female
                 </option>
 
@@ -224,6 +241,7 @@ function Home() {
     </div>
 
   );
+
 }
 
 export default Home;

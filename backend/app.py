@@ -100,7 +100,6 @@ def portal():
         data = request.json
 
         name = data['name']
-        email = data['email']
         marks = data['marks']
         income = data['income']
         caste = data['caste']
@@ -112,7 +111,6 @@ def portal():
             INSERT INTO students
             (
                 stdname,
-                stdemail,
                 stdpercent,
                 stdincome,
                 stdgender,
@@ -120,11 +118,10 @@ def portal():
                 caste
             )
             VALUES
-            (%s,%s,%s,%s,%s,%s,%s)
+            (%s,%s,%s,%s,%s,%s)
             """,
             (
                 name,
-                email,
                 marks,
                 income,
                 gender,
@@ -146,43 +143,48 @@ def portal():
         return jsonify({
             "message": str(e)
         }), 500
-
-
 # ---------------- ELIGIBLE SCHOLARSHIPS ----------------
 
-@app.route('/scholarship_portal_sclrinfo', methods=['POST'])
-def eligible():
+@app.route('/scholarships', methods=['POST'])
+def scholarships():
 
     data = request.json
 
-    income = data['income']
+    marks = int(data['marks'])
+    income = int(data['income'])
+    education = int(data['education'])
     caste = data['caste']
-    education = data['education']
-    marks = data['marks']
     gender = data['gender']
 
     query = """
-    SELECT *
-    FROM scholarship_info
+    SELECT
+        sclrname,
+        amount
+    FROM sclrinfo
     WHERE
-    (maxIncome IS NULL OR maxIncome >= %s)
-    AND
-    (category IS NULL OR category = %s)
-    AND
-    (requiredClass IS NULL OR requiredClass = %s)
-    AND
-    (minMarks IS NULL OR minMarks <= %s)
-    AND
-    (applicableGender IS NULL OR applicableGender = %s)
+        percentreeq <= %s
+        AND miniincome >= %s
+        AND (
+            education IS NULL
+            OR educationqualifiation = %s
+        )
+        AND (
+            caste IS NULL
+            OR LOWER(caste) = LOWER(%s)
+        )
+        AND (
+            gender IS NULL
+            OR LOWER(gender) = LOWER(%s)
+        )
     """
 
     cursor.execute(
         query,
         (
-            income,
-            caste,
-            education,
             marks,
+            income,
+            education,
+            caste,
             gender
         )
     )
@@ -190,8 +192,6 @@ def eligible():
     scholarships = cursor.fetchall()
 
     return jsonify(scholarships)
-
-
 # ---------------- RUN APP ----------------
 
 if __name__ == "__main__":
