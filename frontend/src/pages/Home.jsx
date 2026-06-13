@@ -180,9 +180,7 @@ function Home() {
 
               {/* GENDER */}
 
-              <select
-                required
-                name="gender"
+              <select required name="gender"
                 onChange={handleChange}
                 defaultValue=""
               >

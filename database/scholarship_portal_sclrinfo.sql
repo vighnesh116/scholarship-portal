@@ -24,13 +24,13 @@ DROP TABLE IF EXISTS `sclrinfo`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sclrinfo` (
   `sclrid` int NOT NULL AUTO_INCREMENT,
-  `sclr_name` varchar(45) NOT NULL,
-  `requiredclass` varchar(45) DEFAULT NULL,
-  `minimumMarks` float DEFAULT NULL,
-  `category` varchar(45) DEFAULT NULL,
-  `maximumincome` float DEFAULT NULL,
+  `sclrname` varchar(45) NOT NULL,
+  `percentreeq` int DEFAULT NULL,
+  `miniincome` int DEFAULT NULL,
+  `gender` varchar(45) DEFAULT NULL,
+  `educationqualifiation` int DEFAULT NULL,
+  `caste` varchar(45) DEFAULT NULL,
   `amount` varchar(45) DEFAULT NULL,
-  `applicablefor` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`sclrid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -41,7 +41,7 @@ CREATE TABLE `sclrinfo` (
 
 LOCK TABLES `sclrinfo` WRITE;
 /*!40000 ALTER TABLE `sclrinfo` DISABLE KEYS */;
-INSERT INTO `sclrinfo` VALUES (1,' Tata Capital Pankh Scholarship','11',60,NULL,250000,'UP to 80000',NULL),(2,'HDFC Bank Parivartan\'s ECS',NULL,55,NULL,250000,'Up to 75000',NULL),(3,'Reliance Foundation UG Scheme','12',60,NULL,150000,'UP TO 2 Lakh',NULL),(4,'Santoor Scholarship (Wipro)','12',45,NULL,100000,'24000','Girls'),(5,'LIC Golden Jubilee Scholarship','12',60,NULL,250000,'20000',NULL),(6,'Post-Matric Minority Scheme',NULL,50,'Minority',200000,'Tution Fees',NULL),(7,'Savitribai Phule Scholarship',NULL,45,'OBC',0,'1000/year','Girls'),(8,'Begum Hazrat Mahal National Scheme',NULL,50,'Minorities',200000,'6000/year','Girls'),(9,'L\'Oréal India Young Women Scheme','12',85,NULL,600000,'2.5 lakkh','Girls'),(10,'Kotak Kanya Scholarship','12',75,NULL,600000,'1.5/year','Girls'),(11,'Post-Matric Scholarship for SC',NULL,45,'SC',250000,'Full Fee',NULL),(12,'Post-Matric Scholarship for ST',NULL,45,'ST',250000,'Full Fee',NULL),(13,'OBC Post-Matric State Scheme',NULL,45,'OBC',250000,'Tution Fee',NULL),(14,'Merit-cum-Means Minority Scheme','12',50,'Minority',250000,'20,000/year',NULL),(15,'National Fellowship for ST','12',45,'ST',600000,'',NULL),(16,'Sitaram Jindal Scheme (Cat A/C)','',60,NULL,250000,'Up To 3,200/mo',NULL);
+INSERT INTO `sclrinfo` VALUES (1,'Tata Capital Pankh Scholarship',60,250000,NULL,11,NULL,'Up to 80000'),(2,'HDFC Bank Parivartan ECS',55,250000,NULL,NULL,NULL,'Up to 75000'),(3,'Reliance Foundation UG Scheme',60,150000,NULL,12,NULL,'Up to 200000'),(4,'Santoor Scholarship (Wipro)',45,100000,'Female',12,NULL,'24000'),(5,'LIC Golden Jubilee Scholarship',60,250000,NULL,12,NULL,'20000'),(6,'Post-Matric Minority Scheme',50,200000,NULL,NULL,'Minority','Tuition Fees'),(7,'Savitribai Phule Scholarship',45,0,'Female',NULL,'OBC','1000/year'),(8,'Begum Hazrat Mahal National Scheme',50,200000,'Female',NULL,'Minority','6000/year'),(9,'L\'Oreal India Young Women Scheme',85,600000,'Female',12,NULL,'250000'),(10,'Kotak Kanya Scholarship',75,600000,'Female',12,NULL,'150000/year'),(11,'Post-Matric Scholarship for SC',45,250000,NULL,NULL,'SC','Full Fee'),(12,'Post-Matric Scholarship for ST',45,250000,NULL,NULL,'ST','Full Fee'),(13,'OBC Post-Matric State Scheme',45,250000,NULL,NULL,'OBC','Tuition Fee'),(14,'Merit-cum-Means Minority Scheme',50,250000,NULL,12,'Minority','20000/year'),(15,'National Fellowship for ST',45,600000,NULL,12,'ST','Fellowship'),(16,'Sitaram Jindal Scheme (Cat A/C)',60,250000,NULL,NULL,NULL,'Up to 3200');
 /*!40000 ALTER TABLE `sclrinfo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-12 14:54:06
+-- Dump completed on 2026-06-13 13:59:25
