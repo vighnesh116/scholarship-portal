@@ -3,7 +3,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
-
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -17,96 +16,63 @@ function Home() {
   });
 
   const handleChange = (e) => {
-
     setForm({
       ...form,
       [e.target.name]: e.target.value
     });
-
   };
 
   const submit = async (e) => {
-
     e.preventDefault();
 
     try {
-
-      // Save student data
-
+      // Save student information
       await axios.post(
         "http://localhost:5000/portal",
         form
       );
 
-      // Get eligible scholarships
-
+      // Fetch eligible scholarships
       const response = await axios.post(
         "http://localhost:5000/scholarships",
         form
       );
 
-      // Move to result page
-
-      navigate(
-        "/scholarships",
-        {
-          state: {
-            scholarships: response.data
-          }
+      // Redirect to scholarship results page
+      navigate("/scholarships", {
+        state: {
+          scholarships: response.data
         }
-      );
-
-    }
-
-    catch (error) {
-
+      });
+    } catch (error) {
       console.log(error);
-
       alert("Error submitting form");
-
     }
-
   };
 
   return (
-
     <div className="page-container">
-
       <header>
-
-        <h2>
-          Scholarship Information Portal
-        </h2>
+        <h2>Scholarship Information Portal</h2>
 
         <nav>
-          <a href="signup">
-            Profile
-          </a>
+          <a href="signup">Profile</a>
         </nav>
-
       </header>
 
       <main>
-
         <section className="hero">
-
-          <h1>
-            Find Scholarships You Are Eligible For
-          </h1>
+          <h1>Find Scholarships You Are Eligible For</h1>
 
           <p>
             Enter your academic and personal details
             to check available scholarships.
           </p>
-
         </section>
 
         <div className="container">
-
           <div className="form-box">
-
             <form onSubmit={submit}>
-
               <input
                 required
                 type="text"
@@ -115,7 +81,8 @@ function Home() {
                 onChange={handleChange}
               />
 
-              <br /><br />
+              <br />
+              <br />
 
               <input
                 required
@@ -125,7 +92,8 @@ function Home() {
                 onChange={handleChange}
               />
 
-              <br /><br />
+              <br />
+              <br />
 
               <input
                 required
@@ -135,7 +103,8 @@ function Home() {
                 onChange={handleChange}
               />
 
-              <br /><br />
+              <br />
+              <br />
 
               <select
                 required
@@ -143,34 +112,19 @@ function Home() {
                 onChange={handleChange}
                 defaultValue=""
               >
-
                 <option value="" disabled>
                   Category
                 </option>
 
-                <option value="General">
-                  General
-                </option>
-
-                <option value="OBC">
-                  OBC
-                </option>
-
-                <option value="SC">
-                  SC
-                </option>
-
-                <option value="ST">
-                  ST
-                </option>
-
-                <option value="Minority">
-                  Minority
-                </option>
-
+                <option value="General">General</option>
+                <option value="OBC">OBC</option>
+                <option value="SC">SC</option>
+                <option value="ST">ST</option>
+                <option value="Minority">Minority</option>
               </select>
 
-              <br /><br />
+              <br />
+              <br />
 
               <select
                 required
@@ -178,22 +132,16 @@ function Home() {
                 onChange={handleChange}
                 defaultValue=""
               >
-
                 <option value="" disabled>
                   Select Your Class
                 </option>
 
-                <option value="11">
-                  11th
-                </option>
-
-                <option value="12">
-                  12th
-                </option>
-
+                <option value="11">11th</option>
+                <option value="12">12th</option>
               </select>
 
-              <br /><br />
+              <br />
+              <br />
 
               <select
                 required
@@ -201,47 +149,28 @@ function Home() {
                 onChange={handleChange}
                 defaultValue=""
               >
-
                 <option value="" disabled>
                   Select Gender
                 </option>
 
-                <option value="Male">
-                  Male
-                </option>
-
-                <option value="Female">
-                  Female
-                </option>
-
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
               </select>
-
-              <br /><br />
-
+              <br />
+              <br />
               <button type="submit">
                 Check Eligibility
               </button>
-
             </form>
-
           </div>
-
         </div>
-
       </main>
 
       <footer>
-
-        <p>
-          © 2026 Scholarship Information Portal
-        </p>
-
+        <p>© 2026 Scholarship Information Portal</p>
       </footer>
-
     </div>
-
   );
-
 }
 
 export default Home;
