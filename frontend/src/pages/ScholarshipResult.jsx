@@ -1,51 +1,71 @@
-import { useLocation } from "react-router-dom";
+import {useLocation} from "react-router-dom";
 
-function ScholarshipResult() {
+import "./Scholarship.css";
 
-    const location = useLocation();
+function ScholarshipResult(){
 
-    const scholarships = location.state?.scholarships || [];
+    const location=useLocation();
 
-    return (
+    const scholarships=
+    location.state?.scholarships || [];
 
-        <div className="container">
+    return(
 
-            <h1>Eligible Scholarships</h1>
+        <div className="scholarship-page">
+
+            <h1>
+                Eligible Scholarships
+            </h1>
 
             {
-                scholarships.length === 0 ?
+                scholarships.length===0 ?
 
-                    (
-                        <p>No Scholarships Found</p>
-                    )
+                (
+                    <div className="scholarship-box">
 
-                    :
+                        <h2>
+                            No Scholarship Found
+                        </h2>
 
-                    (
-                        scholarships.map((item, index) => (
+                    </div>
+                )
 
-                            <div
-                                key={index}
-                                className="scholarship-card"
-                            >
+                :
 
-                                <h3>
-                                    {item.sclrname}
-                                </h3>
+                scholarships.map((item,index)=>(
 
-                                <p>
-                                    Amount: {item.amount}
-                                </p>
+                    <div
+                    className="scholarship-box"
+                    key={index}
+                    >
 
-                            </div>
+                        <h2>
+                            {item.sclrname}
+                        </h2>
 
-                        ))
-                    )
+                        <p>
+                            Amount :
+                            ₹{item.amount}
+                        </p>
+
+                        <p>
+                            Required Percentage :
+                            {item.percentreeq}%
+                        </p>
+
+                        <p>
+                            Income Limit :
+                            ₹{item.miniincome}
+                        </p>
+
+                    </div>
+
+                ))
             }
 
         </div>
 
-    );
+    )
 
 }
 

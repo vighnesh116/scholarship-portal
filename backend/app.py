@@ -1,12 +1,11 @@
-from flask import Flask, request, jsonify
+from flask import Flask,request,jsonify
 from flask_cors import CORS
 import mysql.connector
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash
+from werkzeug.security import check_password_hash
 
 app = Flask(__name__)
 CORS(app)
-
-# ---------------- DATABASE CONNECTION ----------------
 
 db = mysql.connector.connect(
     host="localhost",
@@ -19,33 +18,32 @@ cursor = db.cursor(dictionary=True)
 
 # ---------------- SIGNUP ----------------
 
-@app.route('/signup', methods=['POST'])
+@app.route('/signup',methods=['POST'])
 def signup():
 
-    data = request.json
+    data=request.json
 
-    name = data['name']
-    email = data['email']
-    password = data['password']
+    name=data['name']
+    email=data['email']
+    password=data['password']
 
-    hashed_password = generate_password_hash(password)
+    hashed=generate_password_hash(password)
 
     try:
 
-        sql = """
-        INSERT INTO users(name,email,password)
-        VALUES(%s,%s,%s)
-        """
-
         cursor.execute(
-            sql,
-            (name, email, hashed_password)
+            """
+            INSERT INTO users
+            (name,email,password)
+            VALUES(%s,%s,%s)
+            """,
+            (name,email,hashed)
         )
 
         db.commit()
 
         return jsonify({
-            "message": "User Registered Successfully"
+            "message":"Registration Successful"
         })
 
     except Exception as e:
@@ -53,26 +51,25 @@ def signup():
         print(e)
 
         return jsonify({
-            "message": "Email Already Exists"
-        }), 400
-
+            "message":"Email already exists"
+        }),400
 
 # ---------------- LOGIN ----------------
 
-@app.route('/login', methods=['POST'])
+@app.route('/login',methods=['POST'])
 def login():
 
-    data = request.json
+    data=request.json
 
-    email = data['email']
-    password = data['password']
+    email=data['email']
+    password=data['password']
 
     cursor.execute(
         "SELECT * FROM users WHERE email=%s",
         (email,)
     )
 
-    user = cursor.fetchone()
+    user=cursor.fetchone()
 
     if user and check_password_hash(
         user['password'],
@@ -80,101 +77,94 @@ def login():
     ):
 
         return jsonify({
-            "success": True,
-            "name": user['name']
+            "success":True,
+            "name":user['name']
         })
 
     return jsonify({
-        "success": False,
-        "message": "Invalid Credentials"
-    }), 401
+        "success":False
+    }),401
 
+# ---------------- SAVE STUDENT ----------------
 
-# ---------------- SAVE STUDENT DATA ----------------
-
-@app.route('/portal', methods=['POST'])
+@app.route('/portal',methods=['POST'])
 def portal():
 
-    try:
+    data=request.json
 
-        data = request.json
-
-        name = data['name']
-        marks = data['marks']
-        income = data['income']
-        caste = data['caste']
-        education = data['education']
-        gender = data['gender']
-
-        cursor.execute(
-            """
-            INSERT INTO students
-            (
-                stdname,
-                stdpercent,
-                stdincome,
-                stdgender,
-                education,
-                caste
-            )
-            VALUES
-            (%s,%s,%s,%s,%s,%s)
-            """,
-            (
-                name,
-                marks,
-                income,
-                gender,
-                education,
-                caste
-            )
+    cursor.execute(
+        """
+        INSERT INTO students
+        (
+        stdname,
+        stdpercent,
+        stdincome,
+        stdgender,
+        education,
+        caste
         )
+        VALUES
+        (%s,%s,%s,%s,%s,%s)
+        """,
+        (
+            data['name'],
+            data['marks'],
+            data['income'],
+            data['gender'],
+            data['education'],
+            data['caste']
+        )
+    )
 
-        db.commit()
+    db.commit()
 
-        return jsonify({
-            "message": "Student Data Saved Successfully"
-        })
+    return jsonify({
+        "message":"Saved"
+    })
 
-    except Exception as e:
+# ---------------- SCHOLARSHIPS ----------------
 
-        print(e)
-
-        return jsonify({
-            "message": str(e)
-        }), 500
-# ---------------- ELIGIBLE SCHOLARSHIPS ----------------
-
-@app.route('/scholarships', methods=['POST'])
+@app.route('/scholarships',methods=['POST'])
 def scholarships():
 
-    data = request.json
+    data=request.json
 
-    marks = int(data['marks'])
-    income = int(data['income'])
-    education = int(data['education'])
-    caste = data['caste']
-    gender = data['gender']
+    marks=int(data['marks'])
+    income=int(data['income'])
+    education=int(data['education'])
 
-    query = """
+    caste=data['caste']
+    gender=data['gender']
+
+    query="""
     SELECT
         sclrname,
-        amount
+        amount,
+        percentreeq,
+        miniincome
     FROM sclrinfo
     WHERE
+
         percentreeq <= %s
+
         AND miniincome >= %s
-        AND (
-            education IS NULL
-            OR educationqualifiation = %s
+
+        AND
+        (
+            educationqualifiation IS NULL
+            OR educationqualifiation=%s
         )
-        AND (
+
+        AND
+        (
             caste IS NULL
-            OR LOWER(caste) = LOWER(%s)
+            OR LOWER(caste)=LOWER(%s)
         )
-        AND (
+
+        AND
+        (
             gender IS NULL
-            OR LOWER(gender) = LOWER(%s)
+            OR LOWER(gender)=LOWER(%s)
         )
     """
 
@@ -189,10 +179,9 @@ def scholarships():
         )
     )
 
-    scholarships = cursor.fetchall()
+    result=cursor.fetchall()
 
-    return jsonify(scholarships)
-# ---------------- RUN APP ----------------
+    return jsonify(result)
 
-if __name__ == "__main__":
+if __name__=="__main__":
     app.run(debug=True)
