@@ -31,6 +31,7 @@ CREATE TABLE `sclrinfo` (
   `educationqualifiation` int DEFAULT NULL,
   `caste` varchar(45) DEFAULT NULL,
   `amount` varchar(45) DEFAULT NULL,
+  `application_link` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`sclrid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -41,7 +42,7 @@ CREATE TABLE `sclrinfo` (
 
 LOCK TABLES `sclrinfo` WRITE;
 /*!40000 ALTER TABLE `sclrinfo` DISABLE KEYS */;
-INSERT INTO `sclrinfo` VALUES (1,'Tata Capital Pankh Scholarship',60,250000,NULL,11,NULL,'Up to 80000'),(2,'HDFC Bank Parivartan ECS',55,250000,NULL,NULL,NULL,'Up to 75000'),(3,'Reliance Foundation UG Scheme',60,150000,NULL,12,NULL,'Up to 200000'),(4,'Santoor Scholarship (Wipro)',45,100000,'Female',12,NULL,'24000'),(5,'LIC Golden Jubilee Scholarship',60,250000,NULL,12,NULL,'20000'),(6,'Post-Matric Minority Scheme',50,200000,NULL,NULL,'Minority','Tuition Fees'),(7,'Savitribai Phule Scholarship',45,0,'Female',NULL,'OBC','1000/year'),(8,'Begum Hazrat Mahal National Scheme',50,200000,'Female',NULL,'Minority','6000/year'),(9,'L\'Oreal India Young Women Scheme',85,600000,'Female',12,NULL,'250000'),(10,'Kotak Kanya Scholarship',75,600000,'Female',12,NULL,'150000/year'),(11,'Post-Matric Scholarship for SC',45,250000,NULL,NULL,'SC','Full Fee'),(12,'Post-Matric Scholarship for ST',45,250000,NULL,NULL,'ST','Full Fee'),(13,'OBC Post-Matric State Scheme',45,250000,NULL,NULL,'OBC','Tuition Fee'),(14,'Merit-cum-Means Minority Scheme',50,250000,NULL,12,'Minority','20000/year'),(15,'National Fellowship for ST',45,600000,NULL,12,'ST','Fellowship'),(16,'Sitaram Jindal Scheme (Cat A/C)',60,250000,NULL,NULL,NULL,'Up to 3200');
+INSERT INTO `sclrinfo` VALUES (1,'Tata Capital Pankh Scholarship',60,250000,NULL,11,NULL,'Up to 80000','https://www.tatacapital.com/scholarship-program.html'),(2,'HDFC Bank Parivartan ECS',55,250000,NULL,NULL,NULL,'Up to 75000','https://www.hdfcbankecss.com'),(3,'Reliance Foundation UG Scheme',60,150000,NULL,12,NULL,'Up to 200000','https://scholarships.reliancefoundation.org'),(4,'Santoor Scholarship (Wipro)',45,100000,'Female',12,NULL,'24000','https://www.santoorscholarships.com'),(5,'LIC Golden Jubilee Scholarship',60,250000,NULL,12,NULL,'20000','https://licindia.in'),(6,'Post-Matric Minority Scheme',50,200000,NULL,NULL,'Minority','Tuition Fees','https://scholarships.gov.in'),(7,'Savitribai Phule Scholarship',45,0,'Female',NULL,'OBC','1000/year','https://mahadbt.maharashtra.gov.in'),(8,'Begum Hazrat Mahal National Scheme',50,200000,'Female',NULL,'Minority','6000/year','https://scholarships.gov.in'),(9,'L\'Oreal India Young Women Scheme',85,600000,'Female',12,NULL,'250000','https://www.lorealindia.com'),(10,'Kotak Kanya Scholarship',75,600000,'Female',12,NULL,'150000/year','https://www.buddy4study.com/page/kotak-kanya-scholarship'),(11,'Post-Matric Scholarship for SC',45,250000,NULL,NULL,'SC','Full Fee','https://scholarships.gov.in'),(12,'Post-Matric Scholarship for ST',45,250000,NULL,NULL,'ST','Full Fee','https://scholarships.gov.in'),(13,'OBC Post-Matric State Scheme',45,250000,NULL,NULL,'OBC','Tuition Fee','https://scholarships.gov.in'),(14,'Merit-cum-Means Minority Scheme',50,250000,NULL,12,'Minority','20000/year','https://scholarships.gov.in'),(15,'National Fellowship for ST',45,600000,NULL,12,'ST','Fellowship','https://fellowships.gov.in'),(16,'Sitaram Jindal Scheme (Cat A/C)',60,250000,NULL,NULL,NULL,'Up to 3200','https://www.sitaramjindalfoundation.org');
 /*!40000 ALTER TABLE `sclrinfo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-13 13:59:25
+-- Dump completed on 2026-06-15 10:30:39
