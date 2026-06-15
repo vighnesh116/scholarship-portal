@@ -16,7 +16,7 @@ db = mysql.connector.connect(
 
 cursor = db.cursor(dictionary=True)
 
-# ---------------- SIGNUP ----------------
+#  SIGNUP 
 
 @app.route('/signup',methods=['POST'])
 def signup():
@@ -54,7 +54,7 @@ def signup():
             "message":"Email already exists"
         }),400
 
-# ---------------- LOGIN ----------------
+#  LOGIN
 
 @app.route('/login',methods=['POST'])
 def login():
@@ -85,7 +85,7 @@ def login():
         "success":False
     }),401
 
-# ---------------- SAVE STUDENT ----------------
+# SAVE STUDENT 
 
 @app.route('/portal',methods=['POST'])
 def portal():
@@ -122,7 +122,7 @@ def portal():
         "message":"Saved"
     })
 
-# ---------------- SCHOLARSHIPS ----------------
+#  SCHOLARSHIPS
 
 @app.route('/scholarships',methods=['POST'])
 def scholarships():
@@ -138,10 +138,11 @@ def scholarships():
 
     query="""
     SELECT
-        sclrname,
-        amount,
-        percentreeq,
-        miniincome
+    sclrname,
+    amount,
+    percentreeq,
+    miniincome,
+    application_link
     FROM sclrinfo
     WHERE
 

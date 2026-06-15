@@ -57,6 +57,15 @@ function ScholarshipResult(){
                             Income Limit :
                             ₹{item.miniincome}
                         </p>
+                        
+                        <p>For More Details:</p>
+
+                        <a href={item.application_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="apply-btn">
+                            Apply Now  
+                        </a>
 
                     </div>
 
