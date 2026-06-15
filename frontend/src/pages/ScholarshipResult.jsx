@@ -6,9 +6,11 @@ function ScholarshipResult(){
 
     const location=useLocation();
 
-    const scholarships=
-    location.state?.scholarships || [];
+   let scholarships = [];
 
+if (location.state) {
+    scholarships = location.state.scholarships;
+}
     return(
 
         <div className="scholarship-page">
@@ -56,6 +58,11 @@ function ScholarshipResult(){
                         <p>
                             Income Limit :
                             ₹{item.miniincome}
+                        </p>
+                        
+                        <p>
+                            Deadline :
+                            {item.deadline}
                         </p>
                         
                         <p>For More Details:</p>

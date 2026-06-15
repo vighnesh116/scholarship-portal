@@ -43,6 +43,7 @@ function Signup() {
                 <form onSubmit={submit}>
 
                     <input
+                    required
                     type="text"
                     name="name"
                     placeholder="User Name"
@@ -51,6 +52,7 @@ function Signup() {
                     />
 
                     <input
+                    required
                     type="email"
                     name="email"
                     placeholder="Email"
@@ -59,6 +61,7 @@ function Signup() {
                     />
 
                     <input
+                    required
                     type="password"
                     name="password"
                     placeholder="Create Password"

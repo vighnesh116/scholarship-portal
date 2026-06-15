@@ -142,7 +142,8 @@ def scholarships():
     amount,
     percentreeq,
     miniincome,
-    application_link
+    application_link,
+    deadline
     FROM sclrinfo
     WHERE
 
