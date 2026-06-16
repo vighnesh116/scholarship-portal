@@ -63,10 +63,6 @@ if (location.state) {
                             {item.percentreeq}%
                         </p>
 
-                        <p>
-                            Income Limit :
-                            ₹{item.miniincome}
-                        </p>
                         
                         <p>
                            <strong>Deadline:</strong> {item.deadline}
@@ -75,6 +71,11 @@ if (location.state) {
                         <p>
                          <strong>Status:</strong>
                          {item.is_active ? " 🟢 Available" : " 🔴 Closed"}
+                       </p>
+
+                       <p>
+                         <strong>Days Left:</strong>
+                             {item.days_left}
                        </p>
 
                         <p>For More Details:</p>
