@@ -60,3 +60,7 @@
     border-radius:8px;
     cursor:not-allowed;
 }
+.label{
+    font-weight: bold;
+    color: #333;
+}

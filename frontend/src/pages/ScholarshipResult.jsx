@@ -54,27 +54,27 @@ if (location.state) {
                         </h2>
 
                         <p>
-                            Amount :
+                         <span className="label">Amount : </span>
                             ₹{item.amount}
                         </p>
 
                         <p>
-                            Required Percentage :
+                            <span className="label">Required Percentage</span>
                             {item.percentreeq}%
                         </p>
 
                         
                         <p>
-                           <strong>Deadline:</strong> {item.deadline}
+                           <span className="label">Deadline:</span> {item.deadline}
                         </p>
 
                         <p>
-                         <strong>Status:</strong>
+                         <span className="label">Status:</span>
                          {item.is_active ? " 🟢 Available" : " 🔴 Closed"}
                        </p>
 
                        <p>
-                         <strong>Days Left:</strong>
+                         <span className="label">Days Left:</span>
                              {item.days_left}
                        </p>
 
