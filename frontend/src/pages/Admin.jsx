@@ -2,6 +2,12 @@ import { useState, useEffect } from "react";
 
 function Admin() {
 
+    const [stats, setStats] = useState({
+        total_scholarships: 0,
+        total_students: 0,
+        total_users: 0
+    });
+
     const [form, setForm] = useState({
         sclrname: "",
         amount: "",
@@ -13,6 +19,22 @@ function Admin() {
 
     const [scholarships, setScholarships] = useState([]);
 
+    useEffect(() => {
+        loadStats();
+        loadScholarships();
+    }, []);
+
+    const loadStats = async () => {
+
+        const res = await fetch(
+            "http://127.0.0.1:5000/admin-stats"
+        );
+
+        const data = await res.json();
+
+        setStats(data);
+    };
+
     const loadScholarships = async () => {
 
         const res = await fetch(
@@ -23,10 +45,6 @@ function Admin() {
 
         setScholarships(data);
     };
-
-    useEffect(() => {
-        loadScholarships();
-    }, []);
 
     const handleChange = (e) => {
 
@@ -54,13 +72,13 @@ function Admin() {
         alert(data.message);
 
         loadScholarships();
+        loadStats();
     };
 
     const deleteScholarship = async (id) => {
 
-        if (!window.confirm("Delete Scholarship?")) {
+        if (!window.confirm("Delete Scholarship?"))
             return;
-        }
 
         await fetch(
             `http://127.0.0.1:5000/delete-scholarship/${id}`,
@@ -70,43 +88,7 @@ function Admin() {
         );
 
         loadScholarships();
-    };
-
-    const editScholarship = async (item) => {
-
-        const newName = prompt(
-            "Scholarship Name",
-            item.sclrname
-        );
-
-        const newAmount = prompt(
-            "Amount",
-            item.amount
-        );
-
-        const newDeadline = prompt(
-            "Deadline",
-            item.deadline
-        );
-
-        if (!newName) return;
-
-        await fetch(
-            `http://127.0.0.1:5000/update-scholarship/${item.sclrid}`,
-            {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    sclrname: newName,
-                    amount: newAmount,
-                    deadline: newDeadline
-                })
-            }
-        );
-
-        loadScholarships();
+        loadStats();
     };
 
     return (
@@ -114,10 +96,6 @@ function Admin() {
         <div style={{ padding: "30px" }}>
 
             <h1>Admin Dashboard</h1>
-
-            <h3>
-                Total Scholarships : {scholarships.length}
-            </h3>
 
             <hr />
 
@@ -177,16 +155,28 @@ function Admin() {
 
             <hr />
 
+            <h2>System Statistics</h2>
+
+            <h3>
+                Total Scholarships :
+                {stats.total_scholarships}
+            </h3>
+
+            <h3>
+                Total Students Registered :
+                {stats.total_students}
+            </h3>
+
+            <h3>
+                Total Users :
+                {stats.total_users}
+            </h3>
+
+            <hr />
+
             <h2>View Scholarships</h2>
 
-            <table
-                border="1"
-                cellPadding="10"
-                style={{
-                    borderCollapse: "collapse",
-                    width: "100%"
-                }}
-            >
+            <table border="1" cellPadding="10">
 
                 <thead>
 
@@ -195,7 +185,7 @@ function Admin() {
                         <th>Name</th>
                         <th>Amount</th>
                         <th>Deadline</th>
-                        <th>Actions</th>
+                        <th>Delete</th>
                     </tr>
 
                 </thead>
@@ -219,17 +209,9 @@ function Admin() {
 
                                     <button
                                         onClick={() =>
-                                            editScholarship(item)
-                                        }
-                                    >
-                                        Edit
-                                    </button>
-
-                                    {" "}
-
-                                    <button
-                                        onClick={() =>
-                                            deleteScholarship(item.sclrid)
+                                            deleteScholarship(
+                                                item.sclrid
+                                            )
                                         }
                                     >
                                         Delete

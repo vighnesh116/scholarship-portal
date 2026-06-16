@@ -220,8 +220,33 @@ def portal():
     return jsonify({
         "message":"Saved"
     })
+# Admin Stats
+@app.route('/admin-stats')
+def admin_stats():
 
-#  SCHOLARSHIPS
+    cursor.execute(
+        "SELECT COUNT(*) AS total_users FROM users"
+    )
+    users = cursor.fetchone()
+
+    cursor.execute(
+        "SELECT COUNT(*) AS total_students FROM students"
+    )
+    students = cursor.fetchone()
+
+    cursor.execute(
+        "SELECT COUNT(*) AS total_scholarships FROM sclrinfo"
+    )
+    scholarships = cursor.fetchone()
+
+    return jsonify({
+        "total_users": users["total_users"],
+        "total_students": students["total_students"],
+        "total_scholarships": scholarships["total_scholarships"]
+    })
+
+
+#  SCHOLARSHIPS fillter 
 
 @app.route('/scholarships',methods=['POST'])
 def scholarships():
