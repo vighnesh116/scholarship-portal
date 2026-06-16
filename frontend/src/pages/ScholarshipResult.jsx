@@ -20,13 +20,14 @@ if (location.state) {
             <h1>
                 Eligible Scholarships
             </h1>
-
+            <h3>{scholarships.length} Scholarships Found</h3>
             {
                 scholarships.length===0 ?
+                
 
                 (
                     <div className="scholarship-box">
-
+                        
                         <h2>
                             No Scholarship Found 
                          Eligibility Criteria Not Met :

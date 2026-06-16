@@ -151,7 +151,12 @@ SELECT
         WHEN STR_TO_DATE(deadline,'%d-%b-%Y') >= CURDATE()
         THEN 1
         ELSE 0
-    END AS is_active
+    END AS is_active ,
+    
+    DATEDIFF(
+    STR_TO_DATE(deadline,'%d-%b-%Y'),
+    CURDATE()
+) AS days_left
 
 FROM sclrinfo
 
