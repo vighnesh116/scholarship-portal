@@ -11,6 +11,8 @@ function ScholarshipResult(){
 if (location.state) {
     scholarships = location.state.scholarships;
 }
+    const sortedScholarships = [...scholarships].sort(
+    (a, b) => new Date(a.deadline) - new Date(b.deadline));
     return(
 
         <div className="scholarship-page">
@@ -26,16 +28,19 @@ if (location.state) {
                     <div className="scholarship-box">
 
                         <h2>
-                            No Scholarship Found
+                            No Scholarship Found 
+                         Eligibility Criteria Not Met :
+                         1) Minimum Percentage Required above 45%
+                         2) Minimum Income Limit below 5 Lakh
                         </h2>
 
                     </div>
                 )
 
                 :
-
-                scholarships.map((item,index)=>(
-
+                
+                sortedScholarships.map((item,index)=>(
+                    
                     <div
                     className="scholarship-box"
                     key={index}
@@ -61,18 +66,39 @@ if (location.state) {
                         </p>
                         
                         <p>
-                            Deadline :
-                            {item.deadline}
+                           <strong>Deadline:</strong> {item.deadline}
                         </p>
-                        
+
+                        <p>
+                         <strong>Status:</strong>
+                         {item.is_active ? " 🟢 Available" : " 🔴 Closed"}
+                       </p>
+                       
                         <p>For More Details:</p>
 
-                        <a href={item.application_link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="apply-btn">
-                            Apply Now  
-                        </a>
+                       {
+                        item.is_active ?
+
+                        (
+                          <a
+                          href={item.application_link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="apply-btn">
+                              Apply Now
+                          </a>
+                        )
+
+                         :
+
+                        (
+                            <button
+                            className="closed-btn"
+                            disabled>
+                            Applications Closed
+                            </button>
+                        )
+}
 
                     </div>
 

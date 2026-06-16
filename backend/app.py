@@ -4,6 +4,8 @@ import mysql.connector
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 
+
+
 app = Flask(__name__)
 CORS(app)
 
@@ -137,39 +139,50 @@ def scholarships():
     gender=data['gender']
 
     query="""
-    SELECT
+SELECT
     sclrname,
     amount,
     percentreeq,
     miniincome,
     application_link,
-    deadline
-    FROM sclrinfo
-    WHERE
+    deadline,
 
-        percentreeq <= %s
+    CASE
+        WHEN STR_TO_DATE(deadline,'%d-%b-%Y') >= CURDATE()
+        THEN 1
+        ELSE 0
+    END AS is_active
 
-        AND miniincome >= %s
+FROM sclrinfo
 
-        AND
-        (
-            educationqualifiation IS NULL
-            OR educationqualifiation=%s
-        )
+WHERE
 
-        AND
-        (
-            caste IS NULL
-            OR LOWER(caste)=LOWER(%s)
-        )
+    percentreeq <= %s
 
-        AND
-        (
-            gender IS NULL
-            OR LOWER(gender)=LOWER(%s)
-        )
-    """
+    AND miniincome >= %s
 
+    AND
+    (
+        educationqualifiation IS NULL
+        OR educationqualifiation=%s
+    )
+
+    AND
+    (
+        caste IS NULL
+        OR LOWER(caste)=LOWER(%s)
+    )
+
+    AND
+    (
+        gender IS NULL
+        OR LOWER(gender)=LOWER(%s)
+    )
+
+ORDER BY
+    is_active DESC,
+    STR_TO_DATE(deadline,'%d-%b-%Y') ASC
+"""
     cursor.execute(
         query,
         (
@@ -182,8 +195,7 @@ def scholarships():
     )
 
     result=cursor.fetchall()
-
+    print(result)
     return jsonify(result)
-
 if __name__=="__main__":
     app.run(debug=True)
