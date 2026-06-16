@@ -1,5 +1,5 @@
-import {useState} from "react";
-import {Link,useNavigate} from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import "./Auth.css";
@@ -8,14 +8,14 @@ function Login() {
 
     const navigate = useNavigate();
 
-    const [email,setEmail] = useState("");
-    const [password,setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    const login=async(e)=>{
+    const login = async (e) => {
 
         e.preventDefault();
 
-        try{
+        try {
 
             const res = await axios.post(
                 "http://localhost:5000/login",
@@ -25,22 +25,39 @@ function Login() {
                 }
             );
 
-            localStorage.setItem(
-                "user",
-                res.data.name
-            );
+            if (res.data.success) {
 
-            navigate("/portal");
+                localStorage.setItem(
+                    "user",
+                    res.data.name
+                );
 
-        }
-        catch{
+                if (res.data.role === "admin") {
+
+                    navigate("/admin");
+
+                } else {
+
+                    navigate("/portal");
+
+                }
+
+            } else {
+
+                alert("Invalid Credentials");
+
+            }
+
+        } catch (error) {
+
+            console.log(error);
 
             alert("Invalid Credentials");
 
         }
     };
 
-    return(
+    return (
 
         <div className="container">
 
@@ -51,27 +68,33 @@ function Login() {
                 <form onSubmit={login}>
 
                     <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e)=>setEmail(e.target.value)}
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) =>
+                            setEmail(e.target.value)
+                        }
+                        required
                     />
 
                     <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e)=>setPassword(e.target.value)}
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) =>
+                            setPassword(e.target.value)
+                        }
+                        required
                     />
 
-                    <button>
+                    <button type="submit">
                         Login
                     </button>
 
                 </form>
 
                 <p>
-                    New User?
+                    New User?{" "}
                     <Link to="/signup">
                         Register Here
                     </Link>

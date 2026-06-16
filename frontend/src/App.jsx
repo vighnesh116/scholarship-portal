@@ -1,10 +1,11 @@
-import { BrowserRouter, Routes, Route }
-from "react-router-dom";
+import { BrowserRouter, Routes, Route }from "react-router-dom";
 
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Home from "./pages/Home";
 import ScholarshipResult from "./pages/ScholarshipResult";
+import Admin from "./pages/Admin";
+
 
 function App() {
 
@@ -32,6 +33,11 @@ function App() {
         <Route
           path="/scholarships"
           element={<ScholarshipResult />}
+        />
+
+<Route
+          path="/admin"
+          element={<Admin />}
         />
 
       </Routes>

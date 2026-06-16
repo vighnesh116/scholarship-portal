@@ -1,118 +1,164 @@
-import {useLocation} from "react-router-dom";
-
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Scholarship.css";
+import Admin from "./Admin.jsx"
+function ScholarshipResult() {
 
-function ScholarshipResult(){
+    const location = useLocation();
+    const navigate = useNavigate();
 
-    const location=useLocation();
+    let scholarships = [];
 
-   let scholarships = [];
+    if (location.state) {
+        scholarships = location.state.scholarships;
+    }
 
-if (location.state) {
-    scholarships = location.state.scholarships;
-}
-    const sortedScholarships = [...scholarships].sort(
-    (a, b) => new Date(a.deadline) - new Date(b.deadline));
-    return(
+    const role = localStorage.getItem("role");
+
+    return (
 
         <div className="scholarship-page">
 
-            <h1>
-                Eligible Scholarships
-            </h1>
-            <h3>{scholarships.length} Scholarships Found</h3>
+            <h1>Eligible Scholarships</h1>
+
+            {/* Admin Button */}
             {
-                scholarships.length===0 ?
-                
-
-                (
-                    <div className="scholarship-box">
-                        
-                        <h2>
-                            No Scholarship Found 
-                         Eligibility Criteria Not Met :
-                         <strong>
-                        <br/> 1) Minimum Percentage Required above 45%.
-                         <br/>2) Minimum Income Limit below 8 Lakh/per anum.
-                        </strong>
-                        </h2>
-
-                    </div>
-                )
-
-                :
-                
-                sortedScholarships.map((item,index)=>(
-                    
-                    <div
-                    className="scholarship-box"
-                    key={index}
+                role === "admin" && (
+                    <button
+                        className="admin-btn"
+                        onClick={() => navigate("/admin")}
                     >
+                        Admin Panel
+                    </button>
+                )
+            }
 
-                        <h2>
-                            {item.sclrname}
-                        </h2>
+            <h3>{scholarships.length} Scholarships Found</h3>
 
-                        <p>
-                         <span className="label">Amount : </span>
-                            ₹{item.amount}
-                        </p>
+            {
+                scholarships.length === 0 ?
 
-                        <p>
-                            <span className="label">Required Percentage</span>
-                            {item.percentreeq}%
-                        </p>
+                    (
+                        <div className="scholarship-box">
 
-                        
-                        <p>
-                           <span className="label">Deadline:</span> {item.deadline}
-                        </p>
+                            <h2>
+                                No Scholarship Found
+                                <br />
+                                Eligibility Criteria Not Met:
+                                <strong>
+                                    <br />1) Minimum Percentage Required above 45%
+                                    <br />2) Minimum Income Limit below 8 Lakh/per annum
+                                </strong>
+                            </h2>
 
-                        <p>
-                         <span className="label">Status:</span>
-                         {item.is_active ? " 🟢 Available" : " 🔴 Closed"}
-                       </p>
+                        </div>
+                    )
 
-                       <p>
-                         <span className="label">Days Left:</span>
-                             {item.days_left}
-                       </p>
+                    :
 
-                        <p>For More Details:</p>
+                    scholarships.map((item, index) => (
 
-                       {
-                        item.is_active ?
+                        <div
+                            className="scholarship-card"
+                            key={index}
+                        >
 
-                        (
-                          <a
-                          href={item.application_link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="apply-btn">
-                              Apply Now
-                          </a>
-                        )
+                            <h2>{item.sclrname}</h2>
 
-                         :
+                            <div className="details">
 
-                        (
-                            <button
-                            className="closed-btn"
-                            disabled>
-                            Applications Closed
-                            </button>
-                        )
-}
+                                <div className="row">
+                                    <span className="label">Amount</span>
+                                    <span className="value">
+                                        ₹{item.amount}
+                                    </span>
+                                </div>
 
-                    </div>
+                                <div className="row">
+                                    <span className="label">
+                                        Required Percentage
+                                    </span>
+                                    <span className="value">
+                                        {item.percentreeq}%
+                                    </span>
+                                </div>
 
-                ))
+                                <div className="row">
+                                    <span className="label">
+                                        Income Limit
+                                    </span>
+                                    <span className="value">
+                                        ₹{item.miniincome}
+                                    </span>
+                                </div>
+
+                                <div className="row">
+                                    <span className="label">
+                                        Deadline
+                                    </span>
+                                    <span className="value">
+                                        {item.deadline}
+                                    </span>
+                                </div>
+
+                                <div className="row">
+                                    <span className="label">
+                                        Status
+                                    </span>
+                                    <span className="value">
+                                        {item.is_active
+                                            ? "🟢 Available"
+                                            : "🔴 Closed"}
+                                    </span>
+                                </div>
+
+                                <div className="row">
+                                    <span className="label">
+                                        Days Left
+                                    </span>
+                                    <span className="value">
+                                        {item.days_left}
+                                    </span>
+                                </div>
+
+                            </div>
+
+                            <p className="details-text">
+                                For More Details:
+                            </p>
+
+                            {
+                                item.is_active ?
+
+                                    (
+                                        <a
+                                            href={item.application_link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="apply-btn"
+                                        >
+                                            Apply Now
+                                        </a>
+                                    )
+
+                                    :
+
+                                    (
+                                        <button
+                                            className="closed-btn"
+                                            disabled
+                                        >
+                                            Applications Closed
+                                        </button>
+                                    )
+                            }
+
+                        </div>
+
+                    ))
             }
 
         </div>
-
-    )
-
+    );
 }
 
 export default ScholarshipResult;

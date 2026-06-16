@@ -80,13 +80,110 @@ def login():
 
         return jsonify({
             "success":True,
-            "name":user['name']
+            "name":user['name'],
+            "role":user['role']
         })
 
     return jsonify({
         "success":False
     }),401
 
+# Add
+@app.route('/add-scholarship', methods=['POST'])
+def add_scholarship():
+
+    data = request.json
+
+    cursor.execute(
+        """
+        INSERT INTO sclrinfo
+        (
+            sclrname,
+            amount,
+            percentreeq,
+            miniincome,
+            deadline,
+            application_link
+        )
+        VALUES
+        (%s,%s,%s,%s,%s,%s)
+        """,
+        (
+            data['sclrname'],
+            data['amount'],
+            data['percentreeq'],
+            data['miniincome'],
+            data['deadline'],
+            data['application_link']
+        )
+    )
+
+    db.commit()
+
+    return jsonify({
+        "message": "Scholarship Added Successfully"
+    })
+#View All Scholarships
+@app.route('/admin-scholarships')
+def admin_scholarships():
+
+    cursor.execute(
+        """
+        SELECT *
+        FROM sclrinfo
+        ORDER BY sclrid DESC
+        """
+    )
+
+    return jsonify(cursor.fetchall())
+# Delete Scholarship
+
+@app.route('/delete-scholarship/<int:id>',
+methods=['DELETE'])
+def delete_scholarship(id):
+
+    cursor.execute(
+        """
+        DELETE FROM sclrinfo
+        WHERE sclrid=%s
+        """,
+        (id,)
+    )
+
+    db.commit()
+
+    return jsonify({
+        "message":"Deleted"
+    })
+
+#Edit Scholarship
+@app.route('/update-scholarship/<int:id>',methods=['PUT'])
+def update_scholarship(id):
+
+    data = request.json
+
+    cursor.execute(
+        """
+        UPDATE sclrinfo
+        SET
+            sclrname=%s,
+            amount=%s,
+            deadline=%s
+        WHERE sclrid=%s
+        """,
+        (
+            data['sclrname'],
+            data['amount'],
+            data['deadline'],
+            id
+        )
+    )
+
+    db.commit()
+
+    return jsonify({
+        "message":"Updated"
+    })
 # SAVE STUDENT 
 
 @app.route('/portal',methods=['POST'])
