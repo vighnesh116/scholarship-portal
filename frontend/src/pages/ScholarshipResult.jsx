@@ -30,8 +30,10 @@ if (location.state) {
                         <h2>
                             No Scholarship Found 
                          Eligibility Criteria Not Met :
-                         1) Minimum Percentage Required above 45%
-                         2) Minimum Income Limit below 5 Lakh
+                         <strong>
+                        <br/> 1) Minimum Percentage Required above 45%.
+                         <br/>2) Minimum Income Limit below 8 Lakh/per anum.
+                        </strong>
                         </h2>
 
                     </div>
@@ -73,7 +75,7 @@ if (location.state) {
                          <strong>Status:</strong>
                          {item.is_active ? " 🟢 Available" : " 🔴 Closed"}
                        </p>
-                       
+
                         <p>For More Details:</p>
 
                        {
