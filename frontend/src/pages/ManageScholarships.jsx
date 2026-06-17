@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import AdminNavbar from "../components/AdminNavbar";
 function ManageScholarships() {
 
     const [search, setSearch] = useState("");
@@ -147,8 +147,10 @@ function ManageScholarships() {
 
     return (
 
-        <div style={{ padding: "30px" }}>
+        
 
+        <div style={{ padding: "30px" }}>
+            <AdminNavbar/>
             <h1>
                 Manage Scholarships
             </h1>

@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Scholarship.css";
-import Admin from "./Admin.jsx"
+
 function ScholarshipResult() {
 
     const location = useLocation();
