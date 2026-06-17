@@ -1,35 +1,36 @@
-from flask import Flask,request,jsonify
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import mysql.connector
-from werkzeug.security import generate_password_hash
-from werkzeug.security import check_password_hash
-
-
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 CORS(app)
 
-db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="root123",
-    database="scholarship_portal"
-)
 
-cursor = db.cursor(dictionary=True)
+# DATABASE CONNECTION
+def get_db():
+    return mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="root123",
+        database="scholarship_portal"
+    )
 
-#  SIGNUP 
 
-@app.route('/signup',methods=['POST'])
+# SIGNUP
+@app.route('/signup', methods=['POST'])
 def signup():
 
-    data=request.json
+    data = request.json
 
-    name=data['name']
-    email=data['email']
-    password=data['password']
+    name = data['name']
+    email = data['email']
+    password = data['password']
 
-    hashed=generate_password_hash(password)
+    hashed_password = generate_password_hash(password)
+
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
 
     try:
 
@@ -39,13 +40,17 @@ def signup():
             (name,email,password)
             VALUES(%s,%s,%s)
             """,
-            (name,email,hashed)
+            (
+                name,
+                email,
+                hashed_password
+            )
         )
 
         db.commit()
 
         return jsonify({
-            "message":"Registration Successful"
+            "message": "Registration Successful"
         })
 
     except Exception as e:
@@ -53,276 +58,414 @@ def signup():
         print(e)
 
         return jsonify({
-            "message":"Email already exists"
-        }),400
+            "message": "Email already exists"
+        }), 400
 
-#  LOGIN
+    finally:
 
-@app.route('/login',methods=['POST'])
+        cursor.close()
+        db.close()
+
+
+# LOGIN
+@app.route('/login', methods=['POST'])
 def login():
 
-    data=request.json
+    data = request.json
 
-    email=data['email']
-    password=data['password']
+    email = data['email']
+    password = data['password']
 
-    cursor.execute(
-        "SELECT * FROM users WHERE email=%s",
-        (email,)
-    )
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
 
-    user=cursor.fetchone()
+    try:
 
-    if user and check_password_hash(
-        user['password'],
-        password
-    ):
+        cursor.execute(
+            "SELECT * FROM users WHERE email=%s",
+            (email,)
+        )
+
+        user = cursor.fetchone()
+
+        if user and check_password_hash(
+            user['password'],
+            password
+        ):
+
+            return jsonify({
+                "success": True,
+                "name": user['name'],
+                "role": user['role']
+            })
 
         return jsonify({
-            "success":True,
-            "name":user['name'],
-            "role":user['role']
-        })
+            "success": False
+        }), 401
 
-    return jsonify({
-        "success":False
-    }),401
+    finally:
 
-# Add
+        cursor.close()
+        db.close()
+
+
+# ADD SCHOLARSHIP
 @app.route('/add-scholarship', methods=['POST'])
 def add_scholarship():
 
     data = request.json
 
-    cursor.execute(
-        """
-        INSERT INTO sclrinfo
-        (
-            sclrname,
-            amount,
-            percentreeq,
-            miniincome,
-            deadline,
-            application_link
-        )
-        VALUES
-        (%s,%s,%s,%s,%s,%s)
-        """,
-        (
-            data['sclrname'],
-            data['amount'],
-            data['percentreeq'],
-            data['miniincome'],
-            data['deadline'],
-            data['application_link']
-        )
-    )
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
 
-    db.commit()
+    try:
 
-    return jsonify({
-        "message": "Scholarship Added Successfully"
-    })
-#View All Scholarships
-@app.route('/admin-scholarships')
+        # Check 
+        cursor.execute(
+            """
+            SELECT *
+            FROM sclrinfo
+            WHERE LOWER(sclrname) = LOWER(%s)
+            """,
+            (data['sclrname'],)
+        )
+
+        existing = cursor.fetchone()
+
+        if existing:
+            return jsonify({
+                "message": "Scholarship already exists"
+            }), 400
+
+        
+        cursor.execute(
+            """
+            INSERT INTO sclrinfo
+            (
+                sclrname,
+                amount,
+                percentreeq,
+                miniincome,
+                deadline,
+                gender,
+                caste,
+                educationqualifiation,
+                application_link
+            )
+            VALUES
+            (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            """,
+            (
+                data['sclrname'],
+                data['amount'],
+                data['percentreeq'],
+                data['miniincome'],
+                data['deadline'],
+                data['gender'],
+                data['caste'],
+                data['educationqualifiation'],
+                data['application_link']
+            )
+        )
+
+        db.commit()
+
+        return jsonify({
+            "message": "Scholarship Added Successfully"
+        })
+
+    except Exception as e:
+
+        print(e)
+
+        return jsonify({
+            "message": "Failed to add scholarship"
+        }), 500
+
+    finally:
+
+        cursor.close()
+        db.close()
+
+# VIEW ALL SCHOLARSHIPS
+@app.route('/admin-scholarships', methods=['GET'])
 def admin_scholarships():
 
-    cursor.execute(
-        """
-        SELECT *
-        FROM sclrinfo
-        ORDER BY sclrid DESC
-        """
-    )
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
 
-    return jsonify(cursor.fetchall())
-# Delete Scholarship
+    try:
 
-@app.route('/delete-scholarship/<int:id>',
-methods=['DELETE'])
+        cursor.execute(
+            """
+            SELECT *
+            FROM sclrinfo
+            ORDER BY sclrid DESC
+            """
+        )
+
+        scholarships = cursor.fetchall()
+
+        return jsonify(scholarships)
+
+    finally:
+
+        cursor.close()
+        db.close()
+
+
+# DELETE SCHOLARSHIP
+@app.route('/delete-scholarship/<int:id>', methods=['DELETE'])
 def delete_scholarship(id):
 
-    cursor.execute(
-        """
-        DELETE FROM sclrinfo
-        WHERE sclrid=%s
-        """,
-        (id,)
-    )
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
 
-    db.commit()
+    try:
 
-    return jsonify({
-        "message":"Deleted"
-    })
+        cursor.execute(
+            """
+            DELETE FROM sclrinfo
+            WHERE sclrid=%s
+            """,
+            (id,)
+        )
 
-#Edit Scholarship
-@app.route('/update-scholarship/<int:id>',methods=['PUT'])
+        db.commit()
+
+        return jsonify({
+            "message": "Deleted Successfully"
+        })
+
+    finally:
+
+        cursor.close()
+        db.close()
+
+
+# UPDATE SCHOLARSHIP
+@app.route('/update-scholarship/<int:id>', methods=['PUT'])
 def update_scholarship(id):
 
     data = request.json
 
-    cursor.execute(
-        """
-        UPDATE sclrinfo
-        SET
-            sclrname=%s,
-            amount=%s,
-            deadline=%s
-        WHERE sclrid=%s
-        """,
-        (
-            data['sclrname'],
-            data['amount'],
-            data['deadline'],
-            id
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
+
+    try:
+
+        cursor.execute(
+            """
+            UPDATE sclrinfo
+            SET
+                sclrname=%s,
+                amount=%s,
+                percentreeq=%s,
+                miniincome=%s,
+                deadline=%s,
+                gender=%s,
+                caste=%s,
+                educationqualifiation=%s,
+                application_link=%s
+            WHERE sclrid=%s
+            """,
+            (
+                data['sclrname'],
+                data['amount'],
+                data['percentreeq'],
+                data['miniincome'],
+                data['deadline'],
+                data['gender'],
+                data['caste'],
+                data['educationqualifiation'],
+                data['application_link'],
+                id
+            )
         )
-    )
 
-    db.commit()
+        db.commit()
 
-    return jsonify({
-        "message":"Updated"
-    })
-# SAVE STUDENT 
+        return jsonify({
+            "message": "Updated Successfully"
+        })
 
-@app.route('/portal',methods=['POST'])
+    finally:
+
+        cursor.close()
+        db.close()
+
+
+# SAVE STUDENT INFO
+@app.route('/portal', methods=['POST'])
 def portal():
 
-    data=request.json
+    data = request.json
 
-    cursor.execute(
-        """
-        INSERT INTO students
-        (
-        stdname,
-        stdpercent,
-        stdincome,
-        stdgender,
-        education,
-        caste
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
+
+    try:
+
+        cursor.execute(
+            """
+            INSERT INTO students
+            (
+                stdname,
+                stdpercent,
+                stdincome,
+                stdgender,
+                education,
+                caste
+            )
+            VALUES
+            (%s,%s,%s,%s,%s,%s)
+            """,
+            (
+                data['name'],
+                data['marks'],
+                data['income'],
+                data['gender'],
+                data['education'],
+                data['caste']
+            )
         )
-        VALUES
-        (%s,%s,%s,%s,%s,%s)
-        """,
-        (
-            data['name'],
-            data['marks'],
-            data['income'],
-            data['gender'],
-            data['education'],
-            data['caste']
-        )
-    )
 
-    db.commit()
+        db.commit()
 
-    return jsonify({
-        "message":"Saved"
-    })
-# Admin Stats
-@app.route('/admin-stats')
+        return jsonify({
+            "message": "Saved"
+        })
+
+    finally:
+
+        cursor.close()
+        db.close()
+
+
+# ADMIN STATS
+@app.route('/admin-stats', methods=['GET'])
 def admin_stats():
 
-    cursor.execute(
-        "SELECT COUNT(*) AS total_users FROM users"
-    )
-    users = cursor.fetchone()
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
 
-    cursor.execute(
-        "SELECT COUNT(*) AS total_students FROM students"
-    )
-    students = cursor.fetchone()
+    try:
 
-    cursor.execute(
-        "SELECT COUNT(*) AS total_scholarships FROM sclrinfo"
-    )
-    scholarships = cursor.fetchone()
+        cursor.execute(
+            "SELECT COUNT(*) AS total_users FROM users"
+        )
+        users = cursor.fetchone()
 
-    return jsonify({
-        "total_users": users["total_users"],
-        "total_students": students["total_students"],
-        "total_scholarships": scholarships["total_scholarships"]
-    })
+        cursor.execute(
+            "SELECT COUNT(*) AS total_students FROM students"
+        )
+        students = cursor.fetchone()
+
+        cursor.execute(
+            "SELECT COUNT(*) AS total_scholarships FROM sclrinfo"
+        )
+        scholarships = cursor.fetchone()
+
+        return jsonify({
+            "total_users": users["total_users"],
+            "total_students": students["total_students"],
+            "total_scholarships": scholarships["total_scholarships"]
+        })
+
+    finally:
+
+        cursor.close()
+        db.close()
 
 
-#  SCHOLARSHIPS fillter 
-
-@app.route('/scholarships',methods=['POST'])
+# SCHOLARSHIP FILTER
+@app.route('/scholarships', methods=['POST'])
 def scholarships():
 
-    data=request.json
+    data = request.json
 
-    marks=int(data['marks'])
-    income=int(data['income'])
-    education=int(data['education'])
+    marks = int(data['marks'])
+    income = int(data['income'])
+    education = int(data['education'])
 
-    caste=data['caste']
-    gender=data['gender']
+    caste = data['caste']
+    gender = data['gender']
 
-    query="""
-SELECT
-    sclrname,
-    amount,
-    percentreeq,
-    miniincome,
-    application_link,
-    deadline,
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
 
-    CASE
-        WHEN STR_TO_DATE(deadline,'%d-%b-%Y') >= CURDATE()
-        THEN 1
-        ELSE 0
-    END AS is_active ,
-    
-    DATEDIFF(
-    STR_TO_DATE(deadline,'%d-%b-%Y'),
-    CURDATE()
-) AS days_left
+    try:
 
-FROM sclrinfo
+        query = """
+        SELECT
+            sclrname,
+            amount,
+            percentreeq,
+            miniincome,
+            application_link,
+            deadline,
 
-WHERE
+            CASE
+                WHEN STR_TO_DATE(deadline,'%d-%b-%Y') >= CURDATE()
+                THEN 1
+                ELSE 0
+            END AS is_active,
 
-    percentreeq <= %s
+            DATEDIFF(
+                STR_TO_DATE(deadline,'%d-%b-%Y'),
+                CURDATE()
+            ) AS days_left
 
-    AND miniincome >= %s
+        FROM sclrinfo
 
-    AND
-    (
-        educationqualifiation IS NULL
-        OR educationqualifiation=%s
-    )
+        WHERE
+            percentreeq <= %s
 
-    AND
-    (
-        caste IS NULL
-        OR LOWER(caste)=LOWER(%s)
-    )
+            AND miniincome >= %s
 
-    AND
-    (
-        gender IS NULL
-        OR LOWER(gender)=LOWER(%s)
-    )
+            AND
+            (
+                educationqualifiation IS NULL
+                OR educationqualifiation = %s
+            )
 
-ORDER BY
-    is_active DESC,
-    STR_TO_DATE(deadline,'%d-%b-%Y') ASC
-"""
-    cursor.execute(
-        query,
-        (
-            marks,
-            income,
-            education,
-            caste,
-            gender
+            AND
+            (
+                caste IS NULL
+                OR LOWER(caste)=LOWER(%s)
+            )
+
+            AND
+            (
+                gender IS NULL
+                OR LOWER(gender)=LOWER(%s)
+            )
+
+        ORDER BY
+            is_active DESC,
+            STR_TO_DATE(deadline,'%d-%b-%Y') ASC
+        """
+
+        cursor.execute(
+            query,
+            (
+                marks,
+                income,
+                education,
+                caste,
+                gender
+            )
         )
-    )
 
-    result=cursor.fetchall()
-    print(result)
-    return jsonify(result)
-if __name__=="__main__":
+        result = cursor.fetchall()
+
+        return jsonify(result)
+
+    finally:
+
+        cursor.close()
+        db.close()
+
+
+if __name__ == "__main__":
     app.run(debug=True)
