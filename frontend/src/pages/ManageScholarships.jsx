@@ -114,6 +114,29 @@ function ManageScholarships() {
 
         loadScholarships();
     };
+    const deleteScholarship = async (sclrid) => {
+
+    const confirmDelete = window.confirm(
+        "Are you sure you want to delete this scholarship?"
+    );
+
+    if (!confirmDelete) {
+        return;
+    }
+
+    const res = await fetch(
+        `http://127.0.0.1:5000/delete-scholarship/${sclrid}`,
+        {
+            method: "DELETE"
+        }
+    );
+
+    const data = await res.json();
+
+    alert(data.message);
+
+    loadScholarships();
+};
 
     const filteredScholarships =
         scholarships.filter((item) =>
@@ -225,11 +248,11 @@ function ManageScholarships() {
                 <thead>
 
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Edit</th>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
                     </tr>
-
                 </thead>
 
                 <tbody>
@@ -251,6 +274,18 @@ function ManageScholarships() {
                                         }
                                     >
                                         Edit
+                                    </button>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        onClick={() =>
+                                            deleteScholarship(item.sclrid)
+                                        }
+                                    >
+                                        Delete
                                     </button>
 
                                 </td>
