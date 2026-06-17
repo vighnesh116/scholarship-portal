@@ -1,11 +1,13 @@
-import { BrowserRouter, Routes, Route }from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Login from "./pages/login";
-import Signup from "./pages/signup";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import ScholarshipResult from "./pages/ScholarshipResult";
-import Admin from "./pages/Admin";
 
+import Admin from "./pages/Admin";
+import ManageScholarships from "./pages/ManageScholarships";
+import ViewScholarships from "./pages/ViewScholarships";
 
 function App() {
 
@@ -35,9 +37,19 @@ function App() {
           element={<ScholarshipResult />}
         />
 
-<Route
+        <Route
           path="/admin"
           element={<Admin />}
+        />
+
+        <Route
+          path="/admin/manage"
+          element={<ManageScholarships />}
+        />
+
+        <Route
+          path="/admin/view"
+          element={<ViewScholarships />}
         />
 
       </Routes>
@@ -45,7 +57,6 @@ function App() {
     </BrowserRouter>
 
   );
-
 }
 
 export default App;
