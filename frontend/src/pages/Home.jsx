@@ -26,13 +26,13 @@ function Home() {
     e.preventDefault();
 
     try {
-      // Save student information
+      // Save std info
       await axios.post(
         "http://localhost:5000/portal",
         form
       );
 
-      // Fetch eligible scholarships
+      // Fetch eligi schlr
       const response = await axios.post(
         "http://localhost:5000/scholarships",
         form
