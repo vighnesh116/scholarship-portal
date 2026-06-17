@@ -376,6 +376,32 @@ def admin_stats():
 
         cursor.close()
         db.close()
+#Student data Sent to Admin 
+@app.route('/admin-students', methods=['GET'])
+def student_data():
+    
+     
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
+    try:
+
+        cursor.execute(
+            """
+            SELECT *
+            FROM students
+            ORDER BY stdid ASC
+            """
+        )
+
+        students = cursor.fetchall()
+
+        return jsonify(students)
+
+    finally:
+
+        cursor.close()
+        db.close()
+
 
 
 # SCHOLARSHIP FILTER

@@ -91,6 +91,15 @@ function Admin() {
                 </button>
             </Link>
 
+            <br /><br />
+
+            <Link to="/admin/students">
+                <button>
+                    View Students
+                </button>
+            </Link>
+
+
         </div>
     );
 }

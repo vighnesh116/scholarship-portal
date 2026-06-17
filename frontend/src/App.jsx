@@ -4,7 +4,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import ScholarshipResult from "./pages/ScholarshipResult";
-
+import StudentsDetails from "./pages/StudentsDetails";
 import Admin from "./pages/Admin";
 import ManageScholarships from "./pages/ManageScholarships";
 import ViewScholarships from "./pages/ViewScholarships";
@@ -50,6 +50,11 @@ function App() {
         <Route
           path="/admin/view"
           element={<ViewScholarships />}
+        />
+
+        <Route
+          path="/admin/students"
+          element={<StudentsDetails />}
         />
 
       </Routes>
