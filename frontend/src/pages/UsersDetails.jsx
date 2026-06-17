@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import AutoRefresh from "../components/AutoRefresh";
+import AdminAccsses from  "../components/AdminAccsses";
 
 function UsersDetails() {
     
@@ -87,7 +88,7 @@ function UsersDetails() {
                 </tbody>
 
             </table>
-
+            <AdminAccsses/>
         </div>
 
         );

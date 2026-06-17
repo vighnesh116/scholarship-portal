@@ -415,7 +415,20 @@ def user_data():
     finally:
         cursor.close()
         db.close()
-
+#Admin Access to Student
+@app.route('/admin-users/<int:id>', methods=['PUT','PATCH'])
+def admin_Accsses(id):
+    
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
+    try:
+        cursor.execute("Update  users SET role='admin' Where userid=%s",(id,))
+        db.commit()
+        
+        return jsonify({"message": "Admin access granted successfully"})
+    finally:
+        cursor.close()
+        db.close()
 
 # SCHOLARSHIP FILTER
 @app.route('/scholarships', methods=['POST'])

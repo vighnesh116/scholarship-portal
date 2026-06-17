@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const AutoRefresh = ({ interval = 30000 }) => {
+const AutoRefresh = ({ interval = 100000 }) => {
   useEffect(() => {
     const timer = setInterval(() => {
       window.location.reload();
