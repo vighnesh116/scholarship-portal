@@ -99,6 +99,13 @@ function Admin() {
                 </button>
             </Link>
 
+            <br /><br />
+             <Link to="/admin/users">
+                <button>
+                    View Users
+                </button>
+            </Link>
+
 
         </div>
     );

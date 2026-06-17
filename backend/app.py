@@ -403,6 +403,19 @@ def student_data():
         db.close()
 
 
+#User data sent to Admin
+@app.route('/admin-users', methods=['GET'])
+def user_data():
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
+    try:
+        cursor.execute("SELECT * FROM users")
+        users = cursor.fetchall()
+        return jsonify(users)
+    finally:
+        cursor.close()
+        db.close()
+
 
 # SCHOLARSHIP FILTER
 @app.route('/scholarships', methods=['POST'])
