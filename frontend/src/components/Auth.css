@@ -1,7 +1,7 @@
 body{
     margin:0;
     font-family:Arial;
-    background:#2f4358;
+    background-image:url("../assets/download.jpg");
 }
 
 .container{
@@ -12,7 +12,7 @@ body{
 }
 
 .box{
-    background:#0d8a8f;
+    background:rgb(13, 20, 72);
     width:350px;
     padding:35px;
     border-radius:12px;
@@ -21,6 +21,7 @@ body{
 
 .box h1{
     margin-bottom:25px;
+    color:rgb(108, 213, 245);
 }
 
 input{
@@ -34,7 +35,7 @@ input{
 button{
     width:100%;
     padding:12px;
-    background:#333;
+    background:navy;
     color:white;
     border:none;
     cursor:pointer;
@@ -42,7 +43,7 @@ button{
 }
 
 button:hover{
-    opacity:.9;
+    opacity:0.9;
 }
 
 p{
@@ -52,4 +53,30 @@ p{
 a{
     margin-left:5px;
     color:white;
+}
+h1{
+    color: yellowgreen;
+}
+p{
+    color: rgb(42, 61, 1);
+}
+.home-container {
+    min-height: 100vh;
+    background-image: url("../assets/sclrPrjt.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.home-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image: url("../assets/sclrPrjt.jpg");
+    background-size: cover;
+    background-position: center;
+
+    filter: blur(8px);
+    z-index: -1;
 }
