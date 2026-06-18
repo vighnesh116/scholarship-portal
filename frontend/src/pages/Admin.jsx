@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import "../components/MS.css"
 function Admin() {
 
     const [stats, setStats] = useState({
@@ -35,9 +35,10 @@ function Admin() {
             </h1>
 
             <hr />
-
-            <div
-                style={{
+            
+            <div 
+                style={{ 
+                    backgroundColor:'#2c3e50',
                     display: "flex",
                     gap: "30px"
                 }}
@@ -74,7 +75,7 @@ function Admin() {
                 </div>
 
             </div>
-
+    
             <hr />
 
             <Link to="/admin/manage">
