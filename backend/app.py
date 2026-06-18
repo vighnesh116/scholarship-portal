@@ -115,12 +115,15 @@ def add_scholarship():
 
     data = request.json
 
+    gender = data.get('gender','NULL')
+    caste = data.get('caste','NULL')
+    educationqualifiation = data.get('educationqualifiation') or None
+
     db = get_db()
     cursor = db.cursor(dictionary=True)
 
     try:
 
-        # Check 
         cursor.execute(
             """
             SELECT *
@@ -137,7 +140,6 @@ def add_scholarship():
                 "message": "Scholarship already exists"
             }), 400
 
-        
         cursor.execute(
             """
             INSERT INTO sclrinfo
@@ -161,9 +163,9 @@ def add_scholarship():
                 data['percentreeq'],
                 data['miniincome'],
                 data['deadline'],
-                data['gender'],
-                data['caste'],
-                data['educationqualifiation'],
+                gender,
+                caste,
+                educationqualifiation,
                 data['application_link']
             )
         )
@@ -412,20 +414,6 @@ def user_data():
         cursor.execute("SELECT * FROM users")
         users = cursor.fetchall()
         return jsonify(users)
-    finally:
-        cursor.close()
-        db.close()
-#Admin Access to Student
-@app.route('/admin-users/<int:id>', methods=['PUT','PATCH'])
-def admin_Accsses(id):
-    
-    db = get_db()
-    cursor = db.cursor(dictionary=True)
-    try:
-        cursor.execute("Update  users SET role='admin' Where userid=%s",(id,))
-        db.commit()
-        
-        return jsonify({"message": "Admin access granted successfully"})
     finally:
         cursor.close()
         db.close()

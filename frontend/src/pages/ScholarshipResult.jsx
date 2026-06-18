@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import "./Scholarship.css";
+import "../components/Scholarship.css";
 
 function ScholarshipResult() {
 

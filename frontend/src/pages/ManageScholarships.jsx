@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AdminNavbar from "../components/AdminNavbar";
+import "../components/MS.css";
 function ManageScholarships() {
 
     const [search, setSearch] = useState("");
@@ -66,54 +67,72 @@ function ManageScholarships() {
 
     const addScholarship = async () => {
 
-        const res = await fetch(
-            "http://127.0.0.1:5000/add-scholarship",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(form)
-            }
-        );
-
-        const data = await res.json();
-
-        alert(data.message);
-
-        clearForm();
-
-        loadScholarships();
+    const dataToSend = {
+        ...form,
+        gender: form.gender || null,
+        caste: form.caste || null,
+        educationqualifiation: form.educationqualifiation || null
     };
 
+    const res = await fetch(
+        "http://127.0.0.1:5000/add-scholarship",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dataToSend)
+        }
+    );
+
+    const data = await res.json();
+
+    alert(data.message);
+
+    clearForm();
+
+    loadScholarships();
+};
     const editScholarship = (item) => {
 
-        setForm(item);
+    setForm({
+        ...item,
+        gender: item.gender || "",
+        caste: item.caste || "",
+        educationqualifiation: item.educationqualifiation || ""
+    });
 
-        setEditing(true);
-    };
+    setEditing(true);
+};
 
     const updateScholarship = async () => {
 
-        const res = await fetch(
-            `http://127.0.0.1:5000/update-scholarship/${form.sclrid}`,
-            {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(form)
-            }
-        );
-
-        const data = await res.json();
-
-        alert(data.message);
-
-        clearForm();
-
-        loadScholarships();
+    const dataToSend = {
+        ...form,
+        gender: form.gender || null,
+        caste: form.caste || null,
+        educationqualifiation: form.educationqualifiation || null
     };
+
+    const res = await fetch(
+        `http://127.0.0.1:5000/update-scholarship/${form.sclrid}`,
+        {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dataToSend)
+        }
+    );
+
+    const data = await res.json();
+
+    alert(data.message);
+
+    clearForm();
+
+    loadScholarships();
+};
     const deleteScholarship = async (sclrid) => {
 
     const confirmDelete = window.confirm(
@@ -145,26 +164,24 @@ function ManageScholarships() {
                 .includes(search.toLowerCase())
         );
 
-    return (
+return (
+    <div className="manage-container">
 
-        
+        <AdminNavbar />
 
-        <div style={{ padding: "30px" }}>
-            <AdminNavbar/>
-            <h1>
-                Manage Scholarships
-            </h1>
+        <h1 className="manage-title">
+            Manage Scholarships
+        </h1>
 
-            <input
-                type="text"
-                placeholder="Search Scholarship"
-                value={search}
-                onChange={(e) =>
-                    setSearch(e.target.value)
-                }
-            />
+        <input
+            className="search-box"
+            type="text"
+            placeholder="🔍 Search Scholarship..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+        />
 
-            <hr />
+        <div className="form-grid">
 
             <input
                 name="sclrname"
@@ -175,7 +192,7 @@ function ManageScholarships() {
 
             <input
                 name="amount"
-                placeholder="Amount"
+                placeholder="Scholarship Amount"
                 value={form.amount}
                 onChange={handleChange}
             />
@@ -195,27 +212,6 @@ function ManageScholarships() {
             />
 
             <input
-                name="gender"
-                placeholder="Gender"
-                value={form.gender}
-                onChange={handleChange}
-            />
-
-            <input
-                name="caste"
-                placeholder="Caste"
-                value={form.caste}
-                onChange={handleChange}
-            />
-
-            <input
-                name="educationqualifiation"
-                placeholder="Education"
-                value={form.educationqualifiation}
-                onChange={handleChange}
-            />
-
-            <input
                 name="deadline"
                 placeholder="31-Dec-2026"
                 value={form.deadline}
@@ -229,32 +225,106 @@ function ManageScholarships() {
                 onChange={handleChange}
             />
 
-            <br /><br />
+            <select
+                name="gender"
+                value={form.gender}
+                onChange={handleChange}
+            >
+                <option value="">
+                    Select Gender
+                </option>
 
-            {
-                editing
+                <option value="Male">
+                    Male
+                </option>
+
+                <option value="Female">
+                    Female
+                </option>
+            </select>
+
+            <select
+                name="caste"
+                value={form.caste}
+                onChange={handleChange}
+            >
+                <option value="">
+                    Category
+                </option>
+
+                <option value="General">
+                    General
+                </option>
+
+                <option value="OBC">
+                    OBC
+                </option>
+
+                <option value="SC">
+                    SC
+                </option>
+
+                <option value="ST">
+                    ST
+                </option>
+
+                <option value="Minority">
+                    Minority
+                </option>
+            </select>
+
+            <select
+                name="educationqualifiation"
+                value={form.educationqualifiation}
+                onChange={handleChange}
+            >
+                <option value="">
+                    Select Class
+                </option>
+
+                <option value="11">
+                    11th
+                </option>
+
+                <option value="12">
+                    12th
+                </option>
+
+            </select>
+
+        </div>
+
+        {
+            editing
                 ?
-                <button onClick={updateScholarship}>
+                <button
+                    className="action-btn"
+                    onClick={updateScholarship}
+                >
                     Update Scholarship
                 </button>
                 :
-                <button onClick={addScholarship}>
+                <button
+                    className="action-btn"
+                    onClick={addScholarship}
+                >
                     Add Scholarship
                 </button>
-            }
+        }
 
-            <hr />
+        <div className="table-container">
 
-            <table border="1">
+            <table>
 
                 <thead>
 
                     <tr>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
+                        <th>ID</th>
+                        <th>Scholarship Name</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
+
                 </thead>
 
                 <tbody>
@@ -271,6 +341,7 @@ function ManageScholarships() {
                                 <td>
 
                                     <button
+                                        className="edit-btn"
                                         onClick={() =>
                                             editScholarship(item)
                                         }
@@ -283,6 +354,7 @@ function ManageScholarships() {
                                 <td>
 
                                     <button
+                                        className="delete-btn"
                                         onClick={() =>
                                             deleteScholarship(item.sclrid)
                                         }
@@ -302,7 +374,9 @@ function ManageScholarships() {
             </table>
 
         </div>
-    );
+
+    </div>
+);
 }
 
 export default ManageScholarships;

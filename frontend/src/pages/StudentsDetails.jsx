@@ -91,7 +91,7 @@ function StudentsDetails() {
 
                                 <td>{item.stdid}</td>
                                 <td>{item.stdname}</td>
-                                <td>{item.miniincome}</td>
+                                <td>{item.stdincome}</td>
                                 <td>{item.stdpercent}</td>
                                 <td>{item.stdgender}</td>
                                 <td>{item.caste}</td>
