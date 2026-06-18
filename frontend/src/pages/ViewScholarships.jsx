@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import AutoRefresh from "../components/AutoRefresh";
+import"../components/MS.css"
 function ViewScholarships() {
 
     const [search, setSearch] = useState("");
@@ -42,8 +43,9 @@ function ViewScholarships() {
             </h1>
 
             <input
+                
                 type="text"
-                placeholder="Search Scholarship"
+                placeholder="🔍 Search Scholarship..."
                 value={search}
                 onChange={(e) =>
                     setSearch(e.target.value)
