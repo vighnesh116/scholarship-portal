@@ -26,13 +26,13 @@ function Home() {
     e.preventDefault();
 
     try {
-      // Save std info
+      // Save 
       await axios.post(
         "http://localhost:5000/portal",
         form
       );
 
-      // Fetch eligi schlr
+      // Fetch
       const response = await axios.post(
         "http://localhost:5000/scholarships",
         form
@@ -64,7 +64,9 @@ function Home() {
         <section className="hero">
           <h1>Find Scholarships You Are Eligible For</h1>
 
-          <p>
+          <p style={{
+            color:'yellowgreen'
+          }}>
             Enter your academic and personal details
             to check available scholarships.
           </p>
