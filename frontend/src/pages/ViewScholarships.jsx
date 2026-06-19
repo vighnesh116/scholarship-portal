@@ -42,7 +42,10 @@ function ViewScholarships() {
                 View Scholarships
             </h1>
 
-            <input
+            <input style={{
+                
+
+            }}
                 
                 type="text"
                 placeholder="🔍 Search Scholarship..."
