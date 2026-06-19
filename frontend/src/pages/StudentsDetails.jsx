@@ -55,7 +55,7 @@ function StudentsDetails() {
 
             <input
                 type="text"
-                placeholder="Search Students"
+                placeholder=" Search Students"
                 value={search}
                 onChange={(e) =>
                     setSearch(e.target.value)

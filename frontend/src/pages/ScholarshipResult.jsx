@@ -116,7 +116,10 @@ function ScholarshipResult() {
                                         Days Left
                                     </span>
                                     <span className="value">
-                                        {item.days_left}
+                                        {item.is_active
+                                        ? item.days_left
+                                        : "Better luck Next time"
+                                        }
                                     </span>
                                 </div>
 

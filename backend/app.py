@@ -117,7 +117,7 @@ def add_scholarship():
 
     gender = data.get('gender','NULL')
     caste = data.get('caste','NULL')
-    educationqualifiation = data.get('educationqualifiation') or None
+    educationqualifiation = data.get('educationqualifiation','NULL')
 
     db = get_db()
     cursor = db.cursor(dictionary=True)
