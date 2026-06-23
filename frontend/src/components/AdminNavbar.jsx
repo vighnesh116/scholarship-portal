@@ -13,7 +13,7 @@ function AdminNavbar() {
                 onClick={() => navigate("/admin")}
                 className="admin-home-btn"
             >
-                Admin Dashboard
+                Admin Dashboard:
             </button>
         </nav>
     );
