@@ -227,7 +227,7 @@ def delete_scholarship(id):
 
         cursor.execute(
             """
-            DELETE FROM sclrinfo
+            DELETE From sclrinfo
             WHERE sclrid=%s
             """,
             (id,)
