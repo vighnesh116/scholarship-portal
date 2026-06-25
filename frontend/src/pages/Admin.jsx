@@ -50,7 +50,7 @@ function Admin() {
                     </h2>
 
                     <p>
-                        Scholarships
+                        Scholarships-In-Data
                     </p>
                 </div>
 
@@ -60,7 +60,7 @@ function Admin() {
                     </h2>
 
                     <p>
-                        Students
+                        Students-Enrolled
                     </p>
                 </div>
 
@@ -80,7 +80,7 @@ function Admin() {
 
             <Link to="/admin/manage">
                 <button>
-                    Manage Scholarships
+                    Manage ALL-Scholarships
                 </button>
             </Link>
 
@@ -88,7 +88,7 @@ function Admin() {
 
             <Link to="/admin/view">
                 <button>
-                    View Scholarships
+                    View Scholarships-Available
                 </button>
             </Link>
 
@@ -96,14 +96,14 @@ function Admin() {
 
             <Link to="/admin/students">
                 <button>
-                    View Students
+                    View Students-DATA
                 </button>
             </Link>
 
             <br /><br />
              <Link to="/admin/users">
                 <button>
-                    View Users
+                    View Users-DETAILS
                 </button>
             </Link>
 
