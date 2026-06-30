@@ -13,8 +13,9 @@ body{
 
 .box{
     background:rgb(13, 20, 72);
-    width:350px;
-    padding:35px;
+    width: 400px;
+    height:400px ;
+    padding:33px;
     border-radius:12px;
     text-align:center;
 }
