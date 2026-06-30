@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../components/Auth.css";
-
+import { toast } from "react-toastify";
+// import{toast} from "react-toastify";
 function Login() {
 
     const navigate = useNavigate();
@@ -51,7 +52,7 @@ function Login() {
 
             console.log(error);
 
-            alert("Invalid Credentials");
+            toast("Invalid Credentials");
 
         }
     };
