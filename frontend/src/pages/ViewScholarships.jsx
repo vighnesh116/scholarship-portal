@@ -34,7 +34,10 @@ function ViewScholarships() {
 
     return (
 
-        <div style={{ padding: "30px" }}>
+        <div style={{ padding: "30px" ,
+            backgroundImage:"cover"
+
+        }}>
 
             <AutoRefresh />
             <AdminNavbar/>

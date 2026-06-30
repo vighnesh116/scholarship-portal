@@ -9,11 +9,19 @@
 }
 
 body{
-    min-height: 100vh;
+    /* min-height: 100vh; */
     display: flex;
     flex-direction: column;
     background: linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb);
     color: white;
+    margin:0;
+    font-family:Arial;
+    background-image:url("../assets/blue.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;      /* Fill the entire screen */
+    background-position: center; /* Keep image centered */
+    background-attachment: fixed; /* Optional */
+
 }
 
 /* Header - Keep Existing */
@@ -26,6 +34,7 @@ header{
     display:flex;
     justify-content:space-between;
     align-items:right;
+    
 }
 
 header h2{
