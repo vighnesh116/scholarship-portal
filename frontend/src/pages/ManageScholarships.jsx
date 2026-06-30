@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import "../components/MS.css";
+import { toast } from "react-toastify";
 function ManageScholarships() {
 
     const [search, setSearch] = useState("");
@@ -87,7 +88,7 @@ function ManageScholarships() {
 
     const data = await res.json();
 
-    alert(data.message);
+    toast(data.message);
 
     clearForm();
 
@@ -127,7 +128,7 @@ function ManageScholarships() {
 
     const data = await res.json();
 
-    alert(data.message);
+    toast(data.message);
 
     clearForm();
 
@@ -135,7 +136,7 @@ function ManageScholarships() {
 };
     const deleteScholarship = async (sclrid) => {
 
-    const confirmDelete = window.confirm(
+    const confirmDelete = confirm(
         "Are you sure you want to delete this scholarship?"
     );
 
@@ -152,7 +153,7 @@ function ManageScholarships() {
 
     const data = await res.json();
 
-    alert(data.message);
+    toast.error(data.message);
 
     loadScholarships();
 };

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../components/Auth.css";
 import { toast } from "react-toastify";
-// import{toast} from "react-toastify";
+
 function Login() {
 
     const navigate = useNavigate();
@@ -34,17 +34,17 @@ function Login() {
 
                 if (res.data.role === "admin") {
 
-                    navigate("/admin");
+                    navigate("/admin",{replace:true});
 
                 } else {
 
-                    navigate("/portal");
+                    navigate("/portal",{replace:true});
 
                 }
 
             } else {
 
-                alert("Invalid Credentials");
+                toast.error("Invalid Credentials");
 
             }
 
@@ -52,7 +52,7 @@ function Login() {
 
             console.log(error);
 
-            toast("Invalid Credentials");
+            toast.error("Invalid Credentials");
 
         }
     };
@@ -62,9 +62,9 @@ function Login() {
         <div className="container">
 
             <div className="box">
-
+                
                 <h1>Login</h1>
-
+                
                 <form onSubmit={login}>
 
                     <input
@@ -76,7 +76,7 @@ function Login() {
                         }
                         required
                     />
-
+                    
                     <input
                         type="password"
                         placeholder="Password"
@@ -86,13 +86,16 @@ function Login() {
                         }
                         required
                     />
+                    
+                        <br/>
+                        <br/>
 
                     <button type="submit">
                         Login
                     </button>
 
                 </form>
-
+                        <br/>
                 <p>
                     New User?{" "}
                     <Link to="/signup">
