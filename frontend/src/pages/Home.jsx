@@ -84,7 +84,7 @@ function Home() {
               />
 
               <br />
-              <br />
+              
 
               <input
                 required
@@ -95,7 +95,7 @@ function Home() {
               />
 
               <br />
-              <br />
+  
 
               <input
                 required
@@ -105,7 +105,7 @@ function Home() {
                 onChange={handleChange}
               />
 
-              <br />
+            
               <br />
 
               <select
@@ -125,7 +125,7 @@ function Home() {
                 <option value="Minority">Minority</option>
               </select>
 
-              <br />
+              
               <br />
 
               <select
@@ -141,8 +141,7 @@ function Home() {
                 <option value="11">11th</option>
                 <option value="12">12th</option>
               </select>
-
-              <br />
+              
               <br />
 
               <select
@@ -158,7 +157,7 @@ function Home() {
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
-              <br />
+              
               <br />
               <button type="submit">
                 Check Eligibility

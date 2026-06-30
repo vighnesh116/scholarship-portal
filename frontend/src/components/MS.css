@@ -133,3 +133,9 @@ table{
 p{
     color: #027f7f;
 }
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
