@@ -1,7 +1,18 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
 body{
     margin:0;
     font-family:Arial;
-    background-image:url("../assets/download.jpg");
+    background-image:url("../assets/greyblack.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;      /* Fill the entire screen */
+    background-position: center; /* Keep image centered */
+    background-attachment: fixed; /* Optional */
+
 }
 
 .container{
@@ -12,7 +23,8 @@ body{
 }
 
 .box{
-    background:rgb(13, 20, 72);
+   /* background:rgb(13, 20, 72);*/
+   backdrop-filter: blur(8px);
     width: 400px;
     height:400px ;
     padding:33px;
