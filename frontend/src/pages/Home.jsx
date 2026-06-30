@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 function Home() {
   const navigate = useNavigate();
 
@@ -63,13 +64,8 @@ function Home() {
       <main>
         <section className="hero">
           <h1>Find Scholarships You Are Eligible For</h1>
-
-          <p style={{
-            color:'yellowgreen'
-          }}>
-            Enter your academic and personal details
-            to check available scholarships.
-          </p>
+          <br/>
+          
         </section>
 
         <div className="container">
