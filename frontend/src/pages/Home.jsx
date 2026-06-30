@@ -158,7 +158,7 @@ function Home() {
                 <option value="Female">Female</option>
               </select>
               
-              <br />
+              
               <button type="submit">
                 Check Eligibility
               </button>
