@@ -28,7 +28,7 @@ function Admin() {
 
     return (
 
-        <div style={{ padding: "30px" }}>
+        <div className="admin-portal"style={{ padding: "30px"}} >
 
             <h1>
                 Admin Dashboard
@@ -40,7 +40,9 @@ function Admin() {
                 style={{ 
                     backgroundColor:'#2c3e50',
                     display: "flex",
+                    border:"100px",
                     gap: "30px"
+                    
                 }}
             >
 
