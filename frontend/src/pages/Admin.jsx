@@ -28,7 +28,16 @@ function Admin() {
 
     return (
 
-        <div className="admin-portal"style={{ padding: "30px"}} >
+        <div className="admin-portal"style={{ padding: "30px",
+            textAlign: "center",
+             width: "600px",
+             height: "580px",
+             margin: "40px auto",
+             padding: "30px",
+             backgroundColor: "#2e6e7b",
+             borderRadius: "25px",
+             textAlign: "center",
+        }} >
 
             <h1>
                 Admin Dashboard
@@ -41,6 +50,7 @@ function Admin() {
                     backgroundColor:'#2c3e50',
                     display: "flex",
                     border:"100px",
+                    borderRadius:"10px",
                     gap: "30px"
                     
                 }}
@@ -80,7 +90,7 @@ function Admin() {
     
             <hr />
 
-            <Link to="/admin/manage">
+            <Link to="/admin/manage" >
                 <button>
                     Manage ALL-Scholarships
                 </button>
@@ -96,20 +106,25 @@ function Admin() {
 
             <br /><br />
 
-            <Link to="/admin/students">
+            <Link to="/admin/students" >
                 <button>
                     View Students-DATA
                 </button>
             </Link>
 
             <br /><br />
-             <Link to="/admin/users">
+             <Link to="/admin/users" >
                 <button>
                     View Users-DETAILS
                 </button>
             </Link>
 
-
+            <br/><br/>
+            <Link to="/portal" >
+                <button>
+                    Check User-Portal
+                </button>
+            </Link>
         </div>
     );
 }

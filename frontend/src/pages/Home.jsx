@@ -47,7 +47,7 @@ function Home() {
       });
     } catch (error) {
       console.log(error);
-      alert("Error submitting form");
+      toast.error("Error submitting form");
     }
   };
 
