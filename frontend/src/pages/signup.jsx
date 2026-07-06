@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, replace, useNavigate} from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "../components/Auth.css";
@@ -28,9 +28,9 @@ function Signup() {
             form
         );
 
-        toast("Registration Successful");
+        toast.success("Registration Successful");
 
-        navigate("/");
+        navigate("/",{replace:true});
     };
 
     return(
@@ -77,7 +77,7 @@ function Signup() {
 
                 <p>
                     Already have an account?
-                    <Link to="/">
+                    <Link to="/"replace={true}>
                         Login
                     </Link>
                 </p>

@@ -98,7 +98,7 @@ function Login() {
                         <br/>
                 <p>
                     New User?{" "}
-                    <Link to="/signup">
+                    <Link to="/signup"replace={true}>
                         Register Here
                     </Link>
                 </p>
