@@ -128,7 +128,7 @@ function ManageScholarships() {
 
     const data = await res.json();
 
-    toast(data.message);
+    toast.success(data.message);
 
     clearForm();
 

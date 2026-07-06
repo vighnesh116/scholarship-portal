@@ -33,11 +33,12 @@ function Login() {
                 );
 
                 if (res.data.role === "admin") {
-
+                    toast.success("Admin Login Successful");
                     navigate("/admin",{replace:true});
 
                 } else {
 
+                    toast.success("Login Successful");
                     navigate("/portal",{replace:true});
 
                 }
@@ -98,7 +99,7 @@ function Login() {
                         <br/>
                 <p>
                     New User?{" "}
-                    <Link to="/signup"replace={true}>
+                    <Link to="/signup" replace={true}>
                         Register Here
                     </Link>
                 </p>
