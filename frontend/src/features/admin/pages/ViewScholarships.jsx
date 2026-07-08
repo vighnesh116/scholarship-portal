@@ -1,91 +1,80 @@
-import { useEffect, useState } from "react";
-import AdminNavbar from "../components/AdminNavbar";
-import AutoRefresh from "../components/AutoRefresh";
+import { useEffect, useState, useMemo } from "react";
+
+import ScholarshipFilter from "../components/ScholarshipFilter";
 import "../components/MS.css";
+
 function ViewScholarships() {
   const [search, setSearch] = useState("");
-
   const [scholarships, setScholarships] = useState([]);
+  const [filtered, setFiltered] = useState([]);
 
   useEffect(() => {
     loadScholarships();
   }, []);
 
   const loadScholarships = async () => {
-    try {
-      const res = await fetch("http://127.0.0.1:5000/admin-scholarships");
-      const data = await res.json();
-      setScholarships(data || []);
-    } catch (error) {
-      console.error("Error loading scholarships:", error);
-      setScholarships([]);
-    }
+    const res = await fetch("http://127.0.0.1:5000/admin-scholarships");
+    const data = await res.json();
+    setScholarships(data);
   };
 
-  const filteredScholarships = scholarships.filter((item) =>
-    item.sclrname?.toLowerCase().includes(search.toLowerCase()),
+  // Name search applied first; ScholarshipFilter then narrows this further.
+  // useMemo avoids creating a new array on every render, which would
+  // otherwise re-trigger ScholarshipFilter's effect in a loop.
+  const searchFiltered = useMemo(
+    () =>
+      scholarships.filter((item) =>
+        item.sclrname.toLowerCase().includes(search.toLowerCase())
+      ),
+    [scholarships, search]
   );
 
-  // Function to display NULL for empty values
-  const displayValue = (value) => {
-    return value === null || value === undefined || value === "" ? "NULL" : value;
-  };
-
   return (
-    <div className="manage-container">
+    <div style={{ padding: "30px", backgroundColor: "#ebebeb" }}>
       
       
-      <h1 className="manage-title">View Scholarships</h1>
+      <h1>View Scholarships</h1>
 
       <input
         type="text"
         placeholder="🔍 Search Scholarship..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="search-box"
       />
 
-      <br />
-      <br />
+      <ScholarshipFilter scholarships={searchFiltered} onFilter={setFiltered} />
 
-      <div className="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Amount</th>
-              <th>Percentage</th>
-              <th>Income</th>
-              <th>Gender</th>
-              <th>Caste</th>
-              <th>Education</th>
-              <th>Deadline</th>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Percentage</th>
+            <th>Income</th>
+            <th>Gender</th>
+            <th>Caste</th>
+            <th>Education</th>
+            <th>Deadline</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {filtered.map((item) => (
+            <tr key={item.sclrid}>
+              <td>{item.sclrid}</td>
+              <td>{item.sclrname}</td>
+              <td>{item.amount}</td>
+              <td>{item.percentreeq}</td>
+              <td>{item.miniincome}</td>
+              <td>{item.gender}</td>
+              <td>{item.caste}</td>
+              <td>{item.educationqualifiation}</td>
+              <td>{item.deadline}</td>
             </tr>
-          </thead>
-
-          <tbody>
-            {filteredScholarships.map((item) => (
-              <tr key={item.sclrid}>
-                <td>{displayValue(item.sclrid)}</td>
-                <td>{displayValue(item.sclrname)}</td>
-                <td>{displayValue(item.amount)}</td>
-                <td>{displayValue(item.percentreeq)}</td>
-                <td>{displayValue(item.miniincome)}</td>
-                <td>{displayValue(item.gender)}</td>
-                <td>{displayValue(item.caste)}</td>
-                <td>{displayValue(item.educationqualifiation)}</td>
-                <td>{displayValue(item.deadline)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        {filteredScholarships.length === 0 && (
-          <p style={{ textAlign: "center", padding: "20px", color: "#4B5563" }}>
-            No scholarships found
-          </p>
-        )}
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
