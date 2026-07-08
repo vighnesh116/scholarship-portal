@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import logo from "../../../assets/new2.ico";
-import "../components/UserAuth.css";
+import "../components/Login.css";
 import { toast } from "react-toastify";
 import heroImage from "../../../assets/hero1.png";
 function Login() {

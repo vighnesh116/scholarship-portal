@@ -24,60 +24,76 @@ function StudentsDetails() {
   }, []);
 
   const filtered = students.filter((student) =>
-    student.stdname.toLowerCase().includes(search.toLowerCase()),
+    student.stdname?.toLowerCase().includes(search.toLowerCase()),
   );
 
   const loadStudents = async () => {
-    const res = await fetch("http://127.0.0.1:5000/admin-students");
+    try {
+      const res = await fetch("http://127.0.0.1:5000/admin-students");
+      const data = await res.json();
+      setStudents(data || []);
+    } catch (error) {
+      console.error("Error loading students:", error);
+      setStudents([]);
+    }
+  };
 
-    const data = await res.json();
-
-    setStudents(data);
+  // Function to display NULL for empty values
+  const displayValue = (value) => {
+    return value === null || value === undefined || value === "" ? "NULL" : value;
   };
 
   return (
-    <div style={{ padding: "30px" }}>
+    <div className="manage-container">
       
       
-      <h1>View Students Details</h1>
+      <h1 className="manage-title">View Students Details</h1>
 
       <input
         type="text"
-        placeholder=" Search Students"
+        placeholder="Search Students"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
+        className="search-box"
       />
 
       <br />
       <br />
 
-      <table border="1">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Income</th>
-            <th>Percentage</th>
-            <th>Gender</th>
-            <th>Caste</th>
-            <th>Education</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {filtered.map((item) => (
-            <tr key={item.stdid}>
-              <td>{item.stdid}</td>
-              <td>{item.stdname}</td>
-              <td>{item.stdincome}</td>
-              <td>{item.stdpercent}</td>
-              <td>{item.stdgender}</td>
-              <td>{item.caste}</td>
-              <td>{item.education}</td>
+      <div className="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Income</th>
+              <th>Percentage</th>
+              <th>Gender</th>
+              <th>Caste</th>
+              <th>Education</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {filtered.map((item) => (
+              <tr key={item.stdid}>
+                <td>{displayValue(item.stdid)}</td>
+                <td>{displayValue(item.stdname)}</td>
+                <td>{displayValue(item.stdincome)}</td>
+                <td>{displayValue(item.stdpercent)}</td>
+                <td>{displayValue(item.stdgender)}</td>
+                <td>{displayValue(item.caste)}</td>
+                <td>{displayValue(item.education)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {filtered.length === 0 && (
+          <p style={{ textAlign: "center", padding: "20px", color: "#4B5563" }}>
+            No students found
+          </p>
+        )}
+      </div>
     </div>
   );
 }
