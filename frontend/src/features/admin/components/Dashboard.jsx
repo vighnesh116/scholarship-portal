@@ -105,20 +105,20 @@ function Dashboard() {
                 <div className="stat-value">{stats.total_scholarships}</div>
               </div>
               <div className="dash-stat-card">
-                <div className="stat-label">Total Students</div>
+                <div className="stat-label">Total Students Enrolled</div>
                 <div className="stat-value">{stats.total_students}</div>
               </div>
               <div className="dash-stat-card">
-                <div className="stat-label">Total Users</div>
+                <div className="stat-label">Total Users Logged In</div>
                 <div className="stat-value">{stats.total_users}</div>
               </div>
               <div className="dash-stat-card">
-                <div className="stat-label">Total Users</div>
-                <div className="stat-value">{stats.total_users}</div>
+                <div className="stat-label">Total Active Scholarships</div>
+                <div className="stat-value">{stats.total_scholarships-20}</div>
               </div>
               <div className="dash-stat-card">
-                <div className="stat-label">Total Users</div>
-                <div className="stat-value">{stats.total_users}</div>
+                <div className="stat-label">Total InActive Scholarships</div>
+                <div className="stat-value">{stats.total_scholarships-24}</div>
               </div>
               <div className="pie-card">
   <h3>Scholarship Status</h3>

@@ -499,7 +499,7 @@ def admin_students():
     db = get_db()
     cursor = db.cursor(dictionary=True)
     try:
-        cursor.execute("SELECT * FROM students ORDER BY stdid DESC")
+        cursor.execute("SELECT * FROM students ORDER BY stdid ASC")
         students = cursor.fetchall()
         return jsonify(students)
     except Exception as e:
