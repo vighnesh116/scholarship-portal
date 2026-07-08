@@ -1,0 +1,169 @@
+:root {
+  --bg-main: #EBEBEB;
+  --header-color: #10367D;
+  --accent-text: rgba(97, 139, 224, 0.933);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.dash-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* ---------- Sidebar ---------- */
+.dash-sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background: #ffffff;
+  padding: 24px 16px;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dash-sidebar-header {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--header-color);
+  margin-bottom: 24px;
+  padding: 0 8px;
+}
+
+.dash-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dash-nav-item {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-left: 4px solid transparent;
+  padding: 12px 14px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #555;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dash-nav-item:hover {
+  background: #f2f6ee;
+  color: var(--header-color);
+}
+
+.dash-nav-item.active {
+  background: #f2f8e6;
+  color: var(--header-color);
+  border-left: 4px solid var(--accent-text);
+  font-weight: 700;
+}
+
+/* ---------- Main content ---------- */
+.dash-main {
+  flex: 1;
+  padding: 32px 40px;
+  min-width: 0;
+}
+
+.dash-main h1 {
+  color: var(--header-color);
+  margin-bottom: 6px;
+}
+
+.dash-main .subtitle {
+  color: #777;
+  margin-bottom: 28px;
+}
+
+/* ---------- Stat cards (overview) ---------- */
+.dash-stats-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.dash-stat-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 60px 40px;
+  flex: 1;
+  min-width: 180px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.dash-stat-card .stat-label {
+  font-size: 18px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.dash-stat-card .stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--header-color);
+}
+
+/* ---------- Content panel shown when a nav item is clicked ---------- */
+.dash-panel {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.dash-panel h2 {
+  color: var(--header-color);
+  margin-top: 0;
+}
+
+.dash-panel p {
+  color: #555;
+  line-height: 1.6;
+}
+
+.dash-accent-text {
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .dash-layout {
+    flex-direction: column;
+  }
+  .dash-sidebar {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+  .dash-nav {
+    flex-direction: row;
+  }
+}
+.hero-image {
+    position: relative;
+    right: -10px;
+    width: 70px;
+    max-width: 700px;
+    height: auto;
+    border-radius: 100px;
+}
+.hero-image1 {
+    position: relative;
+    right: -100px;
+    width: 900px;
+    max-width: 700px;
+    height: auto;
+    
+}
