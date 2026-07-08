@@ -3,6 +3,14 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import "./Sidebar.css";
 import logo from "../../../assets/new2.ico";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 // Adjust these import paths if your actual files live somewhere else
 // (e.g. "../pages/ManageScholarships" instead of "./ManageScholarships").
@@ -25,8 +33,22 @@ function Dashboard() {
     total_scholarships: 0,
     total_students: 0,
     total_users: 0,
+    active_scholarships: 0,
+    inactive_scholarships: 0,
   });
   // "dashboard" is the default screen
+  const pieData = [
+    {
+      name: "Active",
+      value: stats.active_scholarships,
+    },
+    {
+      name: "Inactive",
+      value: stats.inactive_scholarships,
+    },
+  ];
+
+  const COLORS = ["#4CAF50", "#F44336"];
   const [activeKey, setActiveKey] = useState("dashboard");
   const navigate = useNavigate();
 
@@ -98,9 +120,46 @@ function Dashboard() {
                 <div className="stat-label">Total Users</div>
                 <div className="stat-value">{stats.total_users}</div>
               </div>
-            </div>
+              <div className="pie-card">
+  <h3>Scholarship Status</h3>
 
-            
+  <ResponsiveContainer width="100%" height={300}>
+    <PieChart>
+      <Pie
+        data={pieData}
+        dataKey="value"
+        outerRadius={110}
+        label={false}
+        labelLine={false}
+      >
+        {pieData.map((entry, index) => (
+          <Cell key={index} fill={COLORS[index]} />
+        ))}
+      </Pie>
+      <Tooltip />
+    </PieChart>
+  </ResponsiveContainer>
+
+  {/* Keep the legend INSIDE the card */}
+  <div className="pie-legend">
+    <div className="legend-item">
+      <span
+        className="legend-color"
+        style={{ background: "#4CAF50" }}
+      ></span>
+      <span><strong>{stats.active_scholarships}</strong> Active</span>
+    </div>
+
+    <div className="legend-item">
+      <span
+        className="legend-color"
+        style={{ background: "#F44336" }}
+      ></span>
+      <span><strong>{stats.inactive_scholarships}</strong> Inactive</span>
+    </div>
+  </div>
+</div>
+            </div>
           </>
         );
     }
