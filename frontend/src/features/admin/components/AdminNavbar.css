@@ -1,7 +1,7 @@
 .admin-navbar{
-    background-color:#2c3e50;
+    
     color:white;
-    padding:15px 30px;
+    padding:0px 0px 20px 20px;
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -13,7 +13,7 @@
 }
 
 .admin-home-btn{
-    background-color:#4CAF50;
+    
     color:white;
     border:none;
     padding:10px 18px;
