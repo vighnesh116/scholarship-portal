@@ -345,6 +345,9 @@ def portal():
 
 
 # ADMIN STATS
+from flask import jsonify
+from datetime import datetime
+
 @app.route('/admin-stats', methods=['GET'])
 def admin_stats():
 
@@ -353,58 +356,43 @@ def admin_stats():
 
     try:
 
-        cursor.execute(
-            "SELECT COUNT(*) AS total_users FROM users"
-        )
+        cursor.execute("SELECT COUNT(*) AS total_users FROM users")
         users = cursor.fetchone()
 
-        cursor.execute(
-            "SELECT COUNT(*) AS total_students FROM students"
-        )
+        cursor.execute("SELECT COUNT(*) AS total_students FROM students")
         students = cursor.fetchone()
 
-        cursor.execute(
-            "SELECT COUNT(*) AS total_scholarships FROM sclrinfo"
-        )
+        cursor.execute("SELECT COUNT(*) AS total_scholarships FROM sclrinfo")
         scholarships = cursor.fetchone()
+
+        # Active Scholarships
+        cursor.execute("""
+            SELECT COUNT(*) AS active
+            FROM sclrinfo
+            WHERE STR_TO_DATE(deadline,'%d-%b-%Y') >= CURDATE()
+        """)
+        active = cursor.fetchone()
+
+        # Inactive Scholarships
+        cursor.execute("""
+            SELECT COUNT(*) AS inactive
+            FROM sclrinfo
+            WHERE STR_TO_DATE(deadline,'%d-%b-%Y') < CURDATE()
+        """)
+        inactive = cursor.fetchone()
 
         return jsonify({
             "total_users": users["total_users"],
             "total_students": students["total_students"],
-            "total_scholarships": scholarships["total_scholarships"]
+            "total_scholarships": scholarships["total_scholarships"],
+            "active_scholarships": active["active"],
+            "inactive_scholarships": inactive["inactive"]
         })
 
     finally:
-
         cursor.close()
         db.close()
-#Student data Sent to Admin 
-@app.route('/admin-students', methods=['GET'])
-def student_data():
-    
-     
-    db = get_db()
-    cursor = db.cursor(dictionary=True)
-    try:
-
-        cursor.execute(
-            """
-            SELECT *
-            FROM students
-            ORDER BY stdid ASC
-            """
-        )
-
-        students = cursor.fetchall()
-
-        return jsonify(students)
-
-    finally:
-
-        cursor.close()
-        db.close()
-
-
+        
 #User data sent to Admin
 @app.route('/admin-users', methods=['GET'])
 def user_data():
