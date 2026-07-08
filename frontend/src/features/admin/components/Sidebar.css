@@ -188,21 +188,22 @@ legend-item {
     flex-direction: row;
   }
 }
-.hero-image {
+.siderico {
     position: relative;
-    right: -10px;
-    width: 70px;
-    max-width: 700px;
-    height: auto;
-    border-radius: 100px;
-}
-.hero-image1 {
-    position: relative;
-    right: -100px;
-    width: 900px;
-    max-width: 700px;
-    height: auto;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
     
+}
+
+.Dashico {
+    position: relative;
+    right: 10px;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 60%;
 }
 .pie-card {
   width: 500px;

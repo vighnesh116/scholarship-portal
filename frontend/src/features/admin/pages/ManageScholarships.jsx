@@ -28,11 +28,14 @@ function ManageScholarships() {
   }, []);
 
   const loadScholarships = async () => {
-    const res = await fetch("http://127.0.0.1:5000/admin-scholarships");
-
-    const data = await res.json();
-
-    setScholarships(data);
+    try {
+      const res = await fetch("http://127.0.0.1:5000/admin-scholarships");
+      const data = await res.json();
+      setScholarships(data || []);
+    } catch (error) {
+      console.error("Error loading scholarships:", error);
+      setScholarships([]);
+    }
   };
 
   const handleChange = (e) => {
@@ -144,8 +147,13 @@ function ManageScholarships() {
   };
 
   const filteredScholarships = scholarships.filter((item) =>
-    item.sclrname.toLowerCase().includes(search.toLowerCase()),
+    item.sclrname?.toLowerCase().includes(search.toLowerCase()),
   );
+
+  // Function to display NULL for empty values
+  const displayValue = (value) => {
+    return value === null || value === undefined || value === "" ? "NULL" : value;
+  };
 
   return (
     <div className="manage-container">

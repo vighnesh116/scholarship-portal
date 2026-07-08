@@ -18,7 +18,7 @@ function Sidebar({ title, navItems, activeKey, onSelect, children }) {
     
     <div className="dash-layout">
       <aside className="dash-sidebar">
-        <div className="dash-sidebar-header"><img src={logo} alt="Logo" className="hero-image" />{title}</div>
+        <div className="dash-sidebar-header"><img src={logo} alt="Logo" className="siderico" />{title}</div>
         <nav className="dash-nav">
           {navItems.map((item) => (
             <button
