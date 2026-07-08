@@ -13,7 +13,7 @@ body{
     display: flex;
     flex-direction: column;
     background: linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb);
-    color: white;
+    color:#10367D;
     margin:0;
     font-family:Arial;
     background-image:url("../assets/blue.jpg");
@@ -53,7 +53,7 @@ nav a{
 }
 
 nav a:hover{
-    color:#ffd700;
+    color:#EAF3FF;
 }
 
 /* Main Container */
