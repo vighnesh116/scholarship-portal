@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import AdminNavbar from "../components/AdminNavbar";
-import AutoRefresh from "../components/AutoRefresh";
+//import AdminNavbar from "../components/AdminNavbar";
+//import AutoRefresh from "../components/AutoRefresh";
 function StudentsDetails() {
   const [search, setSearch] = useState("");
 
@@ -37,8 +37,8 @@ function StudentsDetails() {
 
   return (
     <div style={{ padding: "30px" }}>
-      <AutoRefresh />
-      <AdminNavbar />
+      
+      
       <h1>View Students Details</h1>
 
       <input
