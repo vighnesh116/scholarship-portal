@@ -1,13 +1,8 @@
 import Dashboard from "../components/Dashboard";
-import { Link, Outlet } from "react-router-dom";
-import "../components/MS.css";
+// import { Link, Outlet } from "react-router-dom";
+// import "../components/MS.css";
 function Admin() {
-  
-
-  return (
-    <Dashboard />
-    
-  );
+  return <Dashboard />;
 }
 
 export default Admin;

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import "../components/MS.css";
 import { toast } from "react-toastify";
+import { Pen,Trash2 } from 'lucide-react';
 function ManageScholarships() {
   const [search, setSearch] = useState("");
 
@@ -148,7 +149,7 @@ function ManageScholarships() {
 
   return (
     <div className="manage-container">
-      <AdminNavbar />
+      
 
       <h1 className="manage-title">Manage Scholarships</h1>
 
@@ -271,7 +272,7 @@ function ManageScholarships() {
                     className="edit-btn"
                     onClick={() => editScholarship(item)}
                   >
-                    Edit
+                   <Pen />
                   </button>
                 </td>
 
@@ -280,7 +281,7 @@ function ManageScholarships() {
                     className="delete-btn"
                     onClick={() => deleteScholarship(item.sclrid)}
                   >
-                    Delete
+                    <Trash2 />
                   </button>
                 </td>
               </tr>
