@@ -392,7 +392,7 @@ def admin_stats():
     finally:
         cursor.close()
         db.close()
-        
+
 #User data sent to Admin
 @app.route('/admin-users', methods=['GET'])
 def user_data():
@@ -493,6 +493,23 @@ def scholarships():
 
         cursor.close()
         db.close()
+# VIEW ALL STUDENTS
+@app.route('/admin-students', methods=['GET'])
+def admin_students():
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
+    try:
+        cursor.execute("SELECT * FROM students ORDER BY stdid DESC")
+        students = cursor.fetchall()
+        return jsonify(students)
+    except Exception as e:
+        print(e)
+        return jsonify({"message": "Error fetching students"}), 500
+    finally:
+        cursor.close()
+        db.close()
+
+# UPDATE PASSWORD
 @app.route('/update-password', methods=['POST'])
 def update_password():  
     

@@ -2,9 +2,9 @@
 .manage-container {
     max-width: 1000px;
     margin: 30px auto;
-    padding: 30px;
-    background: #150505;
-    border-radius: 15px;
+    padding: 0px;
+    
+    border-radius: 20px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -98,6 +98,7 @@ table td {
 
 table tbody tr {
     background: #FFFFFF;
+    border-color: #D9D3C5;
 }
 
 table tbody tr:nth-child(even) {

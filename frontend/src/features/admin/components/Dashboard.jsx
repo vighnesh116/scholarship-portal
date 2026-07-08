@@ -93,7 +93,7 @@ function Dashboard() {
       default:
         return (
           <>
-            <img src={logo} alt="Logo" className="hero-image" />
+            <img src={logo} alt="Logo" className="Dashico" />
             <h1>Admin Dashboard</h1>
             <p className="subtitle">
               Plan, manage and monitor scholarships with ease.
