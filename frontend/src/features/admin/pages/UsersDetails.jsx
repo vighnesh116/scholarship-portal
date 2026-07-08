@@ -24,8 +24,8 @@ function UsersDetails() {
   );
   return (
     <div style={{ padding: "30px" }}>
-      <AutoRefresh />
-      <AdminNavbar />
+      
+      
       <h1>USERS DETAILS</h1>
 
       <input

@@ -25,12 +25,11 @@ function ViewScholarships() {
 
   return (
     <div style={{ padding: "30px", backgroundColor: "#ebebeb" }}>
-      <AutoRefresh />
-      <AdminNavbar />
+      
+      
       <h1>View Scholarships</h1>
 
       <input
-        style={{}}
         type="text"
         placeholder="🔍 Search Scholarship..."
         value={search}
