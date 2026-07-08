@@ -78,22 +78,34 @@
 table {
     width: 100%;
     border-collapse: collapse;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
 table th {
-    background: #1e3a5f;
-    color:white;
+    background: #FFFFFF;
+    color: #4B5563;
     padding: 12px;
+    border: 1px solid #D9D3C5;
+    font-weight: 600;
 }
 
 table td {
     padding: 12px;
     text-align: center;
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid #D9D3C5;
+    color: #4B5563;
+}
+
+table tbody tr {
+    background: #FFFFFF;
+}
+
+table tbody tr:nth-child(even) {
+    background: #F7F7F5;
 }
 
 table tr:hover {
-    background: grey;
+    background: #EEF4FF;
 }
 
 .edit-btn {
@@ -121,19 +133,9 @@ table tr:hover {
 .delete-btn:hover {
     background: #d32f2f;
 }
-table{
-
-    
-    background:#4485b4;
-    width:350px;
-    padding:35px;
-    border-radius:12px;
-    text-align:center;
-    
-
-}
-p{
-    color: 10367D;
+/* Additional styling removed - main table styling above handles all table styles */
+p {
+    color: #10367D;
 }
 html, body {
     margin: 0;
