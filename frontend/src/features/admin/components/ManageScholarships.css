@@ -1,0 +1,260 @@
+/* =============================================================
+   ManageScholarships.css
+   Admin – Edit / Add Scholarship Form
+   Matches the admin panel design: #10367D blue, white cards,
+   EBEBEB background, Segoe UI / Arial font stack.
+   ============================================================= */
+
+/* ---------- Page wrapper ---------- */
+.manage-page {
+    min-height: 100vh;
+    background-color: #EBEBEB;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 60px;
+    box-sizing: border-box;
+}
+
+/* ---------- Card / container ---------- */
+.manage-container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 860px;
+    border-radius: 20px;
+    padding: 40px 44px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.09), 0 2px 8px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+}
+
+/* ---------- Page title ---------- */
+.manage-title {
+    text-align: center;
+    color: #10367D;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0 0 32px;
+}
+
+/* ---------- Search box ---------- */
+.search-box {
+    width: 100%;
+    padding: 13px 18px;
+    border: 1.5px solid #c7cfe0;
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: inherit;
+    color: #1e293b;
+    background: #f8fafc;
+    box-sizing: border-box;
+    margin-bottom: 28px;
+    outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.search-box::placeholder {
+    color: #94a3b8;
+}
+
+.search-box:focus {
+    border-color: #10367D;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(16, 54, 125, 0.12);
+}
+
+/* ---------- Form grid (2-column) ---------- */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.form-grid input,
+.form-grid select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #d1d8e6;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    color: #1e293b;
+    background: #f8fafc;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.2s ease;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.form-grid input::placeholder {
+    color: #94a3b8;
+}
+
+.form-grid input:focus,
+.form-grid select:focus {
+    border-color: #10367D;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(16, 54, 125, 0.12);
+}
+
+/* Select arrow indicator */
+.form-grid select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2310367D' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
+}
+
+/* ---------- Action button (Add / Update) ---------- */
+.action-btn {
+    display: block;
+    width: 100%;
+    padding: 14px 24px;
+    background-color: #10367D;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 14px rgba(16, 54, 125, 0.28);
+    transition: background-color 0.25s ease, box-shadow 0.25s ease, transform 0.1s ease;
+}
+
+.action-btn:hover {
+    background-color: #0c2760;
+    box-shadow: 0 6px 20px rgba(16, 54, 125, 0.38);
+}
+
+.action-btn:active {
+    transform: scale(0.98);
+}
+
+/* ---------- Table container ---------- */
+.table-container {
+    margin-top: 36px;
+    overflow-x: auto;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* ---------- Table ---------- */
+.manage-container table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.manage-container table thead {
+    background-color: #10367D;
+}
+
+.manage-container table thead th {
+    color: #ffffff;
+    padding: 14px 16px;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.manage-container table tbody tr {
+    background: #ffffff;
+    transition: background 0.18s ease;
+}
+
+.manage-container table tbody tr:nth-child(even) {
+    background: #f4f7fc;
+}
+
+.manage-container table tbody tr:hover {
+    background: #e8eefa;
+}
+
+.manage-container table td {
+    padding: 12px 16px;
+    text-align: center;
+    border-bottom: 1px solid #e2e8f0;
+    color: #334155;
+}
+
+/* ---------- Edit button ---------- */
+.edit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
+}
+
+.edit-btn:hover {
+    background-color: #1d4ed8;
+    box-shadow: 0 4px 10px rgba(29, 78, 216, 0.3);
+}
+
+.edit-btn:active {
+    transform: scale(0.96);
+}
+
+/* ---------- Delete button ---------- */
+.delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background-color: #ef4444;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 6px rgba(239, 68, 68, 0.2);
+}
+
+.delete-btn:hover {
+    background-color: #dc2626;
+    box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3);
+}
+
+.delete-btn:active {
+    transform: scale(0.96);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 680px) {
+    .manage-container {
+        padding: 28px 18px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .manage-title {
+        font-size: 24px;
+    }
+
+    .manage-container table thead th,
+    .manage-container table td {
+        padding: 10px 10px;
+        font-size: 13px;
+    }
+}

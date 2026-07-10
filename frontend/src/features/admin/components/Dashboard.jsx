@@ -21,7 +21,7 @@ import UsersDetails from "../pages/UsersDetails";
 
 const NAV_ITEMS = [
   { key: "dashboard", label: "Dashboard" },
-  { key: "manage", label: "Manage ALL-Scholarships" },
+  { key: "manage", label: "Edit-Scholarships" },
   { key: "view", label: "View Scholarships-Available" },
   { key: "students", label: "View Students-DATA" },
   { key: "users", label: "View Users-DETAILS" },
@@ -50,6 +50,7 @@ function Dashboard() {
 
   const COLORS = ["#4CAF50", "#F44336"];
   const [activeKey, setActiveKey] = useState("dashboard");
+  const [editItem, setEditItem] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -67,21 +68,29 @@ function Dashboard() {
   };
 
   const handleSelect = (key) => {
-    // Portal lives outside /admin, so it still navigates to its own route.
     if (key === "portal") {
       navigate("/portal");
       return;
     }
+    // Clear editItem when switching tabs manually
+    setEditItem(null);
     setActiveKey(key);
+  };
+
+  // Called from ViewScholarships when the ✏️ icon is clicked.
+  // Switches to the manage panel with the selected scholarship pre-filled.
+  const handleEdit = (item) => {
+    setEditItem(item);
+    setActiveKey("manage");
   };
 
   const renderContent = () => {
     switch (activeKey) {
       case "manage":
-        return <ManageScholarships />;
+        return <ManageScholarships editItem={editItem} />;
 
       case "view":
-        return <ViewScholarships />;
+        return <ViewScholarships onEdit={handleEdit} />;
 
       case "students":
         return <StudentsDetails />;
@@ -114,51 +123,51 @@ function Dashboard() {
               </div>
               <div className="dash-stat-card">
                 <div className="stat-label">Total Active Scholarships</div>
-                <div className="stat-value">{stats.total_scholarships-20}</div>
+                <div className="stat-value">{stats.total_scholarships - 20}</div>
               </div>
               <div className="dash-stat-card">
                 <div className="stat-label">Total InActive Scholarships</div>
-                <div className="stat-value">{stats.total_scholarships-24}</div>
+                <div className="stat-value">{stats.total_scholarships - 24}</div>
               </div>
               <div className="pie-card">
-  <h3>Scholarship Status</h3>
+                <h3>Scholarship Status</h3>
 
-  <ResponsiveContainer width="100%" height={300}>
-    <PieChart>
-      <Pie
-        data={pieData}
-        dataKey="value"
-        outerRadius={110}
-        label={false}
-        labelLine={false}
-      >
-        {pieData.map((entry, index) => (
-          <Cell key={index} fill={COLORS[index]} />
-        ))}
-      </Pie>
-      <Tooltip />
-    </PieChart>
-  </ResponsiveContainer>
+                <ResponsiveContainer width="100%" height={300}>
+                  <PieChart>
+                    <Pie
+                      data={pieData}
+                      dataKey="value"
+                      outerRadius={110}
+                      label={false}
+                      labelLine={false}
+                    >
+                      {pieData.map((entry, index) => (
+                        <Cell key={index} fill={COLORS[index]} />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                  </PieChart>
+                </ResponsiveContainer>
 
-  {/* Keep the legend INSIDE the card */}
-  <div className="pie-legend">
-    <div className="legend-item">
-      <span
-        className="legend-color"
-        style={{ background: "#4CAF50" }}
-      ></span>
-      <span><strong>{stats.active_scholarships}</strong> Active</span>
-    </div>
+                {/* Keep the legend INSIDE the card */}
+                <div className="pie-legend">
+                  <div className="legend-item">
+                    <span
+                      className="legend-color"
+                      style={{ background: "#4CAF50" }}
+                    ></span>
+                    <span><strong>{stats.active_scholarships}</strong> Active</span>
+                  </div>
 
-    <div className="legend-item">
-      <span
-        className="legend-color"
-        style={{ background: "#F44336" }}
-      ></span>
-      <span><strong>{stats.inactive_scholarships}</strong> Inactive</span>
-    </div>
-  </div>
-</div>
+                  <div className="legend-item">
+                    <span
+                      className="legend-color"
+                      style={{ background: "#F44336" }}
+                    ></span>
+                    <span><strong>{stats.inactive_scholarships}</strong> Inactive</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </>
         );
