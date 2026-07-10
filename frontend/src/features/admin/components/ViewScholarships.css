@@ -1,0 +1,196 @@
+/* =============================================================
+   ViewScholarships.css
+   Admin – View / Browse Scholarships Table
+   Matches the admin panel: #10367D blue, EBEBEB background,
+   white cards, Segoe UI / Arial font.
+   ============================================================= */
+
+/* ---------- Page wrapper ---------- */
+.view-page {
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+/* ---------- Page title ---------- */
+.view-title {
+    color: #10367D;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px;
+    text-align: left;
+}
+
+/* ---------- Search box ---------- */
+.view-search-box {
+    width: 100%;
+    padding: 13px 18px;
+    border: 1.5px solid #c7cfe0;
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: inherit;
+    color: #1e293b;
+    background: #f8fafc;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.view-search-box::placeholder {
+    color: #94a3b8;
+}
+
+.view-search-box:focus {
+    border-color: #10367D;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(16, 54, 125, 0.12);
+}
+
+/* ---------- Table wrapper ---------- */
+.view-table-container {
+    overflow-x: auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    margin-top: 8px;
+}
+
+/* ---------- Table ---------- */
+.view-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    min-width: 860px;
+}
+
+/* Header row */
+.view-table thead {
+    background-color: #10367D;
+}
+
+.view-table thead th {
+    color: #ffffff;
+    padding: 14px 16px;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
+
+/* Body rows */
+.view-table tbody tr {
+    background: #ffffff;
+    transition: background 0.18s ease;
+}
+
+.view-table tbody tr:nth-child(even) {
+    background: ;
+}
+
+.view-table tbody tr:hover {
+    background: #e8eefa;
+}
+
+.view-table td {
+    padding: 12px 16px;
+    text-align: center;
+    border-bottom: 1px solid #e2e8f0;
+    color: #334155;
+    white-space: nowrap;
+}
+
+/* ---------- Status badge ---------- */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+.status-badge.active {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.status-badge.inactive {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+/* ---------- Action buttons ---------- */
+.view-edit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
+    gap: 5px;
+}
+
+.view-edit-btn:hover {
+    background-color: #1d4ed8;
+    box-shadow: 0 4px 10px rgba(29, 78, 216, 0.3);
+}
+
+.view-edit-btn:active {
+    transform: scale(0.95);
+}
+
+.view-delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ef4444;
+    color: #ffffff;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 6px rgba(239, 68, 68, 0.2);
+    gap: 5px;
+}
+
+.view-delete-btn:hover {
+    background-color: #dc2626;
+    box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3);
+}
+
+.view-delete-btn:active {
+    transform: scale(0.95);
+}
+
+/* ---------- Empty state ---------- */
+.view-empty {
+    text-align: center;
+    padding: 40px;
+    color: #94a3b8;
+    font-size: 16px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 680px) {
+    .view-title {
+        font-size: 22px;
+    }
+
+    .view-table thead th,
+    .view-table td {
+        padding: 10px 10px;
+        font-size: 12px;
+    }
+}
