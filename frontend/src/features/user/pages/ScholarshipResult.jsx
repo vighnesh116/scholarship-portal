@@ -41,64 +41,66 @@ function ScholarshipResult() {
           </h2>
         </div>
       ) : (
-        scholarships.map((item, index) => (
-          <div className="scholarship-card" key={index}>
-            <h2>{item.sclrname}</h2>
+        <div className="scholarships-grid">
+          {scholarships.map((item, index) => (
+            <div className="scholarship-card" key={index}>
+              <h2>{item.sclrname}</h2>
 
-            <div className="details">
-              <div className="row">
-                <span className="label">Amount</span>
-                <span className="value">₹{item.amount}</span>
+              <div className="details">
+                <div className="row">
+                  <span className="label">Amount</span>
+                  <span className="value">₹{item.amount}</span>
+                </div>
+
+                <div className="row">
+                  <span className="label">Required Percentage</span>
+                  <span className="value">{item.percentreeq}%</span>
+                </div>
+
+                <div className="row">
+                  <span className="label">Income Limit</span>
+                  <span className="value">₹{item.miniincome}</span>
+                </div>
+
+                <div className="row">
+                  <span className="label">Deadline</span>
+                  <span className="value">{item.deadline}</span>
+                </div>
+
+                <div className="row">
+                  <span className="label">Status</span>
+                  <span className="value">
+                    {item.is_active ? "🟢 Available" : "🔴 Closed"}
+                  </span>
+                </div>
+
+                <div className="row">
+                  <span className="label">Days Left</span>
+                  <span className="value">
+                    {item.is_active ? item.days_left : "Better luck Next time"}
+                  </span>
+                </div>
               </div>
 
-              <div className="row">
-                <span className="label">Required Percentage</span>
-                <span className="value">{item.percentreeq}%</span>
-              </div>
+              <p className="details-text">Application Link:</p>
 
-              <div className="row">
-                <span className="label">Income Limit</span>
-                <span className="value">₹{item.miniincome}</span>
-              </div>
-
-              <div className="row">
-                <span className="label">Deadline</span>
-                <span className="value">{item.deadline}</span>
-              </div>
-
-              <div className="row">
-                <span className="label">Status</span>
-                <span className="value">
-                  {item.is_active ? "🟢 Available" : "🔴 Closed"}
-                </span>
-              </div>
-
-              <div className="row">
-                <span className="label">Days Left</span>
-                <span className="value">
-                  {item.is_active ? item.days_left : "Better luck Next time"}
-                </span>
-              </div>
+              {item.is_active ? (
+                <a
+                  href={item.application_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="apply-btn"
+                >
+                  Apply Now
+                </a>
+              ) : (
+                <button className="closed-btn" disabled>
+                  Applications Closed
+                </button>
+              )}
             </div>
-
-            <p className="details-text">For More Details:</p>
-
-            {item.is_active ? (
-              <a
-                href={item.application_link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="apply-btn"
-              >
-                Apply Now
-              </a>
-            ) : (
-              <button className="closed-btn" disabled>
-                Applications Closed
-              </button>
-            )}
-          </div>
-        ))
+          ))}
+        </div>
       )}
     </div>
   );

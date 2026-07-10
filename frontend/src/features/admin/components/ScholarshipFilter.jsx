@@ -30,14 +30,14 @@ function ScholarshipFilter({ scholarships, onFilter }) {
     let result = scholarships;
 
     if (gender) {
-      result = result.filter((item) => item.gender === gender);
+      result = result.filter((item) => item.gender === gender || item.gender === null || item.gender === undefined);
     }
     if (caste) {
-      result = result.filter((item) => item.caste === caste);
+      result = result.filter((item) => item.caste === caste || item.caste === null || item.caste === undefined);
     }
     if (education) {
       result = result.filter(
-        (item) => String(item.educationqualifiation) === education
+        (item) => String(item.educationqualifiation) === education || item.educationqualifiation === null || item.educationqualifiation === undefined
       );
     }
     if (minAmount) {
