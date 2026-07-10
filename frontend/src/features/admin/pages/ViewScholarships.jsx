@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 
 import ScholarshipFilter from "../components/ScholarshipFilter";
 import "../components/MS.css";
-
+import { Pen, Trash2 } from 'lucide-react';
 function ViewScholarships() {
   const [search, setSearch] = useState("");
   const [scholarships, setScholarships] = useState([]);
@@ -31,8 +31,8 @@ function ViewScholarships() {
 
   return (
     <div style={{ padding: "30px", backgroundColor: "#ebebeb" }}>
-      
-      
+
+
       <h1>View Scholarships</h1>
 
       <input
@@ -56,6 +56,8 @@ function ViewScholarships() {
             <th>Caste</th>
             <th>Education</th>
             <th>Deadline</th>
+            <th>Edit</th>
+            <th>Delete</th>
           </tr>
         </thead>
 
@@ -71,6 +73,8 @@ function ViewScholarships() {
               <td>{item.caste}</td>
               <td>{item.educationqualifiation}</td>
               <td>{item.deadline}</td>
+              <td> <Pen /> </td>
+              <td> <Trash2 /> </td>
             </tr>
           ))}
         </tbody>

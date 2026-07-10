@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import AdminNavbar from "../components/AdminNavbar";
-import "../components/MS.css";
+import "../components/ManageScholarships.css";
 import { toast } from "react-toastify";
-import { Pen,Trash2 } from 'lucide-react';
+import { Pen, Trash2 } from 'lucide-react';
 function ManageScholarships() {
   const [search, setSearch] = useState("");
 
@@ -157,17 +157,10 @@ function ManageScholarships() {
 
   return (
     <div className="manage-container">
-      
 
-      <h1 className="manage-title">Manage Scholarships</h1>
 
-      <input
-        className="search-box"
-        type="text"
-        placeholder="🔍 Search Scholarship..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <h1 className="manage-title">Edit-Scholarships</h1>
+
 
       <div className="form-grid">
         <input
@@ -257,47 +250,12 @@ function ManageScholarships() {
         </button>
       )}
 
-      <div className="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Scholarship Name</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
 
-          <tbody>
-            {filteredScholarships.map((item) => (
-              <tr key={item.sclrid}>
-                <td>{item.sclrid}</td>
-
-                <td>{item.sclrname}</td>
-
-                <td>
-                  <button
-                    className="edit-btn"
-                    onClick={() => editScholarship(item)}
-                  >
-                   <Pen />
-                  </button>
-                </td>
-
-                <td>
-                  <button
-                    className="delete-btn"
-                    onClick={() => deleteScholarship(item.sclrid)}
-                  >
-                    <Trash2 />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
     </div>
+
+
+
+
   );
 }
 
