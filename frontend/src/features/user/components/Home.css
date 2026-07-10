@@ -1,14 +1,7 @@
-/* =========================================================
-   Home.css – Scholarship Portal Home / Eligibility Form
-   Matches the website's navy-blue & beige design language
-   ========================================================= */
-
-/* ---------- Reset / Base ---------- */
 * {
   box-sizing: border-box;
 }
 
-/* ---------- Page Wrapper ---------- */
 .page-container {
 
   display: flex;
@@ -169,9 +162,9 @@
 /* ---------- Footer ---------- */
 .page-container footer {
   background-color: rgb(120, 171, 166);
-  color: rgba(150, 44, 44, 0.8);
+  color: rgba(255, 255, 255, 0.8);
   text-align: center;
-  /* padding: 18px 20px; */
+  padding: 18px 20px;
   font-size: 14px;
   font-family: Arial, sans-serif;
   letter-spacing: 0.2px;
