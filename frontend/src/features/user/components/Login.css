@@ -1,23 +1,24 @@
-
-body{
-    margin:0;
-    font-family:Arial;
+body {
+    margin: 0;
+    font-family: Arial;
     background-color: #EBEBEB;
     background-repeat: no-repeat;
-    background-size: cover;      /* Fill the entire screen */
-    background-position: center; /* Keep image centered */
+    background-size: cover;
+    /* Fill the entire screen */
+    background-position: center;
+    /* Keep image centered */
     background-attachment: fixed;
-     /* Optional */
+    /* Optional */
 
 }
 
-.container{
+.container {
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:75vh;
-    width:70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+    width: 70%;
 }
 
 
@@ -29,17 +30,17 @@ body{
     width: 480px;
     height: 730px;
     padding: 30px 33px;
-    border-radius:10% 50% 10% 50% / 50% 10% 50% 10%;
+    border-radius: 10% 50% 10% 50% / 50% 10% 50% 10%;
     text-align: center;
 }
 
 .logo {
     width: 200px;
     height: 200px;
-    
+
     border-radius: 50%;
     object-fit: contain;
-     margin: 0 auto -8px;
+    margin: 0 auto -8px;
 
     display: block;
     margin-bottom: 50px;
@@ -51,47 +52,51 @@ body{
     color: navy;
     margin-bottom: revert-layer;
 }
-input{
-    width:75%;
-    color:black;
-    background-color:white;
-    padding:12px;
-    margin:10px 0;
-    border:none;
-    outline:none;
+
+input {
+    width: 75%;
+    color: black;
+    background-color: white;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    outline: none;
     border-radius: 100px;
 }
 
-button{
-    width:80%;
+button {
+    width: 80%;
     border-radius: 100 px;
-    padding:12px;
-    background:navy;
-    color:white;
-    border:none;
-    cursor:pointer;
-    margin-top:10px;
+    padding: 12px;
+    background: navy;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
     border-radius: 100px;
 }
 
-button:hover{
-    opacity:0.9;
+button:hover {
+    opacity: 0.9;
 }
 
-p{
-    margin-top:15px;
+p {
+    margin-top: 15px;
 }
 
-a{
-    margin-left:5px;
-    color:white;
+a {
+    margin-left: 5px;
+    color: white;
 }
-h1{
+
+h1 {
     color: rgb(19, 133, 209);
 }
-p{
+
+p {
     color: rgb(42, 61, 1);
 }
+
 .home-container {
     min-height: 100vh;
     background-image: url("../assets/sclrPrjt.jpg");
@@ -112,27 +117,28 @@ p{
     filter: blur(8px);
     z-index: -1;
 }
+
 .hero-image {
     position: relative;
     right: -100px;
     width: 700px;
     max-width: 700px;
     height: auto;
-    
+
 }
+
 .hero-image1 {
     position: relative;
     right: -100px;
     width: 900px;
     max-width: 700px;
     height: auto;
-    
+
 }
 
-.signup-heading{
-    
-    color:#000080;
+.signup-heading {
+
+    color: #000080;
     font-size: px;
 
 }
-        

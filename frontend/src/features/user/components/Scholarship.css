@@ -1,11 +1,9 @@
 /* Scholarship Page Layout */
 .scholarship-page {
     background-color: #f9fafb;
-    background-color: cover;
-
     padding: 50px 24px;
     text-align: center;
-    box-sizing: border-box;  
+    box-sizing: border-box;
     background-attachment: fixed;
 }
 
@@ -222,7 +220,7 @@
 }
 
 /* Media query for smaller mobile screens */
-@media (max-width: 480px) {
+@media (max-width:100%) {
     .scholarships-grid {
         grid-template-columns: 1fr;
         gap: 20px;

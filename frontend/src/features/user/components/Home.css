@@ -1,0 +1,198 @@
+/* =========================================================
+   Home.css – Scholarship Portal Home / Eligibility Form
+   Matches the website's navy-blue & beige design language
+   ========================================================= */
+
+/* ---------- Reset / Base ---------- */
+* {
+  box-sizing: border-box;
+}
+
+/* ---------- Page Wrapper ---------- */
+.page-container {
+
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f4f8;
+  font-family: Arial, sans-serif;
+}
+
+/* ---------- Header ---------- */
+.page-container header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 30px;
+  background-color: rgb(120, 171, 166);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.page-container header h2 {
+  margin: 0;
+  color: #EBEBEB;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.page-container header nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 8px 20px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 100px;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.page-container header nav a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+}
+
+/* ---------- Main ---------- */
+.page-container main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ---------- Hero Section ---------- */
+.page-container .hero {
+  text-align: center;
+
+}
+
+.page-container .hero h1 {
+  font-size: 38px;
+  font-weight: 800;
+  color: #10367d;
+  letter-spacing: -0.025em;
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+
+@media (max-width: 600px) {
+  .page-container .hero h1 {
+    font-size: 26px;
+  }
+}
+
+/* ---------- Form Container ---------- */
+.page-container .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* ---------- Form Box / Card ---------- */
+.page-container .form-box {
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 40px 44px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07), 0 2px 8px rgba(0, 0, 0, 0.04);
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.page-container .form-box:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- Inputs & Selects ---------- */
+.page-container .form-box input,
+.page-container .form-box select {
+  width: 100%;
+  padding: 13px 18px;
+  margin: 8px 0;
+  border: 1.5px solid #d1d5db;
+  border-radius: 100px;
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+  color: #111827;
+  background-color: #ffffff;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+
+
+.page-container .form-box input:focus,
+.page-container .form-box select:focus {
+  border-color: rgb(120, 171, 166);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.page-container .form-box select option {
+  color: #111827;
+}
+
+.page-container .form-box select option[disabled] {
+  color: #9ca3af;
+}
+
+/* ---------- Submit Button ---------- */
+.page-container .form-box button[type="submit"] {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  background-color: #10367d;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  transition: background-color 0.25s ease, box-shadow 0.25s ease, transform 0.1s ease;
+}
+
+.page-container .form-box button[type="submit"]:hover {
+  background-color: #1d4ed8;
+  box-shadow: 0 6px 18px rgba(29, 78, 216, 0.35);
+}
+
+.page-container .form-box button[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+/* ---------- Footer ---------- */
+.page-container footer {
+  background-color: rgb(120, 171, 166);
+  color: rgba(150, 44, 44, 0.8);
+  text-align: center;
+  /* padding: 18px 20px; */
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  letter-spacing: 0.2px;
+}
+
+.page-container footer p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 520px) {
+  .page-container header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 20px;
+    text-align: center;
+  }
+
+  .page-container .form-box {
+    padding: 30px 24px;
+    border-radius: 18px;
+  }
+}

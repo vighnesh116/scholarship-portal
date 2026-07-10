@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import "../components/Home.css";
 
 function Home() {
   const navigate = useNavigate();
@@ -80,6 +81,8 @@ function Home() {
               <input
                 required
                 type="number"
+                min="0"
+                max="100"
                 name="marks"
                 placeholder="Enter Percentage"
                 onChange={handleChange}
