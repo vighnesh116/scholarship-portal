@@ -12,8 +12,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// Adjust these import  paths if your actual files live somewhere else
-// (e.g. "../pages/ManageScholarships" instead of "./ManageScholarships").
 import ManageScholarships from "../pages/ManageScholarships";
 import ViewScholarships from "../pages/ViewScholarships";
 import StudentsDetails from "../pages/StudentsDetails";
@@ -36,7 +34,7 @@ function Dashboard() {
     active_scholarships: 0,
     inactive_scholarships: 0,
   });
-  // "dashboard" is the default screen
+  
   const pieData = [
     {
       name: "Active",
@@ -72,13 +70,11 @@ function Dashboard() {
       navigate("/portal");
       return;
     }
-    // Clear editItem when switching tabs manually
     setEditItem(null);
     setActiveKey(key);
   };
 
-  // Called from ViewScholarships when the ✏️ icon is clicked.
-  // Switches to the manage panel with the selected scholarship pre-filled.
+  
   const handleEdit = (item) => {
     setEditItem(item);
     setActiveKey("manage");
@@ -93,10 +89,10 @@ function Dashboard() {
         return <ViewScholarships onEdit={handleEdit} />;
 
       case "students":
-        return <StudentsDetails />;
+        return <StudentsDetails/>
 
       case "users":
-        return <UsersDetails />;
+        return <UsersDetails />
 
       case "dashboard":
       default:
