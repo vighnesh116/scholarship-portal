@@ -3,7 +3,8 @@ import AdminNavbar from "../components/AdminNavbar";
 import "../components/ManageScholarships.css";
 import { toast } from "react-toastify";
 import { Pen, Trash2 } from "lucide-react";
-function ManageScholarships() {
+function ManageScholarships({editItem}) {
+
   const [search, setSearch] = useState("");
 
   const [editing, setEditing] = useState(false);
@@ -22,7 +23,21 @@ function ManageScholarships() {
     deadline: "",
     application_link: "",
   });
+  useEffect(() => {
+  if (editItem) {
+    setForm({
+      ...editItem,
+      gender: editItem.gender || "",
+      caste: editItem.caste || "",
+      educationqualifiation:
+        editItem.educationqualifiation || "",
+    });
 
+    setEditing(true);
+  } else {
+    clearForm();
+  }
+}, [editItem]);
   useEffect(() => {
     loadScholarships();
   }, []);
@@ -84,6 +99,7 @@ function ManageScholarships() {
     clearForm();
 
     loadScholarships();
+    setActiveKey("view");
   };
   const editScholarship = (item) => {
     setForm({
@@ -96,33 +112,7 @@ function ManageScholarships() {
     setEditing(true);
   };
 
-  const updateScholarship = async () => {
-    const dataToSend = {
-      ...form,
-      gender: form.gender || null,
-      caste: form.caste || null,
-      educationqualifiation: form.educationqualifiation || null,
-    };
-
-    const res = await fetch(
-      `http://127.0.0.1:5000/update-scholarship/${form.sclrid}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dataToSend),
-      },
-    );
-
-    const data = await res.json();
-
-    toast.success(data.message);
-
-    clearForm();
-
-    loadScholarships();
-  };
+  
   
   const filteredScholarships = scholarships.filter((item) =>
     item.sclrname?.toLowerCase().includes(search.toLowerCase()),
@@ -134,7 +124,10 @@ function ManageScholarships() {
       ? "NULL"
       : value;
   };
-
+  const handleUpdateComplete = () => {
+    setEditItem(null);
+    setActiveKey("view");
+};
   return (
     <div className="manage-container">
       <h1 className="manage-title">Edit-Scholarships</h1>
