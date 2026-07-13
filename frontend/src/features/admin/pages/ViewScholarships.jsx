@@ -3,7 +3,8 @@ import { toast } from "react-toastify";
 import AutoRefresh from "../components/AutoRefresh";
 import ScholarshipFilter from "../components/ScholarshipFilter";
 import "../components/MS.css";
-import { Pen, Trash2 } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
+import { Pen, Trash2 } from "lucide-react";
 function ViewScholarships() {
   const [search, setSearch] = useState("");
   const [scholarships, setScholarships] = useState([]);
@@ -12,45 +13,57 @@ function ViewScholarships() {
   useEffect(() => {
     loadScholarships();
   }, []);
-
+  const onEdit = (item) => {
+    navigate("/admin", {
+      state: {
+        scholarship: item,
+      },
+    });
+  };
+  const navigate = useNavigate();
   const loadScholarships = async () => {
     const res = await fetch("http://127.0.0.1:5000/admin-scholarships");
     const data = await res.json();
     setScholarships(data);
   };
 
- const handleDelete = async (sclrid) => {
-    if (window.confirm("Are you sure you want to delete this scholarship?")) {
+  const handleDelete = async (sclrid) => {
+    if (window.confirm("Are you sure?")) {
       try {
-        const res = await fetch(`http://127.0.0.1:5000/delete-scholarship/${sclrid}`, {
-          method: "DELETE",
-        });
+        const res = await fetch(
+          `http://127.0.0.1:5000/delete-scholarship/${sclrid}`,
+          {
+            method: "DELETE",
+          },
+        );
+
         const data = await res.json();
-        toast.error(data.message);
-       
+
+        if (res.ok) {
+          toast.error(data.message);
+          await loadScholarships();
+        } else {
+          toast.error(data.message);
+        }
       } catch (error) {
-        toast.error("Error deleting scholarship:", error);
+        console.error(error);
+        toast.error("Error deleting scholarship");
       }
-      <AutoRefresh />
     }
-     
   };
   const searchFiltered = useMemo(
     () =>
       scholarships.filter((item) =>
-        item.sclrname.toLowerCase().includes(search.toLowerCase())
+        item.sclrname.toLowerCase().includes(search.toLowerCase()),
       ),
-    [scholarships, search]
+    [scholarships, search],
   );
-
 
   const renderValue = (value) =>
     value === null || value === undefined || value === "" ? "Null" : value;
 
   return (
     <div style={{ padding: "30px", backgroundColor: "#ebebeb" }}>
-
-
       <h1>View Scholarships</h1>
 
       <input
@@ -96,8 +109,30 @@ function ViewScholarships() {
                 <td>{renderValue(item.caste)}</td>
                 <td>{renderValue(item.educationqualifiation)}</td>
                 <td>{renderValue(item.deadline)}</td>
-                <td><button style={{ backgroundColor: "#00000000", color: "Blue" ,padding: "9px" }} onClick={() => UpdateScholarship(item.sclrid)}><Pen /></button></td>
-                <td><button style={{ backgroundColor: "#00000000", color: "red" ,padding: "9px" }} onClick={() => handleDelete(item.sclrid)}><Trash2 /></button></td>
+                <td>
+                  <button
+                    style={{
+                      backgroundColor: "#00000000",
+                      color: "Blue",
+                      padding: "9px",
+                    }}
+                    onClick={() => onEdit(item)}
+                  >
+                    <Pen />
+                  </button>
+                </td>
+                <td>
+                  <button
+                    style={{
+                      backgroundColor: "#00000000",
+                      color: "red",
+                      padding: "9px",
+                    }}
+                    onClick={() => handleDelete(item.sclrid)}
+                  >
+                    <Trash2 />
+                  </button>
+                </td>
               </tr>
             ))
           )}
