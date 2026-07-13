@@ -29,6 +29,9 @@ function ViewScholarships() {
     [scholarships, search]
   );
 
+  const renderValue = (value) =>
+    value === null || value === undefined || value === "" ? "Null" : value;
+
   return (
     <div style={{ padding: "30px", backgroundColor: "#ebebeb" }}>
 
@@ -62,21 +65,27 @@ function ViewScholarships() {
         </thead>
 
         <tbody>
-          {filtered.map((item) => (
-            <tr key={item.sclrid}>
-              <td>{item.sclrid}</td>
-              <td>{item.sclrname}</td>
-              <td>{item.amount}</td>
-              <td>{item.percentreeq}</td>
-              <td>{item.miniincome}</td>
-              <td>{item.gender}</td>
-              <td>{item.caste}</td>
-              <td>{item.educationqualifiation}</td>
-              <td>{item.deadline}</td>
-              <td> <Pen /> </td>
-              <td> <Trash2 /> </td>
+          {filtered.length === 0 ? (
+            <tr>
+              <td colSpan="11">Null</td>
             </tr>
-          ))}
+          ) : (
+            filtered.map((item) => (
+              <tr key={item.sclrid}>
+                <td>{renderValue(item.sclrid)}</td>
+                <td>{renderValue(item.sclrname)}</td>
+                <td>{renderValue(item.amount)}</td>
+                <td>{renderValue(item.percentreeq)}</td>
+                <td>{renderValue(item.miniincome)}</td>
+                <td>{renderValue(item.gender)}</td>
+                <td>{renderValue(item.caste)}</td>
+                <td>{renderValue(item.educationqualifiation)}</td>
+                <td>{renderValue(item.deadline)}</td>
+                <td><Pen /></td>
+                <td><Trash2 /></td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>
