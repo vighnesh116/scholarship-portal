@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import "../components/ManageScholarships.css";
 import { toast } from "react-toastify";
-import { Pen, Trash2 } from 'lucide-react';
+import { Pen, Trash2 } from "lucide-react";
 function ManageScholarships() {
   const [search, setSearch] = useState("");
 
@@ -123,44 +123,21 @@ function ManageScholarships() {
 
     loadScholarships();
   };
-  const deleteScholarship = async (sclrid) => {
-    const confirmDelete = confirm(
-      "Are you sure you want to delete this scholarship?",
-    );
-
-    if (!confirmDelete) {
-      return;
-    }
-
-    const res = await fetch(
-      `http://127.0.0.1:5000/delete-scholarship/${sclrid}`,
-      {
-        method: "DELETE",
-      },
-    );
-
-    const data = await res.json();
-
-    toast.error(data.message);
-
-    loadScholarships();
-  };
-
+  
   const filteredScholarships = scholarships.filter((item) =>
     item.sclrname?.toLowerCase().includes(search.toLowerCase()),
   );
 
   // Function to display NULL for empty values
   const displayValue = (value) => {
-    return value === null || value === undefined || value === "" ? "NULL" : value;
+    return value === null || value === undefined || value === ""
+      ? "NULL"
+      : value;
   };
 
   return (
     <div className="manage-container">
-
-
       <h1 className="manage-title">Edit-Scholarships</h1>
-
 
       <div className="form-grid">
         <input
@@ -249,13 +226,7 @@ function ManageScholarships() {
           Add Scholarship
         </button>
       )}
-
-
     </div>
-
-
-
-
   );
 }
 
