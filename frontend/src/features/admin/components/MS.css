@@ -55,7 +55,7 @@
 }
 
 .action-btn {
-    background: #4CAF50;
+    background: #7d70f6;
     color: white;
     border: none;
     padding: 14px 25px;
@@ -96,7 +96,7 @@ table td {
 }
 
 table tbody tr {
-    background: #dae4ff;
+    background: #d1d8e6;
     border-color: #D9D3C5;
 }
 
@@ -109,7 +109,7 @@ table tr:hover {
 }
 
 .edit-btn {
-    background: #6aa8db;
+    background: #6fa5ce;
     color: white;
     border: none;
     padding: 8px 15px;

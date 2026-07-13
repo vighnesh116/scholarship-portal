@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo } from "react";
-
+import { toast } from "react-toastify";
+import AutoRefresh from "../components/AutoRefresh";
 import ScholarshipFilter from "../components/ScholarshipFilter";
 import "../components/MS.css";
 import { Pen, Trash2 } from 'lucide-react';
@@ -26,11 +27,13 @@ function ViewScholarships() {
         });
         const data = await res.json();
         toast.error(data.message);
-        loadScholarships();
+       
       } catch (error) {
         toast.error("Error deleting scholarship:", error);
       }
+      <AutoRefresh />
     }
+     
   };
   const searchFiltered = useMemo(
     () =>
