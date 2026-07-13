@@ -18,9 +18,20 @@ function ViewScholarships() {
     setScholarships(data);
   };
 
-  // Name search applied first; ScholarshipFilter then narrows this further.
-  // useMemo avoids creating a new array on every render, which would
-  // otherwise re-trigger ScholarshipFilter's effect in a loop.
+ const handleDelete = async (sclrid) => {
+    if (window.confirm("Are you sure you want to delete this scholarship?")) {
+      try {
+        const res = await fetch(`http://127.0.0.1:5000/delete-scholarship/${sclrid}`, {
+          method: "DELETE",
+        });
+        const data = await res.json();
+        toast.error(data.message);
+        loadScholarships();
+      } catch (error) {
+        toast.error("Error deleting scholarship:", error);
+      }
+    }
+  };
   const searchFiltered = useMemo(
     () =>
       scholarships.filter((item) =>
@@ -28,6 +39,7 @@ function ViewScholarships() {
       ),
     [scholarships, search]
   );
+
 
   const renderValue = (value) =>
     value === null || value === undefined || value === "" ? "Null" : value;
@@ -81,8 +93,8 @@ function ViewScholarships() {
                 <td>{renderValue(item.caste)}</td>
                 <td>{renderValue(item.educationqualifiation)}</td>
                 <td>{renderValue(item.deadline)}</td>
-                <td><Pen /></td>
-                <td><Trash2 /></td>
+                <td><button style={{ backgroundColor: "#00000000", color: "Blue" ,padding: "9px" }} onClick={() => UpdateScholarship(item.sclrid)}><Pen /></button></td>
+                <td><button style={{ backgroundColor: "#00000000", color: "red" ,padding: "9px" }} onClick={() => handleDelete(item.sclrid)}><Trash2 /></button></td>
               </tr>
             ))
           )}
