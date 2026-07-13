@@ -1,7 +1,7 @@
 .manage-container {
-    max-width: 1000px;
+    max-width: 700px;
     margin: 30px auto;
-    padding: 0px;
+    padding: 10px;
 
     border-radius: 20px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
@@ -39,11 +39,14 @@
 
 .form-grid input,
 .form-grid select {
-    padding: 12px;
+    padding: -12px;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 12px;
+    padding: 10px 20px;
+    margin-top: 5px;
+    margin-left: 30px;
     font-size: 15px;
-    width: 100%;
+    width: 75%;
     box-sizing: border-box;
 }
 
@@ -96,16 +99,16 @@ table td {
 }
 
 table tbody tr {
-    background: #d1d8e6;
+    background: #e9eef7;
     border-color: #D9D3C5;
 }
 
 table tbody tr:nth-child(even) {
-    background: #f4f7fc;
+    background: white;
 }
 
 table tr:hover {
-    background:none;
+    background:white;
 }
 
 .edit-btn {
