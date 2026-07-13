@@ -1,11 +1,4 @@
-/* =============================================================
-   ViewScholarships.css
-   Admin – View / Browse Scholarships Table
-   Matches the admin panel: #10367D blue, EBEBEB background,
-   white cards, Segoe UI / Arial font.
-   ============================================================= */
 
-/* ---------- Page wrapper ---------- */
 .view-page {
     font-family: "Segoe UI", Roboto, Arial, sans-serif;
     box-sizing: border-box;
@@ -84,11 +77,11 @@
 }
 
 .view-table tbody tr:nth-child(even) {
-    background: ;
+    background: #f1f5f9;
 }
 
 .view-table tbody tr:hover {
-    background: #e8eefa;
+    background: #d0ddf7;
 }
 
 .view-table td {
