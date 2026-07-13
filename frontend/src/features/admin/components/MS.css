@@ -96,7 +96,7 @@ table td {
 }
 
 table tbody tr {
-    background: #355387;
+    background: #ecf0fb;
     border-color: #D9D3C5;
 }
 
@@ -105,11 +105,11 @@ table tbody tr:nth-child(even) {
 }
 
 table tr:hover {
-    background: #EEF4FF;
+    background:none;
 }
 
 .edit-btn {
-    background: #2196F3;
+    background: #6aa8db;
     color: white;
     border: none;
     padding: 8px 15px;
