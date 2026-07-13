@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, replace, useNavigate } from "react-router-dom";
 import axios from "axios";
 import logo from "../../../assets/new2.ico";
 import "../components/Login.css";
@@ -27,7 +27,7 @@ function Login() {
 
         if (res.data.role === "admin") {
           toast.success("Admin Login Successful");
-          navigate("/admin");
+          navigate("/admin",{replace:true});
         } else {
           toast.success("Login Successful");
           navigate("/portal", { replace: true });
