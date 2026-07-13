@@ -1,11 +1,4 @@
-/* =============================================================
-   ManageScholarships.css
-   Admin – Edit / Add Scholarship Form
-   Matches the admin panel design: #10367D blue, white cards,
-   EBEBEB background, Segoe UI / Arial font stack.
-   ============================================================= */
 
-/* ---------- Page wrapper ---------- */
 .manage-page {
     min-height: 100vh;
     background-color: #EBEBEB;
