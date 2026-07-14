@@ -129,6 +129,8 @@ function ManageScholarships({editItem}) {
     setActiveKey("view");
 };
   return (
+  <>
+    
     <div className="manage-container">
       <h1 className="manage-title">Edit-Scholarships</h1>
 
@@ -220,6 +222,7 @@ function ManageScholarships({editItem}) {
         </button>
       )}
     </div>
+  </>
   );
 }
 
