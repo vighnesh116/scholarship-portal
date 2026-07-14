@@ -5,6 +5,7 @@ import ScholarshipFilter from "../components/ScholarshipFilter";
 import "../components/MS.css";
 import { useNavigate } from "react-router-dom";
 import { Pen, Trash2 } from "lucide-react";
+import AddScholarship from "../components/AddScholarship";
 function ViewScholarships() {
   const [search, setSearch] = useState("");
   const [scholarships, setScholarships] = useState([]);
@@ -65,7 +66,7 @@ function ViewScholarships() {
   return (
     <div style={{ padding: "30px", backgroundColor: "#ebebeb" }}>
       <h1>View Scholarships</h1>
-
+    {/* <AddScholarship /> */}
       <input
         type="text"
         placeholder="🔍 Search Scholarship..."
