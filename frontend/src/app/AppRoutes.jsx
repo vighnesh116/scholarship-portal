@@ -26,13 +26,13 @@ function AppRoutes() {
         <Route path="/admin/">
           <Route index element={<Admin />} />
 
-          <Route path="manage" element={<ManageScholarships />} />
+          {/* <Route path="manage" element={<ManageScholarships />} />
 
           <Route path="view" element={<ViewScholarships />} />
 
           <Route path="students" element={<StudentsDetails />} />
 
-          <Route path="users" element={<UsersDetails />} />
+          <Route path="users" element={<UsersDetails />} /> */}
         </Route>
 
         <Route path="/update-password" element={<PasswordUpdate />} />
