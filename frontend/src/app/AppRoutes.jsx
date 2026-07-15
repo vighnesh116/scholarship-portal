@@ -1,10 +1,11 @@
-import {  Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Login from "../features/user/pages/Login";
 import Signup from "../features/user/pages/Signup";
 import Home from "../features/user/pages/Home";
 import ScholarshipResult from "../features/user/pages/ScholarshipResult";
 import PasswordUpdate from "../features/user/pages/PasswordUpdate";
 
+import AdminLayout from "../features/admin/components/AdminLayout";
 import Admin from "../features/admin/pages/Admin";
 import StudentsDetails from "../features/admin/pages/StudentsDetails";
 import UsersDetails from "../features/admin/pages/UsersDetails";
@@ -13,31 +14,33 @@ import ViewScholarships from "../features/admin/pages/ViewScholarships";
 
 function AppRoutes() {
   return (
-    
-      <Routes>
-        <Route path="/" element={<Login />} replace />
+    <Routes>
+      <Route path="/" element={<Login />} />
 
-        <Route path="/signup" element={<Signup />} />
+      <Route path="/signup" element={<Signup />} />
 
-        <Route path="/portal" element={<Home />} />
+       <Route path="/update-password" element={<PasswordUpdate />} />
 
-        <Route path="/scholarships" element={<ScholarshipResult />} />
+      <Route path="/portal" element={<Home />} />
 
-        <Route path="/admin/">
-          <Route index element={<Admin />} />
+      <Route path="/scholarships" element={<ScholarshipResult />} />
 
-          {/* <Route path="manage" element={<ManageScholarships />} />
+      {/* AdminLayout renders Sidebar + <Outlet/> once, so it stays mounted
+          across every /admin/* page instead of remounting per-route. */}
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route index element={<Admin />} />
 
-          <Route path="view" element={<ViewScholarships />} />
+        <Route path="manage" element={<ManageScholarships />} />
 
-          <Route path="students" element={<StudentsDetails />} />
+        <Route path="view" element={<ViewScholarships />} />
 
-          <Route path="users" element={<UsersDetails />} /> */}
-        </Route>
+        <Route path="students" element={<StudentsDetails />} />
 
-        <Route path="/update-password" element={<PasswordUpdate />} />
-      </Routes>
-    
+        <Route path="users" element={<UsersDetails />} />
+      </Route>
+
+     
+    </Routes>
   );
 }
 
