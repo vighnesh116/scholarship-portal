@@ -34,7 +34,7 @@ function PasswordUpdate() {
       toast.success(res.data.message || "Password Updated Successfully");
       navigate("/portal", { replace: true });
     } catch (error) {
-      console.error(error);
+      toast.error(error);
       const msg = error?.response?.data?.message || "Failed to update password";
       toast.error(msg);
       navigate("/portal", { replace: true });
