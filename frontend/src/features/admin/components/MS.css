@@ -95,23 +95,23 @@ table th {
 
 table td {
     padding: 12px;
+    width:max-content;
+    height:5px;
     text-align: center;
     border-bottom: 1px solid #D9D3C5;
     color: #4B5563;
 }
 
 table tbody tr {
-    background: #e9eef7;
+    background: #F4F7FC;
     border-color: #D9D3C5;
 }
 
 table tbody tr:nth-child(even) {
-    background: white;
+    background: #F4F7FC;
 }
 
-table tr:hover {
-    background:white;
-}
+
 
 .edit-btn {
     background: #6fa5ce;
