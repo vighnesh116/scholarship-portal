@@ -76,9 +76,9 @@ function StudentsDetails() {
           </thead>
 
           <tbody>
-            {filtered.map((item) => (
+            {filtered.map((item,index) => (
               <tr key={item.stdid}>
-                <td>{displayValue(item.stdid)}</td>
+                <td>{index+1}</td>
                 <td>{displayValue(item.stdname)}</td>
                 <td>{displayValue(item.stdincome)}</td>
                 <td>{displayValue(item.stdpercent)}</td>

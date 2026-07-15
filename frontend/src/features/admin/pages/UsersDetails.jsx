@@ -61,9 +61,9 @@ function UsersDetails() {
           </thead>
 
           <tbody>
-            {filteredUsers.map((item) => (
+            {filteredUsers.map((item,index) => (
               <tr key={item.userid}>
-                <td>{displayValue(item.userid)}</td>
+                <td>{index+1}</td>
                 <td>{displayValue(item.email)}</td>
                 <td>{displayValue(item.name)}</td>
                 <td>{displayValue(item.role)}</td>
