@@ -40,9 +40,7 @@ function Logout(){
     display: "flex",
     flexDirection: "column",
     height: "150px",
-    position:"fixed",
-    right:"1400px",
-    bottom:"200px",
+   
   }}
          >
     <button
