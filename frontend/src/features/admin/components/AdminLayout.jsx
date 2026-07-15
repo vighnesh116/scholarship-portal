@@ -4,8 +4,8 @@ import "./Sidebar.css";
 
 const NAV_ITEMS = [
   { key: "dashboard", label: "Dashboard", path: "/admin" },
-  { key: "manage", label: "Edit-Scholarships", path: "/admin/manage" },
   { key: "view", label: "View Scholarships-Available", path: "/admin/view" },
+  { key: "manage", label: "Create-Scholarships", path: "/admin/manage" },
   { key: "students", label: "View Students-DATA", path: "/admin/students" },
   { key: "users", label: "View Users-DETAILS", path: "/admin/users" },
   { key: "portal", label: "Check User-Portal", path: "/portal" },

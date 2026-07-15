@@ -140,7 +140,7 @@ function ManageScholarships() {
  
   return (
     <div className="manage-container">
-      <h1 className="manage-title">Edit-Scholarships</h1>
+      <h1 className="manage-title">Create-Scholarships</h1>
       <form 
        onSubmit={(e)=>{
         e.preventDefault();
