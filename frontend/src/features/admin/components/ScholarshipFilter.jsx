@@ -1,18 +1,6 @@
 import { useState, useEffect } from "react";
 import "./ScholarshipFilter.css";
 
-/**
- * Reusable filter bar for scholarship lists.
- * Pass in the raw scholarships array; it calls onFilter(filteredArray)
- * every time a filter changes, so the parent just renders whatever comes back.
- *
- * Props:
- *  - scholarships: array of scholarship objects (already search-filtered if you like)
- *  - onFilter: (filteredArray) => void
- */
-// Strips currency symbols, commas, spaces, etc. before converting to a number
-// so rows with messy amount formatting (e.g. "₹20,000") don't silently drop
-// out of every filter result.
 const parseAmount = (value) => {
   if (value === null || value === undefined || value === "") return 0;
   const cleaned = String(value).replace(/[^0-9.-]/g, "");
@@ -30,18 +18,33 @@ function ScholarshipFilter({ scholarships, onFilter }) {
     let result = scholarships;
 
     if (gender) {
-      result = result.filter((item) => item.gender === gender || item.gender === null || item.gender === undefined);
+      result = result.filter(
+        (item) =>
+          item.gender === gender ||
+          item.gender === null ||
+          item.gender === undefined,
+      );
     }
     if (caste) {
-      result = result.filter((item) => item.caste === caste || item.caste === null || item.caste === undefined);
+      result = result.filter(
+        (item) =>
+          item.caste === caste ||
+          item.caste === null ||
+          item.caste === undefined,
+      );
     }
     if (education) {
       result = result.filter(
-        (item) => String(item.educationqualifiation) === education || item.educationqualifiation === null || item.educationqualifiation === undefined
+        (item) =>
+          String(item.educationqualifiation) === education ||
+          item.educationqualifiation === null ||
+          item.educationqualifiation === undefined,
       );
     }
     if (minAmount) {
-      result = result.filter((item) => parseAmount(item.amount) >= Number(minAmount));
+      result = result.filter(
+        (item) => parseAmount(item.amount) >= Number(minAmount),
+      );
     }
 
     onFilter(result);
