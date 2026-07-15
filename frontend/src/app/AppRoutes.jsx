@@ -6,7 +6,7 @@ import ScholarshipResult from "../features/user/pages/ScholarshipResult";
 import PasswordUpdate from "../features/user/pages/PasswordUpdate";
 
 import AdminLayout from "../features/admin/components/AdminLayout";
-import Admin from "../features/admin/pages/Admin";
+import AdminDashboard from "../features/admin/pages/AdminDashboard";
 import StudentsDetails from "../features/admin/pages/StudentsDetails";
 import UsersDetails from "../features/admin/pages/UsersDetails";
 import ManageScholarships from "../features/admin/pages/ManageScholarships";
@@ -25,10 +25,9 @@ function AppRoutes() {
 
       <Route path="/scholarships" element={<ScholarshipResult />} />
 
-      {/* AdminLayout renders Sidebar + <Outlet/> once, so it stays mounted
-          across every /admin/* page instead of remounting per-route. */}
+
       <Route path="/admin" element={<AdminLayout />}>
-        <Route index element={<Admin />} />
+        <Route index element={<AdminDashboard />} />
 
         <Route path="manage" element={<ManageScholarships />} />
 
