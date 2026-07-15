@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import AutoRefresh from "../components/AutoRefresh";
+import { toast } from "react-toastify";
 
 function UsersDetails() {
   const [search, setSearch] = useState("");
@@ -17,7 +18,7 @@ function UsersDetails() {
       const data = await res.json();
       setUsers(data || []);
     } catch (error) {
-      console.error("Error loading users:", error);
+      toast.error("Error loading users:", error);
       setUsers([]);
     }
   };

@@ -1,27 +1,29 @@
 import { useEffect, useState, useMemo } from "react";
 import { toast } from "react-toastify";
-import AutoRefresh from "../components/AutoRefresh";
 import ScholarshipFilter from "../components/ScholarshipFilter";
 import "../components/MS.css";
 import { useNavigate } from "react-router-dom";
 import { Pen, Trash2 } from "lucide-react";
-import AddScholarship from "../components/AddScholarship";
+
 function ViewScholarships() {
   const [search, setSearch] = useState("");
   const [scholarships, setScholarships] = useState([]);
   const [filtered, setFiltered] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadScholarships();
   }, []);
+
+  // Was navigating to "/admin" (the dashboard), so the scholarship data
+  // never reached ManageScholarships. Fixed to go to "/admin/manage",
+  // which is the route ManageScholarships is now mounted at.
   const onEdit = (item) => {
-    navigate("/admin", {
-      state: {
-        scholarship: item,
-      },
+    navigate("/admin/manage", {
+      state: { scholarship: item },
     });
   };
-  const navigate = useNavigate();
+
   const loadScholarships = async () => {
     const res = await fetch("http://127.0.0.1:5000/admin-scholarships");
     const data = await res.json();
@@ -33,9 +35,7 @@ function ViewScholarships() {
       try {
         const res = await fetch(
           `http://127.0.0.1:5000/delete-scholarship/${sclrid}`,
-          {
-            method: "DELETE",
-          },
+          { method: "DELETE" }
         );
 
         const data = await res.json();
@@ -47,17 +47,18 @@ function ViewScholarships() {
           toast.error(data.message);
         }
       } catch (error) {
-        console.error(error);
+        toast.error(error);
         toast.error("Error deleting scholarship");
       }
     }
   };
+
   const searchFiltered = useMemo(
     () =>
       scholarships.filter((item) =>
-        item.sclrname.toLowerCase().includes(search.toLowerCase()),
+        item.sclrname.toLowerCase().includes(search.toLowerCase())
       ),
-    [scholarships, search],
+    [scholarships, search]
   );
 
   const renderValue = (value) =>
@@ -66,7 +67,7 @@ function ViewScholarships() {
   return (
     <div style={{ padding: "30px", backgroundColor: "#ebebeb" }}>
       <h1>View Scholarships</h1>
-    {/* <AddScholarship /> */}
+
       <input
         type="text"
         placeholder="🔍 Search Scholarship..."
