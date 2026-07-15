@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 //import AdminNavbar from "../components/AdminNavbar";
 //import AutoRefresh from "../components/AutoRefresh";
 function StudentsDetails() {
@@ -33,7 +34,7 @@ function StudentsDetails() {
       const data = await res.json();
       setStudents(data || []);
     } catch (error) {
-      console.error("Error loading students:", error);
+      toast.error("Error loading students:", error);
       setStudents([]);
     }
   };
