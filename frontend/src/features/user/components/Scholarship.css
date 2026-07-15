@@ -220,7 +220,7 @@
 }
 
 /* Media query for smaller mobile screens */
-@media (max-width:100%) {
+@media (max-width: 600px) {
     .scholarships-grid {
         grid-template-columns: 1fr;
         gap: 20px;
