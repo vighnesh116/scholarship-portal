@@ -1,7 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Sidebar from "./Sidebar";
-import "./Sidebar.css";
 import logo from "../../../assets/new2.ico";
 import {
   PieChart,
@@ -11,21 +8,14 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import StatsCard from "./StatsCard";
 
-import ManageScholarships from "../pages/ManageScholarships";
-import ViewScholarships from "../pages/ViewScholarships";
-import StudentsDetails from "../pages/StudentsDetails";
-import UsersDetails from "../pages/UsersDetails";
-
-const NAV_ITEMS = [
-  { key: "dashboard", label: "Dashboard" },
-  { key: "manage", label: "Edit-Scholarships" },
-  { key: "view", label: "View Scholarships-Available" },
-  { key: "students", label: "View Students-DATA" },
-  { key: "users", label: "View Users-DETAILS" },
-  { key: "portal", label: "Check User-Portal" },
-];
-
+/**
+ * This is now just the /admin index page content. AdminLayout renders
+ * Sidebar + <Outlet/>, and this component fills the Outlet when the URL
+ * is exactly "/admin". All the old activeKey/handleSelect/renderContent
+ * switching logic is gone - React Router handles that now.
+ */
 function Dashboard() {
   const [stats, setStats] = useState({
     total_scholarships: 0,
@@ -34,22 +24,13 @@ function Dashboard() {
     active_scholarships: 0,
     inactive_scholarships: 0,
   });
-  
+
   const pieData = [
-    {
-      name: "Active",
-      value: stats.active_scholarships,
-    },
-    {
-      name: "Inactive",
-      value: stats.inactive_scholarships,
-    },
+    { name: "Active", value: stats.active_scholarships },
+    { name: "Inactive", value: stats.inactive_scholarships },
   ];
 
   const COLORS = ["#4CAF50", "#F44336"];
-  const [activeKey, setActiveKey] = useState("dashboard");
-  const [editItem, setEditItem] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     loadStats();
@@ -61,124 +42,86 @@ function Dashboard() {
       const data = await res.json();
       setStats(data);
     } catch (err) {
-      console.error("Failed to load stats:", err);
-    }
-  };
-
-  const handleSelect = (key) => {
-    if (key === "portal") {
-      navigate("/portal");
-      return;
-    }
-    setEditItem(null);
-    setActiveKey(key);
-  };
-
-  
-  const handleEdit = (item) => {
-    setEditItem(item);
-    setActiveKey("manage");
-  };
-
-  const renderContent = () => {
-    switch (activeKey) {
-      case "manage":
-        return <ManageScholarships editItem={editItem} />;
-
-      case "view":
-        return <ViewScholarships onEdit={handleEdit} />;
-
-      case "students":
-        return <StudentsDetails/>
-
-      case "users":
-        return <UsersDetails />
-
-      case "dashboard":
-      default:
-        return (
-          <>
-            <img src={logo} alt="Logo" className="Dashico" />
-            <h1>Admin Dashboard</h1>
-            <p className="subtitle">
-              Plan, manage and monitor scholarships with ease.
-            </p>
-
-            <div className="dash-stats-row">
-              <div className="dash-stat-card">
-                <div className="stat-label">Total Scholarships</div>
-                <div className="stat-value">{stats.total_scholarships}</div>
-              </div>
-              <div className="dash-stat-card">
-                <div className="stat-label">Total Students Enrolled</div>
-                <div className="stat-value">{stats.total_students}</div>
-              </div>
-              <div className="dash-stat-card">
-                <div className="stat-label">Total Users Logged In</div>
-                <div className="stat-value">{stats.total_users}</div>
-              </div>
-              <div className="dash-stat-card">
-                <div className="stat-label">Total Active Scholarships</div>
-                <div className="stat-value">{stats.total_scholarships - 20}</div>
-              </div>
-              <div className="dash-stat-card">
-                <div className="stat-label">Total InActive Scholarships</div>
-                <div className="stat-value">{stats.total_scholarships - 24}</div>
-              </div>
-              <div className="pie-card">
-                <h3>Scholarship Status</h3>
-
-                <ResponsiveContainer width="100%" height={300}>
-                  <PieChart>
-                    <Pie
-                      data={pieData}
-                      dataKey="value"
-                      outerRadius={110}
-                      label={false}
-                      labelLine={false}
-                    >
-                      {pieData.map((entry, index) => (
-                        <Cell key={index} fill={COLORS[index]} />
-                      ))}
-                    </Pie>
-                    <Tooltip />
-                  </PieChart>
-                </ResponsiveContainer>
-
-                {/* Keep the legend INSIDE the card */}
-                <div className="pie-legend">
-                  <div className="legend-item">
-                    <span
-                      className="legend-color"
-                      style={{ background: "#4CAF50" }}
-                    ></span>
-                    <span><strong>{stats.active_scholarships}</strong> Active</span>
-                  </div>
-
-                  <div className="legend-item">
-                    <span
-                      className="legend-color"
-                      style={{ background: "#F44336" }}
-                    ></span>
-                    <span><strong>{stats.inactive_scholarships}</strong> Inactive</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </>
-        );
+      toast.error("Failed to load stats:", err);
     }
   };
 
   return (
-    <Sidebar
-      title="Admin Panel"
-      navItems={NAV_ITEMS}
-      activeKey={activeKey}
-      onSelect={handleSelect}
-    >
-      {renderContent()}
-    </Sidebar>
+    <>
+      <img src={logo} alt="Logo" className="Dashico" />
+     <div className="Dashh1"> <h1 >Admin Dashboard</h1> </div>
+      <p className="subtitle">
+        Plan, manage and monitor scholarships with ease.
+      </p>
+
+      <div className="dash-stats-row">
+        <StatsCard
+          label="Total Scholarships"
+          value={stats.total_scholarships}
+        />
+
+        <StatsCard
+          label="Total Students enrolled"
+          value={stats.total_students}
+        />
+
+        <StatsCard
+          label="Total Users Enrolled"
+          value={stats.total_users}
+        />
+        <StatsCard
+        label="Inactive Scholarship"
+        value={stats.inactive_scholarships}
+        />
+        <StatsCard
+        label="Active Scholarship"
+        value={stats.active_scholarships}/>
+
+        
+        <div className="pie-card">
+          <h3>Scholarship Status</h3>
+
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Pie
+                data={pieData}
+                dataKey="value"
+                outerRadius={110}
+                label={false}
+                labelLine={false}
+              >
+                {pieData.map((entry, index) => (
+                  <Cell key={index} fill={COLORS[index]} />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+
+          <div className="pie-legend">
+            <div className="legend-item">
+              <span
+                className="legend-color"
+                style={{ background: "#4CAF50" }}
+              ></span>
+              <span>
+                <strong>{stats.active_scholarships}</strong> Active
+              </span>
+            </div>
+
+            <div className="legend-item">
+              <span
+                className="legend-color"
+                style={{ background: "#F44336" }}
+              ></span>
+              <span>
+                <strong>{stats.inactive_scholarships}</strong> Inactive
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
