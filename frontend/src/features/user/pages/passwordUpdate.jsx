@@ -61,8 +61,11 @@ function PasswordUpdate() {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <button type="submit">Update Password</button>
+          
         </form>
+        
       </div>
+      
     </div>
   );
 }

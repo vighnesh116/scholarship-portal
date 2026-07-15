@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "../components/Home.css";
 import Sidebar from "../../admin/components/Sidebar";
+import Logout from "../../shared/components/Logout";
 function Home() {
   const navigate = useNavigate();
 
@@ -158,7 +159,7 @@ function Home() {
           </div>
         </div>
       </main>
-
+      <Logout/>
       <footer>
         <p>© 2026 Scholarship Information Portal</p>
       </footer>
