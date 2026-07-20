@@ -62,10 +62,7 @@ function Signup() {
     try {
       setLoading(true);
 
-      const response = await axios.post(
-        "http://localhost:5000/signup",
-        form
-      );
+      const response = await axios.post("http://localhost:5000/signup", form);
 
       toast.success(response.data.message);
 
@@ -80,8 +77,6 @@ function Signup() {
 
       // Navigate to student portal
       navigate("/portal", { replace: true });
-      
-
     } catch (error) {
       if (error.response) {
         toast.error(error.response.data.message);
@@ -96,22 +91,13 @@ function Signup() {
   return (
     <div className="container">
       <div className="Sign-panel">
-        <img
-          src={heroImage}
-          alt="Scholarship Portal"
-          className="hero-image1"
-        />
+        <img src={heroImage} alt="Scholarship Portal" className="hero-image1" />
       </div>
 
       <div className="box">
-        <img
-          src={logo}
-          alt="Scholarship Portal Logo"
-          className="logo"
-        />
+        <img src={logo} alt="Scholarship Portal Logo" className="logo" />
 
-        <h1 >Sign-Up</h1>
-        
+        <h1>Sign-Up</h1>
 
         <form onSubmit={submit}>
           <input
