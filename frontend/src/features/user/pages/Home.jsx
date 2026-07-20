@@ -52,20 +52,16 @@ function Home() {
 
   return (
     <div className="page-container">
-      
-        
       <header>
         <h2>Scholarship Information Portal</h2>
-        
+
         <nav>
           <a href="update-password">Profile</a>
         </nav>
       </header>
-        
+
       <main>
-       
         <section className="hero">
-         
           <h1>Find Scholarships You Are Eligible For</h1>
           <br />
         </section>
@@ -159,7 +155,7 @@ function Home() {
           </div>
         </div>
       </main>
-      <Logout/>
+      <Logout />
       <footer>
         <p>© 2026 Scholarship Information Portal</p>
       </footer>
