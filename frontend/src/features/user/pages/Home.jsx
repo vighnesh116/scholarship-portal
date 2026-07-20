@@ -157,7 +157,9 @@ function Home() {
       </main>
       <Logout />
       <footer>
-        <p>© 2026 Scholarship Information Portal</p>
+      
+      <p>© 2026 Scholarship Information Portal</p>
+
       </footer>
     </div>
   );
