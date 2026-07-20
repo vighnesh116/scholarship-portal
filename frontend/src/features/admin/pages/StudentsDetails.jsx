@@ -41,13 +41,13 @@ function StudentsDetails() {
 
   // Function to display NULL for empty values
   const displayValue = (value) => {
-    return value === null || value === undefined || value === "" ? "NULL" : value;
+    return value === null || value === undefined || value === ""
+      ? "NULL"
+      : value;
   };
 
   return (
     <div className="manage-container">
-      
-      
       <h1 className="manage-title">View Students Details</h1>
 
       <input
@@ -76,9 +76,9 @@ function StudentsDetails() {
           </thead>
 
           <tbody>
-            {filtered.map((item,index) => (
+            {filtered.map((item, index) => (
               <tr key={item.stdid}>
-                <td>{index+1}</td>
+                <td>{index + 1}</td>
                 <td>{displayValue(item.stdname)}</td>
                 <td>{displayValue(item.stdincome)}</td>
                 <td>{displayValue(item.stdpercent)}</td>
