@@ -27,7 +27,7 @@ function Login() {
 
         if (res.data.role === "admin") {
           toast.success("Admin Login Successful");
-          navigate("/admin",{replace:true});
+          navigate("/admin", { replace: true });
         } else {
           toast.success("Login Successful");
           navigate("/portal", { replace: true });
@@ -44,9 +44,9 @@ function Login() {
 
   return (
     <div className="container">
-        <div className="left-panel">
+      <div className="left-panel">
         <img src={heroImage} alt="Scholarship" className="hero-image" />
-    </div>
+      </div>
 
       <div className="box">
         <img src={logo} alt="Scholarship Portal Logo" className="logo" />
