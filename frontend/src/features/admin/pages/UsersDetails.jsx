@@ -29,13 +29,13 @@ function UsersDetails() {
 
   // Function to display NULL for empty values
   const displayValue = (value) => {
-    return value === null || value === undefined || value === "" ? "NULL" : value;
+    return value === null || value === undefined || value === ""
+      ? "NULL"
+      : value;
   };
 
   return (
     <div className="manage-container">
-      
-      
       <h1 className="manage-title">USERS DETAILS</h1>
 
       <input
@@ -61,9 +61,9 @@ function UsersDetails() {
           </thead>
 
           <tbody>
-            {filteredUsers.map((item,index) => (
+            {filteredUsers.map((item, index) => (
               <tr key={item.userid}>
-                <td>{index+1}</td>
+                <td>{index + 1}</td>
                 <td>{displayValue(item.email)}</td>
                 <td>{displayValue(item.name)}</td>
                 <td>{displayValue(item.role)}</td>

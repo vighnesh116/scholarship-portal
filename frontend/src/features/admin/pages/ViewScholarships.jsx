@@ -35,7 +35,7 @@ function ViewScholarships() {
       try {
         const res = await fetch(
           `http://127.0.0.1:5000/delete-scholarship/${sclrid}`,
-          { method: "DELETE" }
+          { method: "DELETE" },
         );
 
         const data = await res.json();
@@ -56,9 +56,9 @@ function ViewScholarships() {
   const searchFiltered = useMemo(
     () =>
       scholarships.filter((item) =>
-        item.sclrname.toLowerCase().includes(search.toLowerCase())
+        item.sclrname.toLowerCase().includes(search.toLowerCase()),
       ),
-    [scholarships, search]
+    [scholarships, search],
   );
 
   const renderValue = (value) =>
@@ -93,53 +93,53 @@ function ViewScholarships() {
             <th>Delete</th>
           </tr>
         </thead>
-<tbody>
-  {filtered.length === 0 ? (
-    <tr>
-      <td colSpan="11">Null</td>
-    </tr>
-  ) : (
-    filtered.map((item, index) => (
-      <tr key={item.sclrid}>
-        <td>{index + 1}</td>
-        <td>{renderValue(item.sclrname)}</td>
-        <td>{renderValue(item.amount)}</td>
-        <td>{renderValue(item.percentreeq)}</td>
-        <td>{renderValue(item.miniincome)}</td>
-        <td>{renderValue(item.gender)}</td>
-        <td>{renderValue(item.caste)}</td>
-        <td>{renderValue(item.educationqualifiation)}</td>
-        <td>{renderValue(item.deadline)}</td>
+        <tbody>
+          {filtered.length === 0 ? (
+            <tr>
+              <td colSpan="11">Null</td>
+            </tr>
+          ) : (
+            filtered.map((item, index) => (
+              <tr key={item.sclrid}>
+                <td>{index + 1}</td>
+                <td>{renderValue(item.sclrname)}</td>
+                <td>{renderValue(item.amount)}</td>
+                <td>{renderValue(item.percentreeq)}</td>
+                <td>{renderValue(item.miniincome)}</td>
+                <td>{renderValue(item.gender)}</td>
+                <td>{renderValue(item.caste)}</td>
+                <td>{renderValue(item.educationqualifiation)}</td>
+                <td>{renderValue(item.deadline)}</td>
 
-        <td>
-          <button
-            style={{
-              backgroundColor: "#00000000",
-              color: "blue",
-              padding: "9px",
-            }}
-            onClick={() => onEdit(item)}
-          >
-            <Pen />
-          </button>
-        </td>
+                <td>
+                  <button
+                    style={{
+                      backgroundColor: "#00000000",
+                      color: "blue",
+                      padding: "9px",
+                    }}
+                    onClick={() => onEdit(item)}
+                  >
+                    <Pen />
+                  </button>
+                </td>
 
-        <td>
-          <button
-            style={{
-              backgroundColor: "#00000000",
-              color: "red",
-              padding: "9px",
-            }}
-            onClick={() => handleDelete(item.sclrid)}
-          >
-            <Trash2 />
-          </button>
-        </td>
-      </tr>
-    ))
-  )}
-</tbody>
+                <td>
+                  <button
+                    style={{
+                      backgroundColor: "#00000000",
+                      color: "red",
+                      padding: "9px",
+                    }}
+                    onClick={() => handleDelete(item.sclrid)}
+                  >
+                    <Trash2 />
+                  </button>
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
       </table>
     </div>
   );
