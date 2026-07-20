@@ -43,7 +43,10 @@ function AdminDashboard() {
   return (
     <>
       <img src={logo} alt="Logo" className="Dashico" />
-     <div className="Dashh1"> <h1 >Admin Dashboard</h1> </div>
+      <div className="Dashh1">
+        {" "}
+        <h1>Admin Dashboard</h1>{" "}
+      </div>
       <p className="subtitle">
         Plan, manage and monitor scholarships with ease.
       </p>
@@ -59,19 +62,16 @@ function AdminDashboard() {
           value={stats.total_students}
         />
 
+        <StatsCard label="Total Users Enrolled" value={stats.total_users} />
         <StatsCard
-          label="Total Users Enrolled"
-          value={stats.total_users}
+          label="Inactive Scholarship"
+          value={stats.inactive_scholarships}
         />
         <StatsCard
-        label="Inactive Scholarship"
-        value={stats.inactive_scholarships}
+          label="Active Scholarship"
+          value={stats.active_scholarships}
         />
-        <StatsCard
-        label="Active Scholarship"
-        value={stats.active_scholarships}/>
 
-        
         <div className="pie-card">
           <h3>Scholarship Status</h3>
 
