@@ -62,11 +62,7 @@ function AdminDashboard() {
           value={stats.total_students}
         />
 
-        <StatsCard label="Total Users Enrolled" value={stats.total_users} />
-        <StatsCard
-          label="Inactive Scholarship"
-          value={stats.inactive_scholarships}
-        />
+        
         <StatsCard
           label="Active Scholarship"
           value={stats.active_scholarships}
