@@ -4,7 +4,6 @@ import Signup from "../features/user/pages/Signup";
 import Home from "../features/user/pages/Home";
 import ScholarshipResult from "../features/user/pages/ScholarshipResult";
 import PasswordUpdate from "../features/user/pages/PasswordUpdate";
-import Filter from "./Filter";
 import AdminLayout from "../features/admin/components/AdminLayout";
 import AdminDashboard from "../features/admin/pages/AdminDashboard";
 import StudentsDetails from "../features/admin/pages/StudentsDetails";
@@ -19,12 +18,11 @@ function AppRoutes() {
 
       <Route path="/signup" element={<Signup />} />
 
-       <Route path="/update-password" element={<PasswordUpdate />} />
+      <Route path="/update-password" element={<PasswordUpdate />} />
 
       <Route path="/portal" element={<Home />} />
 
       <Route path="/scholarships" element={<ScholarshipResult />} />
-      <Route path="/filter" element={<Filter />}/>
 
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminDashboard />} />
@@ -37,8 +35,6 @@ function AppRoutes() {
 
         <Route path="users" element={<UsersDetails />} />
       </Route>
-
-     
     </Routes>
   );
 }
