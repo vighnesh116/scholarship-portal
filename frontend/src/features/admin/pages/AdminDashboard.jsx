@@ -83,6 +83,9 @@ function AdminDashboard() {
                 {pieData.map((entry, index) => (
                   <Cell key={index} fill={COLORS[index]} />
                 ))}
+             
+
+
               </Pie>
               <Tooltip />
             </PieChart>
@@ -108,6 +111,7 @@ function AdminDashboard() {
                 <strong>{stats.inactive_scholarships}</strong> Inactive
               </span>
             </div>
+         
           </div>
         </div>
       </div>
