@@ -254,7 +254,7 @@ legend-item {
 }
 
 .pagination button {
-  padding: 6px 12px;
+  padding: 1px 6px;
   border: 1px solid #5b7db0;
   border-radius: 6px;
   background: white;
@@ -274,4 +274,63 @@ legend-item {
 .pagination button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+.pagination{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:20px;
+}
+
+.page-info{
+    font-size:15px;
+    font-family: Verdana ;
+    font-weight:500;
+    color:rgb(70, 64, 64);
+}
+
+.page-control{
+    display:flex;
+    align-items:center;
+    gap:10px ;
+    margin-left:auto;
+    border-color: #000000;
+}
+
+.page-control button{
+    width:32px;
+    height:32px;
+    border:0px solid #000000;
+    border-radius:8px;
+    align-items: center;
+    background:#fff;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.page-control button:hover:not(:disabled){
+    background:#eff1f5;
+    
+    
+}
+
+.page-control button:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+.current-page{
+    width:15px;
+    height:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:white;
+    color:#000000;
+    border-radius:8px;
+    font-weight:bold;
+    font-size:18px;
+    border-color: #000000;
+    
 }
