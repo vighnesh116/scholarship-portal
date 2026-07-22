@@ -1,32 +1,15 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-//import AdminNavbar from "../components/AdminNavbar";
-//import AutoRefresh from "../components/AutoRefresh";
+
 function StudentsDetails() {
   const [search, setSearch] = useState("");
-
-  const [editing, setEditing] = useState(false);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage] = useState(10); // no setter needed unless you want it adjustable
   const [students, setStudents] = useState([]);
-
-  const [form, setForm] = useState({
-    stdid: "",
-    stdname: "",
-    miniamount: "",
-    stdpercent: "",
-    stdincome: "",
-    stdgender: "",
-    caste: "",
-    education: "",
-  });
 
   useEffect(() => {
     loadStudents();
   }, []);
-
-  const filtered = students.filter((student) =>
-    student.stdname?.toLowerCase().includes(search.toLowerCase()),
-  );
 
   const loadStudents = async () => {
     try {
@@ -39,11 +22,28 @@ function StudentsDetails() {
     }
   };
 
-  // Function to display NULL for empty values
   const displayValue = (value) => {
-    return value === null || value === undefined || value === ""
-      ? "NULL"
-      : value;
+    return value === null || value === undefined || value === "" ? "NULL" : value;
+  };
+
+  // 1. Filter first (same as before)
+  const filtered = students.filter((student) =>
+    student.stdname?.toLowerCase().includes(search.toLowerCase())
+  );
+
+  // 2. Slice the filtered list to get only the current page's rows
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const currentStudents = filtered.slice(indexOfFirstPost, indexOfLastPost);
+
+  // 3. Work out how many page buttons we need
+  const totalPages = Math.ceil(filtered.length / postPerPage);
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+  // 4. Reset to page 1 whenever the search term changes
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+    setCurrentPage(1);
   };
 
   return (
@@ -54,12 +54,9 @@ function StudentsDetails() {
         type="text"
         placeholder="Search Students"
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={handleSearchChange}
         className="search-box"
       />
-
-      <br />
-      <br />
 
       <div className="table-container">
         <table>
@@ -76,9 +73,9 @@ function StudentsDetails() {
           </thead>
 
           <tbody>
-            {filtered.map((item, index) => (
+            {currentStudents.map((item, index) => (
               <tr key={item.stdid}>
-                <td>{index + 1}</td>
+                <td>{indexOfFirstPost + index + 1}</td>
                 <td>{displayValue(item.stdname)}</td>
                 <td>{displayValue(item.stdincome)}</td>
                 <td>{displayValue(item.stdpercent)}</td>
@@ -89,13 +86,44 @@ function StudentsDetails() {
             ))}
           </tbody>
         </table>
+
         {filtered.length === 0 && (
           <p style={{ textAlign: "center", padding: "20px", color: "#4B5563" }}>
             No students found
           </p>
         )}
       </div>
+
+      {/* Numbered pagination */}
+      {totalPages > 1 && (
+        <div className="pagination">
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((p) => p - 1)}
+          >
+            Prev
+          </button>
+
+          {pageNumbers.map((num) => (
+            <button
+              key={num}
+              className={num === currentPage ? "active-page" : ""}
+              onClick={() => setCurrentPage(num)}
+            >
+              {num}
+            </button>
+          ))}
+
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage((p) => p + 1)}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 }
+
 export default StudentsDetails;
