@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-
+import Pagination from "../components/Pagination";
 function StudentsDetails() {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,12 +23,14 @@ function StudentsDetails() {
   };
 
   const displayValue = (value) => {
-    return value === null || value === undefined || value === "" ? "NULL" : value;
+    return value === null || value === undefined || value === ""
+      ? "NULL"
+      : value;
   };
 
   // 1. Filter first (same as before)
   const filtered = students.filter((student) =>
-    student.stdname?.toLowerCase().includes(search.toLowerCase())
+    student.stdname?.toLowerCase().includes(search.toLowerCase()),
   );
 
   // 2. Slice the filtered list to get only the current page's rows
@@ -39,13 +41,16 @@ function StudentsDetails() {
   // 3. Work out how many page buttons we need
   const totalPages = Math.ceil(filtered.length / postPerPage);
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
-
+  const startRecord = filtered.length === 0 ? 0 : indexOfFirstPost + 1;
+const endRecord = Math.min(indexOfLastPost, filtered.length);
+const presentData =Math.ceil({startRecord}-{endRecord} );
   // 4. Reset to page 1 whenever the search term changes
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
     setCurrentPage(1);
   };
-
+  
+  
   return (
     <div className="manage-container">
       <h1 className="manage-title">View Students Details</h1>
@@ -94,34 +99,16 @@ function StudentsDetails() {
         )}
       </div>
 
-      {/* Numbered pagination */}
-      {totalPages > 1 && (
-        <div className="pagination">
-          <button
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage((p) => p - 1)}
-          >
-            Prev
-          </button>
+      
+         <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
 
-          {pageNumbers.map((num) => (
-            <button
-              key={num}
-              className={num === currentPage ? "active-page" : ""}
-              onClick={() => setCurrentPage(num)}
-            >
-              {num}
-            </button>
-          ))}
+    
 
-          <button
-            disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage((p) => p + 1)}
-          >
-            Next
-          </button>
-        </div>
-      )}
+
     </div>
   );
 }
