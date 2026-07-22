@@ -6,7 +6,7 @@ import Pagination from "../components/Pagination";
 
 function UsersDetails() {
   const [search, setSearch] = useState("");
- const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(10);
   const [users, setUsers] = useState([]);
 
@@ -29,17 +29,16 @@ function UsersDetails() {
     item.name?.toLowerCase().includes(search.toLowerCase()),
   );
 
-  // Function to display NULL for empty values
   const displayValue = (value) => {
     return value === null || value === undefined || value === ""
       ? "NULL"
       : value;
   };
 
-   const indexOfLastPost = currentPage * postPerPage;
+  const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
-  const currentStudents = filtered.slice(indexOfFirstPost, indexOfLastPost);
-  const totalPages = Math.ceil(filtered.length / postPerPage);
+  const currentUsers = filteredUsers.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(filteredUsers.length / postPerPage);
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
@@ -54,12 +53,11 @@ function UsersDetails() {
         type="text"
         placeholder="🔍 Search User By Name"
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={handleSearchChange}
         className="search-box"
       />
 
-      <br />
-      <br />
+      
 
       <div className="table-container">
         <table>
@@ -73,9 +71,9 @@ function UsersDetails() {
           </thead>
 
           <tbody>
-            {filteredUsers.map((item, index) => (
+            {currentUsers.map((item, index) => (
               <tr key={item.userid}>
-                <td>{index + 1}</td>
+                <td>{indexOfFirstPost + index + 1}</td>
                 <td>{displayValue(item.email)}</td>
                 <td>{displayValue(item.name)}</td>
                 <td>{displayValue(item.role)}</td>
@@ -89,14 +87,14 @@ function UsersDetails() {
           </p>
         )}
       </div>
+
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={setCurrentPage}
       />
-
-      
     </div>
   );
 }
+
 export default UsersDetails;
