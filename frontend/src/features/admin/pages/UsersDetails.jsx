@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import AutoRefresh from "../components/AutoRefresh";
 import { toast } from "react-toastify";
+import Pagination from "../components/Pagination";
 
 function UsersDetails() {
   const [search, setSearch] = useState("");
-
+ const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage] = useState(10);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -32,6 +34,16 @@ function UsersDetails() {
     return value === null || value === undefined || value === ""
       ? "NULL"
       : value;
+  };
+
+   const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const currentStudents = filtered.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(filtered.length / postPerPage);
+
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+    setCurrentPage(1);
   };
 
   return (
@@ -77,6 +89,13 @@ function UsersDetails() {
           </p>
         )}
       </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
+
+      
     </div>
   );
 }
