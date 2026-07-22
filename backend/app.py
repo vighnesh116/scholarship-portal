@@ -497,6 +497,10 @@ def scholarships():
 @app.route('/admin-students', methods=['GET'])
 def admin_students():
     db = get_db()
+    page = int(request.args.get('page', 1))
+    per_page = int(request.args.get('per_page', 10))
+    offset = (page - 1) * per_page
+
     cursor = db.cursor(dictionary=True)
     try:
         cursor.execute("SELECT * FROM students ORDER BY stdid ASC")
