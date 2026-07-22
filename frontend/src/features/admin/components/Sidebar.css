@@ -138,6 +138,7 @@ legend-item {
   border-radius: 14px;
   padding: 60px 40px;
   flex: 1;
+  height: 200px;
   min-width: 180px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
@@ -243,4 +244,34 @@ legend-item {
   width: 16px;
   height: 16px;
   border-radius: 3px;
+}
+/*Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border: 1px solid #5b7db0;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  color: #000000;
+  font: 13px;
+  font-style: Arial;
+  font-size: 15px;
+}
+
+.pagination button.active-page {
+  background: #2563eb;
+  color: #000000;
+  border-color: #2563eb;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
