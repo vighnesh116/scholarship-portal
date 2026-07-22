@@ -57,15 +57,27 @@ function AdminDashboard() {
           value={stats.total_scholarships}
         />
 
-        <StatsCard
-          label="Total Students enrolled"
-          value={stats.total_students}
-        />
+        
 
         
         <StatsCard
           label="Active Scholarship"
           value={stats.active_scholarships}
+        />
+
+        <StatsCard
+          label="In-Active Scholarship"
+          value={stats.inactive_scholarships}
+        />
+
+        <StatsCard
+          label="Total Students enrolled"
+          value={stats.total_students}
+        />
+       
+       <StatsCard
+          label="Total Users Present"
+          value={stats.total_users}
         />
 
         <div className="pie-card">
