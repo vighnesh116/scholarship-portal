@@ -91,13 +91,15 @@ table th {
     padding: 12px;
     border: 1px solid #D9D3C5;
     font-weight: 600;
+    
 }
 
 table td {
-    padding: 12px;
+    
     width:max-content;
     height:5px;
     text-align: center;
+
     border-bottom: 1px solid #D9D3C5;
     color: #4B5563;
 }
