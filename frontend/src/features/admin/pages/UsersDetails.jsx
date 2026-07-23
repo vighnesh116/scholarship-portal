@@ -63,7 +63,7 @@ function UsersDetails() {
         <table>
           <thead>
             <tr>
-              <th>ID</th>
+              <th>S.No</th>
               <th>Email</th>
               <th>Name</th>
               <th>Role</th>
