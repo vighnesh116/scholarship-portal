@@ -3,16 +3,17 @@ import { toast } from "react-toastify";
 import ScholarshipFilter from "../components/ScholarshipFilter";
 import "../components/MS.css";
 import { useNavigate } from "react-router-dom";
-import { Pen, Trash2 } from "lucide-react";
+import { Pen, Trash2,ListFilterPlus } from "lucide-react";
 import Pagination from "../components/Pagination";
-
+// import "tailwindcss";
 function ViewScholarships() {
   const [search, setSearch] = useState("");
   const [scholarships, setScholarships] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage] = useState(10);
+  const [postPerPage] = useState(6);
+  const [showFilter,setShowFilter]=useState(false);
 
   useEffect(() => {
     loadScholarships();
@@ -88,9 +89,10 @@ function ViewScholarships() {
         value={search}
         onChange={handleSearchChange}
       />
-
-      <ScholarshipFilter scholarships={searchFiltered} onFilter={setFiltered} />
-       
+     <ScholarshipFilter
+      scholarships={searchFiltered}
+      onFilter={setFiltered}
+    />
       <table border="1">
         <thead>
           <tr>
@@ -147,12 +149,13 @@ function ViewScholarships() {
           )}
         </tbody>
       </table>
-
-      <Pagination
+        <div>
+      <Pagination 
         currentPage={currentPage}
         totalPages={totalPages}
-        onPageChange={setCurrentPage}
+        onPageChange={setCurrentPage} 
       />
+      </div>
     </div>
   );
 }
