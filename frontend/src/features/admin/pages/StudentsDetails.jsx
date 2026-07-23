@@ -67,7 +67,7 @@ const presentData =Math.ceil({startRecord}-{endRecord} );
         <table>
           <thead>
             <tr>
-              <th>ID</th>
+              <th>S.No</th>
               <th>Name</th>
               <th>Income</th>
               <th>Percentage</th>
