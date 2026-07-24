@@ -137,7 +137,7 @@ function ManageScholarships() {
 
   return (
     <div className="manage-container">
-      <h1 className="manage-title">Create-Scholarships</h1>
+      {/* <h1 className="manage-title">Create-Scholarships</h1> */}
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -158,6 +158,7 @@ function ManageScholarships() {
           />
 
           <input
+            required
             name="amount"
             placeholder="Scholarship Amount"
             value={form.amount}
@@ -189,6 +190,7 @@ function ManageScholarships() {
           />
 
           <input
+            type="url"
             name="application_link"
             placeholder="Application Link"
             value={form.application_link}
@@ -196,13 +198,13 @@ function ManageScholarships() {
           />
 
           <select name="gender" value={form.gender} onChange={handleChange}>
-            <option value="">Select Gender</option>
+            <option value="">All Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
 
           <select name="caste" value={form.caste} onChange={handleChange}>
-            <option value="">Category</option>
+            <option value="">All Category</option>
             <option value="General">General</option>
             <option value="OBC">OBC</option>
             <option value="SC">SC</option>
@@ -214,8 +216,9 @@ function ManageScholarships() {
             name="educationqualifiation"
             value={form.educationqualifiation}
             onChange={handleChange}
-          >
+          >   
             <option value="">Select Class</option>
+          
             <option value="11">11th</option>
             <option value="12">12th</option>
           </select>
