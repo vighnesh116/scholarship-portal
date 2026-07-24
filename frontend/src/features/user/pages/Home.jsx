@@ -2,9 +2,9 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { confirmAction } from "../../../features/shared/components/ConfirmAction";
 import "../components/Home.css";
 import Sidebar from "../../admin/components/Sidebar";
-import Logout from "../../shared/components/Logout";
 function Home() {
   const navigate = useNavigate();
 
@@ -17,6 +17,22 @@ function Home() {
     education: "",
     gender: "",
   });
+
+  
+
+const handleLogout = async () => {
+  await confirmAction({
+    title: "Are you sure?",
+    text: "You will be logged out.",
+    successTitle: "Logged Out",
+    successText: "You have been logged out successfully.",
+    onConfirm: async () => {
+      localStorage.removeItem("token");
+      sessionStorage.clear();
+      navigate("/", { replace: true });
+    },
+  });
+};
 
   const handleChange = (e) => {
     setForm({
@@ -155,7 +171,9 @@ function Home() {
           </div>
         </div>
       </main>
-      <Logout />
+      <button onClick={handleLogout}>
+        LogOut
+      </button>
       <footer>
       
       <p>© 2026 Scholarship Information Portal</p>
