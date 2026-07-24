@@ -5,6 +5,7 @@ import "../components/MS.css";
 import { useNavigate } from "react-router-dom";
 import { Pen, Trash2,ListFilterPlus } from "lucide-react";
 import Pagination from "../components/Pagination";
+import { confirmAction } from "../../shared/components/ConfirmAction";
 // import "tailwindcss";
 function ViewScholarships() {
   const [search, setSearch] = useState("");
@@ -24,6 +25,18 @@ function ViewScholarships() {
   useEffect(() => {
     setCurrentPage(1);
   }, [filtered]);
+
+  const handleDeleteAction = async (id) => {
+  await confirmAction({
+    title: "Delete Scholarship?",
+    text: "This action cannot be undone.",
+    successTitle: "Deleted!",
+    successText: "Scholarship deleted successfully.",
+    onConfirm: async () => {
+      await axios.delete(`/api/scholarship/${id}`);
+    },
+  });
+};
 
   const onEdit = (item) => {
     navigate("/admin/manage", {
@@ -137,12 +150,22 @@ function ViewScholarships() {
                 </td>
 
                 <td>
+                  <confirmAction
+                     title="Delete Scholarship?"
+                     text="This action cannot be undone."
+                     successTitle="Deleted!"
+                     successText="Scholarship deleted successfully."
+                     onConfirm={handleDeleteAction}
+                  >
+
+                    
                   <button
                     style={{ backgroundColor: "#00000000", color: "red", padding: "9px" }}
                     onClick={() => handleDelete(item.sclrid)}
                   >
                     <Trash2 />
                   </button>
+                  </confirmAction>
                 </td>
               </tr>
             ))
