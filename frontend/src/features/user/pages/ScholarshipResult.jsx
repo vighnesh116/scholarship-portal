@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import "../components/Scholarship.css";
-
+import logo from  "../../../assets/new2.ico";
 function ScholarshipResult() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -15,6 +15,7 @@ function ScholarshipResult() {
 
   return (
     <div className="scholarship-page">
+      <img src={logo} alt="Scholarship Portal Logo" className="logo" />
       <h1>Eligible Scholarships</h1>
 
       {/* Admin Button */}
