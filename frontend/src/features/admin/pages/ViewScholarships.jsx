@@ -161,7 +161,7 @@ function ViewScholarships() {
                     
                   <button
                     style={{ backgroundColor: "#00000000", color: "red", padding: "9px" }}
-                    onClick={() => handleDelete(item.sclrid)}
+                    onClick={() => handleDeleteAction(item.sclrid)}
                   >
                     <Trash2 />
                   </button>
