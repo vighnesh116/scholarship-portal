@@ -16,8 +16,6 @@ function AdminLayout() {
 
     if (!confirmed) return;
 
-   
-
     navigate("/", { replace: true });
   };
 
@@ -27,11 +25,7 @@ function AdminLayout() {
     { key: "manage", label: "Create-Scholarships", path: "/admin/manage" },
     { key: "students", label: "View Students-DATA", path: "/admin/students" },
     { key: "users", label: "View Users-DETAILS", path: "/admin/users" },
-    {
-      key: "logout",
-      label: <LogOut />,
-      onClick: handleLogout,
-    },
+    { key: "logout", label: <LogOut />, path: "/logout" },
   ];
 
   return (
