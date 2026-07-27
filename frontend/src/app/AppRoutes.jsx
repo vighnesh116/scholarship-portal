@@ -10,7 +10,7 @@ import StudentsDetails from "../features/admin/pages/StudentsDetails";
 import UsersDetails from "../features/admin/pages/UsersDetails";
 import ManageScholarships from "../features/admin/pages/ManageScholarships";
 import ViewScholarships from "../features/admin/pages/ViewScholarships";
-
+import Logout from "../features/shared/components/Logout";
 function AppRoutes() {
   return (
     <Routes>
@@ -23,6 +23,8 @@ function AppRoutes() {
       <Route path="/portal" element={<Home />} />
 
       <Route path="/scholarships" element={<ScholarshipResult />} />
+
+      <Route path='/' element={<Logout/>}/>
 
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminDashboard />} />
