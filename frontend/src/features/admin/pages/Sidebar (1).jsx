@@ -1,5 +1,6 @@
 import React from "react";
 import "./Sidebar.css";
+import { LogOut } from "lucide-react";
 
 
 function Sidebar({ title, navItems, activeKey, onSelect, children }) {
@@ -18,6 +19,7 @@ function Sidebar({ title, navItems, activeKey, onSelect, children }) {
             </button>
           ))}
         </nav>
+        
       </aside>
 
       <main className="dash-main">{children}</main>
