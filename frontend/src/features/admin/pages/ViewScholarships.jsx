@@ -81,7 +81,7 @@ function ViewScholarships() {
   const renderValue = (value) =>
     value === null || value === undefined || value === "" ? "Null" : value;
 
-  // Pagination now based on `filtered` — the FINAL list actually shown
+  
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
   const currentScholarships = filtered.slice(indexOfFirstPost, indexOfLastPost);
