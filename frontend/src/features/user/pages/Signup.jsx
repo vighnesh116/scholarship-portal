@@ -66,7 +66,7 @@ function Signup() {
 
       toast.success(response.data.message);
 
-      // Reset form
+    
       setForm({
         name: "",
         email: "",
@@ -75,7 +75,7 @@ function Signup() {
 
       setConfirmPassword("");
 
-      // Navigate to student portal
+      
       navigate("/portal", { replace: true });
     } catch (error) {
       if (error.response) {
