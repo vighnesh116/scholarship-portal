@@ -122,9 +122,10 @@ function ManageScholarships() {
       clearForm();
       loadScholarships();
       navigate("/admin/view");
-    } catch (error) {
+    } 
+    catch (error) {
       toast.error("Error updating scholarship:", error);
-      toast.error("Error updating scholarship");
+      
     }
   };
 
@@ -137,7 +138,7 @@ function ManageScholarships() {
 
   return (
     <div className="manage-container">
-      {/* <h1 className="manage-title">Create-Scholarships</h1> */}
+      
       <form
         onSubmit={(e) => {
           e.preventDefault();
