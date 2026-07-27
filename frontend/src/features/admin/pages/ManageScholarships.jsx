@@ -129,10 +129,7 @@ function ManageScholarships() {
     }
   };
 
-  const filteredScholarships = scholarships.filter((item) =>
-    item.sclrname?.toLowerCase().includes(search.toLowerCase()),
-  );
-
+ 
   const displayValue = (value) =>
     value === null || value === undefined || value === "" ? "NULL" : value;
 
