@@ -15,12 +15,10 @@ function Logout() {
       });
 
       if (confirmed) {
-        // Remove login data if you have stored any
-        // localStorage.removeItem("token");
-
+     
         navigate("/", { replace: true });
       } else {
-        // Go back to admin dashboard if user cancels
+     
         navigate("/admin", { replace: true });
       }
     };
