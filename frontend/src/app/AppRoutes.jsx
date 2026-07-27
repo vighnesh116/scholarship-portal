@@ -24,7 +24,7 @@ function AppRoutes() {
 
       <Route path="/scholarships" element={<ScholarshipResult />} />
 
-      <Route path='/' element={<Logout/>}/>
+      <Route path='/logout' element={<Logout/>}/>
 
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminDashboard />} />
