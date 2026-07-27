@@ -22,7 +22,7 @@ function Login() {
 
       if (res.data.success) {
         localStorage.setItem("user", res.data.name);
-        // save email for later actions (e.g., password update)
+        
         localStorage.setItem("email", email);
 
         if (res.data.role === "admin") {
