@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import ScholarshipFilter from "../components/ScholarshipFilter";
 import "../components/MS.css";
 import { useNavigate } from "react-router-dom";
-import { Pen, Trash2,ListFilterPlus } from "lucide-react";
+import { Pen, Trash2, ListFilterPlus } from "lucide-react";
 import Pagination from "../components/Pagination";
 import { confirmAction } from "../../shared/components/ConfirmAction";
 // import "tailwindcss";
@@ -14,30 +14,18 @@ function ViewScholarships() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(6);
-  const [showFilter,setShowFilter]=useState(false);
+  const [showFilter, setShowFilter] = useState(false);
 
   useEffect(() => {
     loadScholarships();
   }, []);
 
-  // Reset to page 1 whenever the filtered result set changes
-  // (covers both search changes and ScholarshipFilter changes)
+  
   useEffect(() => {
     setCurrentPage(1);
   }, [filtered]);
 
-  const handleDeleteAction = async (id) => {
-  await confirmAction({
-    title: "Delete Scholarship?",
-    text: "This action cannot be undone.",
-    successTitle: "Deleted!",
-    successText: "Scholarship deleted successfully.",
-    onConfirm: async () => {
-      await axios.delete(`/api/scholarship/${id}`);
-    },
-  });
-};
-
+  
   const onEdit = (item) => {
     navigate("/admin/manage", {
       state: { scholarship: item },
@@ -51,23 +39,34 @@ function ViewScholarships() {
   };
 
   const handleDelete = async (sclrid) => {
-    if (window.confirm("Are you sure?")) {
-      try {
-        const res = await fetch(
-          `http://127.0.0.1:5000/delete-scholarship/${sclrid}`,
-          { method: "DELETE" },
-        );
-        const data = await res.json();
-        if (res.ok) {
-          toast.error(data.message);
-          await loadScholarships();
-        } else {
-          toast.error(data.message);
-        }
-      } catch (error) {
-        toast.error(error);
-        toast.error("Error deleting scholarship");
+    const confirmed = await confirmAction({
+      title: "Delete Scholarship?",
+      text: "This action cannot be undone.",
+      successTitle: "Deleted!",
+      successText: "Scholarship deleted successfully.",
+    });
+
+    if (!confirmed) return;
+
+    try {
+      const res = await fetch(
+        `http://127.0.0.1:5000/delete-scholarship/${sclrid}`,
+        {
+          method: "DELETE",
+        },
+      );
+
+      const data = await res.json();
+
+      if (res.ok) {
+        toast.success(data.message);
+        loadScholarships();
+      } else {
+        toast.error(data.message);
       }
+    } catch (error) {
+      toast.error("Error deleting scholarship");
+      console.error(error);
     }
   };
 
@@ -96,16 +95,13 @@ function ViewScholarships() {
     <div style={{ padding: "30px", backgroundColor: "#ebebeb" }}>
       <h1>View Scholarships</h1>
 
-     <input
+      <input
         type="text"
         placeholder="🔍 Search Scholarship..."
         value={search}
         onChange={handleSearchChange}
       />
-     <ScholarshipFilter
-      scholarships={searchFiltered}
-      onFilter={setFiltered}
-    />
+      <ScholarshipFilter scholarships={searchFiltered} onFilter={setFiltered} />
       <table border="1">
         <thead>
           <tr>
@@ -142,7 +138,11 @@ function ViewScholarships() {
 
                 <td>
                   <button
-                    style={{ backgroundColor: "#00000000", color: "blue", padding: "9px" }}
+                    style={{
+                      backgroundColor: "#00000000",
+                      color: "blue",
+                      padding: "9px",
+                    }}
                     onClick={() => onEdit(item)}
                   >
                     <Pen />
@@ -150,34 +150,28 @@ function ViewScholarships() {
                 </td>
 
                 <td>
-                  <confirmAction
-                     title="Delete Scholarship?"
-                     text="This action cannot be undone."
-                     successTitle="Deleted!"
-                     successText="Scholarship deleted successfully."
-                     onConfirm={handleDeleteAction}
-                  >
-
-                    
                   <button
-                    style={{ backgroundColor: "#00000000", color: "red", padding: "9px" }}
-                    onClick={() => handleDeleteAction(item.sclrid)}
+                    style={{
+                      backgroundColor: "transparent",
+                      color: "red",
+                      padding: "9px",
+                    }}
+                    onClick={() => handleDelete(item.sclrid)}
                   >
                     <Trash2 />
                   </button>
-                  </confirmAction>
                 </td>
               </tr>
             ))
           )}
         </tbody>
       </table>
-        <div>
-      <Pagination 
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={setCurrentPage} 
-      />
+      <div>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
       </div>
     </div>
   );
