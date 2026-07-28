@@ -35,6 +35,7 @@ const addScholarship=async()=>{
     clearForm();
     loadScholarships();
     Navigate("/admin/view");
+    const di
 };
 return(
      <div className="manage-container">
