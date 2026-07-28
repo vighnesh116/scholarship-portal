@@ -41,11 +41,26 @@ function ScholarshipFilter({ scholarships, onFilter }) {
           item.educationqualifiation === undefined,
       );
     }
-    if (minAmount) {
-      result = result.filter(
-        (item) => parseAmount(item.amount) >= Number(minAmount),
-      );
+   if (minAmount) {
+  const userIncome = Number(minAmount);
+
+  result = result.filter((item) => {
+  
+    if (item.miniincome == null) {
+      return true;
     }
+
+    const scholarshipIncome = Number(item.miniincome);
+
+    
+    if (isNaN(scholarshipIncome)) {
+      return false;
+    }
+
+    
+    return userIncome <= scholarshipIncome;
+  });
+}
 
     onFilter(result);
     // eslint-disable-next-line react-hooks/exhaustive-deps
