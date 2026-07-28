@@ -79,6 +79,13 @@ function ManageScholarships() {
   };
 
   const addScholarship = async () => {
+    const confirmed =await confirmAction({
+      title:"Add Scholarship",
+      text:"Confirm of adding this scholarship ",
+      successTitle:"Successfully Added ",
+      successText:"The scholarship has been added to database ",
+    });
+    if(!confirmed)return;
     const dataToSend = {
       ...form,
       gender: form.gender || null,
