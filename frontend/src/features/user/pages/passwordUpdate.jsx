@@ -3,12 +3,26 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "../components/UserAuth.css";
+import {LogOut}from"lucide-react";
+import Logout from "../../shared/components/Logout"
 function PasswordUpdate() {
   const navigate = useNavigate();
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
+  const handleLogout = async () => {
+    await confirmAction({
+      title: "Are you sure?",
+      text: "You will be logged out.",
+      successTitle: "Logged Out",
+      successText: "You have been logged out successfully.",
+      onConfirm: async () => {
+        localStorage.removeItem("token");
+        sessionStorage.clear();
+        navigate("/", { replace: true });
+      },
+    });
+  };
   const submit = async (e) => {
     e.preventDefault();
 
@@ -61,7 +75,11 @@ function PasswordUpdate() {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <button type="submit">Update Password</button>
+        
         </form>
+         <button onClick={handleLogout}>
+       <center> <LogOut/></center>
+      </button>
       </div>
     </div>
   );
