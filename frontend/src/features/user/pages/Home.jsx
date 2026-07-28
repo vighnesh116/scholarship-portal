@@ -20,20 +20,6 @@ function Home() {
 
   
 
-const handleLogout = async () => {
-  await confirmAction({
-    title: "Are you sure?",
-    text: "You will be logged out.",
-    successTitle: "Logged Out",
-    successText: "You have been logged out successfully.",
-    onConfirm: async () => {
-      localStorage.removeItem("token");
-      sessionStorage.clear();
-      navigate("/", { replace: true });
-    },
-  });
-};
-
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -171,9 +157,7 @@ const handleLogout = async () => {
           </div>
         </div>
       </main>
-      <button onClick={handleLogout}>
-        LogOut
-      </button>
+      
       <footer>
       
       <p>© 2026 Scholarship Information Portal</p>
