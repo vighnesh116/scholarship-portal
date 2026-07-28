@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../components/ManageScholarships.css";
 import { toast } from "react-toastify";
-
+import { confirmAction } from "../../shared/components/ConfirmAction";
 function ManageScholarships() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -100,6 +100,13 @@ function ManageScholarships() {
   };
 
   const updateScholarship = async () => {
+    const confirmed=await confirmAction({
+        title:"Update Scholarship",
+        text:"This will make changes in data",
+        successTitle:"Updated Successfully",
+        successText:"Scholarship Updated successfully",
+      });
+      if(!confirmed)return;
     const dataToSend = {
       ...form,
       gender: form.gender || null,
@@ -115,24 +122,24 @@ function ManageScholarships() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(dataToSend),
         },
+        
       );
-
       const data = await res.json();
-      toast(data.message);
+      
+      toast.success(data.message);
       clearForm();
       loadScholarships();
       navigate("/admin/view");
     } 
     catch (error) {
-      toast.error("Error updating scholarship:", error);
+      toast.error("Error updating scholarship:");
       
     }
   };
 
  
-  const displayValue = (value) =>
-    value === null || value === undefined || value === "" ? "NULL" : value;
-
+  
+  
   return (
     <div className="manage-container">
       
