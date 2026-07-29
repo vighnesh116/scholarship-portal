@@ -3,6 +3,7 @@ import AdminNavbar from "../components/AdminNavbar";
 import AutoRefresh from "../components/AutoRefresh";
 import { toast } from "react-toastify";
 import Pagination from "../components/Pagination";
+import { getUsers } from "../service/service.api";
 
 function UsersDetails() {
   const [search, setSearch] = useState("");
@@ -11,19 +12,18 @@ function UsersDetails() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
+    const loadUsers = async () => {
+      try {
+        const res = await fetch("http://127.0.0.1:5000/admin-users");
+        const data = await res.json();
+        setUsers(data);
+      } catch (error) {
+        toast.error("Error loading users:", error);
+        setUsers([]);
+      }
+    };
     loadUsers();
   }, []);
-
-  const loadUsers = async () => {
-    try {
-      const res = await fetch("http://127.0.0.1:5000/admin-users");
-      const data = await res.json();
-      setUsers(data || []);
-    } catch (error) {
-      toast.error("Error loading users:", error);
-      setUsers([]);
-    }
-  };
 
   const filteredUsers = users.filter((item) =>
     item.name?.toLowerCase().includes(search.toLowerCase()),
@@ -56,8 +56,6 @@ function UsersDetails() {
         onChange={handleSearchChange}
         className="search-box"
       />
-
-      
 
       <div className="table-container">
         <table>
