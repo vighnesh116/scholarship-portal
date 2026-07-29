@@ -5,7 +5,7 @@ import "../components/MS.css";
 import { useNavigate } from "react-router-dom";
 import { Pen, Trash2, ListFilterPlus } from "lucide-react";
 import Pagination from "../components/Pagination";
-import {ConfirmAction} from "../../../shared/components/ConfirmAction";
+import {confirmAction} from "../../../shared/components/ConfirmAction";
 // import "tailwindcss";
 function ViewScholarships() {
   const [search, setSearch] = useState("");
