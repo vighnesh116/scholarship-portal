@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import "../components/Scholarship.css";
 import logo from  "../../../assets/new2.ico";
-import {confirmAction} from "../../shared/components/ConfirmAction"
+import {confirmAction} from "../../../shared/components/ConfirmAction"
 
 function ScholarshipResult() {
   const location = useLocation();
