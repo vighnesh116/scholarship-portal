@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../components/ManageScholarships.css";
 import { toast } from "react-toastify";
-import { confirmAction } from "../../shared/components/ConfirmAction";
+import {ConfirmAction} from "../../../shared/components/ConfirmAction";
 function ManageScholarships() {
   const location = useLocation();
   const navigate = useNavigate();
