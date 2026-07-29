@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "../components/UserAuth.css";
 import {LogOut}from"lucide-react";
-import Logout from "../../shared/components/Logout"
+import Logout from "../../../shared/components/Logout"
 function PasswordUpdate() {
   const navigate = useNavigate();
 
