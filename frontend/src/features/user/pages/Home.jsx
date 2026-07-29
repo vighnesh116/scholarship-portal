@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { confirmAction } from "../../../features/shared/components/ConfirmAction";
+import { confirmAction } from "../../../shared/components/ConfirmAction";
 import "../components/Home.css";
 import Sidebar from "../../admin/components/Sidebar";
 function Home() {
