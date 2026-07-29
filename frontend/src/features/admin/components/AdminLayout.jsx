@@ -1,7 +1,7 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { LogOut } from "lucide-react";
-import { confirmAction } from "../../shared/components/ConfirmAction";
+import {ConfirmAction} from "../../shared/components/ConfirmAction";
 
 function AdminLayout() {
   const navigate = useNavigate();
