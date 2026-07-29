@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { confirmAction } from "../../shared/components/ConfirmAction";
+import {ConfirmAction} from "./ConfirmAction";
 
 function Logout() {
   const navigate = useNavigate();
