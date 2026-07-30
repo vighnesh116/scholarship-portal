@@ -114,9 +114,10 @@ function ViewScholarships() {
             <th>Caste</th>
             <th>Education</th>
             <th>Deadline</th>
-            <th>Edit</th>
-            <th>Delete</th>
             <th>Status</th>
+           <th>Disable</th>
+          <th>Edit</th>
+          <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -136,7 +137,17 @@ function ViewScholarships() {
                 <td>{renderValue(item.caste)}</td>
                 <td>{renderValue(item.educationqualifiation)}</td>
                 <td>{renderValue(item.deadline)}</td>
+                <td>
+                  
+                  {renderValue(item.draft)}
+                  
+                  </td>
+              <td>
+              
+                {renderValue(item.disability)}
 
+
+              </td>
                 <td>
                   <button
                     style={{
