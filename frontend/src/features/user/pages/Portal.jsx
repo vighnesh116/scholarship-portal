@@ -18,8 +18,6 @@ function Portal() {
     gender: "",
   });
 
-  
-
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -157,11 +155,9 @@ function Portal() {
           </div>
         </div>
       </main>
-      
-      <footer>
-      
-      <p>© 2026 Scholarship Information Portal</p>
 
+      <footer>
+        <p>© 2026 Scholarship Information Portal</p>
       </footer>
     </div>
   );
