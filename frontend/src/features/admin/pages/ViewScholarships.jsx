@@ -13,7 +13,7 @@ function ViewScholarships() {
   const [filtered, setFiltered] = useState([]);
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage] = useState(6);
+  const [postPerPage] = useState(5);
   const [showFilter, setShowFilter] = useState(false);
 
   useEffect(() => {
@@ -116,6 +116,7 @@ function ViewScholarships() {
             <th>Deadline</th>
             <th>Edit</th>
             <th>Delete</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
