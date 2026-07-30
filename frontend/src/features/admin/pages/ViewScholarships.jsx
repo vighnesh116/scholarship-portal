@@ -3,9 +3,15 @@ import { toast } from "react-toastify";
 import ScholarshipFilter from "../components/ScholarshipFilter";
 import "../components/MS.css";
 import { useNavigate } from "react-router-dom";
-import { Pen, Trash2, ListFilterPlus } from "lucide-react";
+import {
+  Pen,
+  Trash2,
+  ListFilterPlus,
+  CircleCheck,
+  SquarePen,
+} from "lucide-react";
 import Pagination from "../components/Pagination";
-import {confirmAction} from "../../../shared/components/ConfirmAction";
+import { confirmAction } from "../../../shared/components/ConfirmAction";
 // import "tailwindcss";
 function ViewScholarships() {
   const [search, setSearch] = useState("");
@@ -20,12 +26,10 @@ function ViewScholarships() {
     loadScholarships();
   }, []);
 
-  
   useEffect(() => {
     setCurrentPage(1);
   }, [filtered]);
 
-  
   const onEdit = (item) => {
     navigate("/admin/manage", {
       state: { scholarship: item },
@@ -79,9 +83,8 @@ function ViewScholarships() {
   );
 
   const renderValue = (value) =>
-    value === null || value === undefined || value === "" ? "Null" : value;
+    value === null || value === undefined || value === "" ? "-" : value;
 
-  
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
   const currentScholarships = filtered.slice(indexOfFirstPost, indexOfLastPost);
@@ -114,10 +117,10 @@ function ViewScholarships() {
             <th>Caste</th>
             <th>Education</th>
             <th>Deadline</th>
+
             <th>Status</th>
-           <th>Disable</th>
-          <th>Edit</th>
-          <th>Delete</th>
+            <th>Edit</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -137,17 +140,15 @@ function ViewScholarships() {
                 <td>{renderValue(item.caste)}</td>
                 <td>{renderValue(item.educationqualifiation)}</td>
                 <td>{renderValue(item.deadline)}</td>
+
                 <td>
-                  
-                  {renderValue(item.draft)}
-                  
-                  </td>
-              <td>
-              
-                {renderValue(item.disability)}
+                  {renderValue(item.draft) == 0 ? (
+                    <CircleCheck color="#58d57d" />
+                  ) : (
+                    <SquarePen color="#c41c35" />
+                  )}
+                </td>
 
-
-              </td>
                 <td>
                   <button
                     style={{
