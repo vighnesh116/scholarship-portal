@@ -132,8 +132,8 @@ function Portal() {
                   Select Your Class
                 </option>
 
-                <option value="11">11th</option>
-                <option value="12">12th</option>
+                <option value="11">11th Passout </option>
+                <option value="12">12th Passout </option>
               </select>
 
               <br />
