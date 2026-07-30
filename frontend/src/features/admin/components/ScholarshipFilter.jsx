@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./ScholarshipFilter.css";
+import { DraftingCompass } from "lucide-react";
 
 const parseAmount = (value) => {
   if (value === null || value === undefined || value === "") return 0;
@@ -13,7 +14,7 @@ function ScholarshipFilter({ scholarships, onFilter }) {
   const [caste, setCaste] = useState("");
   const [education, setEducation] = useState("");
   const [minAmount, setMinAmount] = useState("");
-
+  const [draft,setDraft]=useState("");
   useEffect(() => {
     let result = scholarships;
 
@@ -41,39 +42,47 @@ function ScholarshipFilter({ scholarships, onFilter }) {
           item.educationqualifiation === undefined,
       );
     }
-   if (minAmount) {
-  const userIncome = Number(minAmount);
+    if (minAmount) {
+      const userIncome = Number(minAmount);
 
-  result = result.filter((item) => {
-  
-    if (item.miniincome == null) {
-      return true;
+      result = result.filter((item) => {
+        if (item.miniincome == null) {
+          return true;
+        }
+
+        const scholarshipIncome = Number(item.miniincome);
+
+        if (isNaN(scholarshipIncome)) {
+          return false;
+        }
+
+        return userIncome <= scholarshipIncome;
+      });
     }
-
-    const scholarshipIncome = Number(item.miniincome);
-
-    
-    if (isNaN(scholarshipIncome)) {
-      return false;
+    if(draft){
+      result=result.filter((item)=>{
+        if(item.draft==1){
+          return true;
+        }
+        return false;
+      });
     }
-
     
-    return userIncome <= scholarshipIncome;
-  });
-}
+
 
     onFilter(result);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gender, caste, education, minAmount, scholarships]);
+  }, [gender, caste, education, minAmount, scholarships,draft]);
 
   const resetFilters = () => {
     setGender("");
     setCaste("");
     setEducation("");
     setMinAmount("");
+    setDraft("");
   };
 
-  const hasActiveFilter = gender || caste || education || minAmount;
+  const hasActiveFilter = gender || caste || education || minAmount || draft;
 
   return (
     <div className="scholarship-filter">
@@ -117,7 +126,21 @@ function ScholarshipFilter({ scholarships, onFilter }) {
         value={minAmount}
         onChange={(e) => setMinAmount(e.target.value)}
       />
+        
 
+        <select
+        className="filter-select"
+        value={draft}
+        onChange={(e) => setDraft(e.target.value)}
+      >
+        <option value="">Completed</option>
+        <option value="1">Draft</option>
+        
+      </select>
+
+
+
+      
       {hasActiveFilter && (
         <button className="filter-reset-btn" onClick={resetFilters}>
           Reset Filters
