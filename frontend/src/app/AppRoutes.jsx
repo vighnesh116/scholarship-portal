@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Login from "../features/user/pages/Login";
 import Signup from "../features/user/pages/Signup";
-import Home from "../features/user/pages/Home";
+import Portal from "../features/user/pages/Portal";
 import ScholarshipResult from "../features/user/pages/ScholarshipResult";
 import PasswordUpdate from "../features/user/pages/PasswordUpdate";
 import AdminLayout from "../features/admin/components/AdminLayout";
@@ -20,7 +20,7 @@ function AppRoutes() {
 
       <Route path="/update-password" element={<PasswordUpdate />} />
 
-      <Route path="/portal" element={<Home />} />
+      <Route path="/portal" element={<Portal />} />
 
       <Route path="/scholarships" element={<ScholarshipResult />} />
 
