@@ -61,7 +61,7 @@ function ScholarshipFilter({ scholarships, onFilter }) {
     }
     if(draft){
       result=result.filter((item)=>{
-        if(item.draft!=0){
+        if(item.draft==0){
           return false;
         }
         return true;
