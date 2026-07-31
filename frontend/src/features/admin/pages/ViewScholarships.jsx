@@ -141,10 +141,11 @@ function ViewScholarships() {
                 <td>{renderValue(item.educationqualifiation)}</td>
                 <td>{renderValue(item.deadline)}</td>
   <td style={{padding:"20px"}}>
-                  {renderValue(item.draft) == 0 ? (
-                    <CircleCheck color="#58d57d" />
-                  ) : (
+                  {renderValue(item.draft) != 0 ? (
                     <SquarePen color="#c41c35" />
+                    
+                  ) : (
+                    <CircleCheck color="#58d57d" />
                   )}
                 </td>
               
