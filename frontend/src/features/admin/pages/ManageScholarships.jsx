@@ -12,7 +12,7 @@ function ManageScholarships() {
   const [search, setSearch] = useState("");
   const [editing, setEditing] = useState(false);
   const [scholarships, setScholarships] = useState([]);
-
+  const[draft,setDraft]=useState(0)
   const [form, setForm] = useState({
     sclrid: "",
     sclrname: "",
