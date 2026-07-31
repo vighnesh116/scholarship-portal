@@ -61,10 +61,10 @@ function ScholarshipFilter({ scholarships, onFilter }) {
     }
     if(draft){
       result=result.filter((item)=>{
-        if(item.draft==1){
-          return true;
+        if(item.draft!=0){
+          return false;
         }
-        return false;
+        return true;
       });
     }
     
