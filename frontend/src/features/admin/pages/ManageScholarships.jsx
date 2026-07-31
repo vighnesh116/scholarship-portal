@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "../components/ManageScholarships.css";
 import { toast } from "react-toastify";
 import {confirmAction} from "../../../shared/components/ConfirmAction";
+import {SavePen,}
 function ManageScholarships() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -244,7 +245,9 @@ function ManageScholarships() {
             Add Scholarship
           </button>
         )}
-
+        <button>
+        <SavePen color="#0d0808" />  Save As Draft
+        </button>
         <button
           style={{ backgroundColor: "green" }}
           type="button"
