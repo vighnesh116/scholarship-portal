@@ -10,9 +10,9 @@ function CreateScholarship() {
 
   const editItem = location.state?.scholarship || null;
 
-  const [search, setSearch] = useState("");
+  
   const [editing, setEditing] = useState(false);
-  const [scholarships, setScholarships] = useState([]);
+  
 
   const [form, setForm] = useState({
     sclrid: "",
