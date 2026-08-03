@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../components/ManageScholarships.css";
 import { toast } from "react-toastify";
-import {confirmAction} from "../../../shared/components/ConfirmAction";
-import {SavePen}from 'lucide-react';
+import { confirmAction } from "../../../shared/components/ConfirmAction";
+import { SavePen } from "lucide-react";
 function CreateScholarship() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ function CreateScholarship() {
   const [search, setSearch] = useState("");
   const [editing, setEditing] = useState(false);
   const [scholarships, setScholarships] = useState([]);
-  const[draft,setDraft]=useState(0)
+
   const [form, setForm] = useState({
     sclrid: "",
     sclrname: "",
@@ -81,17 +81,37 @@ function CreateScholarship() {
       draft: 0,
     });
   };
+  //   const handleDraftChange = (e) => {
+  //     if (form.draft === 1) {
+  //     setForm({
+  //       ...form,
+  //       draft: value,
+  //     });
+  //     } else {
+  //         setForm({
+  //             ...form,
+  //             draft: 1,
+  //         });
+  //     }
+  //   };
 
-  const addScholarship = async () => {
-    const confirmed =await confirmAction({
-      title:"Add Scholarship",
-      text:"Confirm of adding this scholarship ",
-      successTitle:"Successfully Added ",
-      successText:"The scholarship has been added to database ",
+  const addScholarship = async (draftValue = 0) => {
+    const confirmed = await confirmAction({
+      title: draftValue === 0 ? "Add-Scholarship" : "Save as Draft",
+      text:
+        draftValue === 0
+          ? "Confirm of adding this scholarship "
+          : "Confirm saving this scholarship as draft",
+      successTitle: "Successfully Added ",
+      successText:
+        draftValue === 0
+          ? "The scholarship has been added to Portal "
+          : "The scholarship has been saved as draft",
     });
-    if(!confirmed)return;
+    if (!confirmed) return;
     const dataToSend = {
       ...form,
+      draft: draftValue,
       gender: form.gender || null,
       caste: form.caste || null,
       educationqualifiation: form.educationqualifiation || null,
@@ -110,16 +130,24 @@ function CreateScholarship() {
     navigate("/admin/view");
   };
 
-  const updateScholarship = async () => {
-    const confirmed=await confirmAction({
-        title:"Update Scholarship",
-        text:"This will make changes in data",
-        successTitle:"Updated Successfully",
-        successText:"Scholarship Updated successfully",
-      });
-      if(!confirmed)return;
+  const updateScholarship = async (draftValue = 0) => {
+    const confirmed = await confirmAction({
+      title: draftValue === 0 ? "Update Scholarship" : "Save as Draft",
+      text:
+        draftValue === 0
+          ? "Confirm updating this scholarship "
+          : "Confirm saving this scholarship as draft",
+      successTitle: "Successfully Updated ",
+      successText:
+        draftValue === 0
+          ? "The scholarship has been updated successfully "
+          : "The scholarship has been saved as draft",
+    });
+    if (!confirmed) return;
     const dataToSend = {
       ...form,
+
+      draft: draftValue,
       gender: form.gender || null,
       caste: form.caste || null,
       educationqualifiation: form.educationqualifiation || null,
@@ -133,34 +161,27 @@ function CreateScholarship() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(dataToSend),
         },
-        
       );
       const data = await res.json();
-      
+
       toast.success(data.message);
       clearForm();
       loadScholarships();
       navigate("/admin/view");
-    } 
-    catch (error) {
+    } catch (error) {
       toast.error("Error updating scholarship:");
-      
     }
   };
 
- 
-  
-  
   return (
     <div className="manage-container">
-      
       <form
         onSubmit={(e) => {
           e.preventDefault();
           if (editing) {
-            updateScholarship();
+            updateScholarship(0);
           } else {
-            addScholarship();
+            addScholarship(0);
           }
         }}
       >
@@ -233,13 +254,27 @@ function CreateScholarship() {
             name="educationqualifiation"
             value={form.educationqualifiation}
             onChange={handleChange}
-          >   
+          >
             <option value="">Select Class</option>
-          
+
             <option value="11">11th</option>
             <option value="12">12th</option>
           </select>
+          <button
+            type="button"
+            className="action-btn"
+            onClick={() => {
+              if (editing) {
+                updateScholarship(1);
+              } else {
+                addScholarship(1);
+              }
+            }}
+          >
+            <SavePen /> Save As Draft
+          </button>
         </div>
+
         {editing ? (
           <button type="submit" className="action-btn">
             Update Scholarship
@@ -249,15 +284,6 @@ function CreateScholarship() {
             Add Scholarship
           </button>
         )}
- 
-        <button type="button" name="draft" className="action-btn"  value={form.draft=1} onClick={
-            {
-                handleChange,
-                addScholarship
-            }
-        }>
-          <SavePen color="#0d0808" />  Save As Draft
-        </button> 
 
         <button
           style={{ backgroundColor: "green" }}
