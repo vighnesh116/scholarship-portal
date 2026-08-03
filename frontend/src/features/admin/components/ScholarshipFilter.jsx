@@ -15,6 +15,9 @@ function ScholarshipFilter({ scholarships, onFilter }) {
   const [education, setEducation] = useState("");
   const [minAmount, setMinAmount] = useState("");
   const [draft,setDraft]=useState("");
+  const activeScholarships = scholarships.filter(item => item.days_left >= 0);
+  const inactiveScholarships = scholarships.filter(item => item.days_left < 0);
+  const [status, setStatus] = useState("");
   useEffect(() => {
     let result = scholarships;
 
@@ -67,11 +70,19 @@ function ScholarshipFilter({ scholarships, onFilter }) {
         return true;
       });
     }
-    
+    if(status){
+      result=result.filter((item)=>{
+        if(status==="active"){
+          return item.inactiveScholarships >=0;
+        }
+        if(status==="inactive"){
+          return item.inactiveScholarships >=0;   
+        }
+      })
 
+    }
 
     onFilter(result);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gender, caste, education, minAmount, scholarships,draft]);
 
   const resetFilters = () => {
@@ -80,9 +91,10 @@ function ScholarshipFilter({ scholarships, onFilter }) {
     setEducation("");
     setMinAmount("");
     setDraft("");
+    setStatus("");
   };
 
-  const hasActiveFilter = gender || caste || education || minAmount || draft;
+  const hasActiveFilter = gender || caste || education || minAmount || draft || status;
 
   return (
     <div className="scholarship-filter">
@@ -138,7 +150,11 @@ function ScholarshipFilter({ scholarships, onFilter }) {
         
       </select>
 
-
+      <select className="filter-select" value={status} onChange={(e) => setStatus(e.target.value)}>
+        <option value="">All Scholarships</option>
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+      </select>
 
       
       {hasActiveFilter && (
