@@ -8,9 +8,10 @@ import AdminLayout from "../features/admin/components/AdminLayout";
 import AdminDashboard from "../features/admin/pages/AdminDashboard";
 import StudentsDetails from "../features/admin/pages/StudentsDetails";
 import UsersDetails from "../features/admin/pages/UsersDetails";
-import ManageScholarships from "../features/admin/pages/ManageScholarships";
-import ViewScholarships from "../features/admin/pages/ViewScholarships";
+
+import ViewScholarships from "../features/Scholarship/pages/ViewScholarships";
 import Logout from "../shared/components/Logout";
+import CreateScholarship from "../features/Scholarship/pages/CreateScholarship";
 function AppRoutes() {
   return (
     <Routes>
@@ -29,7 +30,7 @@ function AppRoutes() {
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminDashboard />} />
 
-        <Route path="manage" element={<ManageScholarships />} />
+        <Route path="manage" element={<CreateScholarship />} />
 
         <Route path="view" element={<ViewScholarships />} />
 
