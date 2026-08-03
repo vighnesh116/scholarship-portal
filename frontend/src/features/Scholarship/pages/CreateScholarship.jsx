@@ -81,19 +81,7 @@ function CreateScholarship() {
       draft: 0,
     });
   };
-  //   const handleDraftChange = (e) => {
-  //     if (form.draft === 1) {
-  //     setForm({
-  //       ...form,
-  //       draft: value,
-  //     });
-  //     } else {
-  //         setForm({
-  //             ...form,
-  //             draft: 1,
-  //         });
-  //     }
-  //   };
+ 
 
   const addScholarship = async (draftValue = 0) => {
     const confirmed = await confirmAction({
