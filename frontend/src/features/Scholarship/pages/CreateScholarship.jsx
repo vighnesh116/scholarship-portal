@@ -32,7 +32,6 @@ function CreateScholarship() {
     if (editItem) {
       setForm({
         ...editItem,
-        draft: editItem.draft || 0,
         gender: editItem.gender || "",
         caste: editItem.caste || "",
         educationqualifiation: editItem.educationqualifiation || "",
@@ -43,10 +42,7 @@ function CreateScholarship() {
     }
   }, [editItem]);
 
-  useEffect(() => {
-    loadScholarships();
-  }, []);
-
+  
   
   const handleChange = (e) => {
     setForm({
@@ -104,7 +100,7 @@ function CreateScholarship() {
     const data = await res.json();
     toast.info(data.message);
     clearForm();
-    loadScholarships();
+    
     navigate("/admin/view");
   };
 
