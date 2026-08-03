@@ -435,6 +435,8 @@ def scholarships():
             miniincome,
             application_link,
             deadline,
+            draft,
+            
 
             CASE
                 WHEN STR_TO_DATE(deadline,'%d-%b-%Y') >= CURDATE()
