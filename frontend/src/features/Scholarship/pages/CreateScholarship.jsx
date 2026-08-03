@@ -25,13 +25,14 @@ function CreateScholarship() {
     educationqualifiation: "",
     deadline: "",
     application_link: "",
-    draft: "",
+    draft: 0,
   });
 
   useEffect(() => {
     if (editItem) {
       setForm({
         ...editItem,
+        draft: editItem.draft || 0,
         gender: editItem.gender || "",
         caste: editItem.caste || "",
         educationqualifiation: editItem.educationqualifiation || "",
@@ -77,7 +78,7 @@ function CreateScholarship() {
       educationqualifiation: "",
       deadline: "",
       application_link: "",
-      draft: "",
+      draft: 0,
     });
   };
 
@@ -249,7 +250,12 @@ function CreateScholarship() {
           </button>
         )}
  
-        <button type="button" name="draft" className="action-btn"  value={form.draft=1} onClick={handleChange}>
+        <button type="button" name="draft" className="action-btn"  value={form.draft=1} onClick={
+            {
+                handleChange,
+                addScholarship
+            }
+        }>
           <SavePen color="#0d0808" />  Save As Draft
         </button> 
 
