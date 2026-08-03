@@ -152,10 +152,11 @@ def add_scholarship():
                 gender,
                 caste,
                 educationqualifiation,
-                application_link
+                application_link,
+                draft
             )
             VALUES
-            (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
             """,
             (
                 data['sclrname'],
@@ -166,7 +167,8 @@ def add_scholarship():
                 gender,
                 caste,
                 educationqualifiation,
-                data['application_link']
+                data['application_link'],
+                data['draft'],
             )
         )
 
@@ -268,7 +270,8 @@ def update_scholarship(id):
                 gender=%s,
                 caste=%s,
                 educationqualifiation=%s,
-                application_link=%s
+                application_link=%s,
+                draft=%s
             WHERE sclrid=%s
             """,
             (
@@ -281,6 +284,7 @@ def update_scholarship(id):
                 data['caste'],
                 data['educationqualifiation'],
                 data['application_link'],
+                data['draft'],
                 id
             )
         )
