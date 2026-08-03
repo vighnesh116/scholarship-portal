@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { confirmAction } from "../../../shared/components/ConfirmAction";
 import { SavePen } from "lucide-react";
 function CreateScholarship() {
-  const location = useLocation();
+  
   const navigate = useNavigate();
 
   const editItem = location.state?.scholarship || null;
@@ -47,17 +47,7 @@ function CreateScholarship() {
     loadScholarships();
   }, []);
 
-  const loadScholarships = async () => {
-    try {
-      const res = await fetch("http://127.0.0.1:5000/admin-scholarships");
-      const data = await res.json();
-      setScholarships(data || []);
-    } catch (error) {
-      toast.error("Error loading scholarships:", error);
-      setScholarships([]);
-    }
-  };
-
+  
   const handleChange = (e) => {
     setForm({
       ...form,
