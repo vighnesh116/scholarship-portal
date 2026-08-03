@@ -27,8 +27,8 @@ function ScholarshipResult() {
     }
   };
 
-  const activeScholarships = scholarships.filter(item => item.days_left > 0 && item.draft === 0);
-  const inactiveScholarships = scholarships.filter(item => item.days_left <= 0 || item.draft !== 0);
+  const activeScholarships = scholarships.filter(item => item.days_left >= 0 && item.draft === 0);
+  const inactiveScholarships = scholarships.filter(item => item.days_left < 0 && item.draft === 0);
   return (
     <div className="scholarship-page">
       <img src={logo} alt="Scholarship Portal Logo" className="logo" />
