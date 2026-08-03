@@ -5,14 +5,13 @@ import { toast } from "react-toastify";
 import { confirmAction } from "../../../shared/components/ConfirmAction";
 import { SavePen } from "lucide-react";
 function CreateScholarship() {
-  
+  const location = useLocation();
   const navigate = useNavigate();
 
   const editItem = location.state?.scholarship || null;
 
-  
   const [editing, setEditing] = useState(false);
-  
+  const [scholarships, setScholarships] = useState([]);
 
   const [form, setForm] = useState({
     sclrid: "",
@@ -32,6 +31,7 @@ function CreateScholarship() {
     if (editItem) {
       setForm({
         ...editItem,
+        draft: editItem.draft || 0,
         gender: editItem.gender || "",
         caste: editItem.caste || "",
         educationqualifiation: editItem.educationqualifiation || "",
@@ -42,8 +42,21 @@ function CreateScholarship() {
     }
   }, [editItem]);
 
-  
-  
+  useEffect(() => {
+    loadScholarships();
+  }, []);
+
+  const loadScholarships = async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:5000/admin-scholarships");
+      const data = await res.json();
+      setScholarships(data || []);
+    } catch (error) {
+      toast.error("Error loading scholarships:", error);
+      setScholarships([]);
+    }
+  };
+
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -67,7 +80,6 @@ function CreateScholarship() {
       draft: 0,
     });
   };
- 
 
   const addScholarship = async (draftValue = 0) => {
     const confirmed = await confirmAction({
@@ -100,7 +112,7 @@ function CreateScholarship() {
     const data = await res.json();
     toast.info(data.message);
     clearForm();
-    
+    loadScholarships();
     navigate("/admin/view");
   };
 
