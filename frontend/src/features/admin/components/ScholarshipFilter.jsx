@@ -15,8 +15,8 @@ function ScholarshipFilter({ scholarships, onFilter }) {
   const [education, setEducation] = useState("");
   const [minAmount, setMinAmount] = useState("");
   const [draft,setDraft]=useState("");
-  const activeScholarships = scholarships.filter(item => item.days_left >= 0);
-  const inactiveScholarships = scholarships.filter(item => item.days_left < 0);
+  // const activeScholarships = scholarships.filter(item => item.days_left >= 0);
+  // const inactiveScholarships = scholarships.filter(item => item.days_left < 0);
   const [status, setStatus] = useState("");
   useEffect(() => {
     let result = scholarships;
@@ -70,20 +70,24 @@ function ScholarshipFilter({ scholarships, onFilter }) {
         return true;
       });
     }
-    if(status){
-      result=result.filter((item)=>{
-        if(status==="active"){
-          return item.inactiveScholarships >=0;
-        }
-        if(status==="inactive"){
-          return item.inactiveScholarships >=0;   
-        }
-      })
+   if (status) {
+  result = result.filter((item) => {
+    const daysLeft = Number(item.days_left);
 
+    if (status === "active") {
+      return daysLeft >= 0;
     }
 
+    if (status === "inactive") {
+      return daysLeft < 0;
+    }
+
+    return true;
+  });
+}
+
     onFilter(result);
-  }, [gender, caste, education, minAmount, scholarships,draft]);
+  }, [gender, caste, education, minAmount, scholarships,draft,status]);
 
   const resetFilters = () => {
     setGender("");
