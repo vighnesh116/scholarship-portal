@@ -56,7 +56,7 @@ const presentData =Math.ceil({startRecord}-{endRecord} );
 
       <input
         type="text"
-        placeholder={`Search Students           TotalStudents: ${totalRecords}`}
+        placeholder={`Search Students   TotalStudents: ${totalRecords}`}
         value={search}
         onChange={handleSearchChange}
         className="search-box"
