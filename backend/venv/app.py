@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import mysql.connector
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from datetime import datetime,date 
 app = Flask(__name__)
 CORS(app)
 
@@ -209,6 +209,14 @@ def admin_scholarships():
         )
 
         scholarships = cursor.fetchall()
+        today = date.today()
+
+        for scholarship in scholarships:
+         
+         
+         deadline = datetime.strptime(scholarship["deadline"], "%d-%b-%Y").date()
+
+         scholarship["is_active"] = deadline >= today
 
         return jsonify(scholarships)
 
@@ -216,7 +224,7 @@ def admin_scholarships():
 
         cursor.close()
         db.close()
-        
+
 # DELETE SCHOLARSHIP
 @app.route('/delete-scholarship/<int:id>', methods=['DELETE'])
 def delete_scholarship(id):
