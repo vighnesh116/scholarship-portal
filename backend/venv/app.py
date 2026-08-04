@@ -511,10 +511,32 @@ def admin_students():
     try:
         cursor.execute("SELECT * FROM students ORDER BY stdid ASC")
         students = cursor.fetchall()
-        return jsonify(students)
+        
+        # Active Scholarships
+        cursor.execute("""
+            SELECT COUNT(*) AS active
+            FROM sclrinfo
+            WHERE STR_TO_DATE(deadline,'%d-%b-%Y') >= CURDATE()
+        """)
+        active = cursor.fetchone()
+
+        # Inactive Scholarships
+        cursor.execute("""
+            SELECT COUNT(*) AS inactive
+            FROM sclrinfo
+            WHERE STR_TO_DATE(deadline,'%d-%b-%Y') < CURDATE()
+        """)
+        inactive = cursor.fetchone()
+
+        return jsonify({
+            "students": students,
+            "active_scholarships": active["active"],
+            "inactive_scholarships": inactive["inactive"]
+        })
     except Exception as e:
         print(e)
         return jsonify({"message": "Error fetching students"}), 500
+
     finally:
         cursor.close()
         db.close()
