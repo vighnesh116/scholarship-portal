@@ -44,14 +44,14 @@ function UsersDetails() {
     setSearch(e.target.value);
     setCurrentPage(1);
   };
-
+const totalRecords=  filteredUsers.length;
   return (
     <div className="manage-container">
       <h1 className="manage-title">USERS DETAILS</h1>
 
       <input
         type="text"
-        placeholder="🔍 Search User By Name"
+        placeholder={`🔍 Search User By Name   TotalUsers: ${totalRecords}`}
         value={search}
         onChange={handleSearchChange}
         className="search-box"
