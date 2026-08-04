@@ -216,8 +216,7 @@ def admin_scholarships():
 
         cursor.close()
         db.close()
-
-
+        
 # DELETE SCHOLARSHIP
 @app.route('/delete-scholarship/<int:id>', methods=['DELETE'])
 def delete_scholarship(id):
@@ -512,27 +511,7 @@ def admin_students():
         cursor.execute("SELECT * FROM students ORDER BY stdid ASC")
         students = cursor.fetchall()
         
-        # Active Scholarships
-        cursor.execute("""
-            SELECT COUNT(*) AS active
-            FROM sclrinfo
-            WHERE STR_TO_DATE(deadline,'%d-%b-%Y') >= CURDATE()
-        """)
-        active = cursor.fetchone()
-
-        # Inactive Scholarships
-        cursor.execute("""
-            SELECT COUNT(*) AS inactive
-            FROM sclrinfo
-            WHERE STR_TO_DATE(deadline,'%d-%b-%Y') < CURDATE()
-        """)
-        inactive = cursor.fetchone()
-
-        return jsonify({
-            "students": students,
-            "active_scholarships": active["active"],
-            "inactive_scholarships": inactive["inactive"]
-        })
+        return jsonify(students)
     except Exception as e:
         print(e)
         return jsonify({"message": "Error fetching students"}), 500
