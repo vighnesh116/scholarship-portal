@@ -14,7 +14,7 @@ function ScholarshipFilter({ scholarships, onFilter }) {
   const [caste, setCaste] = useState("");
   const [education, setEducation] = useState("");
   const [minAmount, setMinAmount] = useState("");
-  const [draft,setDraft]=useState("");
+  const [draft, setDraft] = useState("");
   // const activeScholarships = scholarships.filter(item => item.days_left >= 0);
   // const inactiveScholarships = scholarships.filter(item => item.days_left < 0);
   const [status, setStatus] = useState("");
@@ -62,30 +62,24 @@ function ScholarshipFilter({ scholarships, onFilter }) {
         return userIncome <= scholarshipIncome;
       });
     }
-    if(draft){
-      result=result.filter((item)=>{
-        if(item.draft==0){
+    if (draft) {
+      result = result.filter((item) => {
+        if (item.draft == 0) {
           return false;
         }
         return true;
       });
     }
     if (status) {
-       result = result.filter((item) => {
-    if (status === "active") {
-      return item.deadline ;
+      result = result.filter((item) => {
+        if (status === "active") return item.is_active;
+        if (status === "inactive") return !item.is_active;
+        return true;
+      });
     }
-
-    if (status === "inactive") {
-      return item.deadline ;
-    }
-
-    
-  });
-}
 
     onFilter(result);
-  }, [gender, caste, education, minAmount, scholarships,draft,status]);
+  }, [gender, caste, education, minAmount, scholarships, draft, status]);
 
   const resetFilters = () => {
     setGender("");
@@ -96,7 +90,8 @@ function ScholarshipFilter({ scholarships, onFilter }) {
     setStatus("");
   };
 
-  const hasActiveFilter = gender || caste || education || minAmount || draft || status;
+  const hasActiveFilter =
+    gender || caste || education || minAmount || draft || status;
 
   return (
     <div className="scholarship-filter">
@@ -140,25 +135,26 @@ function ScholarshipFilter({ scholarships, onFilter }) {
         value={minAmount}
         onChange={(e) => setMinAmount(e.target.value)}
       />
-        
 
-        <select
+      <select
         className="filter-select"
         value={draft}
         onChange={(e) => setDraft(e.target.value)}
       >
         <option value="">Completed</option>
         <option value="1">Draft</option>
-        
       </select>
 
-      {/* <select className="filter-select" value={status} onChange={(e) => setStatus(e.target.value)}>
+      <select
+        className="filter-select"
+        value={status}
+        onChange={(e) => setStatus(e.target.value)}
+      >
         <option value="">All Scholarships</option>
         <option value="active">Active</option>
         <option value="inactive">Inactive</option>
-      </select> */}
+      </select>
 
-      
       {hasActiveFilter && (
         <button className="filter-reset-btn" onClick={resetFilters}>
           Reset Filters
