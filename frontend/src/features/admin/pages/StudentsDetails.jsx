@@ -28,7 +28,6 @@ function StudentsDetails() {
       : value;
   };
 
-  // 1. Filter first (same as before)
   const filtered = students.filter((student) =>
     student.stdname?.toLowerCase().includes(search.toLowerCase()),
   );
@@ -44,12 +43,12 @@ function StudentsDetails() {
   const startRecord = filtered.length === 0 ? 0 : indexOfFirstPost + 1;
 const endRecord = Math.min(indexOfLastPost, filtered.length);
 const presentData =Math.ceil({startRecord}-{endRecord} );
-  // 4. Reset to page 1 whenever the search term changes
+  
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
     setCurrentPage(1);
   };
-  
+  const totalRecords = filtered.length;
   
   return (
     <div className="manage-container">
@@ -57,7 +56,7 @@ const presentData =Math.ceil({startRecord}-{endRecord} );
 
       <input
         type="text"
-        placeholder="Search Students"
+        placeholder={`Search Students           TotalStudents: ${totalRecords}`}
         value={search}
         onChange={handleSearchChange}
         className="search-box"
