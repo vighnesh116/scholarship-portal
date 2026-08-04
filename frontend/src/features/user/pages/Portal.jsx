@@ -34,9 +34,7 @@ function Portal() {
 
       // Fetch
       const response = await axios.post(
-        "http://localhost:5000/scholarships",
-        form,
-      );
+        "http://localhost:5000/scholarships",form,);
 
       // Redirect to scholarship results page
       navigate("/scholarships", {
