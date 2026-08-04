@@ -70,19 +70,17 @@ function ScholarshipFilter({ scholarships, onFilter }) {
         return true;
       });
     }
-   if (status) {
-  result = result.filter((item) => {
-    const daysLeft = Number(item.days_left);
-
+    if (status) {
+       result = result.filter((item) => {
     if (status === "active") {
-      return daysLeft >= 0;
+      return item.deadline ;
     }
 
     if (status === "inactive") {
-      return daysLeft < 0;
+      return item.deadline ;
     }
 
-    return true;
+    
   });
 }
 
@@ -154,11 +152,11 @@ function ScholarshipFilter({ scholarships, onFilter }) {
         
       </select>
 
-      <select className="filter-select" value={status} onChange={(e) => setStatus(e.target.value)}>
+      {/* <select className="filter-select" value={status} onChange={(e) => setStatus(e.target.value)}>
         <option value="">All Scholarships</option>
         <option value="active">Active</option>
         <option value="inactive">Inactive</option>
-      </select>
+      </select> */}
 
       
       {hasActiveFilter && (
