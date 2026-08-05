@@ -4,7 +4,7 @@ import Pagination from "../components/Pagination";
 function StudentsDetails() {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage] = useState(10); // no setter needed unless you want it adjustable
+  const [postPerPage] = useState(10);
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
@@ -32,24 +32,22 @@ function StudentsDetails() {
     student.stdname?.toLowerCase().includes(search.toLowerCase()),
   );
 
-  
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
   const currentStudents = filtered.slice(indexOfFirstPost, indexOfLastPost);
 
-
   const totalPages = Math.ceil(filtered.length / postPerPage);
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
   const startRecord = filtered.length === 0 ? 0 : indexOfFirstPost + 1;
-const endRecord = Math.min(indexOfLastPost, filtered.length);
-const presentData =Math.ceil({startRecord}-{endRecord} );
-  
+  const endRecord = Math.min(indexOfLastPost, filtered.length);
+  const presentData = Math.ceil({ startRecord } - { endRecord });
+
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
     setCurrentPage(1);
   };
   const totalRecords = filtered.length;
-  
+
   return (
     <div className="manage-container">
       <h1 className="manage-title">View Students Details</h1>
@@ -98,8 +96,7 @@ const presentData =Math.ceil({startRecord}-{endRecord} );
         )}
       </div>
 
-      
-         <Pagination
+      <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={setCurrentPage}
@@ -108,10 +105,6 @@ const presentData =Math.ceil({startRecord}-{endRecord} );
         pageEnd={startRecord + currentStudents.length - 1}
         totalRecords={totalRecords}
       />
-
-    
-
-
     </div>
   );
 }
