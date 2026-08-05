@@ -55,7 +55,7 @@ def signup():
 
 
 # LOGIN
-@app.route('/login', methods=['POST'])
+
 def login():
 
     data = request.json
@@ -103,7 +103,7 @@ def login():
         cursor.close()
         db.close()
 # Update Password
-@app.route('/update-password', methods=['POST'])
+
 def update_password():  
     
     data = request.json
