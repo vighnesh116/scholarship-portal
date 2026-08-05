@@ -17,8 +17,9 @@ from student import portal, admin_students, user_data
 app = Flask(__name__)
 CORS(app)
 app.config['SECRET_KEY'] = 'Nqn4muAADg3RbA'
-#Auth
 
+
+#--------------------Authentication--------------------#
 
 # SIGNUP
 @app.route('/signup', methods=['POST'])(signup)
@@ -27,22 +28,33 @@ app.config['SECRET_KEY'] = 'Nqn4muAADg3RbA'
 @app.route('/login', methods=['POST'])(login)
 
 #Update Password
+@app.route('/update-password', methods=['POST'])(update_password)
+
+
+#--------------------Scholarship Management--------------------
 
 # ADD SCHOLARSHIP
 
 # VIEW ALL SCHOLARSHIPS
 
-# portal
+
 # ADMIN STATS
 
 
-#User data sent to Admin
+
 
 # SCHOLARSHIP FILTER
 
+
+
+#-------------------------Student Management-------------------------#
+
 # VIEW ALL STUDENTS
 
-# UPDATE PASSWORD
+# portal
+
+#User data sent to Admin
+
 
 if __name__ == "__main__":
     app.run(debug=True)
