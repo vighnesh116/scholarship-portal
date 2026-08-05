@@ -33,18 +33,24 @@ app.config['SECRET_KEY'] = 'Nqn4muAADg3RbA'
 #--------------------Scholarship Management--------------------
 
 # ADD SCHOLARSHIP
+@app.route('/add-scholarship', methods=['POST'])(add_scholarship)
+
+#Update Scholarship
+@app.route('/update-scholarship/<int:id>', methods=['PUT'])(update_scholarship) #add (id if errroe occurs)
+# SCHOLARSHIP FILTER
+@app.route('/scholarships', methods=['POST'])(scholarships)
 
 # VIEW ALL SCHOLARSHIPS
-
+@app.route('/admin-scholarships', methods=['GET'])(admin_scholarships)
 
 # ADMIN STATS
+@app.route('/admin-stats', methods=['GET'])(admin_stats)
 
 
 
 
-# SCHOLARSHIP FILTER
-
-
+# DELETE SCHOLARSHIP
+@app.route('/delete-scholarship/<int:id>', methods=['DELETE'])(delete_scholarship)
 
 #-------------------------Student Management-------------------------#
 
