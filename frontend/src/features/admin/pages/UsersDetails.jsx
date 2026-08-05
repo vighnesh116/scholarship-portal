@@ -90,6 +90,10 @@ const totalRecords=  filteredUsers.length;
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={setCurrentPage}
+        dataPerPage={currentUsers.length}
+        pageStart={indexOfFirstPost + 1}
+        pageEnd={indexOfFirstPost + currentUsers.length}
+        totalRecords={totalRecords}
       />
     </div>
   );
