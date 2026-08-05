@@ -185,6 +185,10 @@ console.log(scholarships);
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={setCurrentPage}
+          dataPerPage={currentScholarships.length}
+          pageStart={indexOfFirstPost + 1}
+          pageEnd={indexOfFirstPost + currentScholarships.length}
+          totalRecords={filtered.length}
         />
       </div>
     </div>
