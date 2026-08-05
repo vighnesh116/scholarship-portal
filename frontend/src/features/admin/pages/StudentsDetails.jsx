@@ -32,12 +32,12 @@ function StudentsDetails() {
     student.stdname?.toLowerCase().includes(search.toLowerCase()),
   );
 
-  // 2. Slice the filtered list to get only the current page's rows
+  
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
   const currentStudents = filtered.slice(indexOfFirstPost, indexOfLastPost);
 
-  // 3. Work out how many page buttons we need
+
   const totalPages = Math.ceil(filtered.length / postPerPage);
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
   const startRecord = filtered.length === 0 ? 0 : indexOfFirstPost + 1;
@@ -103,6 +103,8 @@ const presentData =Math.ceil({startRecord}-{endRecord} );
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={setCurrentPage}
+        dataPerPage={currentStudents.length}
+        totalRecords={totalRecords}
       />
 
     
