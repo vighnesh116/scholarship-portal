@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from database import get_db
+from database import get_db  
 
 # SAVE STUDENT INFO Portal
 
@@ -11,12 +11,12 @@ def portal():
     cursor = db.cursor(dictionary=True)
 
     try:
-
+ 
         cursor.execute(
             """
             INSERT INTO students
             (
-                stdname,
+                stdname, 
                 stdpercent,
                 stdincome,
                 stdgender,
