@@ -12,9 +12,7 @@ function Pagination({ currentPage, totalPages, onPageChange, dataPerPage,pageSta
         {pageStart} - {pageEnd} of {totalRecords}
       </div>
     <> </>
-      <div className="page-info">
-        {currentPage} from {totalPages}
-      </div>
+      
 
       <div className="page-control">
         <button
@@ -24,7 +22,7 @@ function Pagination({ currentPage, totalPages, onPageChange, dataPerPage,pageSta
           <ChevronLeft />
         </button>
 
-        <div className="current-page">{currentPage}</div>
+        <div className="page-info1">{currentPage} from {totalPages}</div>
 
         <button
           disabled={currentPage === totalPages}
