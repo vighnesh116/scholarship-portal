@@ -1,5 +1,8 @@
-# SAVE STUDENT INFO
-@app.route('/portal', methods=['POST'])
+from flask import Flask, request, jsonify
+from database import get_db
+
+# SAVE STUDENT INFO Portal
+
 def portal():
 
     data = request.json
@@ -45,7 +48,7 @@ def portal():
         db.close()
 
 #User data sent to Admin
-@app.route('/admin-users', methods=['GET'])
+
 def user_data():
     db = get_db()
 
@@ -61,7 +64,7 @@ def user_data():
         db.close()
 
 # VIEW ALL STUDENTS
-@app.route('/admin-students', methods=['GET'])
+
 def admin_students():
     db = get_db()
     
