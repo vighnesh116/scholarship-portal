@@ -5,7 +5,7 @@ from backend.venv.database import get_db
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime, timedelta
 # SIGNUP
-@app.route('/signup', methods=['POST'])
+
 def signup():
 
     data = request.json
