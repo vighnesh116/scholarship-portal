@@ -1,12 +1,14 @@
 
 from flask import request, jsonify
-from backend.venv import app
-from backend.venv.database import get_db
+
+from database import get_db
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime, timedelta
+
 # SIGNUP
 
 def signup():
+
 
     data = request.json
 
@@ -80,14 +82,7 @@ def login():
             password
         ):
             
-            token=jwt.encode(
-                {
-                    "user_id":user['email'],
-                    "role":user['role'],
-                    "expiration":datetime.utcnow()+timedelta(hours=3)
-                }
-            )
-
+            
             return jsonify({
                 "success": True,
                 "name": user['name'],
@@ -102,6 +97,7 @@ def login():
 
         cursor.close()
         db.close()
+
 # Update Password
 
 def update_password():  
