@@ -35,7 +35,7 @@ function ViewScholarships() {
       state: { scholarship: item },
     });
   };
-console.log(scholarships);
+  console.log(scholarships);
   const loadScholarships = async () => {
     const res = await fetch("http://127.0.0.1:5000/admin-scholarships");
     const data = await res.json();
@@ -140,15 +140,13 @@ console.log(scholarships);
                 <td>{renderValue(item.caste)}</td>
                 <td>{renderValue(item.educationqualifiation)}</td>
                 <td>{renderValue(item.deadline)}</td>
-  <td style={{padding:"20px"}}>
+                <td style={{ padding: "20px" }}>
                   {renderValue(item.draft) != 0 ? (
                     <SquarePen color="#c41c35" />
-                    
                   ) : (
                     <CircleCheck color="#58d57d" />
                   )}
                 </td>
-              
 
                 <td>
                   <button
