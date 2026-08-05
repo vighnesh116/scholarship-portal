@@ -104,6 +104,8 @@ const presentData =Math.ceil({startRecord}-{endRecord} );
         totalPages={totalPages}
         onPageChange={setCurrentPage}
         dataPerPage={currentStudents.length}
+        pageStart={startRecord}
+        pageEnd={startRecord + currentStudents.length - 1}
         totalRecords={totalRecords}
       />
 
