@@ -128,7 +128,6 @@ function ScholarshipFilter({ scholarships, onFilter }) {
         <option value="12">12th</option>
       </select>
 
-      
       <select
         className="filter-select"
         value={draft}
@@ -155,7 +154,6 @@ function ScholarshipFilter({ scholarships, onFilter }) {
         value={minAmount}
         onChange={(e) => setMinAmount(e.target.value)}
       />
-
 
       {hasActiveFilter && (
         <button className="filter-reset-btn" onClick={resetFilters}>
