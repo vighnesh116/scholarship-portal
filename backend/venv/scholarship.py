@@ -1,10 +1,10 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask import  request, jsonify
+
 from datetime import datetime
 from backend.venv.app import get_db
 
 # ADD SCHOLARSHIP
-@app.route('/add-scholarship', methods=['POST'])
+
 def add_scholarship():
 
     data = request.json
@@ -85,7 +85,7 @@ def add_scholarship():
         cursor.close()
         db.close()
 # DELETE SCHOLARSHIP
-@app.route('/delete-scholarship/<int:id>', methods=['DELETE'])
+
 def delete_scholarship(id):
 
     db = get_db()
@@ -114,7 +114,7 @@ def delete_scholarship(id):
 
 
 # UPDATE SCHOLARSHIP
-@app.route('/update-scholarship/<int:id>', methods=['PUT'])
+
 def update_scholarship(id):
 
     data = request.json
@@ -167,7 +167,7 @@ def update_scholarship(id):
         db.close()
 
 # SCHOLARSHIP FILTER
-@app.route('/scholarships', methods=['POST'])
+
 def scholarships():
 
     data = request.json
@@ -257,7 +257,8 @@ def scholarships():
         db.close()
 
 # VIEW ALL SCHOLARSHIPS
-@app.route('/admin-scholarships', methods=['GET'])
+from datetime import date
+
 def admin_scholarships():
 
     db = get_db()
@@ -293,7 +294,7 @@ def admin_scholarships():
 from flask import jsonify
 from datetime import datetime
 
-@app.route('/admin-stats', methods=['GET'])
+
 def admin_stats():
 
     db = get_db()
