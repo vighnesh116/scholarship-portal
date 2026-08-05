@@ -1,10 +1,17 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-function Pagination({ currentPage, totalPages, onPageChange }) {
+function Pagination({ currentPage, totalPages, onPageChange, dataPerPage,pageStart,pageEnd ,totalRecords}) {
   if (totalPages <= 1) return null;
 
   return (
     <div className="pagination">
+
+    
+
+      <div className="page-info1">
+        {pageStart} - {pageEnd} of {totalRecords}
+      </div>
+    <> </>
       <div className="page-info">
         {currentPage} from {totalPages}
       </div>
