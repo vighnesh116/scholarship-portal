@@ -1,7 +1,6 @@
-from flask import Flask, request, jsonify
+from flask import Flask
 from flask_cors import CORS
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+
 
 from auth import signup, login, update_password
 from scholarship import (
@@ -50,11 +49,13 @@ app.config['SECRET_KEY'] = 'Nqn4muAADg3RbA'
 #-------------------------Student Management-------------------------#
 
 # VIEW ALL STUDENTS
+@app.route('/admin-students', methods=['GET'])(admin_students)
 
 # portal
+@app.route('/portal', methods=['POST'])(portal)
 
 #User data sent to Admin
-
+@app.route('/admin-users', methods=['GET'])(user_data)
 
 if __name__ == "__main__":
     app.run(debug=True)
