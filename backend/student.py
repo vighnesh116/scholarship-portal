@@ -4,7 +4,7 @@ from database import get_db
 # SAVE STUDENT INFO Portal
 
 def portal():
-
+    
     data = request.json
 
     db = get_db()
