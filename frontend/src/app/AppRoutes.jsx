@@ -12,6 +12,7 @@ import ProtectedRoute from "./ProtectedRoutes";
 import ViewScholarships from "../features/Scholarship/pages/ViewScholarships";
 import Logout from "../shared/components/Logout";
 import CreateScholarship from "../features/Scholarship/pages/CreateScholarship";
+import ErrorPage from "../shared/pages/ErrorPage";
 function AppRoutes() {
   return (
     <Routes>
@@ -21,6 +22,7 @@ function AppRoutes() {
 
       <Route path="/logout" element={<Logout />} />
 
+      <Route path="/error"element={<ErrorPage/>}/>
 
       <Route
         path="/update-password"
