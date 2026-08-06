@@ -33,7 +33,7 @@ const token =localStorage.getItem("access_token");
       await axios.post("http://localhost:5000/portal", form,
         {
           headers:{
-            Authorization:`Bearer${token}`,
+            Authorization:`Bearer ${token}`,
           },
         }
       );
