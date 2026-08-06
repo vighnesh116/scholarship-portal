@@ -8,10 +8,12 @@ function ProtectedRoute({childern,allowedRole}){
         return<Navigate to="/login" replace={true}/>;
 
     }
-    if(allowedRole && role !==allowedRole ){
+    if(allowedRole && role !==allowedRole || !role){
         return <Navigate to="/error" replace={true}/>
     }
-    return childern ;
-
+   
+return childern ;
+    
+    
 }
 export default ProtectedRoute;
