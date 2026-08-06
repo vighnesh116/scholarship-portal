@@ -22,7 +22,7 @@ function AppRoutes() {
 
       <Route path="/logout" element={<Logout />} />
 
-      <Route path="/error"element={<ErrorPage/>}/>
+      <Route path="/error" element={<ErrorPage />} />
 
       <Route
         path="/update-password"
@@ -36,9 +36,10 @@ function AppRoutes() {
       <Route
         path="/portal"
         element={
-          <ProtectedRoute childern={ <Portal />} allowedRole="student">
-           
-          </ProtectedRoute>
+          <ProtectedRoute
+            childern={<Portal />}
+            allowedRole="student"
+          ></ProtectedRoute>
         }
       />
 
@@ -51,18 +52,59 @@ function AppRoutes() {
         }
       />
 
-      
-      <Route path="/admin" element={<ProtectedRoute allowedRole="admin" childern={<AdminLayout />}></ProtectedRoute>}>
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute
+            allowedRole="admin"
+            childern={<AdminLayout />}
+          ></ProtectedRoute>
+        }
+      >
+        <Route
+          index
+          element={
+            <ProtectedRoute allowedRole="admin">
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route index element={<ProtectedRoute allowedRole="admin"><AdminDashboard /></ProtectedRoute>} />
+        <Route
+          path="manage"
+          element={
+            <ProtectedRoute allowedRole="admin">
+              <CreateScholarship />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="manage" element={<ProtectedRoute allowedRole="admin"><CreateScholarship /></ProtectedRoute>} />
+        <Route
+          path="view"
+          element={
+            <ProtectedRoute allowedRole="admin">
+              <ViewScholarships />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="view" element={<ProtectedRoute allowedRole="admin"><ViewScholarships /></ProtectedRoute>} />
+        <Route
+          path="students"
+          element={
+            <ProtectedRoute allowedRole="admin">
+              <StudentsDetails />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="students" element={<ProtectedRoute allowedRole="admin"><StudentsDetails /></ProtectedRoute>} />
-
-        <Route path="users" element={<ProtectedRoute allowedRole="admin"><UsersDetails /></ProtectedRoute>} />
+        <Route
+          path="users"
+          element={
+            <ProtectedRoute allowedRole="admin">
+              <UsersDetails />
+            </ProtectedRoute>
+          }
+        />
       </Route>
     </Routes>
   );
