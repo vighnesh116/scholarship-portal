@@ -8,7 +8,7 @@ import AdminLayout from "../features/admin/components/AdminLayout";
 import AdminDashboard from "../features/admin/pages/AdminDashboard";
 import StudentsDetails from "../features/admin/pages/StudentsDetails";
 import UsersDetails from "../features/admin/pages/UsersDetails";
-
+import ProtectedRoute from "./ProtectedRoutes";
 import ViewScholarships from "../features/Scholarship/pages/ViewScholarships";
 import Logout from "../shared/components/Logout";
 import CreateScholarship from "../features/Scholarship/pages/CreateScholarship";
@@ -19,24 +19,48 @@ function AppRoutes() {
 
       <Route path="/signup" element={<Signup />} />
 
-      <Route path="/update-password" element={<PasswordUpdate />} />
+      <Route path="/logout" element={<Logout />} />
 
-      <Route path="/portal" element={<Portal />} />
 
-      <Route path="/scholarships" element={<ScholarshipResult />} />
+      <Route
+        path="/update-password"
+        element={
+          <ProtectedRoute allowedRole={student}>
+            <PasswordUpdate />
+          </ProtectedRoute>
+        }
+      />
 
-      <Route path='/logout' element={<Logout/>}/>
+      <Route
+        path="/portal"
+        element={
+          <ProtectedRoute allowedRole={student}>
+            <Portal />
+          </ProtectedRoute>
+        }
+      />
 
-      <Route path="/admin" element={<AdminLayout />}>
-        <Route index element={<AdminDashboard />} />
+      <Route
+        path="/scholarships"
+        element={
+          <ProtectedRoute allowedRole={student}>
+            <ScholarshipResult />{" "}
+          </ProtectedRoute>
+        }
+      />
 
-        <Route path="manage" element={<CreateScholarship />} />
+      
+      <Route path="/admin" element={<ProtectedRoute allowedRole={admin}><AdminLayout /></ProtectedRoute>}>
 
-        <Route path="view" element={<ViewScholarships />} />
+        <Route index element={<ProtectedRoute allowedRole={admin}><AdminDashboard /></ProtectedRoute>} />
 
-        <Route path="students" element={<StudentsDetails />} />
+        <Route path="manage" element={<ProtectedRoute allowedRole={admin}><CreateScholarship /></ProtectedRoute>} />
 
-        <Route path="users" element={<UsersDetails />} />
+        <Route path="view" element={<ProtectedRoute allowedRole={admin}><ViewScholarships /></ProtectedRoute>} />
+
+        <Route path="students" element={<ProtectedRoute allowedRole={admin}><StudentsDetails /></ProtectedRoute>} />
+
+        <Route path="users" element={<ProtectedRoute allowedRole={admin}><UsersDetails /></ProtectedRoute>} />
       </Route>
     </Routes>
   );
