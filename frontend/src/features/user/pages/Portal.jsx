@@ -40,7 +40,12 @@ const token =localStorage.getItem("access_token");
 
       // Fetch
       const response = await axios.post(
-        "http://localhost:5000/scholarships",form,);
+        "http://localhost:5000/scholarships",form,
+      {
+        headers:{
+          Authorization:`Bearer ${token}`,
+        }
+      });
 
       // Redirect to scholarship results page
       navigate("/scholarships", {

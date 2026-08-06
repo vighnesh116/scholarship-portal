@@ -34,7 +34,7 @@ app.add_url_rule("/update-password", view_func=update_password, methods=["POST"]
 # Scholarship Management
 app.add_url_rule("/add-scholarship", view_func=add_scholarship, methods=["POST"])
 app.add_url_rule("/update-scholarship/<int:id>", view_func=update_scholarship, methods=["PUT"])
-app.add_url_rule("/scholarships", view_func=scholarships, methods=["POST"])
+app.add_url_rule("/scholarships", view_func=jwt_required()(scholarships), methods=["POST"])
 app.add_url_rule("/admin-scholarships", view_func=admin_scholarships, methods=["GET"])
 app.add_url_rule("/admin-stats", view_func=admin_stats, methods=["GET"])
 app.add_url_rule("/delete-scholarship/<int:id>", view_func=delete_scholarship, methods=["DELETE"])

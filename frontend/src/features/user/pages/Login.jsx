@@ -25,7 +25,7 @@ function Login() {
         localStorage.setItem("email", email);
         //Save JWt
         localStorage.setItem("access_token",res.data.access_token);
-
+        localStorage.setItem("role",res.data.role);
         if (res.data.role === "admin") {
           toast.success("Admin Login Successful");
           navigate("/admin", { replace: true });

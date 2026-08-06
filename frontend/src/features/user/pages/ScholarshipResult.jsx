@@ -6,7 +6,7 @@ import { confirmAction } from "../../../shared/components/ConfirmAction";
 function ScholarshipResult() {
   const location = useLocation();
   const navigate = useNavigate();
-
+//  const token = localStorage.item("access_token");
   let scholarships = [];
 
   if (location.state) {
