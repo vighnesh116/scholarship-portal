@@ -6,14 +6,18 @@ function StudentsDetails() {
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(10);
   const [students, setStudents] = useState([]);
-
+  const token = localStorage.getItem("access_token");
   useEffect(() => {
     loadStudents();
   }, []);
 
   const loadStudents = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/admin-students");
+      const res = await fetch("http://127.0.0.1:5000/admin-students",{
+        headers:{
+                  Authorization :`Bearer ${token}`,
+        },
+      });
       const data = await res.json();
       setStudents(data || []);
     } catch (error) {
