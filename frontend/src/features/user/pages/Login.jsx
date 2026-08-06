@@ -22,8 +22,9 @@ function Login() {
 
       if (res.data.success) {
         localStorage.setItem("user", res.data.name);
-        
         localStorage.setItem("email", email);
+        //Save JWt
+        localStorage.setItem("access_token",res.data.access_token);
 
         if (res.data.role === "admin") {
           toast.success("Admin Login Successful");
@@ -41,7 +42,7 @@ function Login() {
       toast.error("Invalid Credentials");
     }
   };
-localStorage.setItem("access_token",data.access_token);
+
   return (
     <div className="container">
       <div className="left-panel">
