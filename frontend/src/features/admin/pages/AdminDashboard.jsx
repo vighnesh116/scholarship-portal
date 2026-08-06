@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import StatsCard from "../components/StatsCard";
+import api from "../../../shared/api/axiosInstance";
 
 function AdminDashboard() {
   const [stats, setStats] = useState({
@@ -18,6 +19,7 @@ function AdminDashboard() {
     active_scholarships: 0,
     inactive_scholarships: 0,
   });
+  const token = localStorage.getItem("access_token");
 
   const pieData = [
     { name: "Active", value: stats.active_scholarships },
@@ -32,7 +34,11 @@ function AdminDashboard() {
 
   const loadStats = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/admin-stats");
+      const res = await fetch("http://127.0.0.1:5000/admin-stats",{
+        headers :{
+          Authorization : `Bearer ${token}`,
+        } ,
+      });
       const data = await res.json();
       setStats(data);
     } catch (err) {
@@ -57,9 +63,6 @@ function AdminDashboard() {
           value={stats.total_scholarships}
         />
 
-        
-
-        
         <StatsCard
           label="Active Scholarship"
           value={stats.active_scholarships}
