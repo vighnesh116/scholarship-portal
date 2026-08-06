@@ -27,10 +27,16 @@ function Portal() {
 
   const submit = async (e) => {
     e.preventDefault();
-
+const token =localStorage.getItem("access_token");
     try {
       // Save
-      await axios.post("http://localhost:5000/portal", form);
+      await axios.post("http://localhost:5000/portal", form,
+        {
+          headers:{
+            Authorization:`Bearer${token}`,
+          },
+        }
+      );
 
       // Fetch
       const response = await axios.post(
