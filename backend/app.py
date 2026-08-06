@@ -25,7 +25,7 @@ from student import portal, admin_students, user_data
 
 app = Flask(__name__)
 CORS(app)
-app.config["JWT_SECRET_KEY"] = "Nqn4muAADg3RbAgeucbuwbcueich"
+app.config["JWT_SECRET_KEY"] = "Nqn4muAADg3RbAgeu[&SDTGVwbc^$&^CC"
 jwt=JWTManager(app)
 
 # Authentication
@@ -36,15 +36,16 @@ app.add_url_rule("/update-password", view_func=update_password, methods=["POST"]
 # Scholarship Management
 app.add_url_rule("/add-scholarship", view_func=admin_required()(add_scholarship), methods=["POST"])
 app.add_url_rule("/update-scholarship/<int:id>", view_func=admin_required()(update_scholarship), methods=["PUT"])
-app.add_url_rule("/scholarships", view_func=jwt_required()(scholarships), methods=["POST"])
+app.add_url_rule("/admin-students", view_func=admin_required()(admin_students), methods=["GET"])
+app.add_url_rule("/admin-users", view_func=admin_required()(user_data), methods=["GET"])
 app.add_url_rule("/admin-scholarships", view_func=admin_required()(admin_scholarships), methods=["GET"])
 app.add_url_rule("/admin-stats", view_func=admin_required()(admin_stats), methods=["GET"])
 app.add_url_rule("/delete-scholarship/<int:id>", view_func=admin_required()(delete_scholarship), methods=["DELETE"])
 
 # Student Management
-app.add_url_rule("/admin-students", view_func=admin_required()(admin_students), methods=["GET"])
 app.add_url_rule("/portal", view_func=jwt_required()(portal), methods=["POST"])
-app.add_url_rule("/admin-users", view_func=admin_required()(user_data), methods=["GET"])
+app.add_url_rule("/scholarships", view_func=jwt_required()(scholarships), methods=["POST"])
+
 
 if __name__ == "__main__":
     app.run(debug=True)
