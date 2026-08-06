@@ -3,7 +3,7 @@ from flask import request, jsonify
 
 from database import get_db
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_jwt_extended import JWTManager ,create_access_token
+from flask_jwt_extended import create_access_token 
 
 # SIGNUP
 
@@ -81,7 +81,13 @@ def login():
             user['password'],
             password
         ):
-            access_token = create_access_token(identity=str(user['userid'],additional_claims={"role":user['role']}))
+            access_token = create_access_token(
+                identity=str(user['userid']),
+                additional_claims={
+                    "role": user['role']
+                    
+                }
+            )
             
             return jsonify({
                 "success": True,
