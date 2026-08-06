@@ -8,7 +8,7 @@
 
 from flask import Flask
 from flask_cors import CORS
-from flask_jwt_extended import JWTManager, create_access_token,jwt_required
+from flask_jwt_extended import JWTManager, create_access_token,jwt_required 
 
 from auth import signup, login, update_password
 from scholarship import (
