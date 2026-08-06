@@ -41,7 +41,7 @@ function Login() {
       toast.error("Invalid Credentials");
     }
   };
-
+localStorage.setItem("access_token",data.access_token);
   return (
     <div className="container">
       <div className="left-panel">
