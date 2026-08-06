@@ -4,12 +4,13 @@ import "../components/ManageScholarships.css";
 import { toast } from "react-toastify";
 import { confirmAction } from "../../../shared/components/ConfirmAction";
 import { SavePen } from "lucide-react";
+import api from "../../../shared/api/axiosInstance";
 function CreateScholarship() {
   const location = useLocation();
   const navigate = useNavigate();
 
   const editItem = location.state?.scholarship || null;
-
+  const token =localStorage.getItem("access_token");
   const [editing, setEditing] = useState(false);
   const [scholarships, setScholarships] = useState([]);
 
@@ -48,7 +49,11 @@ function CreateScholarship() {
 
   const loadScholarships = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/admin-scholarships");
+      const res = await fetch("http://127.0.0.1:5000/admin-scholarships",{
+        headers:{
+          Authorization:`Bearer ${token}`
+        }
+      });
       const data = await res.json();
       setScholarships(data || []);
     } catch (error) {
