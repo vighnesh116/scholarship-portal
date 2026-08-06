@@ -20,28 +20,18 @@ function AppRoutes() {
 
       <Route path="/signup" element={<Signup />} />
 
-      <Route path="/logout" element={<Logout />} />
-
       <Route path="/error" element={<ErrorPage />} />
 
       <Route
         path="/update-password"
         element={
-          <ProtectedRoute
-            childern={<PasswordUpdate />}
-            allowedRole="student"
-          ></ProtectedRoute>
+          <ProtectedRoute childern={<PasswordUpdate />} allowedRole="student" />
         }
       />
 
       <Route
         path="/portal"
-        element={
-          <ProtectedRoute
-            childern={<Portal />}
-            allowedRole="student"
-          ></ProtectedRoute>
-        }
+        element={<ProtectedRoute childern={<Portal />} allowedRole="student" />}
       />
 
       <Route
@@ -50,26 +40,26 @@ function AppRoutes() {
           <ProtectedRoute
             childern={<ScholarshipResult />}
             allowedRole="student"
-          ></ProtectedRoute>
+          />
         }
       />
 
       <Route
+        path="/logout"
+        element={<ProtectedRoute childern={<Logout />} allowedRole="student" />}
+      /> 
+
+      {/*=========================Admin====================================*/}
+      <Route
         path="/admin"
         element={
-          <ProtectedRoute
-            allowedRole="admin"
-            childern={<AdminLayout />}
-          ></ProtectedRoute>
+          <ProtectedRoute allowedRole="admin" childern={<AdminLayout />} />
         }
       >
         <Route
           index
           element={
-            <ProtectedRoute
-              childern={<AdminDashboard />}
-              allowedRole="admin"
-            ></ProtectedRoute>
+            <ProtectedRoute childern={<AdminDashboard />} allowedRole="admin" />
           }
         />
 
@@ -79,7 +69,7 @@ function AppRoutes() {
             <ProtectedRoute
               childern={<CreateScholarship />}
               allowedRole="admin"
-            ></ProtectedRoute>
+            />
           }
         />
 
@@ -89,7 +79,7 @@ function AppRoutes() {
             <ProtectedRoute
               childern={<ViewScholarships />}
               allowedRole="admin"
-            ></ProtectedRoute>
+            />
           }
         />
 
@@ -99,20 +89,25 @@ function AppRoutes() {
             <ProtectedRoute
               childern={<StudentsDetails />}
               allowedRole="admin"
-            ></ProtectedRoute>
+            />
           }
         />
 
         <Route
           path="users"
           element={
-            <ProtectedRoute
-              childern={<UsersDetails />}
-              allowedRole="admin"
-            ></ProtectedRoute>
+            <ProtectedRoute childern={<UsersDetails />} allowedRole="admin" />
           }
         />
+
+        <Route
+          path="logout"
+          element={<ProtectedRoute childern={<Logout />} allowedRole="admin" />}
+        />
       </Route>
+
+      <Route path="*" element={<ErrorPage />} />
+
     </Routes>
   );
 }
