@@ -37,7 +37,11 @@ function ViewScholarships() {
   };
   console.log(scholarships);
   const loadScholarships = async () => {
-    const res = await fetch("http://127.0.0.1:5000/admin-scholarships");
+    const res = await fetch("http://127.0.0.1:5000/admin-scholarships",{
+      headers:{
+        Authorization:`Bearer ${token}`,
+      },
+    });
     const data = await res.json();
     setScholarships(data);
   };
@@ -57,7 +61,11 @@ function ViewScholarships() {
         `http://127.0.0.1:5000/delete-scholarship/${sclrid}`,
         {
           method: "DELETE",
-        },
+        },{
+          headers:{
+            Authorization:`Bearer ${token}`,
+          },
+        }
       );
 
       const data = await res.json();
