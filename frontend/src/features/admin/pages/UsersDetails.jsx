@@ -3,25 +3,30 @@ import AdminNavbar from "../components/AdminNavbar";
 import AutoRefresh from "../components/AutoRefresh";
 import { toast } from "react-toastify";
 import Pagination from "../components/Pagination";
-
+import api from "../../../shared/api/axiosInstance";
+import { Await } from "react-router-dom";
 
 function UsersDetails() {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(10);
   const [users, setUsers] = useState([]);
-  const token =localStorage.getItem("access_token");
+  const token = localStorage.getItem("access_token");
   useEffect(() => {
     const loadUsers = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:5000/admin-users",
-          {
-            headers:{
-              Authorization :`Bearer ${token}`,
-            },
-          }
-        );
-        const data = await res.json();
+        // const res = await fetch("http://127.0.0.1:5000/admin-users",
+        //   {
+        //     headers:{
+        //       Authorization :`Bearer ${token}`,
+        //     },
+        //   }
+        // );
+
+         const res =await  api.get("/admin-users");
+        const data =  res.data;
+
+        //const data = await res.json();
         setUsers(data);
       } catch (error) {
         toast.error("Error loading users:", error);
