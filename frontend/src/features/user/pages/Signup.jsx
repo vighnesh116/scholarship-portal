@@ -16,7 +16,7 @@ function Signup() {
     email: "",
     password: "",
   });
-
+  
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -76,7 +76,7 @@ function Signup() {
       setConfirmPassword("");
 
       
-      navigate("/portal", { replace: true });
+      navigate("/", { replace: true });
     } catch (error) {
       if (error.response) {
         toast.error(error.response.data.message);
