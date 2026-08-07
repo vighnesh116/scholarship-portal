@@ -129,6 +129,10 @@ function CreateScholarship() {
       navigate("/admin/view");
     } catch (error) {
       console.log(error);
+       console.log("ADD ERROR:", error);
+  console.log("STATUS:", error.response?.status);
+  console.log("SERVER MESSAGE:", error.response?.data);
+
       toast.error("Error adding scholarship");
     }
   };
@@ -167,7 +171,7 @@ function CreateScholarship() {
       //     body: JSON.stringify(dataToSend),
       //   },
       // );
-      const res = await api.put(`/update-scholarship/${form.sclrid}`, data);
+      const res = await api.put(`/update-scholarship/${form.sclrid}`, dataToSend);
 
       toast.success(res.data.message);
 
