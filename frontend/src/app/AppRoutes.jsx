@@ -46,7 +46,7 @@ function AppRoutes() {
 
       <Route
         path="/logout"
-        element={<ProtectedRoute childern={<Logout />} allowedRole="student" />}
+        element={<ProtectedRoute childern={<Logout />}  />}
       /> 
 
       {/*=========================Admin====================================*/}
@@ -104,6 +104,7 @@ function AppRoutes() {
           path="logout"
           element={<ProtectedRoute childern={<Logout />} allowedRole="admin" />}
         />
+
       </Route>
 
       <Route path="*" element={<ErrorPage />} />
