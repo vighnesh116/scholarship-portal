@@ -21,18 +21,20 @@ from scholarship import (
     scholarships,
     admin_stats,
 )
-from student import portal, admin_students, user_data
+from student import portal, admin_students, user_data,refresh 
 
 app = Flask(__name__)
 CORS(app)
 app.config["JWT_SECRET_KEY"] = "Nqn4muAADg3RbAgeu[&SDTGVwbc^$&^CC"
 app.config["JWT_ACCESS_TOKEN_EXPIRES"]=timedelta(minutes=60)
+app.config["JWT_REFRESH_TOKEN_EXPIRES"]=timedelta(days=30)
 jwt=JWTManager(app)
 
 # Authentication
 app.add_url_rule("/signup", view_func=signup, methods=["POST"])
 app.add_url_rule("/login", view_func=login, methods=["POST"])
 app.add_url_rule("/update-password", view_func=update_password, methods=["POST"])
+app.add_url_rule("/refresh",view_func=refresh,methods=["POST"])
 
 # Scholarship Management
 app.add_url_rule("/add-scholarship", view_func=admin_required()(add_scholarship), methods=["POST"])
