@@ -11,7 +11,7 @@ function CreateScholarship() {
 
   const editItem = location.state?.scholarship || null;
 
-  const token =localStorage.getItem("access_token");
+  const token = localStorage.getItem("access_token");
   const [editing, setEditing] = useState(false);
   const [scholarships, setScholarships] = useState([]);
 
@@ -50,12 +50,13 @@ function CreateScholarship() {
 
   const loadScholarships = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/admin-scholarships",{
-        headers:{
-          Authorization:`Bearer ${token}`
-        }
-      });
-      const data = await res.json();
+      // const res = await fetch("http://127.0.0.1:5000/admin-scholarships",{
+      //   headers:{
+      //     Authorization:`Bearer ${token}`
+      //   }
+      // });
+      const res = await api.get("/admin-scholarships");
+      const data = res.data;
       setScholarships(data || []);
     } catch (error) {
       toast.error("Error loading scholarships:", error);
@@ -109,21 +110,27 @@ function CreateScholarship() {
       educationqualifiation: form.educationqualifiation || null,
     };
 
-    const res = await fetch("http://127.0.0.1:5000/add-scholarship", {
-      method: "POST",
-      headers: { 
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-        
-        },
-      body: JSON.stringify(dataToSend),
-    });
+    // const res = await fetch("http://127.0.0.1:5000/add-scholarship", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: `Bearer ${token}`
 
-    const data = await res.json();
-    toast.info(data.message);
-    clearForm();
-    loadScholarships();
-    navigate("/admin/view");
+    //     },
+    //   body: JSON.stringify(dataToSend),
+    // });
+    try {
+      const res = await api.post("/add-scholarship", dataToSend);
+
+      toast.success(res.data.message);
+
+      clearForm();
+      loadScholarships();
+      navigate("/admin/view");
+    } catch (error) {
+      console.log(error);
+      toast.error("Error adding scholarship");
+    }
   };
 
   const updateScholarship = async (draftValue = 0) => {
@@ -150,24 +157,26 @@ function CreateScholarship() {
     };
 
     try {
-      const res = await fetch(
-        `http://127.0.0.1:5000/update-scholarship/${form.sclrid}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" ,
-            Authorization:`Bearer ${token}`,
-          },
-          body: JSON.stringify(dataToSend),
-        },
-      );
-      const data = await res.json();
+      // const res = await fetch(
+      //   `http://127.0.0.1:5000/update-scholarship/${form.sclrid}`,
+      //   {
+      //     method: "PUT",
+      //     headers: { "Content-Type": "application/json" ,
+      //       Authorization:`Bearer ${token}`,
+      //     },
+      //     body: JSON.stringify(dataToSend),
+      //   },
+      // );
+      const res = await api.put(`/update-scholarship/${form.sclrid}`, data);
 
-      toast.success(data.message);
+      toast.success(res.data.message);
+
       clearForm();
       loadScholarships();
       navigate("/admin/view");
     } catch (error) {
-      toast.error("Error updating scholarship:");
+      console.log(error);
+      toast.error("Error updating scholarship");
     }
   };
 
