@@ -39,6 +39,9 @@ function AdminDashboard() {
           Authorization : `Bearer ${token}`,
         } ,
       });
+
+     // const res = api.fetch("/admin-stats");
+
       const data = await res.json();
       setStats(data);
     } catch (err) {
