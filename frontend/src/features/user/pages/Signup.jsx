@@ -7,6 +7,7 @@ import logo from "../../../assets/new2.ico";
 import heroImage from "../../../assets/chat.png";
 
 import "../components/UserAuth.css";
+import api from "../../../shared/api/axiosInstance";
 
 function Signup() {
   const navigate = useNavigate();
@@ -62,7 +63,9 @@ function Signup() {
     try {
       setLoading(true);
 
-      const response = await axios.post("http://localhost:5000/signup", form);
+      // const response = await axios.post("http://localhost:5000/signup", form);
+
+      const response = await api.post("/signup",form);
 
       toast.success(response.data.message);
 
