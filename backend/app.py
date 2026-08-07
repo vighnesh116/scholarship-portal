@@ -11,7 +11,7 @@ from decoder import admin_required
 from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token,jwt_required 
-
+from datetime import timedelta
 from auth import signup, login, update_password
 from scholarship import (
     add_scholarship,
@@ -26,6 +26,7 @@ from student import portal, admin_students, user_data
 app = Flask(__name__)
 CORS(app)
 app.config["JWT_SECRET_KEY"] = "Nqn4muAADg3RbAgeu[&SDTGVwbc^$&^CC"
+app.config["JWT_ACCESS_TOKEN_EXPIRES"]=timedelta(minutes=60)
 jwt=JWTManager(app)
 
 # Authentication
