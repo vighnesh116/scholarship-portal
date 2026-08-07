@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Pagination from "../components/Pagination";
+import api from "../../../shared/api/axiosInstance";
 function StudentsDetails() {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,12 +14,13 @@ function StudentsDetails() {
 
   const loadStudents = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/admin-students",{
-        headers:{
-                  Authorization :`Bearer ${token}`,
-        },
-      });
-      const data = await res.json();
+      // const res = await fetch("http://127.0.0.1:5000/admin-students",{
+      //   headers:{
+      //             Authorization :`Bearer ${token}`,
+      //   },
+      // });
+      const res= await api.get("/admin-students");
+      const data = res.data;
       setStudents(data || []);
     } catch (error) {
       toast.error("Error loading students:", error);
