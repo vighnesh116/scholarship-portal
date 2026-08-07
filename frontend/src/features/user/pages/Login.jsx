@@ -5,6 +5,7 @@ import logo from "../../../assets/new2.ico";
 import "../components/Login.css";
 import { toast } from "react-toastify";
 import heroImage from "../../../assets/hero1.png";
+import api from "../../../shared/api/axiosInstance";
 function Login() {
   const navigate = useNavigate();
 
@@ -15,14 +16,16 @@ function Login() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5000/login", {
-        email,
-        password,
-      });
+      // const res = await axios.post("http://localhost:5000/login", {
+      //   email,
+      //   password,
+      // });
+      const res = await api.post("/login",{email,password});
 
       if (res.data.success) {
         localStorage.setItem("user", res.data.name);
         localStorage.setItem("email", email);
+        localStorage.setItem("refresh_token",res.data.refresh_token);
         //Save JWt
         localStorage.setItem("access_token",res.data.access_token);
         localStorage.setItem("role",res.data.role);
