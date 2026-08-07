@@ -3,7 +3,7 @@ import AdminNavbar from "../components/AdminNavbar";
 import AutoRefresh from "../components/AutoRefresh";
 import { toast } from "react-toastify";
 import Pagination from "../components/Pagination";
-import { getUsers } from "../service/service.api";
+
 
 function UsersDetails() {
   const [search, setSearch] = useState("");
