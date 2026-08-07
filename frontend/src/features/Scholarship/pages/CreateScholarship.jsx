@@ -10,7 +10,7 @@ function CreateScholarship() {
   const navigate = useNavigate();
 
   const editItem = location.state?.scholarship || null;
-  localStorage.setItem("token",res.data.access_token);
+
   const token =localStorage.getItem("access_token");
   const [editing, setEditing] = useState(false);
   const [scholarships, setScholarships] = useState([]);
@@ -50,11 +50,11 @@ function CreateScholarship() {
 
   const loadScholarships = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/admin-scholarships", {
-  headers: {
-    Authorization: `Bearer ${token}`
-  }
-});
+      const res = await fetch("http://127.0.0.1:5000/admin-scholarships",{
+        headers:{
+          Authorization:`Bearer ${token}`
+        }
+      });
       const data = await res.json();
       setScholarships(data || []);
     } catch (error) {
@@ -111,8 +111,10 @@ function CreateScholarship() {
 
     const res = await fetch("http://127.0.0.1:5000/add-scholarship", {
       method: "POST",
-      headers: { "Content-Type": "application/json",
-        Authorization:`Bearer ${token}`
+      headers: { 
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+        
         },
       body: JSON.stringify(dataToSend),
     });
@@ -152,7 +154,9 @@ function CreateScholarship() {
         `http://127.0.0.1:5000/update-scholarship/${form.sclrid}`,
         {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json" ,
+            Authorization:`Bearer ${token}`,
+          },
           body: JSON.stringify(dataToSend),
         },
       );
