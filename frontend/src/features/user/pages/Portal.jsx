@@ -30,22 +30,27 @@ function Portal() {
 const token =localStorage.getItem("access_token");
     try {
       // Save
-      await axios.post("http://localhost:5000/portal", form,
-        {
-          headers:{
-            Authorization:`Bearer ${token}`,
-          },
-        }
-      );
+      // await axios.post("http://localhost:5000/portal", form,
+      //   {
+      //     headers:{
+      //       Authorization:`Bearer ${token}`,
+      //     },
+      //   }
+      // );
+
+      await api.post("/portaal",form);
 
       // Fetch
-      const response = await axios.post(
-        "http://localhost:5000/scholarships",form,
-      {
-        headers:{
-          Authorization:`Bearer ${token}`,
-        }
-      });
+      // const response = await axios.post(
+      //   "http://localhost:5000/scholarships",form,
+      // {
+      //   headers:{
+      //     Authorization:`Bearer ${token}`,
+      //   }
+      // });
+
+      const response = await api.post("/scholarships",form);
+
 
       // Redirect to scholarship results page
       navigate("/scholarships", {
