@@ -34,15 +34,15 @@ function AdminDashboard() {
 
   const loadStats = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/admin-stats",{
-        headers :{
-          Authorization : `Bearer ${token}`,
-        } ,
-      });
+      // const res = await fetch("http://127.0.0.1:5000/admin-stats",{
+      //   headers :{
+      //     Authorization : `Bearer ${token}`,
+      //   } ,
+      // });
 
-     // const res = api.fetch("/admin-stats");
+      const res =await api.get("/admin-stats");
 
-      const data = await res.json();
+      const data =  res.data;
       setStats(data);
     } catch (err) {
       toast.error("Failed to load stats:", err);
