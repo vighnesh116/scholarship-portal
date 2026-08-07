@@ -21,7 +21,8 @@ function ViewScholarships() {
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(5);
   const [showFilter, setShowFilter] = useState(false);
-
+  
+  const token = localStorage.getItem("access_token");
   useEffect(() => {
     loadScholarships();
   }, []);
@@ -59,13 +60,11 @@ function ViewScholarships() {
     try {
       const res = await fetch(
         `http://127.0.0.1:5000/delete-scholarship/${sclrid}`,
-        {
-          method: "DELETE",
-        },{
-          headers:{
+        {  headers:{
             Authorization:`Bearer ${token}`,
-          },
-        }
+        },
+          method: "DELETE",
+        },
       );
 
       const data = await res.json();
