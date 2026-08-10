@@ -15,12 +15,7 @@ function Logout() {
       });
 
       if (confirmed) {
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("refresh_token");
-        localStorage.removeItem("role");
-        localStorage.removeItem("user");
-        localStorage.removeItem("email");
-
+     
         navigate("/", { replace: true });
 
       } else {
