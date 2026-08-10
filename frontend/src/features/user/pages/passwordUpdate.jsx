@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "../components/UserAuth.css";
-import {LogOut}from"lucide-react";
+import {LogOut , ArrowLeft }from"lucide-react";
 import Logout from "../../../shared/components/Logout"
 import { confirmAction } from "../../../shared/components/ConfirmAction";
 function PasswordUpdate() {
@@ -57,6 +57,12 @@ function PasswordUpdate() {
   };
   return (
     <div className="container">
+       <p>
+        
+          <Link to="/portal" replace={true}>
+            <ArrowLeft color="#150909" />
+          </Link>
+        </p>
       <div className="box">
         <h1>Update </h1>
         <h1>Password</h1>
@@ -78,9 +84,12 @@ function PasswordUpdate() {
           <button type="submit">Update Password</button>
         
         </form>
-         <p >
-      <center>  <LogOut/>Click{" "} </center> <Link to="/logout" replace="true"></Link>
-      </p>
+        <p>
+        
+          <Link to="/logout" replace={true}>
+            <ArrowLeft color="#150909" />
+          </Link>
+        </p>
      
       </div>
     </div>
