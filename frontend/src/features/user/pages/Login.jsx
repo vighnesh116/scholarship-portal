@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, replace, useNavigate } from "react-router-dom";
-import axios from "axios";
+
 import logo from "../../../assets/new2.ico";
 import "../components/Login.css";
 import { toast } from "react-toastify";
@@ -20,6 +20,7 @@ function Login() {
       //   email,
       //   password,
       // });
+      
       const res = await api.post("/login",{email,password});
 
       if (res.data.success) {
@@ -40,9 +41,13 @@ function Login() {
         toast.error("Invalid Credentials");
       }
     } catch (error) {
-      console.log(error);
 
-      toast.error("Invalid Credentials");
+  if (error.response?.status === 401) {
+    toast.error("Invalid Credentials");
+  } else {
+    toast.error("Something went wrong");
+  }
+
     }
   };
 
