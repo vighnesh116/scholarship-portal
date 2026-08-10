@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import api from "../../../shared/api/axiosInstance"
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { confirmAction } from "../../../shared/components/ConfirmAction";
@@ -38,7 +38,7 @@ const token =localStorage.getItem("access_token");
       //   }
       // );
 
-      await api.post("/portaal",form);
+       await api.post("/portal",form);
 
       // Fetch
       // const response = await axios.post(
