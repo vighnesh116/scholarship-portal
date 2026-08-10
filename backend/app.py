@@ -27,7 +27,7 @@ app = Flask(__name__)
 CORS(app)
 app.config["JWT_SECRET_KEY"] = "Nqn4muAADg3RbAgeu[&SDTGVwbc^$&^CC"
 app.config["JWT_ACCESS_TOKEN_EXPIRES"]=timedelta(minutes=2)
-app.config["JWT_REFRESH_TOKEN_EXPIRES"]=timedelta(days=30)
+app.config["JWT_REFRESH_TOKEN_EXPIRES"]=timedelta(minutes=5)
 jwt=JWTManager(app)
 
 # Authentication
