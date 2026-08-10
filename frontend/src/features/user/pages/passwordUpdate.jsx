@@ -87,7 +87,7 @@ function PasswordUpdate() {
         <p>
         
           <Link to="/logout" replace={true}>
-            <ArrowLeft color="#150909" />
+            <LogOut color="#150909" />
           </Link>
         </p>
      
