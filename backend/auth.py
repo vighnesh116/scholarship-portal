@@ -100,14 +100,12 @@ def login():
                 "name": user['name'],
                 "role": user['role'],
                 "access_token": access_token,
-                "refresh_token":refresh_token,
+                "refresh_token":refresh_token
                 
             })
 
         return jsonify({
-            "success": False,
-            
-
+            "success": False
         }), 401
 
     finally:
