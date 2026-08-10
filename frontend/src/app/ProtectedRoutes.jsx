@@ -3,8 +3,9 @@ import {Navigate}from "react-router-dom";
 function ProtectedRoute({childern,allowedRole}){
     const token =localStorage.getItem("access_token");
     const role = localStorage.getItem("role");
-    const expired =localStorage.getItem("")
-    if(!token){
+    const expired =localStorage.getItem("");
+    const isLoggedIn = localStorage.getItem("loggedIn");
+    if(!token || isLoggedIn==false){
         return<Navigate to="/login" replace={true}/>;
 
     }
