@@ -133,7 +133,7 @@ function ScholarshipFilter({ scholarships, onFilter }) {
         value={draft}
         onChange={(e) => setDraft(e.target.value)}
       >
-        <option value="">Completed</option>
+        <option value="">All Type</option>
         <option value="1">Draft</option>
       </select>
 
