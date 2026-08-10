@@ -20,36 +20,31 @@ api.interceptors.request.use(
   }
 );
 
-
 // Automatically refresh expired access token
 api.interceptors.response.use(
-  (response) => {
-    return response;
-  },
+  (response) => response,
 
   async (error) => {
-
     const originalRequest = error.config;
 
-    // Access token expired
+    // Don't refresh token for login or refresh requests
     if (
       error.response?.status === 401 &&
+      originalRequest &&
+      !originalRequest.url?.includes("/login") &&
+      !originalRequest.url?.includes("/refresh") &&
       !originalRequest._retry
     ) {
-
       originalRequest._retry = true;
 
       try {
-
-        const refreshToken =
-          localStorage.getItem("refresh_token");
+        const refreshToken = localStorage.getItem("refresh_token");
 
         if (!refreshToken) {
           return Promise.reject(error);
         }
 
-        // Send refresh token to Flask
-        const response = await axios.post(
+        const refreshResponse = await axios.post(
           "http://127.0.0.1:5000/refresh",
           {},
           {
@@ -59,38 +54,22 @@ api.interceptors.response.use(
           }
         );
 
-        // Get new access token
-        const newAccessToken =
-          response.data.access_token;
+        const newAccessToken = refreshResponse.data.access_token;
 
-        // Save new access token
         localStorage.setItem(
           "access_token",
           newAccessToken
         );
 
-        // Update original request
         originalRequest.headers.Authorization =
           `Bearer ${newAccessToken}`;
 
-        // Retry original request
         return api(originalRequest);
 
       } catch (refreshError) {
 
-        console.log(
-          "Refresh token failed:",
-          refreshError
-        );
-
-        // Refresh token also expired
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");
-        localStorage.removeItem("role");
-        localStorage.removeItem("user");
-        localStorage.removeItem("email");
-
-        window.location.href = "/login";
 
         return Promise.reject(refreshError);
       }
