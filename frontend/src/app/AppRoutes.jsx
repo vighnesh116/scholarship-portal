@@ -105,6 +105,7 @@ function AppRoutes() {
           element={<ProtectedRoute childern={<Logout />} allowedRole="admin" />}
         />
 
+
       </Route>
 
       <Route path="*" element={<ErrorPage />} />
