@@ -1,25 +1,24 @@
 
 import React from "react";
-import { useNavigate,navigate, replace } from "react-router-dom";
+import { useNavigate,Navigate  } from "react-router-dom";
 import "./ErrorPage.css";
 
 function ErrorPage() {
   const navigate = useNavigate();
   const token = localStorage.getItem("access_token");
   const role = localStorage.getItem("role");
-
-  if(token && role=="admin"){
-    navigate("/admin",replace=true);
+  
+  if(role=="admin"){
+  return <Navigate to="/admin" replace={true}/>
   }
-  else if(token && role=="student"){
-    navigate("/portal",replace=true);
+  else if( role=="student"){
+  return <Navigate to ="/portal" replace={true}/>
   }
   else if(!token && role){
-    navigate("/",replace=true);
-
+   return <Navigate to ="/login" replace={true}/>
   }
   else{
-    navigate("/",replace=true);
+    return <Navigate to="/login" replace={true}/>
   }
 }
 
