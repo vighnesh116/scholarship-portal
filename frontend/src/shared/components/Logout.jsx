@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { replace, useNavigate } from "react-router-dom";
 import {confirmAction} from "./ConfirmAction";
 
 function Logout() {
@@ -13,15 +13,32 @@ function Logout() {
         successTitle: "Logged Out!",
         successText: "You have been logged out successfully.",
       });
+      const role=localStorage.getItem("role");
 
       if (confirmed) {
-     
-        navigate("/login", { replace: true });
+        
+         localStorage.removeItem("access_token");
+         localStorage.removeItem("refresh_token");
+         localStorage.removeItem("role");
+         localStorage.removeItem("user");
+         localStorage.removeItem("email");
+         localStorage.removeItem("portalForm");
 
-      } else {
+        
+
+
+         window.location.replace("/login");
+
+
+      } else if(role=="student"){
+        navigate("/portal",{replace:true});
+      }
+
+      else if(role=="admin") {
      
         navigate("/admin", { replace: true });
       }
+
     };
 
     logout();
