@@ -16,7 +16,7 @@ function Logout() {
 
       if (confirmed) {
      
-        navigate("/", { replace: true });
+        navigate("/login", { replace: true });
 
       } else {
      
