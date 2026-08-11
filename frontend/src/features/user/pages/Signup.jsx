@@ -79,7 +79,7 @@ function Signup() {
       setConfirmPassword("");
 
       
-      navigate("/", { replace: true });
+      navigate("/login", { replace: true });
     } catch (error) {
       if (error.response) {
         toast.error(error.response.data.message);
