@@ -11,6 +11,7 @@ import {
   SquarePen,
 } from "lucide-react";
 import Pagination from "../../admin/components/Pagination";
+import api from "../../../shared/api/axiosInstance"
 import { confirmAction } from "../../../shared/components/ConfirmAction";
 // import "tailwindcss";
 function ViewScholarships() {
@@ -58,16 +59,18 @@ function ViewScholarships() {
     if (!confirmed) return;
 
     try {
-      const res = await fetch(
-        `http://127.0.0.1:5000/delete-scholarship/${sclrid}`,
-        {  headers:{
-            Authorization:`Bearer ${token}`,
-        },
-          method: "DELETE",
-        },
-      );
+          // const res = await fetch(
+          //   `http://127.0.0.1:5000/delete-scholarship/${sclrid}`,
+          //   {  headers:{
+          //       Authorization:`Bearer ${token}`,
+          //   },
+          //     method: "DELETE",
+          //   },
+          // );
 
-      const data = await res.json();
+      const res = await api.delete(`/delete-scholarship/${sclrid}`);
+      loadScholarships();
+      const data =  res.data;
 
       if (res.ok) {
         toast.success(data.message);
