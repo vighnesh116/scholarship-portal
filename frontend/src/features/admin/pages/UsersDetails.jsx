@@ -5,36 +5,58 @@ import { toast } from "react-toastify";
 import Pagination from "../components/Pagination";
 import api from "../../../shared/api/axiosInstance";
 import { Await } from "react-router-dom";
-
+import { Trash2 } from "lucide-react";
+import { confirmAction } from "../../../shared/components/ConfirmAction";
 function UsersDetails() {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(10);
   const [users, setUsers] = useState([]);
   const token = localStorage.getItem("access_token");
-  useEffect(() => {
-    const loadUsers = async () => {
-      try {
-        // const res = await fetch("http://127.0.0.1:5000/admin-users",
-        //   {
-        //     headers:{
-        //       Authorization :`Bearer ${token}`,
-        //     },
-        //   }
-        // );
 
-         const res =await  api.get("/admin-users");
-        const data =  res.data;
+const loadUsers = async () => {
+  try {
+    const res = await api.get("/admin-users");
 
-        //const data = await res.json();
-        setUsers(data);
-      } catch (error) {
-        toast.error("Error loading users:", error);
-        setUsers([]);
-      }
-    };
-    loadUsers();
-  }, []);
+    console.log("Users after reload:", res.data);
+
+    setUsers(res.data);
+  } catch (error) {
+    console.error("Error loading users:", error);
+    toast.error("Error loading users");
+    setUsers([]);
+  }
+};
+
+
+  useEffect(() => { loadUsers(); },[]);
+
+  const handleDelete = async (userid) => {
+  const confirmed = await confirmAction({
+    title: "Delete User?",
+    text: "This action cannot be undone.",
+    successTitle: "Deleted!",
+    successText: "User deleted successfully.",
+  });
+
+  if (!confirmed) return;
+
+  try {
+    const res = await api.delete(`/delete_users/${userid}`);
+
+    console.log("Delete response:", res.data);
+    console.log("Delete status:", res.status);
+
+    if (res.status === 200) {
+      toast.success("Deleted successfully");
+
+      await loadUsers();
+    }
+  } catch (error) {
+    console.error("Delete error:", error);
+    toast.error("Failed to delete");
+  }
+};
 
   const filteredUsers = users.filter((item) =>
     item.name?.toLowerCase().includes(search.toLowerCase()),
@@ -76,6 +98,9 @@ function UsersDetails() {
               <th>Email</th>
               <th>Name</th>
               <th>Role</th>
+              <th>Power</th>
+              <th>Delete</th>
+              
             </tr>
           </thead>
 
@@ -86,6 +111,19 @@ function UsersDetails() {
                 <td>{displayValue(item.email)}</td>
                 <td>{displayValue(item.name)}</td>
                 <td>{displayValue(item.role)}</td>
+                <td>{displayValue(item.power)}</td>
+                <td>
+                  <button
+                    style={{
+                      backgroundColor: "transparent",
+                      color: "red",
+                      padding: "9px",
+                    }}
+                    onClick={() => handleDelete(item.userid)}
+                  >
+                    <Trash2 />
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
