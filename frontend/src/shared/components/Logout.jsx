@@ -27,7 +27,7 @@ function Logout() {
         
 
 
-         window.location.replace("/login");
+         window.location.replace("/login",{replace:true});
 
 
       } else if(role=="student"){
