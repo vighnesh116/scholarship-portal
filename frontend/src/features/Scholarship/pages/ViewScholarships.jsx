@@ -38,13 +38,17 @@ function ViewScholarships() {
     });
   };
   console.log(scholarships);
-  const loadScholarships = async () => {
-    const res = await fetch("http://127.0.0.1:5000/admin-scholarships",{
-      headers:{
-        Authorization:`Bearer ${token}`,
-      },
-    });
-    const data = await res.json();
+  // const loadScholarships = async () => {
+  //   const res = await fetch("http://127.0.0.1:5000/admin-scholarships",{
+  //     headers:{
+  //       Authorization:`Bearer ${token}`,
+  //     },
+  //   });
+
+  const loadScholarships=async()=>{
+    const res = await api.get("/admin-scholarships");
+
+    const data = res.data;
     setScholarships(data);
   };
 
