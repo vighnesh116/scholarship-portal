@@ -81,3 +81,30 @@ def admin_students():
     finally:
         cursor.close()
         db.close()
+
+
+def delete_users(id):
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
+
+    try:
+        cursor.execute(
+            """
+            DELETE FROM users
+            WHERE userid=%s
+            """,
+            (id,),
+        )
+        db.commit()
+        return jsonify({"message": "Deleted Successfully"})
+    finally:
+        cursor.close()
+        db.close()
+# def admin_access(id):
+#     db=get_db()
+#     cursor =db.cursor(dictionary=True)
+
+#     try:
+#         cursor.execute(
+#             """SET role=%s"""
+#         )
