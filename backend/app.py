@@ -21,13 +21,13 @@ from scholarship import (
     scholarships,
     admin_stats,
 )
-from student import portal, admin_students, user_data 
+from student import portal, admin_students, user_data , delete_users
 
 app = Flask(__name__)
 CORS(app)
 app.config["JWT_SECRET_KEY"] = "Nqn4muAADg3RbAgeu[&SDTGVwbc^$&^CC"
-app.config["JWT_ACCESS_TOKEN_EXPIRES"]=timedelta(minutes=30)
-app.config["JWT_REFRESH_TOKEN_EXPIRES"]=timedelta(days=30)
+app.config["JWT_ACCESS_TOKEN_EXPIRES"]=timedelta(days=1)
+app.config["JWT_REFRESH_TOKEN_EXPIRES"]=timedelta(days=7)
 jwt=JWTManager(app)
 
 # Authentication
@@ -44,11 +44,12 @@ app.add_url_rule("/admin-users", view_func=admin_required()(user_data), methods=
 app.add_url_rule("/admin-scholarships", view_func=admin_required()(admin_scholarships), methods=["GET"])
 app.add_url_rule("/admin-stats", view_func=admin_required()(admin_stats), methods=["GET"])
 app.add_url_rule("/delete-scholarship/<int:id>", view_func=admin_required()(delete_scholarship), methods=["DELETE"])
+# app.add_url_rule("/admin_access",view_func=admin_required()(admin_access),methods=["PUT"])
 
 # Student Management
 app.add_url_rule("/portal", view_func=jwt_required()(portal), methods=["POST"])
 app.add_url_rule("/scholarships", view_func=jwt_required()(scholarships), methods=["POST"])
-
+app.add_url_rule("/delete_users/<int:id>",view_func=jwt_required()(delete_users),methods=["DELETE"])
 
 if __name__ == "__main__":
     app.run(debug=True)
