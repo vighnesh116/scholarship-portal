@@ -21,7 +21,7 @@ function PasswordUpdate() {
 
     if (!confirmed) return;
 
-    navigate("/", { replace: true });
+    navigate("/login", { replace: true });
   };
 
   const submit = async (e) => {
