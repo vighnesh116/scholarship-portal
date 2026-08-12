@@ -17,7 +17,7 @@
     max-width: 860px;
     border-radius: 20px;
     padding: 40px 44px;
-    box-shadow:  20px 20px rgba(0, 0, 0, 0.15);
+    box-shadow:  20px 20px 20px 0.5px rgba(0, 0, 0, 0.15);
     box-sizing: border-box;
 }
 
