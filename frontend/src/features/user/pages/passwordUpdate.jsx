@@ -59,7 +59,7 @@ function PasswordUpdate() {
     <div className="container">
        <p>
         
-          <Link to="/portal" replace={true}>
+          <Link to="*" replace={true}>
             <ArrowLeft color="#150909" />
           </Link>
         </p>
