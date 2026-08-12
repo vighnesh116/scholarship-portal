@@ -26,6 +26,7 @@ function AdminLayout() {
     { key: "students", label: "Students-Details", path: "/admin/students" },
     { key: "users", label: "Users-Detais", path: "/admin/users" },
     { key: "logout", label: <LogOut />, path: "/logout" },
+    {key:"update-password",label:"Update-Password",path:"/update-password"},
   ];
 
   return (
