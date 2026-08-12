@@ -83,10 +83,10 @@ function CreateScholarship() {
       caste: "",
       educationqualifiation: "",
       deadline: "",
-      application_link: "",
-      draft: 0,
-    });
-  };
+      application_link: "",                                                                                                                       
+      draft: 0,                                                                                                                       
+    });                                                                                                                       
+  };                                                                                                                       
 
   const addScholarship = async (draftValue = 0) => {
     const confirmed = await confirmAction({
