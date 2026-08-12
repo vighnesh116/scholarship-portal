@@ -50,15 +50,7 @@ function AppRoutes() {
       /> 
 
         
-          <Route
-          path="manage"
-          element={
-            <ProtectedRoute
-              childern={<CreateScholarship />}
-              
-            />
-          }
-        />
+       
 
 
       {/*=========================Admin====================================*/}
@@ -117,6 +109,13 @@ function AppRoutes() {
           element={<ProtectedRoute childern={<Logout />} allowedRole="admin" />}
         />
 
+           <Route
+        path="update-password"
+        element={
+          <ProtectedRoute childern={<PasswordUpdate />} allowedRole="admin"/>
+        }
+      />
+      
 
       </Route>
 
