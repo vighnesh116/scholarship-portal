@@ -25,7 +25,7 @@ function AppRoutes() {
       <Route
         path="/update-password"
         element={
-          <ProtectedRoute childern={<PasswordUpdate />} allowedRole="student" />
+          <ProtectedRoute childern={<PasswordUpdate />} />
         }
       />
 
