@@ -11,7 +11,7 @@ function Sidebar({ title, navItems, children }) {
   const isActive = (path) => {
     
     if (path === "/admin") {
-      return location.pathname === "/admin" || location.pathname === "/admin/";
+      return location.pathname === "/admin" || location.pathname === "/admin/" ;
     }
     return location.pathname.startsWith(path);
   };
