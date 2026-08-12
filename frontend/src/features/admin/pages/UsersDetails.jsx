@@ -98,7 +98,6 @@ const loadUsers = async () => {
               <th>Email</th>
               <th>Name</th>
               <th>Role</th>
-              <th>Power</th>
               <th>Delete</th>
               
             </tr>
@@ -111,7 +110,7 @@ const loadUsers = async () => {
                 <td>{displayValue(item.email)}</td>
                 <td>{displayValue(item.name)}</td>
                 <td>{displayValue(item.role)}</td>
-                <td>{displayValue(item.power)}</td>
+                
                 <td>
                   <button
                     style={{
