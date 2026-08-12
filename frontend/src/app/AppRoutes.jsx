@@ -49,6 +49,18 @@ function AppRoutes() {
         element={<ProtectedRoute childern={<Logout />}  />}
       /> 
 
+        
+          <Route
+          path="manage"
+          element={
+            <ProtectedRoute
+              childern={<CreateScholarship />}
+              
+            />
+          }
+        />
+
+
       {/*=========================Admin====================================*/}
       <Route
         path="/admin"
