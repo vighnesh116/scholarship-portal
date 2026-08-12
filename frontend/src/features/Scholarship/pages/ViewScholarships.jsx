@@ -131,7 +131,6 @@ function ViewScholarships() {
             <th>Caste</th>
             <th>Education</th>
             <th>Deadline</th>
-
             <th>Status</th>
             <th>Edit</th>
             <th>Delete</th>
