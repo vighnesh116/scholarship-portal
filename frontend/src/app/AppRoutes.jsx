@@ -53,7 +53,7 @@ function AppRoutes() {
       <Route
         path="/admin"
         element={
-          <ProtectedRoute allowedRole="admin" childern={<AdminLayout />} />
+          <ProtectedRoute childern={<AdminLayout />} allowedRole="admin"  />
         }
       >
         <Route
