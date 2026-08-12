@@ -100,11 +100,3 @@ def delete_users(id):
     finally:
         cursor.close()
         db.close()
-# def admin_access(id):
-#     db=get_db()
-#     cursor =db.cursor(dictionary=True)
-
-#     try:
-#         cursor.execute(
-#             """SET role=%s"""
-#         )
