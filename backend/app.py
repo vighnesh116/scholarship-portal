@@ -1,10 +1,3 @@
-# from pathlib import Path
-# import sys
-
-
-# BASE_DIR = Path(__file__).resolve().parent
-# if str(BASE_DIR) not in sys.path:
-#     sys.path.insert(0, str(BASE_DIR))
 
 from decoder import admin_required
 
@@ -25,7 +18,7 @@ from student import portal, admin_students, user_data , delete_users
 
 app = Flask(__name__)
 CORS(app)
-app.config["JWT_SECRET_KEY"] = "Nqn4muAADg3RbAgeu[&SDTGVwbc^$&^CC"
+app.config["JWT_SECRET_KEY"] = "Nqn4muAADg3RbAgervv4v99464[&SDTGVwbc^$&^CC"
 app.config["JWT_ACCESS_TOKEN_EXPIRES"]=timedelta(days=1)
 app.config["JWT_REFRESH_TOKEN_EXPIRES"]=timedelta(days=7)
 jwt=JWTManager(app)
