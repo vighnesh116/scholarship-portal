@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://127.0.0.1:5000",
+  baseURL: "http://192.168.1.68:5000",
 });
 
 // Add access token to every request
@@ -45,7 +45,7 @@ api.interceptors.response.use(
         }
 
         const refreshResponse = await axios.post(
-          "http://127.0.0.1:5000/refresh",
+          "http://192.168.1.68:5000/refresh",
           {},
           {
             headers: {
