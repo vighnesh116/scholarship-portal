@@ -45,4 +45,4 @@ app.add_url_rule("/scholarships", view_func=jwt_required()(scholarships), method
 app.add_url_rule("/delete_users/<int:id>",view_func=jwt_required()(delete_users),methods=["DELETE"])
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="192.168.1.68", port=5000, debug=True)
