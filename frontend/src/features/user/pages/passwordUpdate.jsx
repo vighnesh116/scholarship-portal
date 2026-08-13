@@ -6,6 +6,7 @@ import "../components/UserAuth.css";
 import {LogOut , ArrowLeft }from"lucide-react";
 import Logout from "../../../shared/components/Logout"
 import { confirmAction } from "../../../shared/components/ConfirmAction";
+import api from "../../../shared/api/axiosInstance"
 function PasswordUpdate() {
   const navigate = useNavigate();
 
@@ -41,10 +42,13 @@ function PasswordUpdate() {
         return;
       }
 
-      const res = await axios.post("http://localhost:5000/update-password", {
-        email,
-        new_password: password,
-      });
+      // const res = await axios.post("http://localhost:5000/update-password", {
+      //   email,
+      //   new_password: password,
+      // });
+
+      const res = await api.put("/update-password",{email,new_password:password});
+
 
       toast.success(res.data.message || "Password Updated Successfully");
       navigate("/portal", { replace: true });
