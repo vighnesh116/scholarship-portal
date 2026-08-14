@@ -20,16 +20,16 @@ function Login() {
       //   email,
       //   password,
       // });
-      
-      const res = await api.post("/login",{email,password});
+
+      const res = await api.post("/login", { email, password });
 
       if (res.data.success) {
         localStorage.setItem("user", res.data.name);
         localStorage.setItem("email", email);
-        localStorage.setItem("refresh_token",res.data.refresh_token);
+        localStorage.setItem("refresh_token", res.data.refresh_token);
         //Save JWt
-        localStorage.setItem("access_token",res.data.access_token);
-        localStorage.setItem("role",res.data.role);
+        localStorage.setItem("access_token", res.data.access_token);
+        localStorage.setItem("role", res.data.role);
         if (res.data.role === "admin") {
           toast.success("Admin Login Successful");
           navigate("/admin", { replace: true });
@@ -41,13 +41,11 @@ function Login() {
         toast.error("Invalid Credentials");
       }
     } catch (error) {
-
-  if (error.response?.status === 401) {
-    toast.error("Invalid Credentials");
-  } else {
-    toast.error("Something went wrong");
-  }
-
+      if (error.response?.status === 401) {
+        toast.error("Invalid Credentials");
+      } else {
+        toast.error("Something went wrong");
+      }
     }
   };
 
