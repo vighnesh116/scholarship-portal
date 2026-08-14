@@ -83,10 +83,10 @@ function CreateScholarship() {
       caste: "",
       educationqualifiation: "",
       deadline: "",
-      application_link: "",                                                                                                                       
-      draft: 0,                                                                                                                       
-    });                                                                                                                       
-  };                                                                                                                       
+      application_link: "",
+      draft: 0,
+    });
+  };
 
   const addScholarship = async (draftValue = 0) => {
     const confirmed = await confirmAction({
@@ -129,9 +129,9 @@ function CreateScholarship() {
       navigate("/admin/view");
     } catch (error) {
       console.log(error);
-       console.log("ADD ERROR:", error);
-  console.log("STATUS:", error.response?.status);
-  console.log("SERVER MESSAGE:", error.response?.data);
+      console.log("ADD ERROR:", error);
+      console.log("STATUS:", error.response?.status);
+      console.log("SERVER MESSAGE:", error.response?.data);
 
       toast.error("Error adding scholarship");
     }
@@ -171,7 +171,10 @@ function CreateScholarship() {
       //     body: JSON.stringify(dataToSend),
       //   },
       // );
-      const res = await api.put(`/update-scholarship/${form.sclrid}`, dataToSend);
+      const res = await api.put(
+        `/update-scholarship/${form.sclrid}`,
+        dataToSend,
+      );
 
       toast.success(res.data.message);
 
