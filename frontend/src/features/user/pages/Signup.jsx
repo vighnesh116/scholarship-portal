@@ -17,7 +17,7 @@ function Signup() {
     email: "",
     password: "",
   });
-  
+
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -65,11 +65,10 @@ function Signup() {
 
       // const response = await axios.post("http://localhost:5000/signup", form);
 
-      const response = await api.post("/signup",form);
+      const response = await api.post("/signup", form);
 
       toast.success(response.data.message);
 
-    
       setForm({
         name: "",
         email: "",
@@ -78,7 +77,6 @@ function Signup() {
 
       setConfirmPassword("");
 
-      
       navigate("/login", { replace: true });
     } catch (error) {
       if (error.response) {
