@@ -40,9 +40,9 @@ function AdminDashboard() {
       //   } ,
       // });
 
-      const res =await api.get("/admin-stats");
+      const res = await api.get("/admin-stats");
 
-      const data =  res.data;
+      const data = res.data;
       setStats(data);
     } catch (err) {
       toast.error("Failed to load stats:", err);
@@ -80,11 +80,8 @@ function AdminDashboard() {
           label="Total Students enrolled"
           value={stats.total_students}
         />
-       
-       <StatsCard
-          label="Total Users Present"
-          value={stats.total_users}
-        />
+
+        <StatsCard label="Total Users Present" value={stats.total_users} />
 
         <div className="pie-card">
           <h3>Scholarship Status</h3>
@@ -101,9 +98,6 @@ function AdminDashboard() {
                 {pieData.map((entry, index) => (
                   <Cell key={index} fill={COLORS[index]} />
                 ))}
-             
-
-
               </Pie>
               <Tooltip />
             </PieChart>
@@ -129,7 +123,6 @@ function AdminDashboard() {
                 <strong>{stats.inactive_scholarships}</strong> Inactive
               </span>
             </div>
-         
           </div>
         </div>
       </div>
