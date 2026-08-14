@@ -19,7 +19,7 @@ function StudentsDetails() {
       //             Authorization :`Bearer ${token}`,
       //   },
       // });
-      const res= await api.get("/admin-students");
+      const res = await api.get("/admin-students");
       const data = res.data;
       setStudents(data || []);
     } catch (error) {
