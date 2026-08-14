@@ -6,7 +6,7 @@ import { confirmAction } from "../../../shared/components/ConfirmAction";
 function ScholarshipResult() {
   const location = useLocation();
   const navigate = useNavigate();
-//  const token = localStorage.item("access_token");
+  //  const token = localStorage.item("access_token");
   let scholarships = [];
 
   if (location.state) {
@@ -27,8 +27,12 @@ function ScholarshipResult() {
     }
   };
 
-  const activeScholarships = scholarships.filter(item => item.days_left >= 0 && item.draft === 0);
-  const inactiveScholarships = scholarships.filter(item => item.days_left < 0 && item.draft === 0);
+  const activeScholarships = scholarships.filter(
+    (item) => item.days_left >= 0 && item.draft === 0,
+  );
+  const inactiveScholarships = scholarships.filter(
+    (item) => item.days_left < 0 && item.draft === 0,
+  );
   return (
     <div className="scholarship-page">
       <img src={logo} alt="Scholarship Portal Logo" className="logo" />
