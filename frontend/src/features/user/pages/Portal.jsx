@@ -1,5 +1,5 @@
 import { useState } from "react";
-import api from "../../../shared/api/axiosInstance"
+import api from "../../../shared/api/axiosInstance";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { confirmAction } from "../../../shared/components/ConfirmAction";
@@ -27,7 +27,7 @@ function Portal() {
 
   const submit = async (e) => {
     e.preventDefault();
-const token =localStorage.getItem("access_token");
+    const token = localStorage.getItem("access_token");
     try {
       // Save
       // await axios.post("http://localhost:5000/portal", form,
@@ -38,7 +38,7 @@ const token =localStorage.getItem("access_token");
       //   }
       // );
 
-       await api.post("/portal",form);
+      await api.post("/portal", form);
 
       // Fetch
       // const response = await axios.post(
@@ -49,8 +49,7 @@ const token =localStorage.getItem("access_token");
       //   }
       // });
 
-      const response = await api.post("/scholarships",form);
-
+      const response = await api.post("/scholarships", form);
 
       // Redirect to scholarship results page
       navigate("/scholarships", {
