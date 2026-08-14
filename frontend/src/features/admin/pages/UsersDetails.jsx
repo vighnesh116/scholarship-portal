@@ -14,49 +14,50 @@ function UsersDetails() {
   const [users, setUsers] = useState([]);
   const token = localStorage.getItem("access_token");
 
-const loadUsers = async () => {
-  try {
-    const res = await api.get("/admin-users");
+  const loadUsers = async () => {
+    try {
+      const res = await api.get("/admin-users");
 
-    console.log("Users after reload:", res.data);
+      console.log("Users after reload:", res.data);
 
-    setUsers(res.data);
-  } catch (error) {
-    console.error("Error loading users:", error);
-    toast.error("Error loading users");
-    setUsers([]);
-  }
-};
+      setUsers(res.data);
+    } catch (error) {
+      console.error("Error loading users:", error);
+      toast.error("Error loading users");
+      setUsers([]);
+    }
+  };
 
-
-  useEffect(() => { loadUsers(); },[]);
+  useEffect(() => {
+    loadUsers();
+  }, []);
 
   const handleDelete = async (userid) => {
-  const confirmed = await confirmAction({
-    title: "Delete User?",
-    text: "This action cannot be undone.",
-    successTitle: "Deleted!",
-    successText: "User deleted successfully.",
-  });
+    const confirmed = await confirmAction({
+      title: "Delete User?",
+      text: "This action cannot be undone.",
+      successTitle: "Deleted!",
+      successText: "User deleted successfully.",
+    });
 
-  if (!confirmed) return;
+    if (!confirmed) return;
 
-  try {
-    const res = await api.delete(`/delete_users/${userid}`);
+    try {
+      const res = await api.delete(`/delete_users/${userid}`);
 
-    console.log("Delete response:", res.data);
-    console.log("Delete status:", res.status);
+      console.log("Delete response:", res.data);
+      console.log("Delete status:", res.status);
 
-    if (res.status === 200) {
-      toast.success("Deleted successfully");
+      if (res.status === 200) {
+        toast.success("Deleted successfully");
 
-      await loadUsers();
+        await loadUsers();
+      }
+    } catch (error) {
+      console.error("Delete error:", error);
+      toast.error("Failed to delete");
     }
-  } catch (error) {
-    console.error("Delete error:", error);
-    toast.error("Failed to delete");
-  }
-};
+  };
 
   const filteredUsers = users.filter((item) =>
     item.name?.toLowerCase().includes(search.toLowerCase()),
@@ -99,7 +100,6 @@ const loadUsers = async () => {
               <th>Name</th>
               <th>Role</th>
               <th>Delete</th>
-              
             </tr>
           </thead>
 
@@ -110,7 +110,7 @@ const loadUsers = async () => {
                 <td>{displayValue(item.email)}</td>
                 <td>{displayValue(item.name)}</td>
                 <td>{displayValue(item.role)}</td>
-                
+
                 <td>
                   <button
                     style={{
