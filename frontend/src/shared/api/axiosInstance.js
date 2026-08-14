@@ -17,7 +17,7 @@ api.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 // Automatically refresh expired access token
@@ -51,23 +51,17 @@ api.interceptors.response.use(
             headers: {
               Authorization: `Bearer ${refreshToken}`,
             },
-          }
+          },
         );
 
         const newAccessToken = refreshResponse.data.access_token;
 
-        localStorage.setItem(
-          "access_token",
-          newAccessToken
-        );
+        localStorage.setItem("access_token", newAccessToken);
 
-        originalRequest.headers.Authorization =
-          `Bearer ${newAccessToken}`;
+        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
 
         return api(originalRequest);
-
       } catch (refreshError) {
-
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");
 
@@ -76,7 +70,7 @@ api.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default api;
