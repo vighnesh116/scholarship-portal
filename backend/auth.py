@@ -122,12 +122,12 @@ def update_password():
 
     email = data['email']
     new_password = data['new_password']
-
+    
     hashed_password = generate_password_hash(new_password)
 
     db = get_db()
     cursor = db.cursor(dictionary=True)
-
+    
     try:
 
         cursor.execute(
@@ -138,6 +138,7 @@ def update_password():
         db.commit()
 
         return jsonify({
+           
             "message": "Password updated successfully"
         })
 
@@ -150,9 +151,13 @@ def update_password():
         }), 500
 
     finally:
+        
+
 
         cursor.close()
         db.close()
+        
+
 @jwt_required(refresh=True)
 def refresh():
     user_id = get_jwt_identity()
