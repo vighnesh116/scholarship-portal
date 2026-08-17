@@ -3,13 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "../components/UserAuth.css";
-import {LogOut , ArrowLeft }from"lucide-react";
+import {LogOut , ArrowLeft,User }from"lucide-react";
 import Logout from "../../../shared/components/Logout"
 import { confirmAction } from "../../../shared/components/ConfirmAction";
 import api from "../../../shared/api/axiosInstance"
 function PasswordUpdate() {
   const navigate = useNavigate();
-
+  const userName = localStorage.getItem("name");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const handleLogout = async () => {
@@ -68,6 +68,9 @@ function PasswordUpdate() {
           </Link>
         </p>
       <div className="box">
+
+        <h3><User color="#000000" />{userName}</h3>
+
         <h1>Update </h1>
         <h1>Password</h1>
         <form onSubmit={submit}>
