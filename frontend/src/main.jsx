@@ -1,22 +1,22 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import "./index.css";
+import "react-toastify/ReactToastify.css";
+
 import App from "./App.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
     <ToastContainer
       position="top-right"
       autoClose={3000}
-      newestOnTop
+      newestOnTop={true}
       hideProgressBar={false}
-      closeOnClick
-      pauseOnHover
-      draggable
+      closeOnClick={true}
+      pauseOnHover={true}
+      draggable={true}
       theme="colored"
     />
+    <App />
   </StrictMode>,
 );
