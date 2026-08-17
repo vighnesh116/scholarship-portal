@@ -27,7 +27,7 @@ function Portal() {
 
   const submit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem("access_token");
+   // const token = localStorage.getItem("access_token");
     try {
       // Save
       // await axios.post("http://localhost:5000/portal", form,
