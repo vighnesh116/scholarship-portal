@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "../components/Scholarship.css";
 import logo from "../../../assets/new2.ico";
 import { confirmAction } from "../../../shared/components/ConfirmAction";
-
+import {ArrowLeft }from "lucide-react";
 function ScholarshipResult() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -35,6 +35,11 @@ function ScholarshipResult() {
   );
   return (
     <div className="scholarship-page">
+      <nav>
+
+      <a href="portal"><ArrowLeft color="#150909"/></a>
+      
+      </nav>
       <img src={logo} alt="Scholarship Portal Logo" className="logo" />
       <h1>Eligible Scholarships</h1>
 
