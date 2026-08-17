@@ -1,6 +1,20 @@
 import { Routes, Route } from "react-router-dom";
-import  {
-Login ,Signup,Portal,ScholarshipResult ,PasswordUpdate,AdminLayout, AdminDashboard ,StudentsDetails,UsersDetails,ProtectedRoute,ViewScholarships,Logout,CreateScholarship ,ErrorPage} from "./ImportPage"
+import {
+  Login,
+  Signup,
+  Portal,
+  ScholarshipResult,
+  PasswordUpdate,
+  AdminLayout,
+  AdminDashboard,
+  StudentsDetails,
+  UsersDetails,
+  ProtectedRoute,
+  ViewScholarships,
+  Logout,
+  CreateScholarship,
+  ErrorPage,
+} from "./ImportPage";
 function AppRoutes() {
   return (
     <Routes>
@@ -12,9 +26,7 @@ function AppRoutes() {
 
       <Route
         path="/update-password"
-        element={
-          <ProtectedRoute childern={<PasswordUpdate />} />
-        }
+        element={<ProtectedRoute childern={<PasswordUpdate />} />}
       />
 
       <Route
@@ -34,18 +46,14 @@ function AppRoutes() {
 
       <Route
         path="/logout"
-        element={<ProtectedRoute childern={<Logout />}  />}
-      /> 
-
-        
-       
-
+        element={<ProtectedRoute childern={<Logout />} />}
+      />
 
       {/*=========================Admin====================================*/}
       <Route
         path="/admin"
         element={
-          <ProtectedRoute childern={<AdminLayout />} allowedRole="admin"  />
+          <ProtectedRoute childern={<AdminLayout />} allowedRole="admin" />
         }
       >
         <Route
@@ -97,18 +105,15 @@ function AppRoutes() {
           element={<ProtectedRoute childern={<Logout />} allowedRole="admin" />}
         />
 
-           <Route
-        path="update-password"
-        element={
-          <ProtectedRoute childern={<PasswordUpdate />} allowedRole="admin"/>
-        }
-      />
-      
-
+        <Route
+          path="update-password"
+          element={
+            <ProtectedRoute childern={<PasswordUpdate />} allowedRole="admin" />
+          }
+        />
       </Route>
 
       <Route path="*" element={<ErrorPage />} />
-
     </Routes>
   );
 }
