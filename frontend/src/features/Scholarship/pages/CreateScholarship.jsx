@@ -153,7 +153,7 @@ function CreateScholarship() {
     if (!confirmed) return;
     const dataToSend = {
       ...form,
-
+      miniincome:form.miniincome || null,
       draft: draftValue,
       gender: form.gender || null,
       caste: form.caste || null,
