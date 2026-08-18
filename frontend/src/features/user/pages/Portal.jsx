@@ -107,6 +107,7 @@ function Portal() {
               <input
                 required
                 type="number"
+                min="1"
                 name="income"
                 placeholder="Enter Family Income"
                 onChange={handleChange}
