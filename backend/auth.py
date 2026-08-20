@@ -84,21 +84,22 @@ def login():
             access_token = create_access_token(
                 identity=str(user['userid']),
                 additional_claims={
-                    "role": user['role']
+                    "role": user['role'],
+                    "name":user['name']
                     
                 }
             )
 
             refresh_token = create_refresh_token(
                 identity=str(user['userid']),
-                additional_claims={"role":user['role'] }
+                additional_claims={"role":user['role'] ,"name":user['name'] }
 
             )
             
             return jsonify({
                 "success": True,
-                "name": user['name'],
                 "role": user['role'],
+                "name":user['name'],
                 "access_token": access_token,
                 "refresh_token":refresh_token,
                 "power":user['power']
