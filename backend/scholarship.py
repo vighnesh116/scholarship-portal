@@ -134,6 +134,74 @@ def update_scholarship(id):
         db.close()
 
 
+def admin_scholarships():
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
+
+    try:
+        cursor.execute(
+            """
+            SELECT *
+            FROM sclrinfo
+            ORDER BY sclrid DESC
+            """
+        )
+
+        scholarships = cursor.fetchall()
+        today = date.today()
+
+        for scholarship in scholarships:
+            deadline = datetime.strptime(scholarship["deadline"], "%d-%b-%Y").date()
+            scholarship["is_active"] = deadline >= today
+
+        return jsonify(scholarships)
+    finally:
+        cursor.close()
+        db.close()
+
+
+def admin_stats():
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
+
+    try:
+        cursor.execute("SELECT COUNT(*) AS total_users FROM users")
+        users = cursor.fetchone()
+
+        cursor.execute("SELECT COUNT(*) AS total_students FROM students")
+        students = cursor.fetchone()
+
+        cursor.execute("SELECT COUNT(*) AS total_scholarships FROM sclrinfo")
+        scholarships = cursor.fetchone()
+
+        cursor.execute(
+            """
+            SELECT COUNT(*) AS active
+            FROM sclrinfo
+            WHERE STR_TO_DATE(deadline,'%d-%b-%Y') >= CURDATE()
+            """
+        )
+        active = cursor.fetchone()
+
+        cursor.execute(
+            """
+            SELECT COUNT(*) AS inactive
+            FROM sclrinfo
+            WHERE STR_TO_DATE(deadline,'%d-%b-%Y') < CURDATE()
+            """
+        )
+        inactive = cursor.fetchone()
+
+        return jsonify({
+            "total_users": users["total_users"],
+            "total_students": students["total_students"],
+            "total_scholarships": scholarships["total_scholarships"],
+            "active_scholarships": active["active"],
+            "inactive_scholarships": inactive["inactive"],
+        })
+    finally:
+        cursor.close()
+        db.close()
 
 
 def scholarships():
@@ -141,7 +209,7 @@ def scholarships():
     data = request.json
 
     marks = int(data["marks"])
-    income = int(data["income"])          # rupees
+    income = int(data["income"])         
     education = int(data["education"])
 
     caste = data["caste"]
@@ -221,9 +289,9 @@ def scholarships():
         eligible_scholarships = cursor.fetchall()
 
 
-        # =====================================================
+       
         # RECOMMENDATION CALCULATION
-        # =====================================================
+
 
         caste_values = {
             "ST": 1.00,
@@ -237,18 +305,14 @@ def scholarships():
 
         for scholarship in eligible_scholarships:
 
-            # =================================================
-            # 1. INCOME
-            # =================================================
+                        # 1. INCOME
+        
 
             if scholarship["miniincome"] is None:
 
                 # Scholarship has no income limit
                 scholarship_income_vector = 0
 
-                # ₹40,000 -> 0.04
-                # ₹1,00,000 -> 0.10
-                # ₹2,00,000 -> 0.20
 
                 student_income_vector = income / 1_000_000
 
@@ -264,7 +328,7 @@ def scholarships():
                     calculated_income / scholarship_income
                 )
 
-                # Safety
+    
                 if student_income_vector < 0:
                     student_income_vector = 0
 
@@ -274,9 +338,9 @@ def scholarships():
                 scholarship_income_vector = 1
 
 
-            # =================================================
+            
             # 2. MARKS
-            # =================================================
+        
 
             if marks is None:
                 student_marks_vector = 1
@@ -286,19 +350,17 @@ def scholarships():
             scholarship_marks_vector = 1
 
 
-            # =================================================
             # 3. CASTE
-            # =================================================
+
 
             if scholarship["caste"] is not None:
 
-                # Because eligibility filtering already
-                # confirmed the caste match.
+            
                 student_caste_vector = 1.0
 
             else:
 
-                # Scholarship open to all castes
+            
                 student_caste_vector = caste_values.get(
                     caste,
                     0.30
@@ -307,19 +369,14 @@ def scholarships():
             scholarship_caste_vector = 1.0
 
 
-            # =================================================
             # 4. GENDER
-            # =================================================
 
             if scholarship["gender"] is not None:
 
-                # Because eligibility filtering already
-                # confirmed the gender match.
                 student_gender_vector = 1.0
 
             else:
 
-                # Scholarship open to all genders
                 if gender.lower() == "female":
                     student_gender_vector = 0.90
                 else:
@@ -328,9 +385,7 @@ def scholarships():
             scholarship_gender_vector = 1.0
 
 
-            # =================================================
             # 5. EDUCATION
-            # =================================================
 
             if (
                 scholarship["educationqualifiation"] is not None
@@ -342,18 +397,15 @@ def scholarships():
 
             else:
 
-                # Scholarship is open to all education levels
-                # or the student is eligible through the filter.
+              
                 student_education_vector = 0.75
 
             scholarship_education_vector = 1.0
 
 
-            # =================================================
+    
             # FINAL VECTORS
-            #
             # [Income, Marks, Caste, Gender, Education]
-            # =================================================
 
             student_vector = [
                 student_income_vector,
@@ -372,9 +424,9 @@ def scholarships():
             ]
 
 
-            # =================================================
+        
             # COSINE SIMILARITY
-            # =================================================
+        
 
             score = cosine_similarity(
                 [student_vector],
@@ -382,9 +434,8 @@ def scholarships():
             )[0][0]
 
 
-            # =================================================
             # ADD SCORE TO SCHOLARSHIP
-            # =================================================
+            
 
             scholarship["recommendation_score"] = round(
                 float(score),
@@ -397,9 +448,9 @@ def scholarships():
             results.append(scholarship)
 
 
-        # =====================================================
+    
         # RANK ALL ELIGIBLE SCHOLARSHIPS
-        # =====================================================
+    
 
         results.sort(
             key=lambda x: x["recommendation_score"],
@@ -416,72 +467,3 @@ def scholarships():
         db.close()
 
 
-
-def admin_scholarships():
-    db = get_db()
-    cursor = db.cursor(dictionary=True)
-
-    try:
-        cursor.execute(
-            """
-            SELECT *
-            FROM sclrinfo
-            ORDER BY sclrid DESC
-            """
-        )
-
-        scholarships = cursor.fetchall()
-        today = date.today()
-
-        for scholarship in scholarships:
-            deadline = datetime.strptime(scholarship["deadline"], "%d-%b-%Y").date()
-            scholarship["is_active"] = deadline >= today
-
-        return jsonify(scholarships)
-    finally:
-        cursor.close()
-        db.close()
-
-
-def admin_stats():
-    db = get_db()
-    cursor = db.cursor(dictionary=True)
-
-    try:
-        cursor.execute("SELECT COUNT(*) AS total_users FROM users")
-        users = cursor.fetchone()
-
-        cursor.execute("SELECT COUNT(*) AS total_students FROM students")
-        students = cursor.fetchone()
-
-        cursor.execute("SELECT COUNT(*) AS total_scholarships FROM sclrinfo")
-        scholarships = cursor.fetchone()
-
-        cursor.execute(
-            """
-            SELECT COUNT(*) AS active
-            FROM sclrinfo
-            WHERE STR_TO_DATE(deadline,'%d-%b-%Y') >= CURDATE()
-            """
-        )
-        active = cursor.fetchone()
-
-        cursor.execute(
-            """
-            SELECT COUNT(*) AS inactive
-            FROM sclrinfo
-            WHERE STR_TO_DATE(deadline,'%d-%b-%Y') < CURDATE()
-            """
-        )
-        inactive = cursor.fetchone()
-
-        return jsonify({
-            "total_users": users["total_users"],
-            "total_students": students["total_students"],
-            "total_scholarships": scholarships["total_scholarships"],
-            "active_scholarships": active["active"],
-            "inactive_scholarships": inactive["inactive"],
-        })
-    finally:
-        cursor.close()
-        db.close()
