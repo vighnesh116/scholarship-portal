@@ -61,21 +61,20 @@ function PasswordUpdate() {
   };
   return (
     <div className="container">
-     
+      
+      <div className="box">
+         
+
         <h1>Update </h1>
         <h1>Password</h1>
 
-  <p>
+        <p>
         
           <Link to="*" replace={true}>
             <ArrowLeft color="#150909" />
           </Link>
         </p>
-      <div className="box">
-
         <h2><User color="#000000" />{userName}</h2>
-
-
         <form onSubmit={submit}>
           <input
             required
