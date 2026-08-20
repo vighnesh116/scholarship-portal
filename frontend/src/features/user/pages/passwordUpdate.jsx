@@ -9,7 +9,7 @@ import { confirmAction } from "../../../shared/components/ConfirmAction";
 import api from "../../../shared/api/axiosInstance"
 function PasswordUpdate() {
   const navigate = useNavigate();
-  const userName = localStorage.getItem("name");
+  const userName = localStorage.getItem("user");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const handleLogout = async () => {
@@ -61,7 +61,11 @@ function PasswordUpdate() {
   };
   return (
     <div className="container">
-       <p>
+     
+        <h1>Update </h1>
+        <h1>Password</h1>
+
+  <p>
         
           <Link to="*" replace={true}>
             <ArrowLeft color="#150909" />
@@ -69,10 +73,9 @@ function PasswordUpdate() {
         </p>
       <div className="box">
 
-        <h3><User color="#000000" />{userName}</h3>
+        <h2><User color="#000000" />{userName}</h2>
 
-        <h1>Update </h1>
-        <h1>Password</h1>
+
         <form onSubmit={submit}>
           <input
             required
