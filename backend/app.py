@@ -11,11 +11,10 @@ from scholarship import (
     admin_scholarships,
     delete_scholarship,
     update_scholarship,
-    scholarships,
     admin_stats,
 )
 from student import portal, admin_students, user_data , delete_users
-
+from scholarshipFilter import scholarships
 app = Flask(__name__)
 CORS(app)
 app.config["JWT_SECRET_KEY"] = "Nqn4muAADg3RbAgervv4v99464[&SDTGVwbc^$&^CC"
