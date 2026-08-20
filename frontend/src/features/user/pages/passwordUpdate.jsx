@@ -40,6 +40,7 @@ function PasswordUpdate() {
   };
 
   return (
+<<<<<<< HEAD
     <div className="pu-page-container">
       {/* Header */}
       <header className="pu-header">
@@ -90,6 +91,48 @@ function PasswordUpdate() {
             </Link>
           </div>
         </div>
+=======
+    <div className="container">
+      
+      <div className="box">
+         
+
+        <h1>Update </h1>
+        <h1>Password</h1>
+
+        <p>
+        
+          <Link to="*" replace={true}>
+            <ArrowLeft color="#150909" />
+          </Link>
+        </p>
+        <h2><User color="#000000" />{userName}</h2>
+        <form onSubmit={submit}>
+          <input
+            required
+            type="password"
+            placeholder="New Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <input
+            required
+            type="password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          <button type="submit">Update Password</button>
+        
+        </form>
+        <p>
+        
+          <Link to="/logout" replace={true}>
+            <LogOut color="#150909" />
+          </Link>
+        </p>
+     
+>>>>>>> 789b0c8c3dea4bd29bfd878ffb5a0961d86abe3b
       </div>
 
       {/* Footer */}

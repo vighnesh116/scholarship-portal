@@ -61,7 +61,7 @@
     background: #7d70f6;
     color: white;
     border: none;
-    width:80%;
+    width: 80%;
     margin-left: 64px;
     padding: 18px 25px;
     border-radius: 20px;
@@ -90,14 +90,14 @@ table th {
     color: #4B5563;
     padding: 12px;
     border: 1px solid #D9D3C5;
-    
-    font:bold;
+
+    font: bold;
 }
 
 table td {
-    
-    width:max-content;
-    height:5px;
+
+    width: max-content;
+    height: 5px;
     text-align: center;
 
     border-bottom: 1px solid #D9D3C5;
