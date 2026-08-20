@@ -236,7 +236,7 @@ function CreateScholarship() {
 
           <input
             name="deadline"
-            placeholder="31-Dec-2026"
+            placeholder="13-07-2026"
             value={form.deadline}
             onChange={handleChange}
           />
