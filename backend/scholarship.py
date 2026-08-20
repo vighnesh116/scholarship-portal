@@ -151,7 +151,7 @@ def admin_scholarships():
         today = date.today()
 
         for scholarship in scholarships:
-            deadline = datetime.strptime(scholarship["deadline"], "%d-%b-%Y").date()
+            deadline = datetime.strptime(scholarship["deadline"], "%d-%m-%Y").date()
             scholarship["is_active"] = deadline >= today
 
         return jsonify(scholarships)
@@ -178,7 +178,7 @@ def admin_stats():
             """
             SELECT COUNT(*) AS active
             FROM sclrinfo
-            WHERE STR_TO_DATE(deadline,'%d-%b-%Y') >= CURDATE()
+            WHERE STR_TO_DATE(deadline,'%d-%m-%Y') >= CURDATE()
             """
         )
         active = cursor.fetchone()
@@ -187,7 +187,7 @@ def admin_stats():
             """
             SELECT COUNT(*) AS inactive
             FROM sclrinfo
-            WHERE STR_TO_DATE(deadline,'%d-%b-%Y') < CURDATE()
+            WHERE STR_TO_DATE(deadline,'%d-%m-%Y') < CURDATE()
             """
         )
         inactive = cursor.fetchone()
