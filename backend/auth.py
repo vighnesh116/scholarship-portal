@@ -85,7 +85,7 @@ def login():
                 identity=str(user['userid']),
                 additional_claims={
                     "role": user['role'],
-                    "name":user['name']
+                    "name":str(user['name']),
                     
                 }
             )
