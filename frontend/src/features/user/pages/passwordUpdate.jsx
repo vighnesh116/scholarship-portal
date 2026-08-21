@@ -49,7 +49,7 @@ function PasswordUpdate() {
 
       <main className="pu-main">
         <Link to="*" replace={true} className="pu-back-btn">
-          <ArrowLeft size={22} />
+          <ArrowLeft size={22} color="#FFFFFF"/>
         </Link>
 
         <div className="pu-card">
