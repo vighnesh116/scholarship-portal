@@ -45,7 +45,7 @@ function ScholarshipResult() {
               </header>
         
      
-      <h3>{scholarships.length} Scholarships Found</h3>
+      <h2>{scholarships.length} Scholarships Found</h2>
 
 
       {scholarships.length === 0 ? (
@@ -118,22 +118,25 @@ function ScholarshipResult() {
 
           {inactiveScholarships.length > 0 && (
             <div className="Unavailable-Sclr">
-              <h2>Applications Closed</h2>
+              <div className="Unavailable-Sclr-header">
+                <h2>Application-Closed</h2>
+              </div>
 
-              <ol>
-                {inactiveScholarships.map((item) => (
-                  <ul key={item.sclrid}>
-                    <strong>{item.sclrname}</strong> (Deadline: {item.deadline})
-                  </ul>
-                ))}
-              </ol>
-
-            
-      <footer className="pu-footer">
-        <p>© 2026 Scholarship Information Portal</p>
-      </footer>
+              <div className="Unavailable-Sclr-body">
+                <ol>
+                  {inactiveScholarships.map((item) => (
+                    <li key={item.sclrid}>
+                      <strong>{item.sclrname}</strong> (Deadline: {item.deadline})
+                    </li>
+                  ))}
+                </ol>
+              </div>
             </div>
           )}
+
+          <footer className="pu-footer">
+            <p>© 2026 Scholarship Information Portal</p>
+          </footer>
         </>
       )}
     </div>
