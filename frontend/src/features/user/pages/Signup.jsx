@@ -1,11 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { toast } from "react-toastify";
 
 import logo from "../../../assets/new2.ico";
-import heroImage from "../../../assets/chat.png";
-
 import "../components/UserAuth.css";
 import api from "../../../shared/api/axiosInstance";
 
@@ -21,7 +18,6 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -31,11 +27,9 @@ function Signup() {
     }));
   };
 
-  // Handle form submission
   const submit = async (e) => {
     e.preventDefault();
 
-    // Validation
     if (!form.name.trim()) {
       return toast.error("Please enter your name.");
     }
@@ -63,8 +57,6 @@ function Signup() {
     try {
       setLoading(true);
 
-      // const response = await axios.post("http://localhost:5000/signup", form);
-
       const response = await api.post("/signup", form);
 
       toast.success(response.data.message);
@@ -90,64 +82,67 @@ function Signup() {
   };
 
   return (
-    <div className="container">
-      <div className="Sign-panel">
-        <img src={heroImage} alt="Scholarship Portal" className="hero-image1" />
-      </div>
+    <div className="page-container">
+      <header>
+        <img src={logo} alt="logo" className="brand-logo" />
+        <h1 className="auth-text">Scholarship-Information-Portal</h1>
+      </header>
 
-      <div className="box">
-        <img src={logo} alt="Scholarship Portal Logo" className="logo" />
+      <main>
+        <div className="auth-card">
+          <h1>Sign-Up</h1>
 
-        <h1>Sign-Up</h1>
+          <form onSubmit={submit}>
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              value={form.name}
+              onChange={handleChange}
+              required
+            />
 
-        <form onSubmit={submit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            value={form.name}
-            onChange={handleChange}
-            required
-          />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={form.email}
+              onChange={handleChange}
+              required
+            />
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
+            <input
+              type="password"
+              name="password"
+              placeholder="Create Password"
+              value={form.password}
+              onChange={handleChange}
+              required
+            />
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Create Password"
-            value={form.password}
-            onChange={handleChange}
-            required
-          />
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
 
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
+            <button type="submit" disabled={loading}>
+              {loading ? "Registering..." : "Register"}
+            </button>
+          </form>
 
-          <button type="submit" disabled={loading}>
-            {loading ? "Registering..." : "Register"}
-          </button>
-        </form>
+          <p>
+            Already have an account?{" "}
+            <Link to="/" replace>
+              Login
+            </Link>
+          </p>
+        </div>
+      </main>
 
-        <p>
-          Already have an account?{" "}
-          <Link to="/" replace>
-            Login
-          </Link>
-        </p>
-      </div>
+      
     </div>
   );
 }
