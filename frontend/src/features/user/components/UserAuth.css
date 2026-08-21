@@ -1,138 +1,173 @@
+/* ================= Auth Pages (Login / Signup) — matches site design system ================= */
 
-body{
-    margin:0;
-    font-family:Arial;
-    background-color: #EBEBEB;
-    background-repeat: no-repeat;
-    background-size: cover;      /* Fill the entire screen */
-    background-position: center; /* Keep image centered */
-    background-attachment: fixed;
-     /* Optional */
-
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ebebeb;
+  font-family: "Georgia", "Times New Roman", serif;
 }
 
-.container{
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:75vh;
-    width:70%;
+/* ---------- Header ---------- */
+.page-container header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 80px;
+  background-color: #f2f7e0;
 }
 
-
-.box {
-    position: relative;
-    right: -350px;
-    background: rgb(13, 20, 72);
-    background-color: rgb(120, 171, 166);
-    width: 480px;
-    height: 730px;
-    padding: 30px 33px;
-    border-radius: 20px;
-    text-align: center;
+.page-container header .brand-logo {
+ width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #ffffff;
+  margin: 0px 0px 0px 45px ;
 }
 
-.logo {
-    width: 200px;
-    height: 200px;
-    
-    border-radius: 50%;
-    object-fit: contain;
-     margin: 0 auto -8px;
-
-    display: block;
-    margin-bottom: 50px;
+.page-container header h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #16247d;
+  margin: 0;
+  letter-spacing: 0.2px;
 }
 
-.box h1 {
-    font-size: 50px;
-    margin-bottom: 25px;
-    color: navy;
-    margin-bottom: revert-layer;
-}
-input{
-    width:75%;
-    color:black;
-    background-color:white;
-    padding:12px;
-    margin:10px 0;
-    border:none;
-    outline:none;
-    border-radius: 100px;
+/* ---------- Main / Card ---------- */
+.page-container main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 24px;
 }
 
-button{
-    width:80%;
-    border-radius: 100 px;
-    padding:12px;
-    background:navy;
-    color:white;
-    border:none;
-    cursor:pointer;
-    margin-top:10px;
-    border-radius: 100px;
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 40px 40px 44px;
+  box-sizing: border-box;
 }
 
-button:hover{
-    opacity:0.9;
+.auth-card h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #16247d;
+  margin: 0 0 28px;
+  text-align: center;
 }
 
-p{
-    margin-top:15px;
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
 }
 
-a{
-    margin-left:5px;
-    color:white;
-}
-h1{
-    color: rgb(19, 133, 209);
-}
-p{
-    color: rgb(42, 61, 1);
-}
-.home-container {
-    min-height: 100vh;
-    background-image: url("../assets/sclrPrjt.jpg");
-    background-size: cover;
-    background-position: center;
-    position: relative;
+.auth-card form input {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 0.95rem;
+  font-family: "Georgia", "Times New Roman", serif;
+  border: 1px solid #c9c9c9;
+  border-radius: 999px;
+  outline: none;
+  box-sizing: border-box;
+  color: #333;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease;
 }
 
-.home-container::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    background-image: url("../assets/sclrPrjt.jpg");
-    background-size: cover;
-    background-position: center;
-
-    filter: blur(8px);
-    z-index: -1;
-}
-.hero-image {
-    position: relative;
-    right: -100px;
-    width: 700px;
-    max-width: 700px;
-    height: auto;
-    
-}
-.hero-image1 {
-    position: relative;
-    right: -100px;
-    width: 900px;
-    max-width: 700px;
-    height: auto;
-    
+.auth-card form input::placeholder {
+  color: #9a9a9a;
 }
 
-.signup-heading{
-    
-    color:#000080;
-    font-size: px;
-
+.auth-card form input:focus {
+  border-color: #16247d;
 }
-        
+
+.auth-card form button[type="submit"] {
+  width: 100%;
+  padding: 14px 20px;
+  margin-top: 6px;
+  font-size: 1.05rem;
+  font-family: "Georgia", "Times New Roman", serif;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #16247d;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.auth-card form button[type="submit"]:hover {
+  background-color: #101a5e;
+}
+
+.auth-card form button[type="submit"]:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.auth-card p {
+  margin: 24px 0 0;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.auth-card p a {
+  color: #16247d;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.auth-card p a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Footer ---------- */
+.page-container footer {
+  background-color: #79aba6;
+  text-align: center;
+  padding: 18px 24px;
+}
+
+.page-container footer p {
+  margin: 0;
+  color: #f4f4f4;
+  font-size: 0.95rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .page-container header {
+    padding: 12px 16px;
+  }
+
+  .page-container header .brand-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .page-container header h2 {
+    font-size: 1.15rem;
+  }
+
+  .page-container main {
+    padding: 32px 16px;
+  }
+
+  .auth-card {
+    padding: 28px 22px 36px;
+  }
+
+  .auth-card h1 {
+    font-size: 1.5rem;
+  }
+}
