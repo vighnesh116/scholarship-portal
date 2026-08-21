@@ -34,7 +34,7 @@
 }
 
 .scholarship-page h3 {
-    color: #4B5563;
+    color: #3f516a;
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 40px;
@@ -252,6 +252,23 @@
     border-bottom: 1.5px solid #222222;
     padding: 16px 20px;
     text-align: center;
+   
+}
+.s-back-btn {
+  position: absolute;
+  top: 40px;
+  left: 32px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #16247d;
+  color: #150909;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  margin:90px 50px 0px 0px
 }
 
 .Unavailable-Sclr-header h2,
