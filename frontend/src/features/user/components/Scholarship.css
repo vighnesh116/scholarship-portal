@@ -1,14 +1,32 @@
 /* Scholarship Page Layout */
 .scholarship-page {
     background-color: #f9fafb;
-    padding: 10px 24px;
+    padding: 0px 0px;
     text-align: center;
     box-sizing: border-box;
     background-attachment: fixed;
 }
+.s-logo {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #ffffff;
+  
+}
+.p-brand {
+  
+  font-weight: 700;
+  color: #16247d;
+  margin: 0;
+  letter-spacing: 0.2px;
+  position:absolute;
+  left: 150px;
+  
+}
 
 .scholarship-page h1 {
-    color: #111827;
+    color: #16247d;
     font-size: 38px;
     font-weight: 800;
     margin-bottom: 8px;
