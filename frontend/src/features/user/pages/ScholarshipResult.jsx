@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link,useLocation, useNavigate } from "react-router-dom";
 import "../components/Scholarship.css";
 import logo from "../../../assets/new2.ico";
 import { confirmAction } from "../../../shared/components/ConfirmAction";
@@ -44,8 +44,11 @@ function ScholarshipResult() {
                
               </header>
         
-     
+      
       <h2>{scholarships.length} Scholarships Found</h2>
+        <Link to="*" replace={true} className="s-back-btn">
+          <ArrowLeft size={22} color="#FFFFFF"/>
+        </Link>
 
 
       {scholarships.length === 0 ? (
