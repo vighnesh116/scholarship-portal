@@ -3,7 +3,8 @@ import api from "../../../shared/api/axiosInstance";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { confirmAction } from "../../../shared/components/ConfirmAction";
-import "../components/Home.css";
+import "../components/Portal.css";
+import logo from "../../../assets/new2.ico";
 import Sidebar from "../../admin/components/Sidebar";
 function Portal() {
   const navigate = useNavigate();
@@ -27,31 +28,11 @@ function Portal() {
 
   const submit = async (e) => {
     e.preventDefault();
-   // const token = localStorage.getItem("access_token");
     try {
-      // Save
-      // await axios.post("http://localhost:5000/portal", form,
-      //   {
-      //     headers:{
-      //       Authorization:`Bearer ${token}`,
-      //     },
-      //   }
-      // );
-
       await api.post("/portal", form);
-
-      // Fetch
-      // const response = await axios.post(
-      //   "http://localhost:5000/scholarships",form,
-      // {
-      //   headers:{
-      //     Authorization:`Bearer ${token}`,
-      //   }
-      // });
 
       const response = await api.post("/scholarships", form);
 
-      // Redirect to scholarship results page
       navigate("/scholarships", {
         state: {
           scholarships: response.data,
@@ -66,7 +47,8 @@ function Portal() {
   return (
     <div className="page-container">
       <header>
-        <h2>Scholarship Information Portal</h2>
+         <img src={logo} alt="logo" className="p-logo" />
+        <h1 className="p-brand">Scholarship Information Portal</h1>
 
         <nav>
           <a href="update-password">Profile</a>
@@ -76,7 +58,6 @@ function Portal() {
       <main>
         <section className="hero">
           <h1>Find Scholarships You Are Eligible For</h1>
-          <br />
         </section>
 
         <div className="container">
@@ -90,8 +71,6 @@ function Portal() {
                 onChange={handleChange}
               />
 
-              <br />
-
               <input
                 required
                 type="number"
@@ -102,8 +81,6 @@ function Portal() {
                 onChange={handleChange}
               />
 
-              <br />
-
               <input
                 required
                 type="number"
@@ -112,8 +89,6 @@ function Portal() {
                 placeholder="Enter Family Income"
                 onChange={handleChange}
               />
-
-              <br />
 
               <select
                 required
@@ -132,8 +107,6 @@ function Portal() {
                 <option value="Minority">Minority</option>
               </select>
 
-              <br />
-
               <select
                 required
                 name="education"
@@ -147,8 +120,6 @@ function Portal() {
                 <option value="11">11th Passout </option>
                 <option value="12">12th Passout </option>
               </select>
-
-              <br />
 
               <select
                 required
