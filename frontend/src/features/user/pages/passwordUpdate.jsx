@@ -6,7 +6,6 @@ import { confirmAction } from "../../../shared/components/ConfirmAction";
 import api from "../../../shared/api/axiosInstance";
 import "../components/PasswordUpdate.css"
 import logo from "../../../assets/new2.ico";
-import "./PasswordUpdate.css";
 
 function PasswordUpdate() {
   const navigate = useNavigate();
