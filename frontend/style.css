@@ -27,15 +27,12 @@ body{
 /* Header - Keep Existing */
 
 header{
-    width:100%;
-    background:green;
-    color:white;
-    padding:20px 40px;
-    display:flex;
-    justify-content:space-between;
-    align-items:right;
-    margin-bottom:3%;
-    position:auto;   
+    
+    display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 80px;
+  background-color:  #dde5c1;
 }
 
 header h2{
