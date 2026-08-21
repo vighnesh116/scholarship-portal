@@ -232,25 +232,97 @@
     }
 }
 /* /////////////////////// Deadline Cross Sclr  */
-.Unavailable-Sclr{
-    margin-top:40px;
-    padding:20px;
-    border:1px solid #999;
-    border-radius:8px;
-    background:#f8f8e8;
-    width:75%;
-    margin-left:auto;
-    margin-right:auto;
-    box-shadow:0 6px 12px rgba(0,0,0,.2);
+.Unavailable-Sclr {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 0;
+    border: 1.5px solid #222222;
+    border-radius: 0;
+    background: #f4efe6;
+    width: 75%;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 6px 8px 16px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
 }
 
-.Unavailable-Sclr h2{
-    text-align:center;
-    color:#123b8d;
-    margin-bottom:20px;
+.Unavailable-Sclr-header {
+    background-color: #ebf3e6;
+    border-bottom: 1.5px solid #222222;
+    padding: 16px 20px;
+    text-align: center;
 }
 
-.Unavailable-Sclr ol{
-    font-size:18px;
-    line-height:2;
+.Unavailable-Sclr-header h2,
+.Unavailable-Sclr h2 {
+    margin: 0;
+    text-align: center;
+    color: #1b4965;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.Unavailable-Sclr-body {
+    padding: 35px 45px 70px 45px;
+    background-color: #f4efe6;
+}
+
+.Unavailable-Sclr ol {
+    list-style: none;
+    counter-reset: closed-sclr-count;
+    padding: 0;
+    margin: 0;
+}
+
+.Unavailable-Sclr ol li {
+    counter-increment: closed-sclr-count;
+    font-size: 20px;
+    color: #111827;
+    margin-bottom: 24px;
+    line-height: 1.5;
+    display: flex;
+    align-items: baseline;
+}
+
+.Unavailable-Sclr ol li:last-child {
+    margin-bottom: 0;
+}
+
+.Unavailable-Sclr ol li::before {
+    content: counter(closed-sclr-count) ") ";
+    font-size: 20px;
+    font-weight: 600;
+    margin-right: 14px;
+    min-width: 25px;
+    color: #111827;
+}
+
+@media (max-width: 768px) {
+    .Unavailable-Sclr {
+        width: 90%;
+        margin-top: 30px;
+    }
+
+    .Unavailable-Sclr-header h2,
+    .Unavailable-Sclr h2 {
+        font-size: 24px;
+    }
+
+    .Unavailable-Sclr-body {
+        padding: 20px 20px 40px 20px;
+    }
+
+    .Unavailable-Sclr ol li {
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
+
+    .Unavailable-Sclr ol li::before {
+        font-size: 16px;
+        margin-right: 8px;
+        min-width: 20px;
+    }
 }
