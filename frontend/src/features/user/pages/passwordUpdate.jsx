@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { LogOut, ArrowLeft, User, GraduationCap, LogOut as LogOutIcon } from "lucide-react";
+import { LogOut, ArrowLeft, User } from "lucide-react";
 import { confirmAction } from "../../../shared/components/ConfirmAction";
-import api from "../../../shared/api/axiosInstance"
-
+import api from "../../../shared/api/axiosInstance";
+import "../components/PasswordUpdate.css"
 import logo from "../../../assets/new2.ico";
+import "./PasswordUpdate.css";
+
 function PasswordUpdate() {
   const navigate = useNavigate();
   const userName = localStorage.getItem("user");
@@ -40,37 +42,32 @@ function PasswordUpdate() {
   };
 
   return (
-<<<<<<< HEAD
-    <div className="pu-page-container">
-      {/* Header */}
+    <div className="pu-page">
       <header className="pu-header">
-        <div className="pu-logo-container">
-          <img src={logo} alt="Scholarship Portal Logo" />
-        </div>
-        <h1 className="pu-title">Scholarship-Information-Portal</h1>
+        <img src={logo} alt="logo" className="pu-logo" />
+        <h1 className="pu-brand">Scholarship-Information-Portal</h1>
       </header>
 
-      {/* Main Content */}
-      <div className="pu-main-content">
+      <main className="pu-main">
         <Link to="*" replace={true} className="pu-back-btn">
-          <ArrowLeft size={30} color="#333" strokeWidth={1.5} />
+          <ArrowLeft size={22} />
         </Link>
 
         <div className="pu-card">
-          <h2 className="pu-card-title">Update-Password</h2>
+          <h1 className="pu-title">Update-Password</h1>
 
-          <div className="pu-user-icon-container">
-            <User size={35} color="#333" strokeWidth={1.5} />
+          <div className="pu-user">
+            <User size={20} />
+            <span>{userName}</span>
           </div>
 
-          <form onSubmit={submit} className="pu-form">
+          <form className="pu-form" onSubmit={submit}>
             <input
               required
               type="password"
               placeholder="New Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="pu-input"
             />
             <input
               required
@@ -78,64 +75,18 @@ function PasswordUpdate() {
               placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="pu-input"
             />
             <button type="submit" className="pu-submit-btn">
               Update Password
             </button>
           </form>
 
-          <div className="pu-logout-container">
-            <Link to="/logout" replace={true}>
-              <LogOutIcon size={30} color="#333" strokeWidth={1.5} />
-            </Link>
-          </div>
+          <Link to="/logout" replace={true} className="pu-logout-btn">
+            <LogOut size={20} />
+          </Link>
         </div>
-=======
-    <div className="container">
-      
-      <div className="box">
-         
+      </main>
 
-        <h1>Update </h1>
-        <h1>Password</h1>
-
-        <p>
-        
-          <Link to="*" replace={true}>
-            <ArrowLeft color="#150909" />
-          </Link>
-        </p>
-        <h2><User color="#000000" />{userName}</h2>
-        <form onSubmit={submit}>
-          <input
-            required
-            type="password"
-            placeholder="New Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <input
-            required
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          <button type="submit">Update Password</button>
-        
-        </form>
-        <p>
-        
-          <Link to="/logout" replace={true}>
-            <LogOut color="#150909" />
-          </Link>
-        </p>
-     
->>>>>>> 789b0c8c3dea4bd29bfd878ffb5a0961d86abe3b
-      </div>
-
-      {/* Footer */}
       <footer className="pu-footer">
         <p>© 2026 Scholarship Information Portal</p>
       </footer>
