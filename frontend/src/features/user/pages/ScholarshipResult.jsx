@@ -33,17 +33,20 @@ function ScholarshipResult() {
   const inactiveScholarships = scholarships.filter(
     (item) => item.days_left < 0 && item.draft === 0,
   );
+  
   return (
     <div className="scholarship-page">
-      <nav>
-
-      <a href="portal"><ArrowLeft color="#150909"/></a>
-      
-      </nav>
-      <img src={logo} alt="Scholarship Portal Logo" className="logo" />
-      <h1>Eligible Scholarships</h1>
-
+     
+         <header>
+                 <img src={logo} alt="logo" className="s-logo" />
+                <h1 className="s-brand" color="#16247d">Scholarship Information Portal</h1>
+        
+               
+              </header>
+        
+     
       <h3>{scholarships.length} Scholarships Found</h3>
+
 
       {scholarships.length === 0 ? (
         <div className="scholarship-box">
@@ -124,6 +127,11 @@ function ScholarshipResult() {
                   </ul>
                 ))}
               </ol>
+
+            
+      <footer className="pu-footer">
+        <p>© 2026 Scholarship Information Portal</p>
+      </footer>
             </div>
           )}
         </>
