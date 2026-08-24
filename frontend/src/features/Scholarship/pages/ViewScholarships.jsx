@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import {
   Pen,
   Trash2,
-  ListFilterPlus,
+  MoreVertical,
   CircleCheck,
   SquarePen,
 } from "lucide-react";
@@ -24,7 +24,7 @@ function ViewScholarships() {
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(5);
   const [showFilter, setShowFilter] = useState(false);
-
+  const [actionMenu, setActionMenu] = useState(null);
   const token = localStorage.getItem("access_token");
   useEffect(() => {
     loadScholarships();
@@ -135,8 +135,8 @@ function ViewScholarships() {
             <th>Education</th>
             <th>Deadline</th>
             <th>Status</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Action</th>
+
           </tr>
         </thead>
         <tbody>
@@ -164,30 +164,42 @@ function ViewScholarships() {
                   )}
                 </td>
 
-                <td>
+                <td className="action-cell">
                   <button
-                    style={{
-                      backgroundColor: "#00000000",
-                      color: "blue",
-                      padding: "9px",
-                    }}
-                    onClick={() => onEdit(item)}
+                    className="action-button"
+                    onClick={() =>
+                      setActionMenu(
+                        actionMenu === item.sclrid ? null : item.sclrid
+                      )
+                    }
                   >
-                    <Pen />
+                    <MoreVertical size={20} />
                   </button>
-                </td>
 
-                <td>
-                  <button
-                    style={{
-                      backgroundColor: "transparent",
-                      color: "red",
-                      padding: "9px",
-                    }}
-                    onClick={() => handleDelete(item.sclrid)}
-                  >
-                    <Trash2 />
-                  </button>
+                  {actionMenu === item.sclrid && (
+                    <div className="action-menu">
+                      <button
+                        onClick={() => {
+                          onEdit(item);
+                          setActionMenu(null);
+                        }}
+                      >
+                        <Pen size={16} />
+                        Edit
+                      </button>
+
+                      <button
+                        className="delete-action"
+                        onClick={() => {
+                          handleDelete(item.sclrid);
+                          setActionMenu(null);
+                        }}
+                      >
+                        <Trash2 size={16} />
+                        Delete
+                      </button>
+                    </div>
+                  )}
                 </td>
               </tr>
             ))
