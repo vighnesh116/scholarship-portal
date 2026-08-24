@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Pagination from "../components/Pagination";
 import api from "../../../shared/api/axiosInstance";
+import "./StudentsDetails.css";
 function StudentsDetails() {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
