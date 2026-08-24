@@ -51,11 +51,13 @@ function AdminDashboard() {
 
   return (
     <>
+    <header>
       <img src={logo} alt="Logo" className="Dashico" />
       <div className="Dashh1">
         {" "}
         <h1>Admin Dashboard</h1>{" "}
       </div>
+      </header>
       <p className="subtitle">
         Plan, manage and monitor scholarships with ease.
       </p>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Sidebar.css";
-import logo from "../../../assets/new2.ico";
+import logo from "../../../assets/Adminpanel.png";
 
 
 function Sidebar({ title, navItems, children }) {

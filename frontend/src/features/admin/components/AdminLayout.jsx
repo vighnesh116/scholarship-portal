@@ -31,7 +31,7 @@ function AdminLayout() {
   ];
 
   return (
-    <Sidebar title="Admin Panel" navItems={NAV_ITEMS}>
+    <Sidebar title="" navItems={NAV_ITEMS}>
       <Outlet />
     </Sidebar>
   );
