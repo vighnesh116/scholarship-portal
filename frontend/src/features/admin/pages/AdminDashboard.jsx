@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import logo from "../../../assets/new2.ico";
+import headerImg from "../../../assets/Adminpanel.png";
 import {
   PieChart,
   Pie,
@@ -51,13 +51,13 @@ function AdminDashboard() {
 
   return (
     <>
-    
+
       <div >
-        
-        <h1>Admin Dashboard</h1>
+
+        <img src={headerImg} alt="Logo" className="siderico" />
       </div>
       <p >
-      <h2>  Plan, manage and monitor scholarships with ease.</h2>
+        <h2>  Plan, manage and monitor scholarships with ease.</h2>
       </p>
 
       <div className="dash-stats-row">
