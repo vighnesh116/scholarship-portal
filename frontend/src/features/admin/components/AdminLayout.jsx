@@ -1,7 +1,7 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
-import { LogOut,Settings } from "lucide-react";
-import {confirmAction} from "../../../shared/components/ConfirmAction";
+import { LogOut, Settings } from "lucide-react";
+import { confirmAction } from "../../../shared/components/ConfirmAction";
 
 function AdminLayout() {
   const navigate = useNavigate();
@@ -24,10 +24,10 @@ function AdminLayout() {
     { key: "view", label: "Scholarships", path: "/admin/view" },
     { key: "manage", label: "Create-Scholarships", path: "/admin/manage" },
     { key: "students", label: "Students-Details", path: "/admin/students" },
-    { key: "users", label: "Users-Detais", path: "/admin/users" },
-    {key:"update-password",label:<Settings/>,path:"/update-password"},
+    { key: "users", label: "Users-Detaisl", path: "/admin/users" },
+    { key: "update-password", label: <Settings />, path: "/update-password" },
     { key: "logout", label: <LogOut />, path: "/logout" },
-    
+
   ];
 
   return (
