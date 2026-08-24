@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
-import AdminNavbar from "../components/AdminNavbar";
-import AutoRefresh from "../components/AutoRefresh";
 import { toast } from "react-toastify";
 import Pagination from "../components/Pagination";
 import api from "../../../shared/api/axiosInstance";
-import { Await } from "react-router-dom";
 import { Trash2 } from "lucide-react";
 import { confirmAction } from "../../../shared/components/ConfirmAction";
+import "./UsersDetails.css";
 function UsersDetails() {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
