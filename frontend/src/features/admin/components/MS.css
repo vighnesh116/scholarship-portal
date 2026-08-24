@@ -7,6 +7,13 @@
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
 }
 
+.manage-container table td {
+
+    text-align: center;
+    border-bottom: 1px solid #e2e8f0;
+    color: #334155;
+}
+
 .manage-title {
     text-align: center;
     color: #1e3a5f;
@@ -74,10 +81,6 @@
     background: #388e3c;
 }
 
-.table-container {
-    margin-top: 30px;
-    overflow-x: auto;
-}
 
 table {
     width: 100%;
