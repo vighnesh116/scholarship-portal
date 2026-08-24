@@ -24,7 +24,7 @@ function AdminLayout() {
     { key: "view", label: "Scholarships", path: "/admin/view" },
     { key: "manage", label: "Create-Scholarships", path: "/admin/manage" },
     { key: "students", label: "Students-Details", path: "/admin/students" },
-    { key: "users", label: "Users-Detaisl", path: "/admin/users" },
+    { key: "users", label: "Users-Details", path: "/admin/users" },
     { key: "update-password", label: <Settings />, path: "/update-password" },
     { key: "logout", label: <LogOut />, path: "/logout" },
 
