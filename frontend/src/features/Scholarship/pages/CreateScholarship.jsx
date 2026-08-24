@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "../components/ManageScholarships.css";
+import "./createSclr.css";
 import { toast } from "react-toastify";
 import { confirmAction } from "../../../shared/components/ConfirmAction";
 import { SavePen } from "lucide-react";
@@ -188,7 +188,7 @@ function CreateScholarship() {
   };
 
   return (
-    <div className="manage-container">
+    <div className="cs-container">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -200,7 +200,8 @@ function CreateScholarship() {
         }}
       >
         <h1>{editing ? "Edit Scholarship" : "Add Scholarship"}</h1>
-        <div className="form-grid">
+
+        <div className="cs-form-grid">
           <input
             required
             name="sclrname"
@@ -236,7 +237,7 @@ function CreateScholarship() {
 
           <input
             name="deadline"
-            placeholder="13-07-2026"
+            placeholder="31-Dec-2026"
             value={form.deadline}
             onChange={handleChange}
           />
@@ -270,43 +271,47 @@ function CreateScholarship() {
             onChange={handleChange}
           >
             <option value="">Select Class</option>
-
             <option value="11">11th</option>
             <option value="12">12th</option>
           </select>
-          <button
-            type="button"
-            className="action-btn"
-            onClick={() => {
-              if (editing) {
-                updateScholarship(1);
-              } else {
-                addScholarship(1);
-              }
-            }}
-          >
-            <SavePen /> Save As Draft
-          </button>
         </div>
 
-        {editing ? (
-          <button type="submit" className="action-btn">
-            Update Scholarship
-          </button>
-        ) : (
-          <button type="submit" className="action-btn">
-            Add Scholarship
-          </button>
-        )}
+        {/* Bottom action bar: submit button centred, draft+cancel stacked on right */}
+        <div className="cs-actions">
+          {editing ? (
+            <button type="submit" className="cs-btn-primary">
+              <SavePen size={18} /> Update Scholarship
+            </button>
+          ) : (
+            <button type="submit" className="cs-btn-primary">
+              <SavePen size={18} /> Add-Scholarship
+            </button>
+          )}
 
-        <button
-          style={{ backgroundColor: "green" }}
-          type="button"
-          className="clear-btn"
-          onClick={clearForm}
-        >
-          Clear Form
-        </button>
+          <div className="cs-side-actions">
+            <button
+              type="button"
+              className="cs-btn-draft"
+              onClick={() => {
+                if (editing) {
+                  updateScholarship(1);
+                } else {
+                  addScholarship(1);
+                }
+              }}
+            >
+              Save As Draft
+            </button>
+
+            <button
+              type="button"
+              className="cs-btn-cancel"
+              onClick={clearForm}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );
