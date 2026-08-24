@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "../service/Sidebar.css";
+import "./Sidebar.css";
 import logo from "../../../assets/Adminpanel.png";
 
 
