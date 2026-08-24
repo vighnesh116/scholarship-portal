@@ -21,8 +21,15 @@
   box-sizing: border-box;
 }
 
-body {
+html,
+body,
+#root {
+  height: 100%;
   margin: 0;
+  overflow: hidden; /* no page-level scrollbar */
+}
+
+body {
   background: var(--page-bg);
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
@@ -41,13 +48,22 @@ body {
 
 .admin-layout {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .main-content {
   flex: 1;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  overflow-y: auto; /* scrolls only if content genuinely doesn't fit */
+  scrollbar-width: none; /* Firefox: hide scrollbar */
+  -ms-overflow-style: none; /* IE/Edge: hide scrollbar */
+}
+
+.main-content::-webkit-scrollbar {
+  display: none; /* Chrome/Safari: hide scrollbar */
 }
 
 /* ==========================================================================
@@ -125,42 +141,42 @@ body {
    Header
    ========================================================================== */
 
+.dash-header,
 header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 18px;
+  justify-content: center; /* keeps logo + banner centered as one unit */
+  
   background: var(--cream);
-  padding: 18px 24px;
+  padding: 14px 24px;
+  flex-shrink: 0; /* header never gets squeezed by the scroll area */
 }
 
 .Dashico {
-  width: 70px;
-  height: 70px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background: #fff;
   object-fit: contain;
-  padding: 8px;
+  padding: 6px;
+  flex-shrink: 0;
 }
 
-.Dashh1 {
-  display: flex;
-  align-items: center;
-}
-
-.Dashh1 h1 {
-  margin: 0;
-  font-size: 40px;
-  font-weight: 800;
-  color: var(--navy);
-  letter-spacing: 0.5px;
+/* Drop-in for the "Admin Dashboard" text: point this at whatever image
+   you provide (wordmark / full banner) and it sits inline with .Dashico,
+   vertically centered, no separate heading needed. */
+.Dashbanner {
+  max-height: 56px;
+  width: auto;
+  object-fit: contain;
 }
 
 .subtitle {
   text-align: center;
   color: #6d7280;
-  font-size: 15px;
-  margin: 18px 0 28px;
+  font-size: 14px;
+  margin: 14px 0 20px;
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -172,8 +188,8 @@ header {
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 24px;
-  padding: 0 32px 40px;
+  gap: 20px;
+  padding: 0 32px 24px;
 }
 
 /* StatsCard component — adjust selector if your component uses a
@@ -182,14 +198,14 @@ header {
   background: var(--card-bg);
   border-radius: 14px;
   box-shadow: var(--shadow);
-  width: 200px;
-  min-height: 150px;
+  width: 190px;
+  min-height: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 24px 16px;
+  padding: 18px 16px;
 }
 
 .stats-card .label,
@@ -215,8 +231,9 @@ header {
   background: var(--card-bg);
   border-radius: 14px;
   box-shadow: var(--shadow);
-  width: 380px;
-  padding: 24px 28px 30px;
+  width: 360px;
+  margin-bottom: 20px;
+  padding: 20px 26px 22px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -287,8 +304,12 @@ header {
   .sidebar-footer {
     padding: 0;
   }
-  .Dashh1 h1 {
-    font-size: 26px;
+  .Dashico {
+    width: 44px;
+    height: 44px;
+  }
+  .Dashbanner {
+    max-height: 44px;
   }
   .dash-stats-row {
     padding: 0 16px 30px;
