@@ -169,7 +169,9 @@
   /* [CHANGE 2: Width 800px] */
   height: 550px;
   /* [CHANGE 3: Height 500px] */
-  min-height: 500px;
+  height: 100%;
+  min-height: 50px;
+
   /* Ensures exact 500px height */
   overflow: auto;
   border-radius: 12px;
