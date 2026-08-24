@@ -13,6 +13,8 @@ import {
 import Pagination from "../../admin/components/Pagination";
 import api from "../../../shared/api/axiosInstance";
 import { confirmAction } from "../../../shared/components/ConfirmAction";
+
+
 // import "tailwindcss";
 function ViewScholarships() {
   const [search, setSearch] = useState("");
@@ -109,7 +111,8 @@ function ViewScholarships() {
   };
 
   return (
-    <div style={{ padding: "30px", backgroundColor: "#ebebeb" }}>
+
+    <div style={{ padding: "30px", backgroundColor: "#ebebeb" }} className="manage-container">
       <h1>View Scholarships</h1>
 
       <input
