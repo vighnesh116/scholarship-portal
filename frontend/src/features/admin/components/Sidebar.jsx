@@ -9,9 +9,9 @@ function Sidebar({ title, navItems, children }) {
   const location = useLocation();
 
   const isActive = (path) => {
-    
+
     if (path === "/admin") {
-      return location.pathname === "/admin" || location.pathname === "/admin/" ;
+      return location.pathname === "/admin" || location.pathname === "/admin/";
     }
     return location.pathname.startsWith(path);
   };
@@ -37,9 +37,9 @@ function Sidebar({ title, navItems, children }) {
       </aside>
 
       <main className="dash-main">{children}</main>
-      
+
     </div>
-    
+
   );
 }
 
