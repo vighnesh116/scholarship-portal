@@ -22,7 +22,7 @@ function ViewScholarships() {
   const [filtered, setFiltered] = useState([]);
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage] = useState(5);
+  const [postPerPage] = useState(10);
   const [showFilter, setShowFilter] = useState(false);
   const [actionMenu, setActionMenu] = useState(null);
   const token = localStorage.getItem("access_token");
