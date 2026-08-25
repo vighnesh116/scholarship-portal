@@ -25,7 +25,7 @@ jwt=JWTManager(app)
 # Authentication
 app.add_url_rule("/signup", view_func=signup, methods=["POST"])
 app.add_url_rule("/login", view_func=login, methods=["POST"])
-app.add_url_rule("/update-password", view_func=update_password, methods=["POST"])
+app.add_url_rule("/update-password", view_func=update_password, methods=["PUT"])
 app.add_url_rule("/refresh",view_func=refresh,methods=["POST"])
 
 # Scholarship Management
@@ -36,7 +36,7 @@ app.add_url_rule("/admin-users", view_func=admin_required()(user_data), methods=
 app.add_url_rule("/admin-scholarships", view_func=admin_required()(admin_scholarships), methods=["GET"])
 app.add_url_rule("/admin-stats", view_func=admin_required()(admin_stats), methods=["GET"])
 app.add_url_rule("/delete-scholarship/<int:id>", view_func=admin_required()(delete_scholarship), methods=["DELETE"])
-app.add_url_rule("/admin-updatepassword", view_func=admin_required()(admin_update_password), methods=[""])
+app.add_url_rule("/admin-updatepassword", view_func=admin_required()(admin_update_password), methods=["PUT"])
 
 # app.add_url_rule("/admin_access",view_func=admin_required()(admin_access),methods=["PUT"])
 
