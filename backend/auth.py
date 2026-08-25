@@ -158,6 +158,47 @@ def update_password():
         cursor.close()
         db.close()
         
+def admin_update_password():  
+    
+    data = request.json
+
+    email = data['email']
+    new_password = data['new_password']
+    
+    hashed_password = generate_password_hash(new_password)
+
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
+    
+    try:
+
+        cursor.execute(
+            "UPDATE users SET password=%s WHERE email=%s",
+            (hashed_password, email)
+        )
+
+        db.commit()
+
+        return jsonify({
+           
+            "message": "Password updated successfully"
+        })
+
+    except Exception as e:
+
+        print(e)
+
+        return jsonify({
+            "message": "Failed to update password"
+        }), 500
+
+    finally:
+        
+
+
+        cursor.close()
+        db.close()
+        
 
 @jwt_required(refresh=True)
 def refresh():

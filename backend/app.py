@@ -5,7 +5,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager,jwt_required 
 from datetime import timedelta
-from auth import signup, login, update_password,refresh
+from auth import signup, login, update_password,refresh,admin_update_password
 from scholarship import (
     add_scholarship,
     admin_scholarships,
@@ -36,6 +36,8 @@ app.add_url_rule("/admin-users", view_func=admin_required()(user_data), methods=
 app.add_url_rule("/admin-scholarships", view_func=admin_required()(admin_scholarships), methods=["GET"])
 app.add_url_rule("/admin-stats", view_func=admin_required()(admin_stats), methods=["GET"])
 app.add_url_rule("/delete-scholarship/<int:id>", view_func=admin_required()(delete_scholarship), methods=["DELETE"])
+app.add_url_rule("/admin-updatepassword", view_func=admin_required()(admin_update_password), methods=[""])
+
 # app.add_url_rule("/admin_access",view_func=admin_required()(admin_access),methods=["PUT"])
 
 # Student Management
