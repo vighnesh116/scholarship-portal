@@ -1,4 +1,5 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
+import { createPortal } from "react-dom";
 import { toast } from "react-toastify";
 import ScholarshipFilter from "../../admin/components/ScholarshipFilter";
 import "../../admin/components/MS.css";
@@ -23,12 +24,56 @@ function ViewScholarships() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(10);
-  const [showFilter, setShowFilter] = useState(false);
+  
   const [actionMenu, setActionMenu] = useState(null);
-  const token = localStorage.getItem("access_token");
+  const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
+  const buttonRefs = useRef({});
+
   useEffect(() => {
     loadScholarships();
   }, []);
+
+  // Close the menu on outside click / scroll / resize so a stale
+  // portal menu doesn't linger detached from its row.
+  useEffect(() => {
+    if (actionMenu === null) return;
+
+    const handleOutsideClick = (e) => {
+      const openButton = buttonRefs.current[actionMenu];
+      const clickedInsideButton = openButton && openButton.contains(e.target);
+      const clickedInsideMenu = e.target.closest(".action-menu");
+      if (!clickedInsideButton && !clickedInsideMenu) {
+        setActionMenu(null);
+      }
+    };
+    const handleReposition = () => setActionMenu(null);
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    window.addEventListener("scroll", handleReposition, true);
+    window.addEventListener("resize", handleReposition);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      window.removeEventListener("scroll", handleReposition, true);
+      window.removeEventListener("resize", handleReposition);
+    };
+  }, [actionMenu]);
+
+  const toggleActionMenu = (sclrid) => {
+    if (actionMenu === sclrid) {
+      setActionMenu(null);
+      return;
+    }
+    const btn = buttonRefs.current[sclrid];
+    if (btn) {
+      const rect = btn.getBoundingClientRect();
+      setMenuPosition({
+        top: rect.bottom + 4,
+        left: rect.right - 110, // 110px = .action-menu width, right-aligned to the button
+      });
+    }
+    setActionMenu(sclrid);
+  };
 
   useEffect(() => {
     setCurrentPage(1);
@@ -146,9 +191,12 @@ function ViewScholarships() {
             </tr>
           ) : (
             currentScholarships.map((item, index) => (
-              <tr key={item.sclrid}>
+              <tr
+                key={item.sclrid}
+                className={actionMenu === item.sclrid ? "action-row-open" : ""}
+              >
                 <td>{indexOfFirstPost + index + 1}</td>
-                <td>{renderValue(item.sclrname)}</td>
+                <td className="table-name" title={item.sclrname}>{renderValue(item.sclrname)}</td>
                 <td>{renderValue(item.amount)}</td>
                 <td>{renderValue(item.percentreeq)}</td>
                 <td>{renderValue(item.miniincome)}</td>
@@ -167,39 +215,45 @@ function ViewScholarships() {
                 <td className="action-cell">
                   <button
                     className="action-button"
-                    onClick={() =>
-                      setActionMenu(
-                        actionMenu === item.sclrid ? null : item.sclrid
-                      )
-                    }
+                    ref={(el) => (buttonRefs.current[item.sclrid] = el)}
+                    onClick={() => toggleActionMenu(item.sclrid)}
                   >
                     <MoreVertical size={20} />
                   </button>
 
-                  {actionMenu === item.sclrid && (
-                    <div className="action-menu">
-                      <button
-                        onClick={() => {
-                          onEdit(item);
-                          setActionMenu(null);
+                  {actionMenu === item.sclrid &&
+                    createPortal(
+                      <div
+                        className="action-menu"
+                        style={{
+                          position: "fixed",
+                          top: menuPosition.top,
+                          left: menuPosition.left,
                         }}
                       >
-                        <Pen size={16} />
-                        Edit
-                      </button>
+                        <button
+                          onClick={() => {
+                            onEdit(item);
+                            setActionMenu(null);
+                          }}
+                        >
+                          <Pen size={16} />
+                          Edit
+                        </button>
 
-                      <button
-                        className="delete-action"
-                        onClick={() => {
-                          handleDelete(item.sclrid);
-                          setActionMenu(null);
-                        }}
-                      >
-                        <Trash2 size={16} />
-                        Delete
-                      </button>
-                    </div>
-                  )}
+                        <button
+                          className="delete-action"
+                          onClick={() => {
+                            handleDelete(item.sclrid);
+                            setActionMenu(null);
+                          }}
+                        >
+                          <Trash2 size={16} />
+                          Delete
+                        </button>
+                      </div>,
+                      document.body
+                    )}
                 </td>
               </tr>
             ))
