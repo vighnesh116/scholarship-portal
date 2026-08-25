@@ -12,7 +12,7 @@ function PasswordUpdate() {
   const userName = localStorage.getItem("user");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
+  const role=localStorage.getItem("role");
   const submit = async (e) => {
     e.preventDefault();
 
@@ -41,6 +41,7 @@ function PasswordUpdate() {
   };
 
   return (
+    
     <div className="pu-page">
       <header className="pu-header">
         <img src={logo} alt="logo" className="pu-logo" />
