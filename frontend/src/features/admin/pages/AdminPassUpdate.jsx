@@ -1,18 +1,17 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { LogOut, ArrowLeft, User } from "lucide-react";
+import {  User } from "lucide-react";
 
 import api from "../../../shared/api/axiosInstance";
-import "../components/PasswordUpdate.css"
-import logo from "../../../assets/new2.ico";
+import "../../user/components/PasswordUpdate.css"
 
-function PasswordUpdate() {
+function AdminPassUpdate() {
   const navigate = useNavigate();
   const userName = localStorage.getItem("user");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  
+  const role=localStorage.getItem("role");
   const submit = async (e) => {
     e.preventDefault();
 
@@ -30,10 +29,10 @@ function PasswordUpdate() {
         return;
       }
 
-      const res = await api.put("/update-password", { email, new_password: password });
+      const res = await api.put("/admin-updatepassword", { email, new_password: password });
 
       toast.success(res.data.message || "Password Updated Successfully");
-      navigate("/portal", { replace: true });
+      navigate("*", { replace: true });
     } catch (error) {
       const msg = error?.response?.data?.message || "Failed to update password";
       toast.error(msg);
@@ -44,16 +43,8 @@ function PasswordUpdate() {
     
     <div className="pu-page">
 
-      <header className="pu-header">
-        <img src={logo} alt="logo" className="pu-logo" />
-        <h1 className="pu-brand">Scholarship-Information-Portal</h1>
-      </header>
-
       <main className="pu-main">
-        <Link to="*" replace={true} className="pu-back-btn">
-          <ArrowLeft size={22} color="#FFFFFF"/>
-        </Link>
-
+      
         <div className="pu-card">
           <h1 className="pu-title">Update-Password</h1>
 
@@ -82,17 +73,13 @@ function PasswordUpdate() {
             </button>
           </form>
 
-          <Link to="/logout" replace={true} className="pu-logout-btn">
-            <LogOut size={20} />
-          </Link>
+         
         </div>
       </main>
 
-      <footer className="pu-footer">
-        <p>© 2026 Scholarship Information Portal</p>
-      </footer>
+    
     </div>
   );
 }
 
-export default PasswordUpdate;
+export default  AdminPassUpdate;

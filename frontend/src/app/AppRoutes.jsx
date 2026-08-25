@@ -14,6 +14,7 @@ import {
   Logout,
   CreateScholarship,
   ErrorPage,
+  AdminPassUpdate,
 } from "./ImportPage";
 function AppRoutes() {
   return (
@@ -49,7 +50,7 @@ function AppRoutes() {
         element={<ProtectedRoute childern={<Logout />} />}
       />
 
-      {/*=========================Admin====================================*/}
+      {/*===========Admin=========*/}
       <Route
         path="/admin"
         element={
@@ -106,9 +107,9 @@ function AppRoutes() {
         />
 
         <Route
-          path="update-password"
+          path="admin-updatepassword"
           element={
-            <ProtectedRoute childern={<PasswordUpdate />} allowedRole="admin" />
+            <ProtectedRoute childern={<AdminPassUpdate />} allowedRole="admin" />
           }
         />
       </Route>

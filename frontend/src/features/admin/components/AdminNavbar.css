@@ -1,0 +1,27 @@
+.admin-navbar{
+    
+    color:white;
+    padding:0px 0px 20px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.admin-navbar h2{
+    margin:0;
+    font-size:22px;
+}
+
+.admin-home-btn{
+    
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.admin-home-btn:hover{
+    opacity:0.9;
+}

@@ -12,6 +12,7 @@ import ViewScholarships from "../features/Scholarship/pages/ViewScholarships";
 import Logout from "../shared/components/Logout";
 import CreateScholarship from "../features/Scholarship/pages/CreateScholarship";
 import ErrorPage from "../shared/pages/ErrorPage";
+import AdminPassUpdate from "../features/admin/pages/AdminPassUpdate";
 export {
-     Login ,Signup,Portal,ScholarshipResult ,PasswordUpdate,AdminLayout, AdminDashboard ,StudentsDetails,UsersDetails,ProtectedRoute,ViewScholarships,Logout,CreateScholarship ,ErrorPage
+     Login ,Signup,Portal,ScholarshipResult ,PasswordUpdate,AdminLayout, AdminDashboard ,StudentsDetails,UsersDetails,ProtectedRoute,ViewScholarships,Logout,CreateScholarship ,ErrorPage,AdminPassUpdate
 }
