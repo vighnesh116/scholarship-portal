@@ -56,7 +56,7 @@ function StudentsDetails() {
   const totalRecords = filtered.length;
 
   return (
-    <div className="manage-container">
+    <div className="manage-container2">
       <h1 className="manage-title">View Students Details</h1>
 
       <input
