@@ -10,7 +10,7 @@ export const confirmAction = async ({
   const result = await Swal.fire({
     title,
     text,
-    icon: "warning",
+    icon: "question",
     showCancelButton: true,
     confirmButtonText: "Yes",
     cancelButtonText: "Cancel",
