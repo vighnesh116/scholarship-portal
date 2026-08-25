@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import headerImg from "../../../assets/Adminpanel.png";
+
 import {
   PieChart,
   Pie,
   Cell,
   Tooltip,
-  Legend,
+  
   ResponsiveContainer,
 } from "recharts";
 import StatsCard from "../components/StatsCard";
@@ -26,7 +26,7 @@ function AdminDashboard() {
     { name: "Inactive", value: stats.inactive_scholarships },
   ];
 
-  const COLORS = ["#4CAF50", "#F44336"];
+  const COLORS = ["#10367d", "#a4abae52"];
 
   useEffect(() => {
     loadStats();
@@ -52,19 +52,11 @@ function AdminDashboard() {
   return (
     <>
 
-      <div >
-<<<<<<< HEAD
-        <h2>Admin Dashboard</h2>
-        <h1>Welcome To Admin Pannel</h1>
-=======
-
+      <div className="header">
         <h1>Admin Dashboard</h1>
         <h3>Welcome To Admin Pannel</h3>
->>>>>>> 3b2e113cee8dcff9428ec7f89d097a3593186214
       </div>
-      <p >
-        <h4>  Plan, manage and monitor scholarships with ease.</h4>
-      </p>
+      
 
       <div className="dash-stats-row">
         <StatsCard
@@ -113,7 +105,7 @@ function AdminDashboard() {
             <div className="legend-item">
               <span
                 className="legend-color"
-                style={{ background: "#4CAF50" }}
+                style={{ background: "#10367d" }}
               ></span>
               <span>
                 <strong>{stats.active_scholarships}</strong> Active
@@ -123,7 +115,7 @@ function AdminDashboard() {
             <div className="legend-item">
               <span
                 className="legend-color"
-                style={{ background: "#F44336" }}
+                style={{ background: "#a4abae52" }}
               ></span>
               <span>
                 <strong>{stats.inactive_scholarships}</strong> Inactive
