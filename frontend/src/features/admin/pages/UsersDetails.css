@@ -103,10 +103,10 @@
 }
 
 /* --------------------------------------------------------------------------
-   6. CONTAINER CARD — .manage-container
+   6. CONTAINER CARD — .manage-container1
    --> [MANUAL EDIT HERE]: Container width (800px) and padding
    -------------------------------------------------------------------------- */
-.manage-container {
+.manage-container1 {
   background: #ffffff;
   width: 800px;
   /* [CHANGE 2: Width 800px] */
@@ -116,6 +116,20 @@
   padding: 20px 24px;
   /* [CHANGE 5: Reduced inner padding] */
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  position: relative;
+  right: 170px;
+}
+.manage-container1 table td {
+  /* padding: 7px 10px !important; */
+  width: auto !important;
+  height: auto !important;
+  max-width: none !important;
+  text-align: center;
+  border: 1px solid #d9d3c5;
+  color: #4b5563;
+  white-space: nowrap;
+  font-size: 13px;
   box-sizing: border-box;
 }
 
@@ -178,13 +192,14 @@
   border: 1px solid #d9d3c5;
   box-sizing: border-box;
   background: #ffffff;
+  
 }
 
 /* --------------------------------------------------------------------------
-   10. TABLE STYLES — scoped under .manage-container
+   10. TABLE STYLES — scoped under .manage-container1
    --> [MANUAL EDIT HERE]: Font size (14px), td width (120px), height (40px)
    -------------------------------------------------------------------------- */
-.manage-container table {
+.manage-container1 table {
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
@@ -194,13 +209,13 @@
 }
 
 /* Table Header (th) */
-.manage-container table thead {
+.manage-container1 table thead {
   position: sticky;
   top: 0;
   z-index: 1;
 }
 
-.manage-container table thead th {
+.manage-container1 table thead th {
   background-color: #ffffff;
   color: #000000;
   font-weight: 700;
@@ -216,23 +231,23 @@
 }
 
 /* Table Rows */
-.manage-container table tbody tr {
+.manage-container1 table tbody tr {
   background: #ffffff;
   height: 40px;
   /* [CHANGE 4: Row height 40px] */
 }
 
-.manage-container table tbody tr:nth-child(even) {
+.manage-container1 table tbody tr:nth-child(even) {
   background: #f4f7fc;
   /* Light blue alternating stripe */
 }
 
-.manage-container table tbody tr:hover {
+.manage-container1 table tbody tr:hover {
   background: #e8eefa;
 }
 
 /* Table Data Cells (td) */
-.manage-container table td {
+.manage-container1 table td {
   width: 120px;
   /* [CHANGE 4: TD Width 120px] */
   min-width: 120px;
@@ -337,7 +352,7 @@
    12. RESPONSIVE
    -------------------------------------------------------------------------- */
 @media (max-width: 860px) {
-  .manage-container {
+  .manage-container1 {
     width: 95%;
   }
 
