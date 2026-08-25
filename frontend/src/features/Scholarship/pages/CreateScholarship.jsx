@@ -65,6 +65,7 @@ function CreateScholarship() {
   };
 
   const handleChange = (e) => {
+    
     setForm({
       ...form,
       [e.target.name]: e.target.value,
@@ -88,7 +89,33 @@ function CreateScholarship() {
     });
   };
 
+  const validateDeadline = () => {
+    const deadlinePattern = /^(\d{2})-(\d{2})-(\d{4})$/;
+    const match = form.deadline.match(deadlinePattern);
+
+    if (!match) {
+      toast.error("Deadline must be in DD-MM-YYYY format, for example 12-09-2027");
+      return false;
+    }
+
+    const [, day, month, year] = match;
+    const deadlineDate = new Date(`${year}-${month}-${day}T00:00:00`);
+    const isValidDate =
+      deadlineDate.getFullYear() === Number(year) &&
+      deadlineDate.getMonth() + 1 === Number(month) &&
+      deadlineDate.getDate() === Number(day);
+
+    if (!isValidDate) {
+      toast.error("Please enter a valid deadline date");
+      return false;
+    }
+
+    return true;
+  };
+
   const addScholarship = async (draftValue = 0) => {
+    if (!validateDeadline()) return;
+
     const confirmed = await confirmAction({
       title: draftValue === 0 ? "Add-Scholarship" : "Save as Draft",
       text:
@@ -138,6 +165,8 @@ function CreateScholarship() {
   };
 
   const updateScholarship = async (draftValue = 0) => {
+    if (!validateDeadline()) return;
+
     const confirmed = await confirmAction({
       title: draftValue === 0 ? "Update Scholarship" : "Save as Draft",
       text:
@@ -237,7 +266,7 @@ function CreateScholarship() {
 
           <input
             name="deadline"
-            placeholder="31-Dec-2026"
+            placeholder="31-12-2026"
             value={form.deadline}
             onChange={handleChange}
           />
