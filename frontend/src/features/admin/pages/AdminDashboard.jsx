@@ -54,10 +54,11 @@ function AdminDashboard() {
 
       <div >
 
-        <img src={headerImg} alt="Logo" className="siderico" />
+        <h1>Admin Dashboard</h1>
+        <h3>Welcome To Admin Pannel</h3>
       </div>
       <p >
-        <h2>  Plan, manage and monitor scholarships with ease.</h2>
+        <h4>  Plan, manage and monitor scholarships with ease.</h4>
       </p>
 
       <div className="dash-stats-row">
