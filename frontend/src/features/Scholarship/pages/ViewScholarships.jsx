@@ -157,7 +157,7 @@ function ViewScholarships() {
 
   return (
 
-    <div style={{ padding: "30px", backgroundColor: "#ebebeb" }} className="manage-container">
+    <div style={{ padding: "30px", backgroundColor: "#ebebeb" }} className="manage-container3">
       <h1>View Scholarships</h1>
 
       <input
@@ -196,7 +196,9 @@ function ViewScholarships() {
                 className={actionMenu === item.sclrid ? "action-row-open" : ""}
               >
                 <td>{indexOfFirstPost + index + 1}</td>
-                <td className="table-name" title={item.sclrname}>{renderValue(item.sclrname)}</td>
+                <td className="table-name" title={item.sclrname}>
+                  <span>{renderValue(item.sclrname)}</span>
+                </td>
                 <td>{renderValue(item.amount)}</td>
                 <td>{renderValue(item.percentreeq)}</td>
                 <td>{renderValue(item.miniincome)}</td>
