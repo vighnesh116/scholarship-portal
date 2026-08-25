@@ -103,10 +103,10 @@
 }
 
 /* --------------------------------------------------------------------------
-   6. CONTAINER CARD — .manage-container
+   6. CONTAINER CARD — .manage-container2
    --> [MANUAL EDIT HERE]: Container width (800px) and padding
    -------------------------------------------------------------------------- */
-.manage-container {
+.manage-container2 {
   background: #ffffff;
   width: 800px;
   /* [CHANGE 2: Width 800px] */
@@ -117,6 +117,8 @@
   /* [CHANGE 5: Reduced inner padding] */
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
+  position: relative;
+  right: 175px;
 }
 
 /* --------------------------------------------------------------------------
@@ -180,10 +182,10 @@
 }
 
 /* --------------------------------------------------------------------------
-   10. TABLE STYLES — scoped under .manage-container
+   10. TABLE STYLES — scoped under .manage-container2
    --> [MANUAL EDIT HERE]: Font size (14px), td width (120px), height (40px)
    -------------------------------------------------------------------------- */
-.manage-container table {
+.manage-container2 table {
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
@@ -193,13 +195,13 @@
 }
 
 /* Table Header (th) */
-.manage-container table thead {
+.manage-container2 table thead {
   position: sticky;
   top: 0;
   z-index: 1;
 }
 
-.manage-container table thead th {
+.manage-container2 table thead th {
   background-color: #ffffff;
   color: #000000;
   font-weight: 700;
@@ -215,23 +217,23 @@
 }
 
 /* Table Rows */
-.manage-container table tbody tr {
+.manage-container2 table tbody tr {
   background: #ffffff;
   height: 40px;
   /* [CHANGE 4: Row height 40px] */
 }
 
-.manage-container table tbody tr:nth-child(even) {
+.manage-container2 table tbody tr:nth-child(even) {
   background: #f4f7fc;
   /* Light blue alternating stripe */
 }
 
-.manage-container table tbody tr:hover {
+.manage-container2 table tbody tr:hover {
   background: #e8eefa;
 }
 
 /* Table Data Cells (td) */
-.manage-container table td {
+.manage-container2 table td {
   width: 120px;
   /* [CHANGE 4: TD Width 120px] */
   min-width: 120px;
@@ -317,7 +319,7 @@
    12. RESPONSIVE
    -------------------------------------------------------------------------- */
 @media (max-width: 860px) {
-  .manage-container {
+  .manage-container2 {
     width: 95%;
   }
 
