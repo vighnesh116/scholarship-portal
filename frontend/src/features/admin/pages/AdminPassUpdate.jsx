@@ -32,7 +32,7 @@ function AdminPassUpdate() {
       const res = await api.put("/admin-updatepassword", { email, new_password: password });
 
       toast.success(res.data.message || "Password Updated Successfully");
-      navigate("*", { replace: true });
+      navigate("/admin", { replace: true });
     } catch (error) {
       const msg = error?.response?.data?.message || "Failed to update password";
       toast.error(msg);
