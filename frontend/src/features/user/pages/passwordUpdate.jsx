@@ -59,7 +59,7 @@ function PasswordUpdate() {
 
           <div className="pu-user">
             <User size={20} />
-            <span>{userName}</span>
+           <h3> <span>{userName}</span></h3>
           </div>
 
           <form className="pu-form" onSubmit={submit}>
@@ -81,7 +81,7 @@ function PasswordUpdate() {
               Update Password
             </button>
           </form>
-
+          <br />
           <Link to="/logout" replace={true} className="pu-logout-btn">
          <h4>LogOut </h4>  <LogOut size={20} />
           </Link>
