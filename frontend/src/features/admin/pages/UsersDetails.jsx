@@ -78,7 +78,7 @@ function UsersDetails() {
   };
   const totalRecords = filteredUsers.length;
   return (
-    <div className="manage-container">
+    <div className="manage-container1">
       <h1 className="manage-title">USERS DETAILS</h1>
 
       <input
@@ -89,7 +89,7 @@ function UsersDetails() {
         className="search-box"
       />
 
-      <div className="table-container">
+      <div className="table-container" >
         <table>
           <thead>
             <tr>
