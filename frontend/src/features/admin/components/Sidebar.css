@@ -140,7 +140,9 @@ legend-item {
   flex-wrap: wrap;
   margin-bottom: 30px;
 }
-
+.header{
+  margin-bottom: 20px;
+}
 .dash-stat-card {
   background: #ffffff;
   border-radius: 14px;
