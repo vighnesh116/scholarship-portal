@@ -54,7 +54,7 @@ function AdminDashboard() {
 
       <div >
         <h2>Admin Dashboard</h2>
-        
+        <h1>Welcome To Admin Pannel</h1>
       </div>
       <p >
         <h3>  Plan, manage and monitor scholarships with ease.</h3>
