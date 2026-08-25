@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { LogOut, ArrowLeft, User } from "lucide-react";
-import { confirmAction } from "../../../shared/components/ConfirmAction";
+
 import api from "../../../shared/api/axiosInstance";
 import "../components/PasswordUpdate.css"
 import logo from "../../../assets/new2.ico";
@@ -12,7 +12,7 @@ function PasswordUpdate() {
   const userName = localStorage.getItem("user");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const role=localStorage.getItem("role");
+  
   const submit = async (e) => {
     e.preventDefault();
 
@@ -43,6 +43,7 @@ function PasswordUpdate() {
   return (
     
     <div className="pu-page">
+
       <header className="pu-header">
         <img src={logo} alt="logo" className="pu-logo" />
         <h1 className="pu-brand">Scholarship-Information-Portal</h1>
