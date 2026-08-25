@@ -53,11 +53,12 @@ function AdminDashboard() {
     <>
 
       <div >
-        <h2>Admin Dashboard</h2>
-        
+
+        <h1>Admin Dashboard</h1>
+        <h3>Welcome To Admin Pannel</h3>
       </div>
       <p >
-        <h3>  Plan, manage and monitor scholarships with ease.</h3>
+        <h4>  Plan, manage and monitor scholarships with ease.</h4>
       </p>
 
       <div className="dash-stats-row">
