@@ -50,7 +50,7 @@ function PasswordUpdate() {
       </header>
 
       <main className="pu-main">
-        <Link to="*" replace={true} className="pu-back-btn">
+        <Link to="/portal"  className="pu-back-btn">
           <ArrowLeft size={22} color="#FFFFFF"/>
         </Link>
 
@@ -83,7 +83,7 @@ function PasswordUpdate() {
           </form>
 
           <Link to="/logout" replace={true} className="pu-logout-btn">
-            <LogOut size={20} />
+         <h4>LogOut </h4>  <LogOut size={20} />
           </Link>
         </div>
       </main>
