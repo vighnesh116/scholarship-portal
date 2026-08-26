@@ -4,7 +4,7 @@ import Pagination from "../components/Pagination";
 import api from "../../../shared/api/axiosInstance";
 import { Trash2 } from "lucide-react";
 import { confirmAction } from "../../../shared/components/ConfirmAction";
-import "./UsersDetails.css";
+import "../components/UserDetails.css";
 function UsersDetails() {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
