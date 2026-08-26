@@ -120,10 +120,9 @@ function ViewScholarships() {
       // );
 
       const res = await api.delete(`/delete-scholarship/${sclrid}`);
-      loadScholarships();
       const data = res.data;
 
-      if (res.ok) {
+      if (res.status === 200) {
         toast.success(data.message);
         loadScholarships();
       } else {
