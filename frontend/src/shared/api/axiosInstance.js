@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://192.168.1.68:5000",
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 // Add access token to every request
@@ -45,7 +45,7 @@ api.interceptors.response.use(
         }
 
         const refreshResponse = await axios.post(
-          "http://192.168.1.68:5000/refresh",
+          `${import.meta.env.VITE_API_URL}/refresh`,
           {},
           {
             headers: {
