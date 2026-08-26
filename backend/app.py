@@ -17,7 +17,7 @@ from student import portal, admin_students, user_data , delete_users
 from scholarshipFilter import scholarships
 import os
 app = Flask(__name__)
-CORS(app, origins=["https://your-app.vercel.app", "http://localhost:5173"])
+CORS(app, origins=["https://scholarship-mitra.vercel.app", "http://localhost:5173"])
 app.config["JWT_SECRET_KEY"] = os.environ["JWT_SECRET_KEY"]
 app.config["JWT_ACCESS_TOKEN_EXPIRES"]=timedelta(days=1)
 app.config["JWT_REFRESH_TOKEN_EXPIRES"]=timedelta(days=7)
