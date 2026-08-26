@@ -44,7 +44,7 @@ app.add_url_rule("/admin-updatepassword", view_func=admin_required()(admin_updat
 # Student Management
 app.add_url_rule("/portal", view_func=jwt_required()(portal), methods=["POST"])
 app.add_url_rule("/scholarships", view_func=jwt_required()(scholarships), methods=["POST"])
-app.add_url_rule("/delete_users/<int:id>",view_func=jwt_required()(delete_users),methods=["DELETE"])
+app.add_url_rule("/delete_users/<int:id>", view_func=admin_required()(delete_users), methods=["DELETE"])
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
