@@ -46,7 +46,7 @@ function ScholarshipResult() {
         
       
       <h2>{scholarships.length} Scholarships Found</h2>
-        <Link to="*"  className="s-back-btn">
+        <Link to="/portal" className="s-back-btn">
           <ArrowLeft size={22} color="#FFFFFF"/>
         </Link>
 
