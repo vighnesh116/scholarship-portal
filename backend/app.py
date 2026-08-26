@@ -15,9 +15,10 @@ from scholarship import (
 )
 from student import portal, admin_students, user_data , delete_users
 from scholarshipFilter import scholarships
+import os
 app = Flask(__name__)
-CORS(app)
-app.config["JWT_SECRET_KEY"] = "Nqn4muAADg3RbAgervv4v99464[&SDTGVwbc^$&^CC"
+CORS(app, origins=["https://your-app.vercel.app", "http://localhost:5173"])
+app.config["JWT_SECRET_KEY"] = os.environ["JWT_SECRET_KEY"]
 app.config["JWT_ACCESS_TOKEN_EXPIRES"]=timedelta(days=1)
 app.config["JWT_REFRESH_TOKEN_EXPIRES"]=timedelta(days=7)
 jwt=JWTManager(app)
@@ -46,4 +47,4 @@ app.add_url_rule("/scholarships", view_func=jwt_required()(scholarships), method
 app.add_url_rule("/delete_users/<int:id>",view_func=jwt_required()(delete_users),methods=["DELETE"])
 
 if __name__ == "__main__":
-    app.run(host="192.168.1.68", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
