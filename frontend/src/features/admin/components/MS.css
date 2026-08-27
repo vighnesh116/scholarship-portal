@@ -1,24 +1,19 @@
 /* ==========================================================================
    MS.css — Stylesheet for ViewScholarships
-   - Background: #FFFFFF
-   - Max-width: 100% to fully display all columns and scholarship names
-   - Dynamic td sizing (not fixed)
-   - Merged Search bar + Filter panel into a single cohesive toolbar
-   - Compact height <= 700px (no webpage scrollbar)
-   - Clear, non-overlapping table headers
-   - Consistent text colors (#10367D / #4B5563)
+   - Responsive and fluid across all devices
+   - Smooth horizontal scrolling for multi-column table
+   - Consistent typography and spacing
    ========================================================================== */
 
 /* Outer Card Container */
 .manage-container3 {
   background: #ffffff !important;
-  background-color: #ffffff !important;
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
-  padding: 16px 20px !important;
+  padding: 24px 20px !important;
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
 }
@@ -28,21 +23,21 @@
 .manage-title {
   text-align: center;
   color: #10367d;
-  font-size: 24px;
+  font-size: clamp(20px, 3vw, 26px);
   font-weight: 800;
   letter-spacing: -0.02em;
-  margin: 0 0 12px 0;
+  margin: 0 0 16px 0;
 }
 
 /* Merged Search Bar (Top half of toolbar) */
 .manage-container3 > input[type="text"],
 .search-box {
   width: 100%;
-  padding: 9px 14px;
+  padding: 11px 16px;
   border: 1.5px solid #d9d3c5;
   border-bottom: 1px solid #e5e7eb;
   border-radius: 10px 10px 0 0;
-  font-size: 13.5px;
+  font-size: 14px;
   font-family: inherit;
   color: #1e293b;
   background: #f8fafc;
@@ -66,18 +61,19 @@
   align-items: center;
   gap: 8px;
   background: #f8fafc;
-  padding: 8px 12px;
+  padding: 10px 12px;
   border: 1.5px solid #d9d3c5;
   border-top: none;
   border-radius: 0 0 10px 10px;
-  margin: 0 0 12px 0;
+  margin: 0 0 16px 0;
   box-sizing: border-box;
+  width: 100%;
 }
 
 /* Filter Controls */
 .filter-select,
 .filter-input {
-  padding: 6px 10px;
+  padding: 7px 10px;
   border: 1px solid #d1d5db;
   border-radius: 6px;
   font-size: 13px;
@@ -87,6 +83,7 @@
   outline: none;
   box-sizing: border-box;
   transition: border-color 0.2s ease;
+  flex: 1 1 auto;
 }
 
 .filter-select:focus,
@@ -95,7 +92,7 @@
 }
 
 .filter-reset-btn {
-  padding: 6px 12px;
+  padding: 7px 14px;
   border: 1px solid #d9d3c5;
   border-radius: 6px;
   background: #f2f8e6;
@@ -104,29 +101,40 @@
   font-size: 12.5px;
   cursor: pointer;
   transition: background 0.2s ease;
+  white-space: nowrap;
 }
 
 .filter-reset-btn:hover {
   background: #e2edd0;
 }
 
+/* Table Container (Responsive Horizontal Scroll) */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+  border: 1px solid #d9d3c5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 14px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
 /* Table Structure */
 .manage-container3 table {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid #d9d3c5;
-  border-radius: 8px;
-  overflow: visible;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  min-width: 800px;
 }
 
-/* Table Headers (Clean, non-overlapping) */
+/* Table Headers */
 .manage-container3 table th {
-  background-color: #ffffff;
+  background-color: #f8fafc;
   color: #10367d;
   font-weight: 700;
   font-size: 13px;
-  padding: 8px 10px;
+  padding: 10px 12px;
   border: 1px solid #d9d3c5;
   text-align: center;
   white-space: nowrap;
@@ -146,19 +154,16 @@
 }
 
 .manage-container3 table tbody tr:nth-child(even) {
-  background: #f4f7fc;
+  background: #f8fafc;
 }
 
 .manage-container3 table tbody tr:hover {
   background: #e8eefa;
 }
 
-/* Table Cells (Auto-sized, dynamic, not fixed) */
+/* Table Cells */
 .manage-container3 table td {
-  padding: 7px 10px !important;
-  width: auto !important;
-  height: auto !important;
-  max-width: none !important;
+  padding: 8px 12px !important;
   text-align: center;
   border: 1px solid #d9d3c5;
   color: #4b5563;
@@ -176,8 +181,7 @@
 }
 
 .manage-container3 table td.table-name {
-  width: 180px !important;
-  max-width: 180px !important;
+  max-width: 200px;
   overflow: hidden;
 }
 
@@ -213,9 +217,6 @@
 }
 
 .action-menu {
-  border-collapse: separate;
-  /* position/top/left are now set inline (rendered via portal into <body>),
-     so this stays purely visual and is never clipped by table rows. */
   z-index: 9999;
   width: 110px;
   background: #ffffff;
@@ -254,57 +255,11 @@
   background: #fef2f2;
 }
 
-/* Pagination */
-.pagination {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-  padding: 0 4px;
-}
-
-.page-info1 {
-  font-size: 13px;
-  font-family: inherit;
-  font-weight: 500;
-  color: #4b5563;
-}
-
-.page-control {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-left: auto;
-}
-
-.page-control button {
-  width: 28px;
-  height: 28px;
-  border: 1px solid #d9d3c5;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffffff;
-  cursor: pointer;
-  font-size: 14px;
-  color: #374151;
-  transition: background 0.2s ease;
-}
-
-.page-control button:hover:not(:disabled) {
-  background: #eff1f5;
-}
-
-.page-control button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .manage-container3 {
-    padding: 12px 10px !important;
+    padding: 16px 12px !important;
+    border-radius: 12px;
   }
 
   .scholarship-filter {
@@ -313,7 +268,9 @@
   }
 
   .filter-select,
-  .filter-input {
+  .filter-input,
+  .filter-reset-btn {
     width: 100%;
+    min-width: 100%;
   }
 }

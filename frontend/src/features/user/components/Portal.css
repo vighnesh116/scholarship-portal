@@ -1,13 +1,17 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 .page-container {
-
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   background-color: #f0f4f8;
   font-family: Arial, sans-serif;
+  width: 100%;
 }
 
 /* ---------- Header ---------- */
@@ -15,81 +19,87 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 30px;
-  background-color:#dde5c1;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
-  margin: 0px 0px 0px 0px;
+  padding: 14px 32px;
+  background-color: #dde5c1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  width: 100%;
+  box-sizing: border-box;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
-.page-container header h2 {
-  margin: 0;
-  color: #10367d;
-  
-  font-weight: 700;
-  letter-spacing: 0.2px;
-}
-
-.page-container header nav a {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 600;
-  padding: 8px 20px;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  border-radius: 100px;
-  transition: background-color 0.25s ease, border-color 0.25s ease;
-}
-
-.page-container header nav a:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  border-color: #ffffff;
+.header-brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
 .p-logo {
-  width: 65px;
-  height: 65px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   object-fit: cover;
-  margin:0px 0px 0px 45px ;
   background-color: #ffffff;
+  flex-shrink: 0;
 }
-.p-brand {
-      font-weight: 700;
-    color: #16247d;
-    margin: 0;
-    letter-spacing: 0.2px;
-    position: absolute;
-    left: 150px;
 
-  
+.p-brand {
+  font-weight: 700;
+  color: #16247d;
+  margin: 0;
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  letter-spacing: 0.2px;
 }
+
+.page-container header nav {
+  display: flex;
+  align-items: center;
+}
+
+.page-container header nav a {
+  color: #10367d;
+  background-color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border: 1.5px solid #10367d;
+  border-radius: 100px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  white-space: nowrap;
+}
+
+.page-container header nav a:hover {
+  background-color: #10367d;
+  color: #ffffff;
+}
+
 /* ---------- Main ---------- */
 .page-container main {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 36px 16px 48px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* ---------- Hero Section ---------- */
 .page-container .hero {
   text-align: center;
-
+  margin-bottom: 24px;
+  padding: 0 12px;
+  width: 100%;
 }
 
 .page-container .hero h1 {
-  font-size: 38px;
+  font-size: clamp(22px, 4vw, 36px);
   font-weight: 800;
   color: #10367d;
   letter-spacing: -0.025em;
-  margin: 0 0 0px;
-  line-height: 1.2;
-}
-
-@media (max-width: 600px) {
-  .page-container .hero h1 {
-    font-size: 26px;
-  }
+  margin: 0;
+  line-height: 1.25;
 }
 
 /* ---------- Form Container ---------- */
@@ -98,30 +108,38 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 0;
 }
 
 /* ---------- Form Box / Card ---------- */
 .page-container .form-box {
   background-color: #ffffff;
-  border-radius: 24px;
-  padding: 40px 44px;
+  border-radius: 20px;
+  padding: 36px 36px 40px;
   width: 100%;
   max-width: 480px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07), 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   text-align: center;
   transition: box-shadow 0.3s ease;
+  box-sizing: border-box;
 }
 
 .page-container .form-box:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
 }
 
 /* ---------- Inputs & Selects ---------- */
+.page-container .form-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .page-container .form-box input,
 .page-container .form-box select {
   width: 100%;
   padding: 13px 18px;
-  margin: 8px 0;
+  margin: 0;
   border: 1.5px solid #d1d5db;
   border-radius: 100px;
   font-size: 15px;
@@ -130,16 +148,17 @@
   background-color: #ffffff;
   outline: none;
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
-  appearance: none;
-  -webkit-appearance: none;
+  box-sizing: border-box;
 }
 
-
+.page-container .form-box select {
+  cursor: pointer;
+}
 
 .page-container .form-box input:focus,
 .page-container .form-box select:focus {
-  border-color: rgb(120, 171, 166);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  border-color: #10367d;
+  box-shadow: 0 0 0 3px rgba(16, 54, 125, 0.15);
 }
 
 .page-container .form-box select option {
@@ -154,8 +173,8 @@
 .page-container .form-box button[type="submit"] {
   display: block;
   width: 100%;
-  margin-top: 20px;
-  padding: 14px;
+  margin-top: 12px;
+  padding: 14px 20px;
   background-color: #10367d;
   color: #ffffff;
   font-size: 16px;
@@ -165,8 +184,9 @@
   border-radius: 100px;
   cursor: pointer;
   letter-spacing: 0.3px;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 4px 14px rgba(16, 54, 125, 0.3);
   transition: background-color 0.25s ease, box-shadow 0.25s ease, transform 0.1s ease;
+  box-sizing: border-box;
 }
 
 .page-container .form-box button[type="submit"]:hover {
@@ -181,31 +201,53 @@
 /* ---------- Footer ---------- */
 .page-container footer {
   background-color: rgb(120, 171, 166);
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.95);
   text-align: center;
-  padding: 18px 20px;
+  padding: 16px 20px;
   font-size: 14px;
   font-family: Arial, sans-serif;
   letter-spacing: 0.2px;
-  margin: 0px 0px 0px 0px ;
+  margin-top: auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .page-container footer p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.8);
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 520px) {
+/* ---------- Responsive Breakpoints ---------- */
+@media (max-width: 600px) {
   .page-container header {
-    flex-direction: column;
-    gap: 12px;
-    padding: 16px 20px;
-    text-align: center;
+    padding: 12px 16px;
+    gap: 10px;
+  }
+
+  .header-brand-wrap {
+    gap: 10px;
+  }
+
+  .p-logo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .p-brand {
+    font-size: 1.15rem;
+  }
+
+  .page-container main {
+    padding: 24px 12px 36px;
   }
 
   .page-container .form-box {
-    padding: 30px 24px;
-    border-radius: 18px;
+    padding: 26px 18px 30px;
+    border-radius: 16px;
+  }
+
+  .page-container .form-box input,
+  .page-container .form-box select {
+    padding: 11px 16px;
+    font-size: 14px;
   }
 }

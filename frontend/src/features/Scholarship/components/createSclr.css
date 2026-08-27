@@ -1,19 +1,19 @@
 /* ============================================================
-   createSclr.css — Styles for the Create / Edit Scholarship page
+   createSclr.css — Styles for Create / Edit Scholarship page
    ============================================================ */
-
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 /* ---------- Page wrapper ---------- */
 .cs-page {
   min-height: 100vh;
+  min-height: 100dvh;
   background-color: #ebebeb;
-  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px 60px;
+  padding: 30px 16px 60px;
   box-sizing: border-box;
+  width: 100%;
 }
 
 /* ---------- Card ---------- */
@@ -22,33 +22,36 @@
   width: 100%;
   max-width: 860px;
   border-radius: 20px;
-  padding: 40px 44px 36px;
-  box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.12);
+  padding: 36px 36px 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
+  margin: 0 auto;
 }
 
 /* ---------- Page heading ---------- */
 .cs-container h1 {
-  font-size: 26px;
+  font-size: clamp(20px, 3vw, 26px);
   font-weight: 800;
   color: #10367d;
-  margin: 0 0 30px;
+  margin: 0 0 24px;
   letter-spacing: -0.02em;
+  text-align: center;
 }
 
-/* ---------- 2-column form grid ---------- */
+/* ---------- Form grid (fluid responsive) ---------- */
 .cs-form-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
-  margin-bottom: 26px;
+  margin-bottom: 24px;
+  width: 100%;
 }
 
 /* ---------- Inputs & selects ---------- */
 .cs-form-grid input,
 .cs-form-grid select {
   width: 100%;
-  padding: 13px 16px;
+  padding: 12px 16px;
   border: 1.5px solid #d1d8e6;
   border-radius: 10px;
   font-size: 15px;
@@ -57,8 +60,7 @@
   background: #f8fafc;
   box-sizing: border-box;
   outline: none;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease,
-    background 0.2s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.2s ease;
   appearance: none;
   -webkit-appearance: none;
 }
@@ -87,8 +89,9 @@
 .cs-btn-primary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 14px 32px;
+  padding: 13px 28px;
   background: #10367d;
   color: #ffffff;
   font-size: 15px;
@@ -98,25 +101,26 @@
   border-radius: 50px;
   cursor: pointer;
   letter-spacing: 0.3px;
-  box-shadow: 0 4px 16px rgba(16, 54, 125, 0.3);
+  box-shadow: 0 4px 14px rgba(16, 54, 125, 0.25);
   transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.1s ease;
 }
 
 .cs-btn-primary:hover {
   background: #0c2760;
-  box-shadow: 0 6px 22px rgba(16, 54, 125, 0.42);
+  box-shadow: 0 6px 20px rgba(16, 54, 125, 0.35);
 }
 
 .cs-btn-primary:active {
-  transform: scale(0.97);
+  transform: scale(0.98);
 }
 
 /* ---------- Save-as-draft button ---------- */
 .cs-btn-draft {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 12px 24px;
+  padding: 11px 20px;
   background: #10367d;
   color: #ffffff;
   font-size: 14px;
@@ -125,25 +129,26 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 3px 10px rgba(16, 54, 125, 0.25);
+  box-shadow: 0 3px 10px rgba(16, 54, 125, 0.2);
   transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.1s ease;
 }
 
 .cs-btn-draft:hover {
   background: #0c2760;
-  box-shadow: 0 5px 16px rgba(16, 54, 125, 0.35);
+  box-shadow: 0 5px 14px rgba(16, 54, 125, 0.3);
 }
 
 .cs-btn-draft:active {
-  transform: scale(0.97);
+  transform: scale(0.98);
 }
 
 /* ---------- Cancel / Clear button ---------- */
 .cs-btn-cancel {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 12px 24px;
+  padding: 11px 20px;
   background: #ef4444;
   color: #ffffff;
   font-size: 14px;
@@ -152,24 +157,25 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 3px 10px rgba(239, 68, 68, 0.25);
+  box-shadow: 0 3px 10px rgba(239, 68, 68, 0.2);
   transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.1s ease;
 }
 
 .cs-btn-cancel:hover {
   background: #dc2626;
-  box-shadow: 0 5px 16px rgba(220, 38, 38, 0.35);
+  box-shadow: 0 5px 14px rgba(220, 38, 38, 0.3);
 }
 
 .cs-btn-cancel:active {
-  transform: scale(0.97);
+  transform: scale(0.98);
 }
 
-/* ---------- Side-action column (Draft + Cancel stacked on right) ---------- */
+/* ---------- Side-action row / group ---------- */
 .cs-side-actions {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 /* ---------- Bottom action layout ---------- */
@@ -182,10 +188,11 @@
   margin-top: 8px;
 }
 
-/* ---------- Responsive ---------- */
+/* ---------- Responsive Breakpoints ---------- */
 @media (max-width: 680px) {
   .cs-container {
-    padding: 28px 18px;
+    padding: 24px 16px;
+    border-radius: 16px;
   }
 
   .cs-form-grid {
@@ -193,19 +200,22 @@
     gap: 12px;
   }
 
-  .cs-container h1 {
-    font-size: 20px;
-  }
-
   .cs-actions {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
+  }
+
+  .cs-side-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 10px;
   }
 
   .cs-btn-primary,
   .cs-btn-draft,
   .cs-btn-cancel {
-    justify-content: center;
     width: 100%;
   }
 }
