@@ -47,7 +47,7 @@ function Login() {
     <div className="page-container">
       <header>
         <img src={logo} alt="logo" className="brand-logo" />
-        <center> <h1 className="auth-text">Scholarship Information Portal</h1></center>
+        <h1 className="auth-text">Scholarship-Information-Portal</h1>
       </header>
 
       <main>
@@ -83,7 +83,7 @@ function Login() {
         </div>
       </main>
 
-
+     
     </div>
   );
 }

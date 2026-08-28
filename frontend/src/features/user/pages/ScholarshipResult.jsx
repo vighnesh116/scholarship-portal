@@ -36,19 +36,19 @@ function ScholarshipResult() {
   
   return (
     <div className="scholarship-page">
-      <header className="scholarship-header">
-        <div className="header-brand-wrap">
-          <img src={logo} alt="logo" className="s-logo" />
-          <h1 className="s-brand">Scholarship Information Portal</h1>
-        </div>
-      </header>
-
-      <div className="scholarship-top-bar">
-        <Link to="/portal" className="s-back-btn" title="Back to Portal">
-          <ArrowLeft size={20} color="#FFFFFF" />
+     
+         <header>
+                 <img src={logo} alt="logo" className="s-logo" />
+                <h1 className="s-brand" color="#16247d">Scholarship Information Portal</h1>
+        
+               
+              </header>
+        
+      
+      <h2>{scholarships.length} Scholarships Found</h2>
+        <Link to="/portal" className="s-back-btn">
+          <ArrowLeft size={22} color="#FFFFFF"/>
         </Link>
-        <h2>{scholarships.length} Scholarships Found</h2>
-      </div>
 
 
       {scholarships.length === 0 ? (

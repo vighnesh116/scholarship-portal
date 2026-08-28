@@ -47,10 +47,8 @@ function Portal() {
   return (
     <div className="page-container">
       <header>
-        <div className="header-brand-wrap">
-          <img src={logo} alt="logo" className="p-logo" />
-          <h1 className="p-brand">Scholarship Information Portal</h1>
-        </div>
+         <img src={logo} alt="logo" className="p-logo" />
+        <h1 className="p-brand">Scholarship Information Portal</h1>
 
         <nav>
           <a href="update-password">Profile</a>
