@@ -11,11 +11,13 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const login = async (e) => {
     e.preventDefault();
 
     try {
+      setLoading(true);
       const res = await api.post("/login", { email, password });
 
       if (res.data.success) {
@@ -33,8 +35,10 @@ function Login() {
         }
       } else {
         toast.error("Invalid Credentials");
+        setLoading(false);
       }
     } catch (error) {
+      setLoading(false);
       if (error.response?.status === 401) {
         toast.error("Invalid Credentials");
       } else {
@@ -44,13 +48,15 @@ function Login() {
   };
 
   return (
-    <div className="page-container">
-      <header>
-        <img src={logo} alt="logo" className="brand-logo" />
-        <h1 className="auth-text">Scholarship-Information-Portal</h1>
+    <div className="page-container auth-page">
+      <header className="auth-header">
+        <div className="header-brand-container">
+          <img src={logo} alt="logo" className="brand-logo" />
+          <h1 className="auth-text">Scholarship-Information-Portal</h1>
+        </div>
       </header>
 
-      <main>
+      <main className="auth-main">
         <div className="auth-card">
           <h1>Login</h1>
 
@@ -71,7 +77,9 @@ function Login() {
               required
             />
 
-            <button type="submit">Login</button>
+            <button type="submit" disabled={loading}>
+              {loading ? "Logging in..." : "Login"}
+            </button>
           </form>
 
           <p>
@@ -82,8 +90,6 @@ function Login() {
           </p>
         </div>
       </main>
-
-     
     </div>
   );
 }

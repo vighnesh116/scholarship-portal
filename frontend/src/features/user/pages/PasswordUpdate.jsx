@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { LogOut, ArrowLeft, User } from "lucide-react";
 
 import api from "../../../shared/api/axiosInstance";
-import "../components/PasswordUpdate.css"
+import "../components/PasswordUpdate.css";
 import logo from "../../../assets/new2.ico";
 
 function PasswordUpdate() {
@@ -12,6 +12,7 @@ function PasswordUpdate() {
   const userName = localStorage.getItem("user");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   
   const submit = async (e) => {
     e.preventDefault();
@@ -22,6 +23,7 @@ function PasswordUpdate() {
     }
 
     try {
+      setLoading(true);
       const email = localStorage.getItem("email");
 
       if (!email) {
@@ -37,54 +39,58 @@ function PasswordUpdate() {
     } catch (error) {
       const msg = error?.response?.data?.message || "Failed to update password";
       toast.error(msg);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    
     <div className="pu-page">
-
       <header className="pu-header">
-        <img src={logo} alt="logo" className="pu-logo" />
-        <h1 className="pu-brand">Scholarship-Information-Portal</h1>
+        <div className="pu-brand-box">
+          <img src={logo} alt="logo" className="pu-logo" />
+          <h1 className="pu-brand">Scholarship Information Portal</h1>
+        </div>
       </header>
 
       <main className="pu-main">
-        <Link to="/portal"  className="pu-back-btn">
-          <ArrowLeft size={22} color="#FFFFFF"/>
-        </Link>
-
-        <div className="pu-card">
-          <h1 className="pu-title">Update-Password</h1>
-
-          <div className="pu-user">
-            <User size={20} />
-           <h3> <span>{userName}</span></h3>
-          </div>
-
-          <form className="pu-form" onSubmit={submit}>
-            <input
-              required
-              type="password"
-              placeholder="New Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <input
-              required
-              type="password"
-              placeholder="Confirm Password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-            <button type="submit" className="pu-submit-btn">
-              Update Password
-            </button>
-          </form>
-          <br />
-          <Link to="/logout" replace={true} className="pu-logout-btn">
-         <h4>LogOut </h4>  <LogOut size={20} />
+        <div className="pu-card-wrapper">
+          <Link to="/portal" className="pu-back-btn" title="Back to Portal">
+            <ArrowLeft size={22} color="#FFFFFF" />
           </Link>
+
+          <div className="pu-card">
+            <h1 className="pu-title">Update Password</h1>
+
+            <div className="pu-user">
+              <User size={20} />
+              <h3><span>{userName || "User"}</span></h3>
+            </div>
+
+            <form className="pu-form" onSubmit={submit}>
+              <input
+                required
+                type="password"
+                placeholder="New Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <input
+                required
+                type="password"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              <button type="submit" className="pu-submit-btn" disabled={loading}>
+                {loading ? "Updating..." : "Update Password"}
+              </button>
+            </form>
+
+            <Link to="/logout" replace={true} className="pu-logout-btn">
+              <h4>LogOut</h4> <LogOut size={18} />
+            </Link>
+          </div>
         </div>
       </main>
 

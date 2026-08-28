@@ -82,13 +82,15 @@ function Signup() {
   };
 
   return (
-    <div className="page-container">
-      <header>
-        <img src={logo} alt="logo" className="brand-logo" />
-        <h1 className="auth-text">Scholarship-Information-Portal</h1>
+    <div className="page-container auth-page">
+      <header className="auth-header">
+        <div className="header-brand-container">
+          <img src={logo} alt="logo" className="brand-logo" />
+          <h1 className="auth-text">Scholarship-Information-Portal</h1>
+        </div>
       </header>
 
-      <main>
+      <main className="auth-main">
         <div className="auth-card">
           <h1>Sign-Up</h1>
 
@@ -141,8 +143,6 @@ function Signup() {
           </p>
         </div>
       </main>
-
-      
     </div>
   );
 }

@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { Profiler, useState } from "react";
 import api from "../../../shared/api/axiosInstance";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { confirmAction } from "../../../shared/components/ConfirmAction";
 import "../components/Portal.css";
 import logo from "../../../assets/new2.ico";
-import Sidebar from "../../admin/components/Sidebar";
+import { CircleUser } from "lucide-react";
 function Portal() {
   const navigate = useNavigate();
 
@@ -18,6 +17,7 @@ function Portal() {
     education: "",
     gender: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm({
@@ -29,6 +29,7 @@ function Portal() {
   const submit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       await api.post("/portal", form);
 
       const response = await api.post("/scholarships", form);
@@ -41,33 +42,37 @@ function Portal() {
     } catch (error) {
       console.log(error);
       toast.error("Error submitting form");
+      setLoading(false);
     }
   };
 
   return (
-    <div className="page-container">
-      <header>
-         <img src={logo} alt="logo" className="p-logo" />
-        <h1 className="p-brand">Scholarship Information Portal</h1>
+    <div className="portal-page">
+      <header className="portal-header">
+        <div className="portal-brand-box">
+          <img src={logo} alt="logo" className="p-logo" />
+          <h1 className="p-brand">Scholarship Information Portal</h1>
+        </div>
 
-        <nav>
-          <a href="update-password">Profile</a>
+        <nav className="portal-nav">
+          <Link to="/update-password" className="portal-nav-link"><CircleUser color="#908e8e" /></Link>
         </nav>
       </header>
 
-      <main>
-        <section className="hero">
+      <main className="portal-main">
+        <section className="portal-hero">
           <h1>Find Scholarships You Are Eligible For</h1>
         </section>
 
-        <div className="container">
-          <div className="form-box">
+        <div className="portal-container">
+          <div className="portal-form-box">
             <form onSubmit={submit}>
               <input
                 required
                 type="text"
                 name="name"
                 placeholder="Enter Your Name"
+                value={form.name}
                 onChange={handleChange}
               />
 
@@ -78,6 +83,7 @@ function Portal() {
                 max="100"
                 name="marks"
                 placeholder="Enter Percentage"
+                value={form.marks}
                 onChange={handleChange}
               />
 
@@ -87,14 +93,15 @@ function Portal() {
                 min="1"
                 name="income"
                 placeholder="Enter Family Income"
+                value={form.income}
                 onChange={handleChange}
               />
 
               <select
                 required
                 name="caste"
+                value={form.caste}
                 onChange={handleChange}
-                defaultValue=""
               >
                 <option value="" disabled>
                   Category
@@ -110,8 +117,8 @@ function Portal() {
               <select
                 required
                 name="education"
+                value={form.education}
                 onChange={handleChange}
-                defaultValue=""
               >
                 <option value="" disabled>
                   Select Your Class
@@ -124,8 +131,8 @@ function Portal() {
               <select
                 required
                 name="gender"
+                value={form.gender}
                 onChange={handleChange}
-                defaultValue=""
               >
                 <option value="" disabled>
                   Select Gender
@@ -135,13 +142,15 @@ function Portal() {
                 <option value="Female">Female</option>
               </select>
 
-              <button type="submit">Check Eligibility</button>
+              <button type="submit" disabled={loading}>
+                {loading ? "Checking Eligibility..." : "Check Eligibility"}
+              </button>
             </form>
           </div>
         </div>
       </main>
 
-      <footer>
+      <footer className="portal-footer">
         <p>© 2026 Scholarship Information Portal</p>
       </footer>
     </div>
