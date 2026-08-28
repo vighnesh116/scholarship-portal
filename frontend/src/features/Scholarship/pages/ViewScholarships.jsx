@@ -156,7 +156,7 @@ function ViewScholarships() {
 
   return (
 
-    <div className="manage-container3">
+    <div style={{ padding: "30px", backgroundColor: "#ebebeb" }} className="manage-container3">
       <h1>View Scholarships</h1>
 
       <input
@@ -166,102 +166,101 @@ function ViewScholarships() {
         onChange={handleSearchChange}
       />
       <ScholarshipFilter scholarships={searchFiltered} onFilter={setFiltered} />
-      <div className="table-container">
-        <table border="1">
-          <thead>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Percentage</th>
+            <th>Income</th>
+            <th>Gender</th>
+            <th>Caste</th>
+            <th>Education</th>
+            <th>Deadline</th>
+            <th>Status</th>
+            <th>Action</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {filtered.length === 0 ? (
             <tr>
-              <th>S.No</th>
-              <th>Name</th>
-              <th>Amount</th>
-              <th>Percentage</th>
-              <th>Income</th>
-              <th>Gender</th>
-              <th>Caste</th>
-              <th>Education</th>
-              <th>Deadline</th>
-              <th>Status</th>
-              <th>Action</th>
+              <td colSpan="11">Null</td>
             </tr>
-          </thead>
-          <tbody>
-            {filtered.length === 0 ? (
-              <tr>
-                <td colSpan="11">No Scholarships found</td>
-              </tr>
-            ) : (
-              currentScholarships.map((item, index) => (
-                <tr
-                  key={item.sclrid}
-                  className={actionMenu === item.sclrid ? "action-row-open" : ""}
-                >
-                  <td>{indexOfFirstPost + index + 1}</td>
-                  <td className="table-name" title={item.sclrname}>
-                    <span>{renderValue(item.sclrname)}</span>
-                  </td>
-                  <td>{renderValue(item.amount)}</td>
-                  <td>{renderValue(item.percentreeq)}</td>
-                  <td>{renderValue(item.miniincome)}</td>
-                  <td>{renderValue(item.gender)}</td>
-                  <td>{renderValue(item.caste)}</td>
-                  <td>{renderValue(item.educationqualifiation)}</td>
-                  <td>{renderValue(item.deadline)}</td>
-                  <td style={{ padding: "10px" }}>
-                    {renderValue(item.draft) != 0 ? (
-                      <SquarePen color="#c41c35" />
-                    ) : (
-                      <CircleCheck color="#58d57d" />
-                    )}
-                  </td>
+          ) : (
+            currentScholarships.map((item, index) => (
+              <tr
+                key={item.sclrid}
+                className={actionMenu === item.sclrid ? "action-row-open" : ""}
+              >
+                <td>{indexOfFirstPost + index + 1}</td>
+                <td className="table-name" title={item.sclrname}>
+                  <span>{renderValue(item.sclrname)}</span>
+                </td>
+                <td>{renderValue(item.amount)}</td>
+                <td>{renderValue(item.percentreeq)}</td>
+                <td>{renderValue(item.miniincome)}</td>
+                <td>{renderValue(item.gender)}</td>
+                <td>{renderValue(item.caste)}</td>
+                <td>{renderValue(item.educationqualifiation)}</td>
+                <td>{renderValue(item.deadline)}</td>
+                <td style={{ padding: "20px" }}>
+                  {renderValue(item.draft) != 0 ? (
+                    <SquarePen color="#c41c35" />
+                  ) : (
+                    <CircleCheck color="#58d57d" />
+                  )}
+                </td>
 
-                  <td className="action-cell">
-                    <button
-                      className="action-button"
-                      ref={(el) => (buttonRefs.current[item.sclrid] = el)}
-                      onClick={() => toggleActionMenu(item.sclrid)}
-                    >
-                      <MoreVertical size={20} />
-                    </button>
+                <td className="action-cell">
+                  <button
+                    className="action-button"
+                    ref={(el) => (buttonRefs.current[item.sclrid] = el)}
+                    onClick={() => toggleActionMenu(item.sclrid)}
+                  >
+                    <MoreVertical size={20} />
+                  </button>
 
-                    {actionMenu === item.sclrid &&
-                      createPortal(
-                        <div
-                          className="action-menu"
-                          style={{
-                            position: "fixed",
-                            top: menuPosition.top,
-                            left: Math.max(10, Math.min(menuPosition.left, window.innerWidth - 125)),
+                  {actionMenu === item.sclrid &&
+                    createPortal(
+                      <div
+                        className="action-menu"
+                        style={{
+                          position: "fixed",
+                          top: menuPosition.top,
+                          left: menuPosition.left,
+                        }}
+                      >
+                        <button
+                          onClick={() => {
+                            onEdit(item);
+                            setActionMenu(null);
                           }}
                         >
-                          <button
-                            onClick={() => {
-                              onEdit(item);
-                              setActionMenu(null);
-                            }}
-                          >
-                            <Pen size={16} />
-                            Edit
-                          </button>
+                          <Pen size={16} />
+                          Edit
+                        </button>
 
-                          <button
-                            className="delete-action"
-                            onClick={() => {
-                              handleDelete(item.sclrid);
-                              setActionMenu(null);
-                            }}
-                          >
-                            <Trash2 size={16} />
-                            Delete
-                          </button>
-                        </div>,
-                        document.body
-                      )}
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+                        <button
+                          className="delete-action"
+                          onClick={() => {
+                            handleDelete(item.sclrid);
+                            setActionMenu(null);
+                          }}
+                        >
+                          <Trash2 size={16} />
+                          Delete
+                        </button>
+                      </div>,
+                      document.body
+                    )}
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
       <div>
         <Pagination
           currentPage={currentPage}

@@ -85,13 +85,12 @@ function AdminDashboard() {
         <div className="pie-card">
           <h3>Scholarship Status</h3>
 
-          <ResponsiveContainer width="100%" height={260}>
+          <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
                 data={pieData}
                 dataKey="value"
-                outerRadius="75%"
-                innerRadius="0%"
+                outerRadius={110}
                 label={false}
                 labelLine={false}
               >
