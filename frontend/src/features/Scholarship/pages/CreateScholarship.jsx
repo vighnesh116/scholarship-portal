@@ -8,7 +8,7 @@ import api from "../../../shared/api/axiosInstance";
 function CreateScholarship() {
   const location = useLocation();
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(true);
   const editItem = location.state?.scholarship || null;
 
   const token = localStorage.getItem("access_token");
@@ -65,7 +65,7 @@ function CreateScholarship() {
   };
 
   const handleChange = (e) => {
-    
+
     setForm({
       ...form,
       [e.target.name]: e.target.value,
@@ -155,10 +155,10 @@ function CreateScholarship() {
       loadScholarships();
       navigate("/admin/view");
     } catch (error) {
-      console.log(error);
-      console.log("ADD ERROR:", error);
-      console.log("STATUS:", error.response?.status);
-      console.log("SERVER MESSAGE:", error.response?.data);
+      toast.error(error);
+      toast.error("ADD ERROR:", error);
+      toast.error("STATUS:", error.response?.status);
+      toast.error("SERVER MESSAGE:", error.response?.data);
 
       toast.error("Error adding scholarship");
     }
@@ -182,7 +182,7 @@ function CreateScholarship() {
     if (!confirmed) return;
     const dataToSend = {
       ...form,
-      miniincome:form.miniincome || null,
+      miniincome: form.miniincome || null,
       draft: draftValue,
       gender: form.gender || null,
       caste: form.caste || null,
