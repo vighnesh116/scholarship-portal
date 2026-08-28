@@ -24,7 +24,7 @@ function ViewScholarships() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(10);
-  
+
   const [actionMenu, setActionMenu] = useState(null);
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
   const buttonRefs = useRef({});
