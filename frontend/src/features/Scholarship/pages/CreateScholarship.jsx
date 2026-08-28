@@ -331,14 +331,22 @@ function CreateScholarship() {
             >
               Save As Draft
             </button>
-
+            <button
+              type="button"
+              className="cs-btn-draft"
+              onClick={() => navigate("/admin/view")}
+            >
+              Back
+            </button>
             <button
               type="button"
               className="cs-btn-cancel"
               onClick={clearForm}
             >
-              Cancel
+              Clear
             </button>
+
+
           </div>
         </div>
       </form>
