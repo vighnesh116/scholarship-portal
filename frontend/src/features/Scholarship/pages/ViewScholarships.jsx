@@ -198,7 +198,8 @@ function ViewScholarships() {
                 <td className="table-name" title={item.sclrname}>
                   <span>{renderValue(item.sclrname)}</span>
                 </td>
-                <td>{renderValue(item.amount)}</td>
+
+                <td className="table-name" title={item.amount}><span>{renderValue(item.amount)}</span></td>
                 <td>{renderValue(item.percentreeq)}</td>
                 <td>{renderValue(item.miniincome)}</td>
                 <td>{renderValue(item.gender)}</td>
