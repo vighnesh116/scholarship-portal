@@ -44,10 +44,10 @@ function StudentsDetails() {
   const currentStudents = filtered.slice(indexOfFirstPost, indexOfLastPost);
 
   const totalPages = Math.ceil(filtered.length / postPerPage);
-  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+  
   const startRecord = filtered.length === 0 ? 0 : indexOfFirstPost + 1;
   const endRecord = Math.min(indexOfLastPost, filtered.length);
-  const presentData = Math.ceil({ startRecord } - { endRecord });
+  
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
@@ -73,6 +73,7 @@ function StudentsDetails() {
             <tr>
               <th>S.No</th>
               <th>Name</th>
+              <th>College Name</th>
               <th>Income</th>
               <th>Percentage</th>
               <th>Gender</th>
@@ -86,6 +87,7 @@ function StudentsDetails() {
               <tr key={item.stdid}>
                 <td>{indexOfFirstPost + index + 1}</td>
                 <td>{displayValue(item.stdname)}</td>
+                <td>{displayValue(item.collegeName)}</td>
                 <td>{displayValue(item.stdincome)}</td>
                 <td>{displayValue(item.stdpercent)}</td>
                 <td>{displayValue(item.stdgender)}</td>
