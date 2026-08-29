@@ -1,4 +1,4 @@
-import {Navigate}from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function ProtectedRoute({ children, allowedRole }) {
   const token = localStorage.getItem("access_token");
@@ -9,7 +9,13 @@ function ProtectedRoute({ children, allowedRole }) {
   }
 
   if (allowedRole && role !== allowedRole) {
-    return <Navigate to="/error" replace={true} />;
+    if (role === "admin") {
+      return <Navigate to="/admin" replace={true} />;
+    }
+    if (role === "student") {
+      return <Navigate to="/portal" replace={true} />;
+    }
+    return <Navigate to="/login" replace={true} />;
   }
 
   return children;

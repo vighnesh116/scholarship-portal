@@ -13,6 +13,7 @@ import Logout from "../shared/components/Logout";
 import CreateScholarship from "../features/Scholarship/pages/CreateScholarship";
 import ErrorPage from "../shared/pages/ErrorPage";
 import AdminPassUpdate from "../features/admin/pages/AdminPassUpdate";
+import AnonymousRoutes from "./AnonymousRoute";
 export {
-     Login ,Signup,Portal,ScholarshipResult ,PasswordUpdate,AdminLayout, AdminDashboard ,StudentsDetails,UsersDetails,ProtectedRoute,ViewScholarships,Logout,CreateScholarship ,ErrorPage,AdminPassUpdate
+     Login ,Signup,Portal,ScholarshipResult ,PasswordUpdate,AdminLayout, AdminDashboard ,StudentsDetails,UsersDetails,ProtectedRoute,ViewScholarships,Logout,CreateScholarship ,ErrorPage,AdminPassUpdate,AnonymousRoutes
 }

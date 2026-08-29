@@ -15,14 +15,17 @@ import {
   CreateScholarship,
   ErrorPage,
   AdminPassUpdate,
+  AnonymousRoutes,
 } from "./ImportPage";
+
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/login" replace />} />
-      <Route path="/login" element={<Login />} />
-
-      <Route path="/signup" element={<Signup />} />
+      <Route element={<AnonymousRoutes />}>
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Route>
 
       <Route path="/error" element={<ErrorPage />} />
 
