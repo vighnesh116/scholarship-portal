@@ -16,7 +16,8 @@ def portal():
             """
             INSERT INTO students
             (
-                stdname, 
+                stdname,
+                collegeName, 
                 stdpercent,
                 stdincome,
                 stdgender,
@@ -24,10 +25,11 @@ def portal():
                 caste
             )
             VALUES
-            (%s,%s,%s,%s,%s,%s)
+            (%s,%s,%s,%s,%s,%s,%s)
             """,
             (
                 data['name'],
+                data['collegeName'],
                 data['marks'],
                 data['income'],
                 data['gender'],

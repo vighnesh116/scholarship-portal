@@ -25,6 +25,7 @@ DROP TABLE IF EXISTS `students`;
 CREATE TABLE `students` (
   `stdid` int NOT NULL AUTO_INCREMENT,
   `stdname` varchar(45) NOT NULL,
+  `collegeName` varchar(255) DEFAULT NULL,
   `stdpercent` int DEFAULT NULL,
   `stdincome` int DEFAULT NULL,
   `stdgender` varchar(45) NOT NULL,
