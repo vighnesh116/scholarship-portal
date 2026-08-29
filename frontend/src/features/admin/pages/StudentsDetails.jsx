@@ -86,7 +86,13 @@ function StudentsDetails() {
             {currentStudents.map((item, index) => (
               <tr key={item.stdid}>
                 <td>{indexOfFirstPost + index + 1}</td>
-                <td>{displayValue(item.stdname)}</td>
+                
+
+                 <td className="table-name" title={item.stdname}>
+                  <span>{displayValue(item.stdname)}</span>
+                </td>
+
+
                 <td>{displayValue(item.collegeName)}</td>
                 <td>{displayValue(item.stdincome)}</td>
                 <td>{displayValue(item.stdpercent)}</td>

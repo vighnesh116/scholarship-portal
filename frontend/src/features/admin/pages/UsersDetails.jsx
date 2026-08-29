@@ -105,7 +105,13 @@ function UsersDetails() {
             {currentUsers.map((item, index) => (
               <tr key={item.userid}>
                 <td>{indexOfFirstPost + index + 1}</td>
-                <td>{displayValue(item.email)}</td>
+                
+
+                 <td className="table-name" title={item.email}>
+                  <span>{displayValue(item.email)}</span>
+                </td>
+
+
                 <td>{displayValue(item.name)}</td>
                 <td>{displayValue(item.role)}</td>
 
