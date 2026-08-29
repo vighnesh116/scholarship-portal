@@ -1,4 +1,4 @@
-import { Profiler, useState } from "react";
+import {  useState } from "react";
 import api from "../../../shared/api/axiosInstance";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -11,6 +11,7 @@ function Portal() {
   const [form, setForm] = useState({
     user_id: 1,
     name: "",
+    collegeName:"",
     marks: "",
     income: "",
     caste: "",
@@ -73,6 +74,15 @@ function Portal() {
                 name="name"
                 placeholder="Enter Your Name"
                 value={form.name}
+                onChange={handleChange}
+              />
+
+               <input
+                required
+                type="text"
+                name="collegeName"
+                placeholder="Enter Your College Name"
+                value={form.collegeName}
                 onChange={handleChange}
               />
 
