@@ -58,7 +58,7 @@ def user_data():
 
     cursor = db.cursor(dictionary=True)
     try:
-        cursor.execute("SELECT * FROM users")
+        cursor.execute("SELECT * FROM users ORDER BY userid DESC")
         users = cursor.fetchall()
         return jsonify(users)
     finally:
@@ -72,7 +72,7 @@ def admin_students():
     
     cursor = db.cursor(dictionary=True)
     try:
-        cursor.execute("SELECT * FROM students ORDER BY stdid ASC")
+        cursor.execute("SELECT * FROM students ORDER BY stdid DESC")
         students = cursor.fetchall()
         
         return jsonify(students)
