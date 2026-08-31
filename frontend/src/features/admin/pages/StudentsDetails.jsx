@@ -93,7 +93,12 @@ function StudentsDetails() {
                 </td>
 
 
-                <td>{displayValue(item.collegeName)}</td>
+          
+                 <td className="table-name" title={item.collegeName}>
+                  <span>{displayValue(item.collegeName)}</span>
+                </td>
+
+
                 <td>{displayValue(item.stdincome)}</td>
                 <td>{displayValue(item.stdpercent)}</td>
                 <td>{displayValue(item.stdgender)}</td>
