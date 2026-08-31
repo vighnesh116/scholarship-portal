@@ -35,7 +35,11 @@ function StudentsDetails() {
       : value;
   };
 
-  const filtered = students.filter((student) =>
+  const sortedStudents = [...students].sort(
+    (a, b) => Number(b.stdid) - Number(a.stdid),
+  );
+
+  const filtered = sortedStudents.filter((student) =>
     student.stdname?.toLowerCase().includes(search.toLowerCase()),
   );
 

@@ -57,7 +57,11 @@ function UsersDetails() {
     }
   };
 
-  const filteredUsers = users.filter((item) =>
+  const sortedUsers = [...users].sort(
+    (a, b) => Number(b.userid) - Number(a.userid),
+  );
+
+  const filteredUsers = sortedUsers.filter((item) =>
     item.name?.toLowerCase().includes(search.toLowerCase()),
   );
 
