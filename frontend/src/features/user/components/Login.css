@@ -105,6 +105,42 @@
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.password-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-input-wrapper input {
+  padding-right: 52px;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  color: #16247d;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.password-toggle:hover {
+  background-color: rgba(22, 36, 125, 0.08);
+}
+
+.password-toggle:focus-visible {
+  outline: 2px solid #16247d;
+  outline-offset: 2px;
+}
+
 .auth-card form input::placeholder {
   color: #9a9a9a;
 }
@@ -196,4 +232,4 @@
     width: 52px;
     height: 52px;
   }
-}
+}
