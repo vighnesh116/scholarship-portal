@@ -90,6 +90,20 @@ function Login() {
               </button>
             </div>
 
+            <div style={{ textAlign: "right", marginTop: "-6px" }}>
+              <Link
+                to="/forgot-password"
+                style={{
+                  fontSize: "0.88rem",
+                  color: "#16247d",
+                  fontWeight: 600,
+                  textDecoration: "none",
+                }}
+              >
+                Forgot Password?
+              </Link>
+            </div>
+
             <button type="submit" disabled={loading}>
               {loading ? "Logging in..." : "Login"}
             </button>

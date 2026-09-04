@@ -5,6 +5,8 @@ import {
   Portal,
   ScholarshipResult,
   PasswordUpdate,
+  ForgotPassword,
+  MagicLogin,
   AdminLayout,
   AdminDashboard,
   StudentsDetails,
@@ -25,7 +27,11 @@ function AppRoutes() {
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Route>
+
+      {/* Magic login link handler — must be public, no auth required */}
+      <Route path="/magic-login" element={<MagicLogin />} />
 
       <Route path="/error" element={<ErrorPage />} />
 
