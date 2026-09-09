@@ -293,44 +293,7 @@ VITE_API_URL=http://localhost:5000
 
 ---
 
-# Gmail App Password Setup
 
-This project uses Gmail SMTP via `Flask-Mail` for delivering password reset tokens and one-click magic login links.
-
-Google requires an **App Password** for SMTP authentication instead of your account password.
-
----
-
-## Step 1 — Enable 2-Step Verification
-
-1. Visit: [Google Account Security](https://myaccount.google.com/security)
-2. Ensure **2-Step Verification** is turned **ON**.
-
----
-
-## Step 2 — Generate App Password
-
-1. Navigate to: [Google Account App Passwords](https://myaccount.google.com/apppasswords)
-2. Enter a custom name (e.g., `ScholarshipPortal`).
-3. Click **Create** / **Generate**.
-4. Google will generate a 16-character password (e.g., `abcd efgh ijkl mnop`).
-
----
-
-## Step 3 — Add to Backend `.env`
-
-Update your `backend/.env` file:
-
-```env
-MAIL_USERNAME=your_email@gmail.com
-MAIL_PASSWORD=abcd efgh ijkl mnop
-MAIL_DEFAULT_SENDER=your_email@gmail.com
-```
-
-> [!WARNING]
-> Do NOT use your primary Google account login password. Always use the generated 16-character App Password.
-
----
 
 # Running the Project
 
