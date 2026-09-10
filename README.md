@@ -341,19 +341,6 @@ Register a new student account via the /signup page.
 ## Live Application
 🔗 [https://scholarship-mitra.vercel.app/](https://scholarship-mitra.vercel.app/)
 
-## Student Recommendation Portal
-*(Add screenshot here)*
-
-## Scholarship Matches & Score Breakdown
-*(Add screenshot here)*
-
-## Admin Analytics Dashboard
-*(Add screenshot here)*
-
-## Scholarship Management Console
-*(Add screenshot here)*
-
----
 
 # Future Improvements
 
